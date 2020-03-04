@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Presentacion.Helpers
 {
-    public class CadenaCaracteres
-    {
-        private static readonly string ClaveSecreta = "1MonitorFeo@Tiene@BrilloPerfecto";
+    public static class CadenaCaracteres
+    {                                                  
+        private static readonly string ClaveSecreta = "caracteResP@Encript@ar@@PassWORD";
 
         public static string Encriptar(string cadena)
         {

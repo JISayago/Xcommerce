@@ -5,6 +5,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using static Presentacion.Helpers.CadenaCaracteres;
 
     public class UsuarioServicio : IUsuarioServicio
     {
@@ -24,23 +25,24 @@
 
         public void Crear(long personaId, string apellido, string nombre)
         {
-            var nombreUsuario = CrearNombreUsaurio(apellido, nombre);
-            
+            var nombreUsuario = CrearNombreUsuaurio(apellido, nombre);
+
             using (var basedatos = new ModeloXCommerceContainer())
             {
                 basedatos.Usuarios.Add(new Usuario
                 {
                     PersonaId = personaId,
                     EstaBloqueado = false,
-                    Nombre =nombreUsuario.ToLower(),
-                    Password = "Pa$$word"
+                    Nombre = nombreUsuario.ToLower(),
+                    Password = Encriptar("Pa$$word")
                 });
                 basedatos.SaveChanges();
             }
-
         }
 
-        private string CrearNombreUsaurio(string apellido, string nombre)
+      
+
+        private string CrearNombreUsuaurio(string apellido, string nombre)
         {
             int contadorLetras = 1;
             int digito = 1;

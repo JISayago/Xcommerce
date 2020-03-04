@@ -69,6 +69,10 @@
     <Compile Include="Salon\SalonServicio.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Presentacion.Helpers\Presentacion.Helpers.csproj">
+      <Project>{c88922a0-334b-4764-8152-bc862ba8a084}</Project>
+      <Name>Presentacion.Helpers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XCommerce2019.BaseDatos\XCommerce.AccesoDatos.csproj">
       <Project>{5812FBA7-DCFF-4D08-99A7-4B52E4A8BC68}</Project>
       <Name>XCommerce.AccesoDatos</Name>

@@ -160,6 +160,7 @@
             this.btnBloquear.Size = new System.Drawing.Size(75, 51);
             this.btnBloquear.Text = "Bloquear";
             this.btnBloquear.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnBloquear.Click += new System.EventHandler(this.btnBloquear_Click);
             // 
             // btnDesbloquear
             // 
@@ -169,6 +170,7 @@
             this.btnDesbloquear.Size = new System.Drawing.Size(75, 51);
             this.btnDesbloquear.Text = "Desbloquear";
             this.btnDesbloquear.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnDesbloquear.Click += new System.EventHandler(this.btnDesbloquear_Click);
             // 
             // toolStripSeparator1
             // 

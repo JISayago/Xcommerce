@@ -38,7 +38,7 @@
             this.Close();
         }
 
-        private void ActualizarDatos( string cadenaBuscar)
+        private void ActualizarDatos(string cadenaBuscar)
 
         {
             dgvGrilla.DataSource = _usuarioServicio.Obtener(!string.IsNullOrEmpty(cadenaBuscar) ? cadenaBuscar : string.Empty);
@@ -47,12 +47,12 @@
 
         private void FormatearGrilla()
         {
-            for(int i = 0; i<dgvGrilla.ColumnCount;i++)
+            for (int i = 0; i < dgvGrilla.ColumnCount; i++)
             {
                 dgvGrilla.Columns[i].Visible = false;
             }
 
-                               
+
             dgvGrilla.Columns["ApyNom"].Visible = true;
             dgvGrilla.Columns["ApyNom"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvGrilla.Columns["ApyNom"].HeaderText = "Apellido y Nombre";
@@ -89,13 +89,38 @@
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            if(entidad != null)
+            if (entidad != null)
             {
                 var usuarioSeleccionado = (UsuarioDTO)entidad;
 
                 _usuarioServicio.Crear(usuarioSeleccionado.PersonaID, usuarioSeleccionado.ApellidoPersona, usuarioSeleccionado.NombrePersona);
 
                 ActualizarDatos(string.Empty);
+            }
+        }
+
+        private void btnBloquear_Click(object sender, EventArgs e)
+        {
+            if (entidad != null && ((UsuarioDTO)entidad).Nombre != "No Asignado..")
+            {
+                var usuarioSeleccionado = (UsuarioDTO)entidad;
+
+                _usuarioServicio.CambiarEstado(usuarioSeleccionado.Nombre, true);
+                ActualizarDatos(string.Empty);
+                MessageBox.Show($"El usuario {usuarioSeleccionado.Nombre} fue Bloqueado Correctamente");
+            }
+        }
+
+        private void btnDesbloquear_Click(object sender, EventArgs e)
+        {
+
+            if (entidad != null && ((UsuarioDTO)entidad).Nombre != "No Asignado..")
+            {
+                var usuarioSeleccionado = (UsuarioDTO)entidad;
+
+                _usuarioServicio.CambiarEstado(usuarioSeleccionado.Nombre, false);
+                ActualizarDatos(string.Empty);
+                MessageBox.Show($"El usuario {usuarioSeleccionado.Nombre} fue Desbloqueado Correctamente");
             }
         }
     }
