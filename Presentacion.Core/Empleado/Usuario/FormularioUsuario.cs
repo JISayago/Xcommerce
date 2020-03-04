@@ -119,7 +119,9 @@
                 var usuarioSeleccionado = (UsuarioDTO)entidad;
 
                 _usuarioServicio.CambiarEstado(usuarioSeleccionado.Nombre, false);
+
                 ActualizarDatos(string.Empty);
+
                 MessageBox.Show($"El usuario {usuarioSeleccionado.Nombre} fue Desbloqueado Correctamente");
             }
         }
