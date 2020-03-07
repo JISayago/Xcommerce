@@ -79,6 +79,22 @@ namespace XCommerce.Servicios.Core.Localidad
             }
         }
 
+        public LocalidadDTO ObtenerPorId(long localidadId)
+        {
+            using (var baseDatos = new ModeloXCommerceContainer())
+            {
+                return baseDatos.Localidades
+                    .AsNoTracking()
+                    .Select(x => new LocalidadDTO
+                    {
+                        Id = x.Id,
+                        Descripcion = x.Descripcion,
+                        EstaEliminado = x.EstaEliminado
+
+                    }).FirstOrDefault(x => !x.EstaEliminado && x.Id == localidadId);
+            }
+        }
+
         public IEnumerable<LocalidadDTO> ObtenerLocalidadEliminada(string cadenaBuscar)
         {
             using (var baseDatos = new ModeloXCommerceContainer())

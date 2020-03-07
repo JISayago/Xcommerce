@@ -11,6 +11,8 @@ namespace XCommerce.Servicios.Core.Localidad.DTO
     {
         IEnumerable<LocalidadDTO> ObtenerLocalidad(string cadenaBuscar);
 
+        LocalidadDTO ObtenerPorId(long localidadId);
+        
         IEnumerable<LocalidadDTO> ObtenerLocalidadEliminada(string cadenaBuscar);
 
         IEnumerable<LocalidadDTO> ObtenerLocalidadPorProvincia(long provinciaId, string cadenaBuscar);

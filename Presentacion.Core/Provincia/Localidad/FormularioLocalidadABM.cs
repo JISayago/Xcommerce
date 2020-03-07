@@ -79,11 +79,11 @@ namespace Presentacion.Core.Provincia.Localidad
                 btnLimpiar.Enabled = false;
             }
 
-            var provincia = _provinciaServicio.ObtenerPorId(entidadId.Value);
+            var localidad = _localidadServicio.ObtenerPorId(entidadId.Value);
 
-            if (provincia != null)
+            if (localidad != null)
             {
-                txtLocalidad.Text = provincia.Descripcion;
+                txtLocalidad.Text =localidad.Descripcion;
             }
             else
             {
@@ -104,27 +104,29 @@ namespace Presentacion.Core.Provincia.Localidad
             return true;
 
         }
-        //public override bool EjecutarComandoEliminar()
-        //{
-        //    if (EntidadId == null) return false;
 
-        //    _provinciaServicio.Eliminar(EntidadId.Value);
+        public override bool EjecutarComandoEliminar()
+        {
+            if (EntidadId == null) return false;
 
-        //    return true;
+            _localidadServicio.Eliminar(EntidadId.Value);
 
-        //}
-        //public override bool EjecutarComandoModificar()
-        //{
-        //    var provinciaModificar = new ProvinciaDTO
-        //    {
-        //        Id = EntidadId.Value,
-        //        Descripcion = txtProvincia.Text,
-        //    };
-        //    _provinciaServicio.Modificar(provinciaModificar);
+            return true;
 
-        //    return true;
+        }
 
-        //}
+        public override bool EjecutarComandoModificar()
+        {
+            var localidadModificar = new LocalidadDTO
+            {
+                Id = EntidadId.Value,
+                Descripcion = txtLocalidad.Text,
+            };
+            _localidadServicio.Modificar(localidadModificar);
+
+            return true;
+
+        }
 
 
     }
