@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Articulo\ArticuloServicio.cs" />
+    <Compile Include="Articulo\DTO\ArticuloDTO.cs" />
+    <Compile Include="Articulo\IArticuloServicio.cs" />
     <Compile Include="Empleado\DTO\EmpleadoDTO.cs" />
     <Compile Include="Empleado\EmpleadoServicio.cs" />
     <Compile Include="Empleado\IEmpleadoServicio.cs" />
