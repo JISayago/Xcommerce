@@ -15,7 +15,7 @@ namespace XCommerce.Servicios.Core.Articulo.DTO
         public string Abreviatura { get; set; }
         public string Descripcion { get; set; }
         public string Detalle { get; set; }
-        public byte[] Fnoto { get; set; }
+        public byte[] Foto { get; set; }
         public bool ActivarLimiteVenta { get; set; }
         public decimal LimiteVenta { get; set; }
         public bool PermiteStockNegativo { get; set; }
@@ -23,8 +23,8 @@ namespace XCommerce.Servicios.Core.Articulo.DTO
         public decimal StockMaximo { get; set; }
         public decimal StockMinimo { get; set; }
         public bool DescuentaStock { get; set; }
-        public string Marca { get; set; }
-        public string Rubro { get; set; }
+        public long MarcaId { get; set; }
+        public long RubroId { get; set; }
         public decimal Stock { get; set; }
 
         //Precio
@@ -39,7 +39,6 @@ namespace XCommerce.Servicios.Core.Articulo.DTO
         public string EstaEliminadoPrecioStr => EstaEliminado ? "SI" : "NO";
        
         //Lista Precio
-
         public long ListaPrecioId { get; set; }
         public string DescripcionListaPrecio { get; set; }
         public decimal Rentabilidad { get; set; }
