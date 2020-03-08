@@ -19,7 +19,7 @@ namespace XCommerce.AccesoDatos
         public decimal Cantidad { get; set; }
         public string Observacion { get; set; }
         public long MotivoBajaId { get; set; }
-        public int ArticuloId { get; set; }
+        public long ArticuloId { get; set; }
     
         public virtual MotivoBaja MotivoBaja { get; set; }
         public virtual Articulo Articulo { get; set; }

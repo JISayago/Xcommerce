@@ -55,6 +55,7 @@ namespace XCommerce.Servicios.Core.Localidad
                 if (localidadModificar == null) throw new Exception("Ocurrió un error al obtener la Localidad para Modificarla");
 
                 localidadModificar.Descripcion = localidadDTO.Descripcion;
+               
 
                 baseDatos.SaveChanges();
             }
@@ -117,9 +118,23 @@ namespace XCommerce.Servicios.Core.Localidad
             }
         }
 
-       
-        
+        public LocalidadDTO ObtenerPorId(long localidadId)
+        {
+            using (var baseDatos = new ModeloXCommerceContainer())
+            {
+                return baseDatos.Localidades
+                    .AsNoTracking()
+                    .Include(x => x.Provincia)
+                    .Select(x => new LocalidadDTO
+                    {
+                        Id = x.Id,
+                        Descripcion = x.Descripcion,
+                        ProvinciaId = x.ProvinciaId,
+                        ProvinciaDescrip = x.Provincia.Descripcion,
+                        EstaEliminado = x.EstaEliminado
 
-
+                    }).FirstOrDefault(x => !x.EstaEliminado && x.Id == localidadId);
+            }
+        }
     }
 }

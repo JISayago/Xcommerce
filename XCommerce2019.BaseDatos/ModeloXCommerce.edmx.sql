@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/17/2020 17:52:11
--- Generated from EDMX file: D:\Facultad\Final LAB 2\MonchoFinal\XCommerce2019\XCommerce2019.BaseDatos\ModeloXCommerce.edmx
+-- Date Created: 03/08/2020 09:22:19
+-- Generated from EDMX file: D:\Facultad\Final LAB 2\XCommerce2019\XCommerce2019.BaseDatos\ModeloXCommerce.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [Xcom2020];
+USE [2020XCommerce];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -359,7 +359,7 @@ GO
 
 -- Creating table 'Articulos'
 CREATE TABLE [dbo].[Articulos] (
-    [Id] int IDENTITY(1,1) NOT NULL,
+    [Id] bigint IDENTITY(1,1) NOT NULL,
     [Codigo] nvarchar(100)  NOT NULL,
     [CodigoBarra] nvarchar(100)  NOT NULL,
     [Abreviatura] nvarchar(20)  NOT NULL,
@@ -394,7 +394,7 @@ CREATE TABLE [dbo].[BajaArticulos] (
     [Cantidad] decimal(18,2)  NOT NULL,
     [Observacion] nvarchar(max)  NOT NULL,
     [MotivoBajaId] bigint  NOT NULL,
-    [ArticuloId] int  NOT NULL
+    [ArticuloId] bigint  NOT NULL
 );
 GO
 
@@ -437,7 +437,7 @@ CREATE TABLE [dbo].[Precios] (
     [PrecioPublico] decimal(18,2)  NOT NULL,
     [FechaActualizacion] datetime  NOT NULL,
     [ListaPrecioId] bigint  NOT NULL,
-    [ArticuloId] int  NOT NULL,
+    [ArticuloId] bigint  NOT NULL,
     [ActivarHoraVenta] bit  NOT NULL,
     [HoraVenta] datetime  NOT NULL
 );
@@ -478,7 +478,7 @@ CREATE TABLE [dbo].[Mesas] (
     [Id] bigint IDENTITY(1,1) NOT NULL,
     [Numero] int  NOT NULL,
     [Descripcion] nvarchar(250)  NOT NULL,
-    [EstaEliminado] nvarchar(max)  NOT NULL,
+    [EstaEliminado] bit  NOT NULL,
     [SalonId] bigint  NOT NULL,
     [EstadoMesa] int  NOT NULL
 );
@@ -519,7 +519,7 @@ CREATE TABLE [dbo].[DetalleComprobantes] (
     [PrecioUnitario] decimal(18,2)  NOT NULL,
     [Cantidad] decimal(18,2)  NOT NULL,
     [SubTotal] decimal(18,2)  NOT NULL,
-    [ArticuloId] int  NOT NULL
+    [ArticuloId] bigint  NOT NULL
 );
 GO
 
