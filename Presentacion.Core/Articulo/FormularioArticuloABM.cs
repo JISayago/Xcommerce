@@ -18,6 +18,8 @@ namespace Presentacion.Core.Articulo
     public partial class FormularioArticuloABM : FormularioBaseABM
     {
         private IArticuloServicio _articuloServicio;
+        private byte[] byte_vacio_foto = { 0 }; //¿que hacía?
+
         public FormularioArticuloABM()
         {
             InitializeComponent();
@@ -42,6 +44,51 @@ namespace Presentacion.Core.Articulo
 
         }
 
+        public override bool EjecutarComandoEliminar()
+        {
+            if (EntidadId == null) return false;
+
+            _articuloServicio.Eliminar(EntidadId.Value);
+
+            return true;
+        }
+
+        public override bool EjecutarComandoModificar()
+        {
+            var articuloAModificar = new ArticuloDTO
+            {
+                Codigo = txtBoxCodigo.Text,
+                CodigoBarra = txtBoxCodigoBarra.Text,
+                Descripcion = txtBoxDescripcion.Text,
+                Detalle = txtBoxDetalle.Text,
+                Abreviatura = txtBoxAbreviatura.Text,
+                ActivarLimiteVenta = cbxActivarLimiteVenta.Checked,
+                DescuentaStock = cbxDescuentaStock.Checked,
+                LimiteVenta = nudLimiteVenta.Value,
+                PermiteStockNegativo = cbxPermiteStockNegativo.Checked,
+
+                ////////
+                // TODO:
+                //MarcaId = ((MarcaDto)cmbMarca.SelectedItem).Id,
+                //RubroId = ((RubroDto)cmbRubro.SelectedItem).Id,
+                ////////
+
+                MarcaId = 1,
+                RubroId = 1,
+                StockMaximo = nudStockMax.Value,
+                Stock = nudStock.Value,
+                StockMinimo = nudStockMin.Value,
+
+                EstaDiscontinuado = false,
+
+                Foto = byte_vacio_foto//TODO//ImagenDb.Convertir_Imagen_Bytes(imgFotoArticulo.Image),
+            };
+
+            _articuloServicio.Modificar(articuloAModificar);
+
+            return true;
+        }
+
         public override bool EjecutarComandoNuevo()
         {
             //TODO
@@ -55,8 +102,7 @@ namespace Presentacion.Core.Articulo
             /
             */
 
-            byte[] f = { 0 };
-
+            
             var articuloNuevo = new ArticuloDTO
             {
                 Codigo = txtBoxCodigo.Text,
@@ -83,7 +129,7 @@ namespace Presentacion.Core.Articulo
 
                 EstaDiscontinuado = false,
 
-                Foto = f//TODO//ImagenDb.Convertir_Imagen_Bytes(imgFotoArticulo.Image),
+                Foto = byte_vacio_foto//TODO//ImagenDb.Convertir_Imagen_Bytes(imgFotoArticulo.Image),
 
             };
 
