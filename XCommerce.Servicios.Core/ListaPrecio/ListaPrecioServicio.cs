@@ -51,7 +51,7 @@ namespace XCommerce.Servicios.Core.ListaPrecio
                 if (listaPrecioModificar == null) throw new Exception("Ocurrió un error al obtener la lista de precios para modificarla");
 
                 listaPrecioModificar.Descripcion = listaPrecioDTO.Descripcion;
-                listaPrecioModificar.Rentabilidad = listaPrecioDTO.Rentabilidad,
+                listaPrecioModificar.Rentabilidad = listaPrecioDTO.Rentabilidad;
 
                 context.SaveChanges();
             }
@@ -80,7 +80,7 @@ namespace XCommerce.Servicios.Core.ListaPrecio
             {
                 return context.ListaPrecios
                     .AsNoTracking()
-                    .Where(x => !x.EstaEliminado && x.Descripcion.Contains(cadenaBuscar) && x.EstaEliminado == obtenerEliminados)
+                    .Where(x => !x.EstaEliminado && x.Descripcion.Contains(cadenaBuscar) && x.EstaEliminado == obtenerEliminadas)
                     .Select(x => new ListaPrecioDTO
                     {
                         Id = x.Id,
