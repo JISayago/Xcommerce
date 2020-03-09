@@ -21,7 +21,7 @@ namespace XCommerce.AccesoDatos
         public decimal PrecioUnitario { get; set; }
         public decimal Cantidad { get; set; }
         public decimal SubTotal { get; set; }
-        public int ArticuloId { get; set; }
+        public long ArticuloId { get; set; }
     
         public virtual Comprobante Comprobante { get; set; }
         public virtual Articulo Articulo { get; set; }

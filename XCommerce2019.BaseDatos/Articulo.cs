@@ -24,7 +24,7 @@ namespace XCommerce.AccesoDatos
             this.DetalleComprobantes = new HashSet<DetalleComprobante>();
         }
     
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string Codigo { get; set; }
         public string CodigoBarra { get; set; }
         public string Abreviatura { get; set; }

@@ -80,6 +80,7 @@
             this.btnNuevaProvincia.TabIndex = 21;
             this.btnNuevaProvincia.Text = "...";
             this.btnNuevaProvincia.UseVisualStyleBackColor = true;
+            this.btnNuevaProvincia.Click += new System.EventHandler(this.btnNuevaProvincia_Click);
             // 
             // FormularioLocalidadABM
             // 
