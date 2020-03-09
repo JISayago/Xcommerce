@@ -304,7 +304,10 @@
             var FormularioABMLocalidad = new FormularioLocalidadABM(TipoOperacion.Nuevo);
             FormularioABMLocalidad.ShowDialog();
 
-           
+            if (FormularioABMLocalidad.RealizoAlgunaOperacion)
+            {
+                CargarComboBox(cmbLocalidad, _localidadServicio.ObtenerLocalidadPorProvincia(((ProvinciaDTO)cmbProvincia.SelectedItem).Id, string.Empty), "Descripcion", "Id");
+            }
         }
     }
 

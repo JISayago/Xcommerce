@@ -86,11 +86,11 @@ namespace Presentacion.Core.Provincia.Localidad
 
             var localidad = _localidadServicio.ObtenerPorId(entidadId.Value);
 
-           
             if (localidad != null)
             {
                 CargarComboBox(cmbProvincia, _provinciaServicio.ObtenerProvincia(localidad.ProvinciaDescrip), "Descripcion", "Id");
                 txtLocalidad.Text = localidad.Descripcion;
+
             }
             else
             {
@@ -121,6 +121,7 @@ namespace Presentacion.Core.Provincia.Localidad
             return true;
 
         }
+
         public override bool EjecutarComandoModificar()
         {
             var localidadModificar = new LocalidadDTO
