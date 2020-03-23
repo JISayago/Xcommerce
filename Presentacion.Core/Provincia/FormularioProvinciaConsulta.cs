@@ -91,9 +91,9 @@
 
         public override void EjecutarBtnNuevo()
         {
-            var FormularioABMEmpleado = new FormularioProvinciaABM(TipoOperacion.Nuevo);
-            FormularioABMEmpleado.ShowDialog();
-            ActualizarSegunOperacion(FormularioABMEmpleado.RealizoAlgunaOperacion);
+            var FormularioABMProvincia = new FormularioProvinciaABM(TipoOperacion.Nuevo);
+            FormularioABMProvincia.ShowDialog();
+            ActualizarSegunOperacion(FormularioABMProvincia.RealizoAlgunaOperacion);
         }
 
     }

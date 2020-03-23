@@ -80,7 +80,7 @@ namespace Presentacion.Core.Provincia.Localidad
             if (puedeEjecutarComando)
 
             {
-                var FormularioABMLocalidad = new FormularioProvinciaABM(TipoOperacion.Eliminar, entidadId);
+                var FormularioABMLocalidad = new FormularioLocalidadABM(TipoOperacion.Eliminar, entidadId);
 
                 FormularioABMLocalidad.ShowDialog();
 

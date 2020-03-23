@@ -10,41 +10,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using XCommerce.Servicios.Core.Localidad;
-using XCommerce.Servicios.Core.Localidad.DTO;
-using XCommerce.Servicios.Core.Provincia;
-using XCommerce.Servicios.Core.Provincia.DTO;
+using XCommerce.Servicios.Core.Salon;
+using XCommerce.Servicios.Core.Salon.DTO;
 
-namespace Presentacion.Core.Provincia.Localidad
+namespace Presentacion.Core.Salon
 {
-    public partial class FormularioLocalidadABM : FormularioBaseABM
+    public partial class FormularioSalonABM : FormularioBaseABM
     {
-        private readonly IProvinciaServicio _provinciaServicio;
-        private readonly ILocalidadServicio _localidadServicio;
+        private readonly ISalonServicio _salonServicio;
+
 
         public override void FormularioBaseABM_Load(object sender, EventArgs e)
         {
             base.FormularioBaseABM_Load(sender, e);
             Inicializador(EntidadId);
         }
-        public FormularioLocalidadABM(TipoOperacion tipoOperacion, long? entidadId = null)
+        public FormularioSalonABM(TipoOperacion tipoOperacion, long? entidadId = null)
             : base(tipoOperacion, entidadId)
         {
             InitializeComponent();
 
-            _provinciaServicio = new ProvinciaServicio();
-            _localidadServicio = new LocalidadServicio();
+            _salonServicio = new SalonServicio();
 
             if (tipoOperacion == TipoOperacion.Eliminar || tipoOperacion == TipoOperacion.Modificar)
             {
                 CargarDatos(entidadId);
-                cmbProvincia.Enabled = false;
             }
 
             if (tipoOperacion == TipoOperacion.Eliminar)
             {
                 DesactivarControles(this);
-                
             }
 
         }
@@ -53,12 +48,8 @@ namespace Presentacion.Core.Provincia.Localidad
         {
             if (entidadId.HasValue) return;
 
-            CargarComboBox(cmbProvincia, _provinciaServicio.ObtenerProvincia(string.Empty), "Descripcion", "Id");
-           
-        
-
-            txtLocalidad.KeyPress += Validacion.NoSimbolos;
-            txtLocalidad.KeyPress += Validacion.NoNumeros;
+            txtSalon.KeyPress += Validacion.NoSimbolos;
+            txtSalon.KeyPress += Validacion.NoNumeros;
         }
 
         public override void DesactivarControles(object obj)
@@ -81,16 +72,13 @@ namespace Presentacion.Core.Provincia.Localidad
             if (TipoOperacion == TipoOperacion.Eliminar)
             {
                 btnLimpiar.Enabled = false;
-               
             }
 
-            var localidad = _localidadServicio.ObtenerPorId(entidadId.Value);
+            var salon = _salonServicio.ObtenerPorId(entidadId.Value);
 
-            if (localidad != null)
+            if (salon != null)
             {
-                CargarComboBox(cmbProvincia, _provinciaServicio.ObtenerProvincia(localidad.ProvinciaDescrip), "Descripcion", "Id");
-                txtLocalidad.Text = localidad.Descripcion;
-
+                txtSalon.Text = salon.Descripcion;
             }
             else
             {
@@ -100,46 +88,37 @@ namespace Presentacion.Core.Provincia.Localidad
         }
         public override bool EjecutarComandoNuevo()
         {
-            var localidadNueva = new LocalidadDTO
+            var salonNuevo = new SalonDTO
             {
-                ProvinciaId = (long)cmbProvincia.SelectedValue,
-                Descripcion = txtLocalidad.Text,
+                Descripcion = txtSalon.Text,
                 EstaEliminado = false
 
             };
-            _localidadServicio.Insertar(localidadNueva);
+            _salonServicio.Insertar(salonNuevo);
             return true;
 
         }
-
         public override bool EjecutarComandoEliminar()
         {
             if (EntidadId == null) return false;
 
-            _localidadServicio.Eliminar(EntidadId.Value);
+            _salonServicio.Eliminar(EntidadId.Value);
 
             return true;
 
         }
-
         public override bool EjecutarComandoModificar()
         {
-            var localidadModificar = new LocalidadDTO
+            var salonModificar = new SalonDTO
             {
                 Id = EntidadId.Value,
-                Descripcion = txtLocalidad.Text,
+                Descripcion = txtSalon.Text,
             };
-            _localidadServicio.Modificar(localidadModificar);
+            _salonServicio.Modificar(salonModificar);
 
             return true;
 
-        }
-
-        private void btnNuevaProvincia_Click(object sender, EventArgs e)
-        {
-            var FormularioABMProvincia = new FormularioProvinciaABM(TipoOperacion.Nuevo);
-            FormularioABMProvincia.ShowDialog();
-            
         }
     }
 }
+

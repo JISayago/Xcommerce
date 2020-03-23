@@ -312,7 +312,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Codigo" Type="nvarchar" Nullable="false" MaxLength="100" />
     <Property Name="CodigoBarra" Type="nvarchar" Nullable="false" MaxLength="100" />
     <Property Name="Abreviatura" Type="nvarchar" Nullable="false" MaxLength="20" />
@@ -347,7 +347,7 @@
     <Property Name="Cantidad" Type="decimal" Nullable="false" Precision="18" Scale="2" />
     <Property Name="Observacion" Type="nvarchar(max)" Nullable="false" />
     <Property Name="MotivoBajaId" Type="bigint" Nullable="false" />
-    <Property Name="ArticuloId" Type="int" Nullable="false" />
+    <Property Name="ArticuloId" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="Cajas">
     <Key>
@@ -390,7 +390,7 @@
     <Property Name="PrecioPublico" Type="decimal" Nullable="false" Precision="18" Scale="2" />
     <Property Name="FechaActualizacion" Type="datetime" Nullable="false" />
     <Property Name="ListaPrecioId" Type="bigint" Nullable="false" />
-    <Property Name="ArticuloId" Type="int" Nullable="false" />
+    <Property Name="ArticuloId" Type="bigint" Nullable="false" />
     <Property Name="ActivarHoraVenta" Type="bit" Nullable="false" />
     <Property Name="HoraVenta" Type="datetime" Nullable="false" />
   </EntityType>
@@ -431,7 +431,7 @@
     <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Numero" Type="int" Nullable="false" />
     <Property Name="Descripcion" Type="nvarchar" Nullable="false" MaxLength="250" />
-    <Property Name="EstaEliminado" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EstaEliminado" Type="bit" Nullable="false" />
     <Property Name="SalonId" Type="bigint" Nullable="false" />
     <Property Name="EstadoMesa" Type="int" Nullable="false" />
   </EntityType>
@@ -472,7 +472,7 @@
     <Property Name="PrecioUnitario" Type="decimal" Nullable="false" Precision="18" Scale="2" />
     <Property Name="Cantidad" Type="decimal" Nullable="false" Precision="18" Scale="2" />
     <Property Name="SubTotal" Type="decimal" Nullable="false" Precision="18" Scale="2" />
-    <Property Name="ArticuloId" Type="int" Nullable="false" />
+    <Property Name="ArticuloId" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="Movimientos">
     <Key>
@@ -1521,7 +1521,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Codigo" Type="String" Nullable="false" MaxLength="100" />
           <Property Name="CodigoBarra" Type="String" Nullable="false" MaxLength="100" />
           <Property Name="Abreviatura" Type="String" Nullable="false" MaxLength="20" />
@@ -1588,7 +1588,7 @@
           <NavigationProperty Name="MotivoBaja" Relationship="ModeloXCommerce.MotivoBajaBajaArticulo" FromRole="BajaArticulo" ToRole="MotivoBaja" />
           <Property Name="MotivoBajaId" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Articulo" Relationship="ModeloXCommerce.ArticuloBajaArticulo" FromRole="BajaArticulo" ToRole="Articulo" />
-          <Property Name="ArticuloId" Type="Int32" Nullable="false" />
+          <Property Name="ArticuloId" Type="Int64" Nullable="false" />
         </EntityType>
         <Association Name="MotivoBajaBajaArticulo">
           <End Type="ModeloXCommerce.MotivoBaja" Role="MotivoBaja" Multiplicity="1" />
@@ -1705,7 +1705,7 @@
           <NavigationProperty Name="ListaPrecio" Relationship="ModeloXCommerce.ListaPrecioPrecio" FromRole="Precio" ToRole="ListaPrecio" />
           <Property Name="ListaPrecioId" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Articulo" Relationship="ModeloXCommerce.ArticuloPrecio" FromRole="Precio" ToRole="Articulo" />
-          <Property Name="ArticuloId" Type="Int32" Nullable="false" />
+          <Property Name="ArticuloId" Type="Int64" Nullable="false" />
           <Property Name="ActivarHoraVenta" Type="Boolean" Nullable="false" />
           <Property Name="HoraVenta" Type="DateTime" Nullable="false" />
         </EntityType>
@@ -1791,7 +1791,7 @@
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Numero" Type="Int32" Nullable="false" />
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="250" />
-          <Property Name="EstaEliminado" Type="String" Nullable="false" />
+          <Property Name="EstaEliminado" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Salon" Relationship="ModeloXCommerce.SalonMesa" FromRole="Mesa" ToRole="Salon" />
           <Property Name="SalonId" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Reservas" Relationship="ModeloXCommerce.MesaReserva" FromRole="Mesa" ToRole="Reserva" />
@@ -1946,7 +1946,7 @@
           <Property Name="Cantidad" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="SubTotal" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <NavigationProperty Name="Articulo" Relationship="ModeloXCommerce.ArticuloDetalleComprobante" FromRole="DetalleComprobante" ToRole="Articulo" />
-          <Property Name="ArticuloId" Type="Int32" Nullable="false" />
+          <Property Name="ArticuloId" Type="Int64" Nullable="false" />
         </EntityType>
         <Association Name="ComprobanteDetalleComprobante">
           <End Type="ModeloXCommerce.Comprobante" Role="Comprobante" Multiplicity="1" />

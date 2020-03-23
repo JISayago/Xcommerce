@@ -24,7 +24,7 @@ namespace XCommerce.AccesoDatos
         public long Id { get; set; }
         public int Numero { get; set; }
         public string Descripcion { get; set; }
-        public string EstaEliminado { get; set; }
+        public bool EstaEliminado { get; set; }
         public long SalonId { get; set; }
         public EstadoMesa EstadoMesa { get; set; }
     

@@ -43,6 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Articulo\FormularioArticuloABM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Articulo\FormularioArticuloABM.Designer.cs">
+      <DependentUpon>FormularioArticuloABM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Articulo\FormularioArticuloConsulta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Articulo\FormularioArticuloConsulta.Designer.cs">
+      <DependentUpon>FormularioArticuloConsulta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Empleado\FormularioEmpleadoABM.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +72,18 @@
     </Compile>
     <Compile Include="Empleado\Usuario\FormularioUsuario.Designer.cs">
       <DependentUpon>FormularioUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListaPrecio\FormularioListaPrecioABM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListaPrecio\FormularioListaPrecioABM.Designer.cs">
+      <DependentUpon>FormularioListaPrecioABM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListaPrecio\FormularioListaPrecioConsulta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListaPrecio\FormularioListaPrecioConsulta.Designer.cs">
+      <DependentUpon>FormularioListaPrecioConsulta.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provincia\FormularioProvinciaABM.cs">
@@ -86,6 +110,30 @@
     <Compile Include="Provincia\Localidad\FormularioLocalidadConsulta.Designer.cs">
       <DependentUpon>FormularioLocalidadConsulta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Salon\FormularioSalonABM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Salon\FormularioSalonABM.Designer.cs">
+      <DependentUpon>FormularioSalonABM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Salon\FormularioSalonConsulta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Salon\FormularioSalonConsulta.Designer.cs">
+      <DependentUpon>FormularioSalonConsulta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Salon\Mesa\FormularioMesaABM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Salon\Mesa\FormularioMesaABM.Designer.cs">
+      <DependentUpon>FormularioMesaABM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Salon\Mesa\FormularioMesaConsulta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Salon\Mesa\FormularioMesaConsulta.Designer.cs">
+      <DependentUpon>FormularioMesaConsulta.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Presentacion.Constatntes\Presentacion.Constantes.csproj">
@@ -108,8 +156,15 @@
       <Project>{372643DD-0ACF-4405-B08F-01C3B4E76B3A}</Project>
       <Name>XCommerce.Servicios.Seguridad</Name>
     </ProjectReference>
+    <ProjectReference Include="..\XCommerce2019.BaseDatos\XCommerce.AccesoDatos.csproj">
+      <Project>{5812FBA7-DCFF-4D08-99A7-4B52E4A8BC68}</Project>
+      <Name>XCommerce.AccesoDatos</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Articulo\FormularioArticuloABM.resx">
+      <DependentUpon>FormularioArticuloABM.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Empleado\FormularioEmpleadoABM.resx">
       <DependentUpon>FormularioEmpleadoABM.cs</DependentUpon>
     </EmbeddedResource>
@@ -125,6 +180,13 @@
     <EmbeddedResource Include="Provincia\Localidad\FormularioLocalidadABM.resx">
       <DependentUpon>FormularioLocalidadABM.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Salon\FormularioSalonABM.resx">
+      <DependentUpon>FormularioSalonABM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Salon\Mesa\FormularioMesaABM.resx">
+      <DependentUpon>FormularioMesaABM.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

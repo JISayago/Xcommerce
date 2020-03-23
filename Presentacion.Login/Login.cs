@@ -36,6 +36,34 @@ namespace Presentacion.Login
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
+            IngresoAlSistema();
+        }
+           
+
+        private bool VerficarDatosObligatorios()
+        {
+            if (string.IsNullOrEmpty(txtUsuario.Text))
+            {
+                MessageBox.Show("El nombre de Usuario es Obligatorio.");
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtContraseña.Text))
+            {
+                MessageBox.Show("La Contraseña es Obligatoria.");
+                return false;
+            }
+            return true;
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+       
+
+        private void IngresoAlSistema()
+        {
             if (VerficarDatosObligatorios())
             {
                 if (_accesoSistema.VerificarExisteUsuario(txtUsuario.Text, txtContraseña.Text))
@@ -83,21 +111,15 @@ namespace Presentacion.Login
                 }
             }
         }
-           
 
-        private bool VerficarDatosObligatorios()
+        private void txtContraseña_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (string.IsNullOrEmpty(txtUsuario.Text))
-            {
-                MessageBox.Show("El nombre de Usuario es Obligatorio.");
-                return false;
-            }
-            if (string.IsNullOrEmpty(txtContraseña.Text))
-            {
-                MessageBox.Show("La Contraseña es Obligatoria.");
-                return false;
-            }
-            return true;
+            IngresoAlSistema();
+        }
+
+        private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            IngresoAlSistema();
         }
     }
 }

@@ -5,6 +5,8 @@ namespace VentanaPrincipal
     using Presentacion.Core.Empleado;
     using Presentacion.Core.Provincia;
     using Presentacion.Core.Provincia.Localidad;
+    using Presentacion.Core.Salon;
+    using Presentacion.Core.Salon.Mesa;
     using Presentacion.Login.Usuario;
     using System;
     using System.Windows.Forms;
@@ -42,6 +44,18 @@ namespace VentanaPrincipal
         {
             var FormularioConsultaLocalidad = new FormularioLocalidadConsulta();
             FormularioConsultaLocalidad.Show();
+        }
+
+        private void consultaToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            var FormularioConsultaSalon = new FormularioSalonConsulta();
+            FormularioConsultaSalon.Show();
+        }
+
+        private void consultaToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            var FormularioConsultaMesa = new FormularioMesaConsulta();
+            FormularioConsultaMesa.Show();
         }
     }
 }

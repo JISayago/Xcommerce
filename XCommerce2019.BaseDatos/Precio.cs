@@ -19,7 +19,7 @@ namespace XCommerce.AccesoDatos
         public decimal PrecioPublico { get; set; }
         public System.DateTime FechaActualizacion { get; set; }
         public long ListaPrecioId { get; set; }
-        public int ArticuloId { get; set; }
+        public long ArticuloId { get; set; }
         public bool ActivarHoraVenta { get; set; }
         public System.DateTime HoraVenta { get; set; }
     
