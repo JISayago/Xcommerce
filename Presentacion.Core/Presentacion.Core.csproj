@@ -122,6 +122,12 @@
     <Compile Include="Salon\FormularioSalonConsulta.Designer.cs">
       <DependentUpon>FormularioSalonConsulta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Salon\Mesa\Control\CtrolMesa.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Salon\Mesa\Control\CtrolMesa.Designer.cs">
+      <DependentUpon>CtrolMesa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Salon\Mesa\FormularioMesaABM.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +139,18 @@
     </Compile>
     <Compile Include="Salon\Mesa\FormularioMesaConsulta.Designer.cs">
       <DependentUpon>FormularioMesaConsulta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VentaSalon\FormularioComprobanteMesa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VentaSalon\FormularioComprobanteMesa.Designer.cs">
+      <DependentUpon>FormularioComprobanteMesa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VentaSalon\FormularioVentaSalon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VentaSalon\FormularioVentaSalon.Designer.cs">
+      <DependentUpon>FormularioVentaSalon.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -183,10 +201,21 @@
     <EmbeddedResource Include="Salon\FormularioSalonABM.resx">
       <DependentUpon>FormularioSalonABM.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Salon\Mesa\Control\CtrolMesa.resx">
+      <DependentUpon>CtrolMesa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Salon\Mesa\FormularioMesaABM.resx">
       <DependentUpon>FormularioMesaABM.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VentaSalon\FormularioComprobanteMesa.resx">
+      <DependentUpon>FormularioComprobanteMesa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VentaSalon\FormularioVentaSalon.resx">
+      <DependentUpon>FormularioVentaSalon.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Comprobante\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

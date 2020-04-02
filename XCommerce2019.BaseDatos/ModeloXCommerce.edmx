@@ -554,7 +554,7 @@
     </Key>
     <Property Name="Comensal" Type="nvarchar(max)" Nullable="false" />
     <Property Name="MesaId" Type="bigint" Nullable="false" />
-    <Property Name="MozoId" Type="bigint" Nullable="false" />
+    <Property Name="MozoId" Type="bigint" Nullable="true" />
     <Property Name="Id" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="Personas_Empleado">
@@ -964,7 +964,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="EmpleadoComprobanteSalon">
-    <End Role="Empleado" Type="ModeloXCommerce.Store.Personas_Empleado" Multiplicity="1" />
+    <End Role="Empleado" Type="ModeloXCommerce.Store.Personas_Empleado" Multiplicity="0..1" />
     <End Role="ComprobanteSalon" Type="ModeloXCommerce.Store.Comprobantes_ComprobanteSalon" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Empleado">
@@ -1926,7 +1926,7 @@
           <NavigationProperty Name="Mesa" Relationship="ModeloXCommerce.MesaComprobanteSalon" FromRole="ComprobanteSalon" ToRole="Mesa" />
           <Property Name="MesaId" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Mozo" Relationship="ModeloXCommerce.EmpleadoComprobanteSalon" FromRole="ComprobanteSalon" ToRole="Empleado" />
-          <Property Name="MozoId" Type="Int64" Nullable="false" />
+          <Property Name="MozoId" Type="Int64" Nullable="true" />
         </EntityType>
         <EnumType Name="EstadoMesa">
           <Member Name="Cerrada" Value="1" />
@@ -2097,7 +2097,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="EmpleadoComprobanteSalon">
-          <End Type="ModeloXCommerce.Empleado" Role="Empleado" Multiplicity="1" />
+          <End Type="ModeloXCommerce.Empleado" Role="Empleado" Multiplicity="0..1" />
           <End Type="ModeloXCommerce.ComprobanteSalon" Role="ComprobanteSalon" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Empleado">

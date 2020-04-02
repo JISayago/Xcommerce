@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/08/2020 09:22:19
+-- Date Created: 03/23/2020 11:20:45
 -- Generated from EDMX file: D:\Facultad\Final LAB 2\XCommerce2019\XCommerce2019.BaseDatos\ModeloXCommerce.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [2020XCommerce];
+USE [x];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -601,7 +601,7 @@ GO
 CREATE TABLE [dbo].[Comprobantes_ComprobanteSalon] (
     [Comensal] nvarchar(max)  NOT NULL,
     [MesaId] bigint  NOT NULL,
-    [MozoId] bigint  NOT NULL,
+    [MozoId] bigint  NULL,
     [Id] bigint  NOT NULL
 );
 GO

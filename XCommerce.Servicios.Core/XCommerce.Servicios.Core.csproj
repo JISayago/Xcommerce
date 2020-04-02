@@ -51,6 +51,11 @@
     <Compile Include="Articulo\ArticuloServicio.cs" />
     <Compile Include="Articulo\DTO\ArticuloDTO.cs" />
     <Compile Include="Articulo\IArticuloServicio.cs" />
+    <Compile Include="Comprobante\ComprobanteSalonServicio.cs" />
+    <Compile Include="Comprobante\Descuento.cs" />
+    <Compile Include="Comprobante\DTO\ComprobanteMesaDTO.cs" />
+    <Compile Include="Comprobante\DTO\DetalleComprobanteSalonDTO.cs" />
+    <Compile Include="Comprobante\IComprobanteSalonServicio.cs" />
     <Compile Include="Empleado\DTO\EmpleadoDTO.cs" />
     <Compile Include="Empleado\EmpleadoServicio.cs" />
     <Compile Include="Empleado\IEmpleadoServicio.cs" />

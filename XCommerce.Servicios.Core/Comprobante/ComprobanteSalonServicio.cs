@@ -34,7 +34,7 @@ namespace XCommerce.Servicios.Core.Comprobante
                     MesaId = mesaId,
                     ClienteId = clienteConsumidorFinal.Id,
                     Comensal = Convert.ToString(comensales),
-                    Descuento = 0,
+                    Descuento = 0m,
                     Fecha = DateTime.Now,
                     MozoId = mozoId,
                     Numero = 0,

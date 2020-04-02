@@ -17,7 +17,7 @@ namespace XCommerce.Servicios.Core.Localidad.DTO
 
         IEnumerable<LocalidadDTO> ObtenerLocalidadPorProvincia(long provinciaId, string cadenaBuscar);
 
-        LocalidadDTO ObtenerPorId(long localidadId);
+        
 
         long Insertar(LocalidadDTO localidadDTO);
 

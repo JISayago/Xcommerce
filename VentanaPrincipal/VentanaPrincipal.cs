@@ -2,11 +2,13 @@
 
 namespace VentanaPrincipal
 {
+    using Presentacion.Core.Articulo;
     using Presentacion.Core.Empleado;
     using Presentacion.Core.Provincia;
     using Presentacion.Core.Provincia.Localidad;
     using Presentacion.Core.Salon;
     using Presentacion.Core.Salon.Mesa;
+    using Presentacion.Core.VentaSalon;
     using Presentacion.Login.Usuario;
     using System;
     using System.Windows.Forms;
@@ -56,6 +58,18 @@ namespace VentanaPrincipal
         {
             var FormularioConsultaMesa = new FormularioMesaConsulta();
             FormularioConsultaMesa.Show();
+        }
+
+        private void consultaToolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            var FormularioConsultaArticulo = new FormularioArticuloConsulta();
+            FormularioConsultaArticulo.Show();
+        }
+
+        private void consultaToolStripMenuItem5_Click(object sender, EventArgs e)
+        {
+            var FormularioventaSalon = new FormularioVentaSalon();
+            FormularioventaSalon.Show();
         }
     }
 }

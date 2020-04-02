@@ -341,6 +341,7 @@
             this.nudLegajo.Name = "nudLegajo";
             this.nudLegajo.Size = new System.Drawing.Size(128, 20);
             this.nudLegajo.TabIndex = 1;
+           
             // 
             // label12
             // 
