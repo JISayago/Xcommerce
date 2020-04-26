@@ -55,6 +55,24 @@
     <Compile Include="Articulo\FormularioArticuloConsulta.Designer.cs">
       <DependentUpon>FormularioArticuloConsulta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Caja\AbrirCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Caja\AbrirCaja.Designer.cs">
+      <DependentUpon>AbrirCaja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Caja\Caja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Caja\Caja.Designer.cs">
+      <DependentUpon>Caja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Caja\CerrarCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Caja\CerrarCaja.Designer.cs">
+      <DependentUpon>CerrarCaja.cs</DependentUpon>
+    </Compile>
     <Compile Include="Empleado\FormularioEmpleadoABM.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,6 +201,12 @@
     <EmbeddedResource Include="Articulo\FormularioArticuloABM.resx">
       <DependentUpon>FormularioArticuloABM.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Caja\AbrirCaja.resx">
+      <DependentUpon>AbrirCaja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Caja\Caja.resx">
+      <DependentUpon>Caja.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Empleado\FormularioEmpleadoABM.resx">
       <DependentUpon>FormularioEmpleadoABM.cs</DependentUpon>
     </EmbeddedResource>
@@ -191,6 +215,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Empleado\Usuario\FormularioUsuario.resx">
       <DependentUpon>FormularioUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListaPrecio\FormularioListaPrecioABM.resx">
+      <DependentUpon>FormularioListaPrecioABM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Provincia\FormularioProvinciaABM.resx">
       <DependentUpon>FormularioProvinciaABM.cs</DependentUpon>

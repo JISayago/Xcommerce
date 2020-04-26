@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using XCommerce.Servicios.Core.ListaPrecio;
+using XCommerce.Servicios.Core.ListaPrecio.DTO;
 
 namespace Presentacion.Core.ListaPrecio
 {
@@ -43,6 +44,20 @@ namespace Presentacion.Core.ListaPrecio
             {
                 DesactivarControles(this);
             }
+        }
+
+        public override bool EjecutarComandoNuevo()
+        {
+            var listaPrecioNueva = new ListaPrecioDTO
+            {
+                Descripcion = txtDescripcion.Text,
+                Rentabilidad = nudRentabilidad.Value,
+                EstaEliminado = false
+
+            };
+            _listaPrecioServicio.Insertar(listaPrecioNueva);
+            return true;
+
         }
     }
 
