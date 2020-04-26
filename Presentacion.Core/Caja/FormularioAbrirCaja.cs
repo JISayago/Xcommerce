@@ -1,0 +1,49 @@
+﻿using Presentacion.Helpers;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using XCommerce.Servicios.Core.Caja;
+using XCommerce.Servicios.Core.Caja.DTO;
+
+namespace Presentacion.Core.Caja
+{
+    public partial class FormularioAbrirCaja : Form
+    {
+        private readonly ICajaServicio _cajaServicio;
+        public FormularioAbrirCaja()
+        {
+            InitializeComponent();
+
+            _cajaServicio = new CajaServicio();
+
+            nombreUsuarioLbl.Text = DatosSistema.NombreUsuario;
+            
+        }
+
+        private void BtnAbrir_Click(object sender, EventArgs e)
+        {
+            var caja = new CajaDTO
+            {
+
+                MontoApertura = nudMontoApertura.Value,
+                UsuarioAperturaId = 1, //DatosSistema.UsuarioID,
+                MontoCierre = 0,
+                UsuarioCierreId = 0
+
+            };
+
+            _cajaServicio.Abrir(caja);
+            DatosSistema.EstaCajaAbierta = true;
+            //id a datossist?
+            //detallecomprobante?
+
+            this.Close();
+        }
+    }
+}

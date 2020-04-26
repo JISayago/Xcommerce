@@ -12,19 +12,22 @@ using XCommerce.Servicios.Core.Caja;
 
 namespace Presentacion.Core.Caja
 {
-    public partial class AbrirCaja : Form
+    public partial class FormularioCerrarCaja : Form
     {
         private readonly ICajaServicio _cajaServicio;
-        public AbrirCaja()
+        public FormularioCerrarCaja()
         {
             InitializeComponent();
 
             _cajaServicio = new CajaServicio();
 
             nombreUsuarioLbl.Text = DatosSistema.NombreUsuario;
-            
         }
 
-
+        private void BtnCerrar_Click(object sender, EventArgs e)
+        {
+            DatosSistema.EstaCajaAbierta = false;
+            this.Close();
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Presentacion.Core.Caja
 {
-    partial class AbrirCaja
+    partial class FormularioAbrirCaja
     {
         /// <summary>
         /// Required designer variable.
@@ -38,12 +38,13 @@
             // 
             // btnAbrir
             // 
-            this.btnAbrir.Location = new System.Drawing.Point(158, 98);
+            this.btnAbrir.Location = new System.Drawing.Point(158, 102);
             this.btnAbrir.Name = "btnAbrir";
             this.btnAbrir.Size = new System.Drawing.Size(120, 23);
             this.btnAbrir.TabIndex = 0;
             this.btnAbrir.Text = "Abrir";
             this.btnAbrir.UseVisualStyleBackColor = true;
+            this.btnAbrir.Click += new System.EventHandler(this.BtnAbrir_Click);
             // 
             // nudMontoApertura
             // 
@@ -79,7 +80,7 @@
             this.nombreUsuarioLbl.TabIndex = 5;
             this.nombreUsuarioLbl.Text = "label3";
             // 
-            // AbrirCaja
+            // FormularioAbrirCaja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -89,7 +90,7 @@
             this.Controls.Add(this.montoLbl);
             this.Controls.Add(this.nudMontoApertura);
             this.Controls.Add(this.btnAbrir);
-            this.Name = "AbrirCaja";
+            this.Name = "FormularioAbrirCaja";
             this.Text = "AbrirCaja";
             ((System.ComponentModel.ISupportInitialize)(this.nudMontoApertura)).EndInit();
             this.ResumeLayout(false);
