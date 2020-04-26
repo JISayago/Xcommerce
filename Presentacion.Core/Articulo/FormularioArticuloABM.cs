@@ -12,12 +12,18 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using XCommerce.Servicios.Core.Articulo;
 using XCommerce.Servicios.Core.Articulo.DTO;
+using XCommerce.Servicios.Core.ListaPrecio;
+using XCommerce.Servicios.Core.ListaPrecio.DTO;
+using XCommerce.Servicios.Core.Precio;
+using XCommerce.Servicios.Core.Precio.DTO;
 
 namespace Presentacion.Core.Articulo
 {
     public partial class FormularioArticuloABM : FormularioBaseABM
     {
         private IArticuloServicio _articuloServicio;
+        private IPrecioServicio _precioServicio;
+        private IListaPrecioServicio _listaPrecioServicio;
         private byte[] byte_vacio_foto = { 0 }; //¿que hacía?
 
         public FormularioArticuloABM()
@@ -31,6 +37,10 @@ namespace Presentacion.Core.Articulo
             InitializeComponent();
 
             _articuloServicio = new ArticuloServicio();
+            _precioServicio = new PrecioServicio();
+            _listaPrecioServicio = new ListaPrecioServicio();
+
+            CargarComboBox(cmbListaPrecio, _listaPrecioServicio.Obtener(string.Empty), "Descripcion", "Id");
 
             if (tipoOperacion == TipoOperacion.Eliminar || tipoOperacion == TipoOperacion.Modificar)
             {
@@ -133,7 +143,24 @@ namespace Presentacion.Core.Articulo
 
             };
 
-            _articuloServicio.Insertar(articuloNuevo);
+
+            //TODO acá o abajo?
+            long nuevoArticuloId = _articuloServicio.Insertar(articuloNuevo);
+
+            var precioNuevo = new PrecioDTO
+            {
+                ArticuloId = nuevoArticuloId,
+                PrecioCosto = nudPrecioCosto.Value,
+                PrecioPublico = nudPrecioPublico.Value,
+                ListaPrecioId = ((ListaPrecioDTO)cmbListaPrecio.SelectedItem).Id,
+                ActivarHoraVenta = false,
+                FechaActualizacion = DateTime.Now,
+                HoraVenta = DateTime.Now,
+            };
+
+            _precioServicio.Insertar(precioNuevo);
+
+
 
             return true;
         }
