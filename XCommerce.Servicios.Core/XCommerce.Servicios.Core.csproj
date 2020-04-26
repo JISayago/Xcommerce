@@ -51,6 +51,9 @@
     <Compile Include="Articulo\ArticuloServicio.cs" />
     <Compile Include="Articulo\DTO\ArticuloDTO.cs" />
     <Compile Include="Articulo\IArticuloServicio.cs" />
+    <Compile Include="Caja\CajaServicio.cs" />
+    <Compile Include="Caja\DTO\CajaDTO.cs" />
+    <Compile Include="Caja\ICajaServicio.cs" />
     <Compile Include="Comprobante\ComprobanteSalonServicio.cs" />
     <Compile Include="Comprobante\Descuento.cs" />
     <Compile Include="Comprobante\DTO\ComprobanteMesaDTO.cs" />
@@ -65,6 +68,9 @@
     <Compile Include="ListaPrecio\DTO\ListaPrecioDTO.cs" />
     <Compile Include="ListaPrecio\IListaPrecioServicio.cs" />
     <Compile Include="ListaPrecio\ListaPrecioServicio.cs" />
+    <Compile Include="Precio\DTO\PrecioDTO.cs" />
+    <Compile Include="Precio\IPrecioServicio.cs" />
+    <Compile Include="Precio\PrecioServicio.cs" />
     <Compile Include="Provincia\Localidad\ILocalidadServicio.cs" />
     <Compile Include="Provincia\Localidad\DTO\LocalidadDTO.cs" />
     <Compile Include="Provincia\Localidad\LocalidadServicio.cs" />
