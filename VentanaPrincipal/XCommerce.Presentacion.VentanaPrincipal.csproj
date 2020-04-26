@@ -96,6 +96,10 @@
       <Project>{1C900590-52D4-4F5F-871D-653A396FE935}</Project>
       <Name>Presentacion.FormulariosBase</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Presentacion.Helpers\Presentacion.Helpers.csproj">
+      <Project>{C88922A0-334B-4764-8152-BC862BA8A084}</Project>
+      <Name>Presentacion.Helpers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Presentacion.Login\XCommerce.Presentacion.Login.csproj">
       <Project>{31afa4c1-0716-4cb7-8e55-916b04b92889}</Project>
       <Name>XCommerce.Presentacion.Login</Name>

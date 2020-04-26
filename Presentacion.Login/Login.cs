@@ -23,6 +23,11 @@ namespace Presentacion.Login
 
         public bool PuedeAccederSistema { get; protected set; }
 
+
+        public String NombreUsuario { get; private set; }
+        public long IdUsuario { get; private set; }
+
+      
         public Login():this(new AccesoSistema(), new UsuarioServicio())
         {
             InitializeComponent();
@@ -70,6 +75,8 @@ namespace Presentacion.Login
                 {
                     if (!_accesoSistema.VerificarSiEstaBloqueado(txtUsuario.Text))
                     {
+                        NombreUsuario = txtUsuario.Text;
+                        //todo usuario id
                         PuedeAccederSistema = true;
                         this.Close();
                     }
