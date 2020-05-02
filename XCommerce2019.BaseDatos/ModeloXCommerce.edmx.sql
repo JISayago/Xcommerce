@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/23/2020 11:20:45
--- Generated from EDMX file: D:\Facultad\Final LAB 2\XCommerce2019\XCommerce2019.BaseDatos\ModeloXCommerce.edmx
+-- Date Created: 04/30/2020 19:50:03
+-- Generated from EDMX file: C:\Final Laboratorio 2\Tarea marca rubro etc\FinalLaboratorio\XCommerce2019.BaseDatos\ModeloXCommerce.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [x];
+USE [db_marcaRubro];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
