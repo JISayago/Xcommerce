@@ -3,6 +3,7 @@
 namespace VentanaPrincipal
 {
     using Presentacion.Core.Articulo;
+    using Presentacion.Core.Articulo.Marca;
     using Presentacion.Core.Empleado;
     using Presentacion.Core.Provincia;
     using Presentacion.Core.Provincia.Localidad;
@@ -70,6 +71,12 @@ namespace VentanaPrincipal
         {
             var FormularioventaSalon = new FormularioVentaSalon();
             FormularioventaSalon.Show();
+        }
+
+        private void marcaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var FormularioConsultaMarca = new FormularioMarcaConsulta();
+            FormularioConsultaMarca.Show();
         }
     }
 }

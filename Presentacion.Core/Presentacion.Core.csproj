@@ -55,6 +55,18 @@
     <Compile Include="Articulo\FormularioArticuloConsulta.Designer.cs">
       <DependentUpon>FormularioArticuloConsulta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Articulo\Marca\FormularioMarcaABM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Articulo\Marca\FormularioMarcaABM.Designer.cs">
+      <DependentUpon>FormularioMarcaABM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Articulo\Marca\FormularioMarcaConsulta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Articulo\Marca\FormularioMarcaConsulta.Designer.cs">
+      <DependentUpon>FormularioMarcaConsulta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Empleado\FormularioEmpleadoABM.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -182,6 +194,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Articulo\FormularioArticuloABM.resx">
       <DependentUpon>FormularioArticuloABM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Articulo\Marca\FormularioMarcaABM.resx">
+      <DependentUpon>FormularioMarcaABM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Empleado\FormularioEmpleadoABM.resx">
       <DependentUpon>FormularioEmpleadoABM.cs</DependentUpon>
