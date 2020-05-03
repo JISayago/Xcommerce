@@ -57,6 +57,9 @@
     <Compile Include="Articulo\Rubro\DTO\RubroDTO.cs" />
     <Compile Include="Articulo\Rubro\IRubroServicio.cs" />
     <Compile Include="Articulo\Rubro\RubroServicio.cs" />
+    <Compile Include="Cliente\ClienteServicio.cs" />
+    <Compile Include="Cliente\DTO\ClienteDTO.cs" />
+    <Compile Include="Cliente\IClienteServicio.cs" />
     <Compile Include="Comprobante\ComprobanteSalonServicio.cs" />
     <Compile Include="Comprobante\Descuento.cs" />
     <Compile Include="Comprobante\DTO\ComprobanteMesaDTO.cs" />
