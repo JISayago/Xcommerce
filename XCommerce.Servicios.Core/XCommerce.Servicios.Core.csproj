@@ -54,6 +54,9 @@
     <Compile Include="Articulo\Marca\DTO\MarcaDTO.cs" />
     <Compile Include="Articulo\Marca\IMarcaServicio.cs" />
     <Compile Include="Articulo\Marca\MarcaServicio.cs" />
+    <Compile Include="Articulo\Rubro\DTO\RubroDTO.cs" />
+    <Compile Include="Articulo\Rubro\IRubroServicio.cs" />
+    <Compile Include="Articulo\Rubro\RubroServicio.cs" />
     <Compile Include="Comprobante\ComprobanteSalonServicio.cs" />
     <Compile Include="Comprobante\Descuento.cs" />
     <Compile Include="Comprobante\DTO\ComprobanteMesaDTO.cs" />
