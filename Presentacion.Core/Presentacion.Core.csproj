@@ -79,6 +79,18 @@
     <Compile Include="Articulo\Rubro\FormularioRubroConsulta.Designer.cs">
       <DependentUpon>FormularioRubroConsulta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Cliente\FormularioClienteABM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cliente\FormularioClienteABM.Designer.cs">
+      <DependentUpon>FormularioClienteABM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cliente\FormularioClienteConsulta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cliente\FormularioClienteConsulta.Designer.cs">
+      <DependentUpon>FormularioClienteConsulta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Empleado\FormularioEmpleadoABM.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,6 +224,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Articulo\Rubro\FormularioRubroABM.resx">
       <DependentUpon>FormularioRubroABM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cliente\FormularioClienteABM.resx">
+      <DependentUpon>FormularioClienteABM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Empleado\FormularioEmpleadoABM.resx">
       <DependentUpon>FormularioEmpleadoABM.cs</DependentUpon>
