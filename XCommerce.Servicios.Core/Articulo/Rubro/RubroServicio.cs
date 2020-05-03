@@ -8,7 +8,7 @@ using XCommerce.Servicios.Core.Articulo.Rubro.DTO;
 
 namespace XCommerce.Servicios.Core.Articulo.Rubro
 {
-    class RubroServicio
+    public class RubroServicio : IRubroServicio
     {
         public void Eliminar(long rubroId)
         {

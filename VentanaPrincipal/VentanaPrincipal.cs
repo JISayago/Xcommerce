@@ -4,6 +4,7 @@ namespace VentanaPrincipal
 {
     using Presentacion.Core.Articulo;
     using Presentacion.Core.Articulo.Marca;
+    using Presentacion.Core.Articulo.Rubro;
     using Presentacion.Core.Empleado;
     using Presentacion.Core.Provincia;
     using Presentacion.Core.Provincia.Localidad;
@@ -77,6 +78,12 @@ namespace VentanaPrincipal
         {
             var FormularioConsultaMarca = new FormularioMarcaConsulta();
             FormularioConsultaMarca.Show();
+        }
+
+        private void rubroToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var FormularioConsultaRubro = new FormularioRubroConsulta();
+            FormularioConsultaRubro.Show();
         }
     }
 }

@@ -67,6 +67,18 @@
     <Compile Include="Articulo\Marca\FormularioMarcaConsulta.Designer.cs">
       <DependentUpon>FormularioMarcaConsulta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Articulo\Rubro\FormularioRubroABM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Articulo\Rubro\FormularioRubroABM.Designer.cs">
+      <DependentUpon>FormularioRubroABM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Articulo\Rubro\FormularioRubroConsulta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Articulo\Rubro\FormularioRubroConsulta.Designer.cs">
+      <DependentUpon>FormularioRubroConsulta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Empleado\FormularioEmpleadoABM.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,6 +209,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Articulo\Marca\FormularioMarcaABM.resx">
       <DependentUpon>FormularioMarcaABM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Articulo\Rubro\FormularioRubroABM.resx">
+      <DependentUpon>FormularioRubroABM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Empleado\FormularioEmpleadoABM.resx">
       <DependentUpon>FormularioEmpleadoABM.cs</DependentUpon>
