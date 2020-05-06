@@ -11,7 +11,7 @@ namespace XCommerce.Servicios.Core.Precio.DTO
         public long Id { get; set; }
         public DateTime FechaActualizacion { get; set; }
         public string DescripcionArticulo { get; set; }
-        public string NombreLista { get; set; }
+        public string NombreListaPrecio { get; set; }
         public decimal PrecioCosto { get; set; }
         public decimal PrecioPublico { get; set; }
         public long ListaPrecioId { get; set; }

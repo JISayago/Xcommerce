@@ -48,5 +48,27 @@ namespace XCommerce.Servicios.Core.Caja
             }
         }
 
+        public CajaDTO Obtener(long cajaId)
+        {
+            using (var context = new ModeloXCommerceContainer())
+            {
+                return context.Cajas
+                    .AsNoTracking()
+                    .Select(x => new CajaDTO
+                    {
+                        Id = x.Id,
+                        FechaApertura = x.FechaApertura,
+                        FechaCierre = x.FechaCierre,
+                        MontoApertura = x.MontoApertura,
+                        MontoCierre = x.MontoCierre,
+                        UsuarioAperturaId = x.UsuarioAperturaId
+                    }).FirstOrDefault(x => x.Id == cajaId);
+
+            }
+        }
+
+
     }
+
+
 }

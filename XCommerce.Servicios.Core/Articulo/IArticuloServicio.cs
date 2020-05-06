@@ -17,7 +17,7 @@ namespace XCommerce.Servicios.Core.Articulo
 
         IEnumerable<ArticuloDTO> Obtener(string cadenaBuscar, bool obtenerEliminados = false);
 
-        ArticuloDTO ObtenerPorId(long entidadId);
+        ArticuloDTO ObtenerPorId(long articuloId);
 
         void DescontarStock(long articuloId, decimal cantidad);
 
