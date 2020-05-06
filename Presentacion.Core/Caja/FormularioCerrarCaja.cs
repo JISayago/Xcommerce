@@ -24,9 +24,15 @@ namespace Presentacion.Core.Caja
             nombreUsuarioLbl.Text = DatosSistema.NombreUsuario;
         }
 
+        //TODO IMPORTANTE
+        //que hacer cuando el programa se cierra y no se cerro la caja
         private void BtnCerrar_Click(object sender, EventArgs e)
         {
             DatosSistema.EstaCajaAbierta = false;
+            var caja = _cajaServicio.Obtener(DatosSistema.CajaId);
+            caja.UsuarioCierreId = DatosSistema.UsuarioId;
+            caja.MontoCierre = nudMonto.Value;
+            _cajaServicio.Cerrar(caja);
             this.Close();
         }
     }

@@ -31,9 +31,9 @@
             this.nombreUsuarioLbl = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.montoLbl = new System.Windows.Forms.Label();
-            this.nudMontoApertura = new System.Windows.Forms.NumericUpDown();
+            this.nudMonto = new System.Windows.Forms.NumericUpDown();
             this.btnCerrar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMontoApertura)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMonto)).BeginInit();
             this.SuspendLayout();
             // 
             // nombreUsuarioLbl
@@ -63,12 +63,17 @@
             this.montoLbl.TabIndex = 8;
             this.montoLbl.Text = "Monto";
             // 
-            // nudMontoApertura
+            // nudMonto
             // 
-            this.nudMontoApertura.Location = new System.Drawing.Point(187, 64);
-            this.nudMontoApertura.Name = "nudMontoApertura";
-            this.nudMontoApertura.Size = new System.Drawing.Size(120, 20);
-            this.nudMontoApertura.TabIndex = 7;
+            this.nudMonto.Location = new System.Drawing.Point(187, 64);
+            this.nudMonto.Maximum = new decimal(new int[] {
+            9999999,
+            0,
+            0,
+            0});
+            this.nudMonto.Name = "nudMonto";
+            this.nudMonto.Size = new System.Drawing.Size(120, 20);
+            this.nudMonto.TabIndex = 7;
             // 
             // btnCerrar
             // 
@@ -88,11 +93,11 @@
             this.Controls.Add(this.nombreUsuarioLbl);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.montoLbl);
-            this.Controls.Add(this.nudMontoApertura);
+            this.Controls.Add(this.nudMonto);
             this.Controls.Add(this.btnCerrar);
             this.Name = "FormularioCerrarCaja";
             this.Text = "CerrarCaja";
-            ((System.ComponentModel.ISupportInitialize)(this.nudMontoApertura)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMonto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -103,7 +108,7 @@
         private System.Windows.Forms.Label nombreUsuarioLbl;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label montoLbl;
-        private System.Windows.Forms.NumericUpDown nudMontoApertura;
+        private System.Windows.Forms.NumericUpDown nudMonto;
         private System.Windows.Forms.Button btnCerrar;
     }
 }

@@ -49,6 +49,11 @@
             // nudMontoApertura
             // 
             this.nudMontoApertura.Location = new System.Drawing.Point(158, 54);
+            this.nudMontoApertura.Maximum = new decimal(new int[] {
+            9999999,
+            0,
+            0,
+            0});
             this.nudMontoApertura.Name = "nudMontoApertura";
             this.nudMontoApertura.Size = new System.Drawing.Size(120, 20);
             this.nudMontoApertura.TabIndex = 1;

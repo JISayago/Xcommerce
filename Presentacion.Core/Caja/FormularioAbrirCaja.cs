@@ -30,17 +30,15 @@ namespace Presentacion.Core.Caja
         {
             var caja = new CajaDTO
             {
-
                 MontoApertura = nudMontoApertura.Value,
-                UsuarioAperturaId = 1, //DatosSistema.UsuarioID,
+                UsuarioAperturaId = DatosSistema.UsuarioId, //DatosSistema.UsuarioID,
                 MontoCierre = 0,
                 UsuarioCierreId = 0
-
             };
 
-            _cajaServicio.Abrir(caja);
+            DatosSistema.CajaId = _cajaServicio.Abrir(caja);
             DatosSistema.EstaCajaAbierta = true;
-            //id a datossist?
+            
             //detallecomprobante?
 
             this.Close();
