@@ -64,7 +64,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.nudPrecioPublico = new System.Windows.Forms.NumericUpDown();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnNuevaListaPrecio = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.cmbListaPrecio = new System.Windows.Forms.ComboBox();
             this.nudStockMin = new System.Windows.Forms.NumericUpDown();
@@ -428,14 +428,15 @@
             this.nudPrecioPublico.Size = new System.Drawing.Size(254, 20);
             this.nudPrecioPublico.TabIndex = 156;
             // 
-            // button1
+            // btnNuevaListaPrecio
             // 
-            this.button1.Location = new System.Drawing.Point(386, 404);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(41, 21);
-            this.button1.TabIndex = 159;
-            this.button1.Text = "...";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnNuevaListaPrecio.Location = new System.Drawing.Point(386, 404);
+            this.btnNuevaListaPrecio.Name = "btnNuevaListaPrecio";
+            this.btnNuevaListaPrecio.Size = new System.Drawing.Size(41, 21);
+            this.btnNuevaListaPrecio.TabIndex = 159;
+            this.btnNuevaListaPrecio.Text = "...";
+            this.btnNuevaListaPrecio.UseVisualStyleBackColor = true;
+            this.btnNuevaListaPrecio.Click += new System.EventHandler(this.BtnNuevaListaPrecio_Click);
             // 
             // label12
             // 
@@ -472,7 +473,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 450);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnNuevaListaPrecio);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.cmbListaPrecio);
             this.Controls.Add(this.label11);
@@ -547,7 +548,7 @@
             this.Controls.SetChildIndex(this.label11, 0);
             this.Controls.SetChildIndex(this.cmbListaPrecio, 0);
             this.Controls.SetChildIndex(this.label12, 0);
-            this.Controls.SetChildIndex(this.button1, 0);
+            this.Controls.SetChildIndex(this.btnNuevaListaPrecio, 0);
             this.pnlFoto.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgFotoArticulo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStockMax)).EndInit();
@@ -599,7 +600,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.NumericUpDown nudPrecioPublico;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnNuevaListaPrecio;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox cmbListaPrecio;
         private System.Windows.Forms.NumericUpDown nudStockMin;
