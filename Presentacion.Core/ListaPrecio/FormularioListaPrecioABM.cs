@@ -59,6 +59,52 @@ namespace Presentacion.Core.ListaPrecio
             return true;
 
         }
+
+        public override bool EjecutarComandoModificar()
+        {
+
+            var listaPrecioModificar = new ListaPrecioDTO
+            {
+                Id = EntidadId.Value,
+                Descripcion = txtDescripcion.Text,
+                Rentabilidad = nudRentabilidad.Value,
+                EstaEliminado = false
+
+            };
+            _listaPrecioServicio.Modificar(listaPrecioModificar);
+
+            return true;
+
+        }
+
+
+        public override void CargarDatos(long? entidadId)
+        {
+            if (!entidadId.HasValue)
+            {
+                MessageBox.Show(@"Ocurrio un Error Grave", @"Error Grave", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
+                this.Close();
+            }
+
+            /*if (TipoOperacion == TipoOperacion.Eliminar)
+            {
+                btnLimpiar.Enabled = false;
+            }*/
+
+            var lista = _listaPrecioServicio.ObtenerPorId(entidadId.Value);
+
+            if (lista != null)
+            {
+                txtDescripcion.Text = lista.Descripcion;
+                nudRentabilidad.Value = lista.Rentabilidad;
+            }
+            else
+            {
+                MessageBox.Show(@"Ocurrio un Error Grave", @"Error Grave", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+
+        }
     }
 
 
