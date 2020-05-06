@@ -31,12 +31,17 @@ namespace Presentacion.Login
         public Login():this(new AccesoSistema(), new UsuarioServicio())
         {
             InitializeComponent();
+
+            txtUsuario.Text = "dmaradona";
+            txtContraseña.Text = "1";
+         
         }
         public Login(IAccesoSistema accesoSistema, IUsuarioServicio usuarioServicio)
         {
             _accesoSistema = accesoSistema;
             _usuarioServicio = usuarioServicio;
             CantidadFallos = 0;
+
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
@@ -76,7 +81,9 @@ namespace Presentacion.Login
                     if (!_accesoSistema.VerificarSiEstaBloqueado(txtUsuario.Text))
                     {
                         NombreUsuario = txtUsuario.Text;
-                        //todo usuario id
+                        IdUsuario = _accesoSistema.ObtenerId(NombreUsuario);
+                        if (NombreUsuario.ToLower() == "admin") IdUsuario = 0;
+
                         PuedeAccederSistema = true;
                         this.Close();
                     }
@@ -121,12 +128,12 @@ namespace Presentacion.Login
 
         private void txtContraseña_KeyPress(object sender, KeyPressEventArgs e)
         {
-            IngresoAlSistema();
+            //IngresoAlSistema();
         }
 
         private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
         {
-            IngresoAlSistema();
+            //IngresoAlSistema();
         }
     }
 }
