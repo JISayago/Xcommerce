@@ -30,7 +30,9 @@ namespace XCommerce.Servicios.Core.ListaPrecio
             {
                 var listaPrecioNueva = new AccesoDatos.ListaPrecio
                 {
-                    Descripcion = listaPrecioDTO.Descripcion
+                    Descripcion = listaPrecioDTO.Descripcion,
+                    Rentabilidad = listaPrecioDTO.Rentabilidad,
+                    EstaEliminado = listaPrecioDTO.EstaEliminado,
                 };
 
                 context.ListaPrecios.Add(listaPrecioNueva);

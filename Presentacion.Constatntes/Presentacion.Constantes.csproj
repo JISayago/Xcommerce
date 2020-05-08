@@ -53,6 +53,7 @@
   <ItemGroup>
     <Content Include="Imagenes\Actualizar.png" />
     <Content Include="Imagenes\Buscar.png" />
+    <Content Include="Imagenes\Caja.jpg" />
     <Content Include="Imagenes\Cerrar.png" />
     <Content Include="Imagenes\Check.png" />
     <Content Include="Imagenes\Eliminar.png" />

@@ -13,6 +13,7 @@ namespace XCommerce.Servicios.Seguridad.XCommerce.Servicios.Seguridad.Seguridad
         bool VerificarExisteUsuario(string nombreUsuario, string contraseñaUsuario);
 
         bool VerificarSiEstaBloqueado(string nombreUsuario);
+        long ObtenerId(string nombreUsuario);
 
     }
 }
