@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XCommerce.AccesoDatos;
 using static XCommerce.Servicios.Core.Comprobante.Descuento;
 
 namespace XCommerce.Servicios.Core.Comprobante.DTO
@@ -20,6 +21,8 @@ namespace XCommerce.Servicios.Core.Comprobante.DTO
         public long MesaId { get; set; }
 
         public long ComprobanteId { get; set; }
+
+        public EstadoComprobanteSalon EstadoComprobante { get; set; }
 
         public DateTime Fecha { get; set; }
 

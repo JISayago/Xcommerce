@@ -14,17 +14,16 @@ namespace XCommerce.Servicios.Core.Comprobante.DTO
 
         public long ProductoId { get; set; }
 
-        public string CodigoProduto { get; set; }
+        public string CodigoProducto { get; set; }
 
         public string DescripcionProducto { get; set; }
 
         public decimal PrecioUnitario { get; set; }
 
-        public decimal CantidadProducto { get; set; }
+        public decimal CantidadProducto { get; set; }    
 
         public decimal SubtotalLinea => PrecioUnitario * CantidadProducto;
 
-
-
+       
     }
 }

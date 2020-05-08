@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/23/2020 11:20:45
+-- Date Created: 05/02/2020 18:38:01
 -- Generated from EDMX file: D:\Facultad\Final LAB 2\XCommerce2019\XCommerce2019.BaseDatos\ModeloXCommerce.edmx
 -- --------------------------------------------------
 
@@ -65,12 +65,6 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_SalonMesa]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Mesas] DROP CONSTRAINT [FK_SalonMesa];
 GO
-IF OBJECT_ID(N'[dbo].[FK_ListaPrecioSalon_ListaPrecio]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ListaPrecioSalon] DROP CONSTRAINT [FK_ListaPrecioSalon_ListaPrecio];
-GO
-IF OBJECT_ID(N'[dbo].[FK_ListaPrecioSalon_Salon]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ListaPrecioSalon] DROP CONSTRAINT [FK_ListaPrecioSalon_Salon];
-GO
 IF OBJECT_ID(N'[dbo].[FK_MesaReserva]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Reservas] DROP CONSTRAINT [FK_MesaReserva];
 GO
@@ -127,6 +121,9 @@ IF OBJECT_ID(N'[dbo].[FK_CondicionIvaProveedor]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_ProveedorComprobanteCompra]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Comprobantes_ComprobanteCompra] DROP CONSTRAINT [FK_ProveedorComprobanteCompra];
+GO
+IF OBJECT_ID(N'[dbo].[FK_SalonListaPrecio]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Salones] DROP CONSTRAINT [FK_SalonListaPrecio];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Cliente_inherits_Persona]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Personas_Cliente] DROP CONSTRAINT [FK_Cliente_inherits_Persona];
@@ -273,9 +270,6 @@ IF OBJECT_ID(N'[dbo].[Comprobantes_ComprobanteFactura]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FormasPagos_FormaPagoEfectivo]', 'U') IS NOT NULL
     DROP TABLE [dbo].[FormasPagos_FormaPagoEfectivo];
-GO
-IF OBJECT_ID(N'[dbo].[ListaPrecioSalon]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[ListaPrecioSalon];
 GO
 
 -- --------------------------------------------------
@@ -469,7 +463,8 @@ GO
 CREATE TABLE [dbo].[Salones] (
     [Id] bigint IDENTITY(1,1) NOT NULL,
     [Descripcion] nvarchar(250)  NOT NULL,
-    [EstaEliminado] bit  NOT NULL
+    [EstaEliminado] bit  NOT NULL,
+    [ListaPrecioId] bigint  NOT NULL
 );
 GO
 
@@ -506,7 +501,8 @@ CREATE TABLE [dbo].[Comprobantes] (
     [Total] decimal(18,0)  NOT NULL,
     [UsuarioId] bigint  NOT NULL,
     [ClienteId] bigint  NOT NULL,
-    [TipoComprobante] int  NOT NULL
+    [TipoComprobante] int  NOT NULL,
+    [EstadoComprobanteSalon] int  NOT NULL
 );
 GO
 
@@ -653,13 +649,6 @@ GO
 -- Creating table 'FormasPagos_FormaPagoEfectivo'
 CREATE TABLE [dbo].[FormasPagos_FormaPagoEfectivo] (
     [Id] bigint  NOT NULL
-);
-GO
-
--- Creating table 'ListaPrecioSalon'
-CREATE TABLE [dbo].[ListaPrecioSalon] (
-    [ListaPrecios_Id] bigint  NOT NULL,
-    [Salones_Id] bigint  NOT NULL
 );
 GO
 
@@ -887,12 +876,6 @@ GO
 ALTER TABLE [dbo].[FormasPagos_FormaPagoEfectivo]
 ADD CONSTRAINT [PK_FormasPagos_FormaPagoEfectivo]
     PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
--- Creating primary key on [ListaPrecios_Id], [Salones_Id] in table 'ListaPrecioSalon'
-ALTER TABLE [dbo].[ListaPrecioSalon]
-ADD CONSTRAINT [PK_ListaPrecioSalon]
-    PRIMARY KEY CLUSTERED ([ListaPrecios_Id], [Salones_Id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -1137,30 +1120,6 @@ GO
 CREATE INDEX [IX_FK_SalonMesa]
 ON [dbo].[Mesas]
     ([SalonId]);
-GO
-
--- Creating foreign key on [ListaPrecios_Id] in table 'ListaPrecioSalon'
-ALTER TABLE [dbo].[ListaPrecioSalon]
-ADD CONSTRAINT [FK_ListaPrecioSalon_ListaPrecio]
-    FOREIGN KEY ([ListaPrecios_Id])
-    REFERENCES [dbo].[ListaPrecios]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating foreign key on [Salones_Id] in table 'ListaPrecioSalon'
-ALTER TABLE [dbo].[ListaPrecioSalon]
-ADD CONSTRAINT [FK_ListaPrecioSalon_Salon]
-    FOREIGN KEY ([Salones_Id])
-    REFERENCES [dbo].[Salones]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_ListaPrecioSalon_Salon'
-CREATE INDEX [IX_FK_ListaPrecioSalon_Salon]
-ON [dbo].[ListaPrecioSalon]
-    ([Salones_Id]);
 GO
 
 -- Creating foreign key on [MesaId] in table 'Reservas'
@@ -1446,6 +1405,21 @@ GO
 CREATE INDEX [IX_FK_ProveedorComprobanteCompra]
 ON [dbo].[Comprobantes_ComprobanteCompra]
     ([ProveedorId]);
+GO
+
+-- Creating foreign key on [ListaPrecioId] in table 'Salones'
+ALTER TABLE [dbo].[Salones]
+ADD CONSTRAINT [FK_SalonListaPrecio]
+    FOREIGN KEY ([ListaPrecioId])
+    REFERENCES [dbo].[ListaPrecios]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_SalonListaPrecio'
+CREATE INDEX [IX_FK_SalonListaPrecio]
+ON [dbo].[Salones]
+    ([ListaPrecioId]);
 GO
 
 -- Creating foreign key on [Id] in table 'Personas_Cliente'

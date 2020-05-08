@@ -138,6 +138,9 @@ namespace Presentacion.Core.Articulo
             return true;
         }
 
+        private void btnAgregarImagen_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }

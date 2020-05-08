@@ -86,9 +86,19 @@
             // nudComensales
             // 
             this.nudComensales.Location = new System.Drawing.Point(115, 12);
+            this.nudComensales.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.nudComensales.Name = "nudComensales";
             this.nudComensales.Size = new System.Drawing.Size(106, 20);
             this.nudComensales.TabIndex = 4;
+            this.nudComensales.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // txtMozoLegajo
             // 
@@ -96,6 +106,7 @@
             this.txtMozoLegajo.Name = "txtMozoLegajo";
             this.txtMozoLegajo.Size = new System.Drawing.Size(106, 20);
             this.txtMozoLegajo.TabIndex = 5;
+            this.txtMozoLegajo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMozoLegajo_KeyPress);
             // 
             // lblMozo
             // 
@@ -109,6 +120,7 @@
             // 
             // txtApyNomMozo
             // 
+            this.txtApyNomMozo.Enabled = false;
             this.txtApyNomMozo.Location = new System.Drawing.Point(260, 44);
             this.txtApyNomMozo.Name = "txtApyNomMozo";
             this.txtApyNomMozo.Size = new System.Drawing.Size(405, 20);
@@ -139,6 +151,7 @@
             this.txtCodigoBarras.Name = "txtCodigoBarras";
             this.txtCodigoBarras.Size = new System.Drawing.Size(120, 20);
             this.txtCodigoBarras.TabIndex = 9;
+            this.txtCodigoBarras.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoBarras_KeyPress);
             // 
             // lblDescripcion
             // 
@@ -152,6 +165,7 @@
             // 
             // txtDescripcion
             // 
+            this.txtDescripcion.Enabled = false;
             this.txtDescripcion.Location = new System.Drawing.Point(160, 116);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(246, 20);
@@ -169,6 +183,7 @@
             // 
             // txtPrecioUnitario
             // 
+            this.txtPrecioUnitario.Enabled = false;
             this.txtPrecioUnitario.Location = new System.Drawing.Point(430, 116);
             this.txtPrecioUnitario.Name = "txtPrecioUnitario";
             this.txtPrecioUnitario.Size = new System.Drawing.Size(124, 20);
@@ -176,10 +191,27 @@
             // 
             // nudCantidadArticulo
             // 
+            this.nudCantidadArticulo.AllowDrop = true;
+            this.nudCantidadArticulo.DecimalPlaces = 2;
             this.nudCantidadArticulo.Location = new System.Drawing.Point(594, 117);
+            this.nudCantidadArticulo.Maximum = new decimal(new int[] {
+            9999999,
+            0,
+            0,
+            0});
+            this.nudCantidadArticulo.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.nudCantidadArticulo.Name = "nudCantidadArticulo";
             this.nudCantidadArticulo.Size = new System.Drawing.Size(71, 20);
             this.nudCantidadArticulo.TabIndex = 16;
+            this.nudCantidadArticulo.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // lblCantidad
             // 
@@ -202,10 +234,17 @@
             // 
             // nudSubTotal
             // 
+            this.nudSubTotal.DecimalPlaces = 2;
             this.nudSubTotal.Location = new System.Drawing.Point(705, 462);
+            this.nudSubTotal.Maximum = new decimal(new int[] {
+            9999999,
+            0,
+            0,
+            0});
             this.nudSubTotal.Name = "nudSubTotal";
             this.nudSubTotal.Size = new System.Drawing.Size(70, 20);
             this.nudSubTotal.TabIndex = 19;
+            this.nudSubTotal.ThousandsSeparator = true;
             // 
             // lblSubTotal
             // 
@@ -236,10 +275,17 @@
             // 
             // nudTotal
             // 
+            this.nudTotal.DecimalPlaces = 2;
             this.nudTotal.Location = new System.Drawing.Point(705, 534);
+            this.nudTotal.Maximum = new decimal(new int[] {
+            9999999,
+            0,
+            0,
+            0});
             this.nudTotal.Name = "nudTotal";
             this.nudTotal.Size = new System.Drawing.Size(70, 20);
             this.nudTotal.TabIndex = 23;
+            this.nudTotal.ThousandsSeparator = true;
             // 
             // lblTotal
             // 
