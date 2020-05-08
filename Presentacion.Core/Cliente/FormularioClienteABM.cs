@@ -67,7 +67,7 @@ namespace Presentacion.Core.Cliente
                 CargarComboBox(cmbLocalidad, _localidadServicio.ObtenerLocalidadPorProvincia(provincia.Id, string.Empty), "Descripcion", "Id");
             }
 
-            txtMontoMaximoCtaCte.KeyPress += Validacion.NoSimbolos;
+           // txtMontoMaximoCtaCte.KeyPress += Validacion.NoSimbolos;
             txtMontoMaximoCtaCte.KeyPress += Validacion.NoLetras;
 
             txtApellido.KeyPress += Validacion.NoSimbolos;
@@ -205,7 +205,7 @@ namespace Presentacion.Core.Cliente
              */
             var nuevoCliente = new ClienteDTO
             {
-                MontoMaximoCtaCte = decimal.TryParse(txtMontoMaximoCtaCte.Text, out var monto) ? monto : 0,
+                MontoMaximoCtaCte = Convert.ToDecimal(txtMontoMaximoCtaCte.Text),
                 Apellido = txtApellido.Text,
                 Nombre = txtNombre.Text,
                 Barrio = txtBarrio.Text,
