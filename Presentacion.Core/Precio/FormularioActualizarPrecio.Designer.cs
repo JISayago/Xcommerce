@@ -111,6 +111,7 @@
             this.btnHistorial.TabIndex = 167;
             this.btnHistorial.Text = "Ver Historial";
             this.btnHistorial.UseVisualStyleBackColor = true;
+            this.btnHistorial.Click += new System.EventHandler(this.BtnHistorial_Click);
             // 
             // cmbListaPrecio
             // 

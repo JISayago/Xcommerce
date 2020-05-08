@@ -153,5 +153,14 @@ namespace Presentacion.Core.Precio
         {
             ActualizarNudPrecios();
         }
+
+        private void BtnHistorial_Click(object sender, EventArgs e)
+        {
+            ArticuloDTO art = (ArticuloDTO)cmbArticulo.SelectedItem;
+            ListaPrecioDTO lp = (ListaPrecioDTO)cmbListaPrecio.SelectedItem;
+
+            var fHistorial = new HistorialPrecio(art.Id, lp.Id);
+            fHistorial.ShowDialog();
+        }
     }
 }
