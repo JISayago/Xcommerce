@@ -101,7 +101,6 @@
             this.btnAgregarImagen.TabIndex = 0;
             this.btnAgregarImagen.Text = "Agregar Imagen";
             this.btnAgregarImagen.UseVisualStyleBackColor = false;
-            this.btnAgregarImagen.Click += new System.EventHandler(this.btnAgregarImagen_Click);
             // 
             // lblTituloFoto
             // 
