@@ -91,8 +91,7 @@ namespace Presentacion.Core.Salon.Mesa.Control
             if (estadoMesa == EstadoMesa.Abierta) return;
 
 
-            _comprobanteSalonServicio.GenerarComprobanteSalon(_mesaID,1, 1);//por defecto puse usuario 1 pero hay q ver como poner usuario logeado
-                                                                            //Se me ocurre un campo en bd
+            _comprobanteSalonServicio.GenerarComprobanteSalon(_mesaID,1,1);//usuario hay q agregar lo de juan y su usuario global
             Estado = EstadoMesa.Abierta;
 
 

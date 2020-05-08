@@ -30,7 +30,8 @@ namespace XCommerce.Servicios.Core.Salon
             {
                 var salonNuevo = new AccesoDatos.Salon
                 {
-                    Descripcion = salonDTO.Descripcion
+                    Descripcion = salonDTO.Descripcion,
+                    ListaPrecioId = 1
                 };
 
                 baseDatos.Salones.Add(salonNuevo);

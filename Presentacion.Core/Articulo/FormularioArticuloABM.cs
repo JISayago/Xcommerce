@@ -225,7 +225,6 @@ namespace Presentacion.Core.Articulo
             fABMListaPrecio.ShowDialog();
 
             CargarComboBox(cmbListaPrecio, _listaPrecioServicio.Obtener(string.Empty), "Descripcion", "Id");
-
         }
     }
 }

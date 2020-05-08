@@ -6,11 +6,54 @@ using System.Text;
 using System.Threading.Tasks;
 using XCommerce.AccesoDatos;
 using XCommerce.Servicios.Core.Comprobante.DTO;
+using XCommerce.Servicios.Core.Producto.DTO;
 
 namespace XCommerce.Servicios.Core.Comprobante
 {
     public class ComprobanteSalonServicio : IComprobanteSalonServicio
     {
+        public void AgregarItems(long mesaId, decimal cantidad, ProductoMesaDTO dto)
+        {
+            using (var basedatos = new ModeloXCommerceContainer())
+            {
+                var comprobante = basedatos.Comprobantes
+                    .OfType<ComprobanteSalon>()
+                    .FirstOrDefault(x => x.MesaId == mesaId && x.EstadoComprobanteSalon == EstadoComprobanteSalon.EnProceso);
+
+                if (comprobante == null) throw new Exception("ocurrio un Error al obtener el comprobante");
+                var item = comprobante.DetalleComprobantes
+                         .FirstOrDefault(x => x.Codigo == dto.Codigo);
+
+                if(item == null)
+                {
+                    comprobante.DetalleComprobantes.Add(new DetalleComprobante
+                    {
+                        ComprobanteId = comprobante.Id,
+                        ArticuloId = dto.Id,
+                        Cantidad = cantidad,
+                        Codigo = dto.Codigo,
+                        Descripcion = dto.Descripcion,
+                        PrecioUnitario = dto.Precio,
+                        SubTotal = dto.Precio * cantidad
+                    });
+                }
+                else
+                {
+                    item.Cantidad += cantidad;
+                    item.SubTotal = item.Cantidad * item.PrecioUnitario;
+                    if (dto.DescuentaStock)
+                    {
+                        var articulo = basedatos.Articulos.FirstOrDefault(x => x.Id == dto.Id);
+                        if (articulo == null) throw new Exception("Ocurrió un error");
+                        articulo.Stock -= cantidad;
+                    }
+                    
+                }
+                basedatos.SaveChanges();
+
+            }
+        }
+
         public void GenerarComprobanteSalon(long mesaId, long usuarioId, int comensales, long? mozoId = null)
         {
             using (var baseDatos = new ModeloXCommerceContainer())
@@ -33,6 +76,7 @@ namespace XCommerce.Servicios.Core.Comprobante
                 {
                     MesaId = mesaId,
                     ClienteId = clienteConsumidorFinal.Id,
+                    EstadoComprobanteSalon = EstadoComprobanteSalon.EnProceso,
                     Comensal = Convert.ToString(comensales),
                     Descuento = 0m,
                     Fecha = DateTime.Now,
@@ -51,6 +95,8 @@ namespace XCommerce.Servicios.Core.Comprobante
                 baseDatos.SaveChanges();
             }
         }
+
+    
 
         public ComprobanteMesaDTO Obtener(long mesaId)
         {
@@ -76,7 +122,7 @@ namespace XCommerce.Servicios.Core.Comprobante
                               CantidadProducto = c.Cantidad,
                               PrecioUnitario = c.PrecioUnitario,
                               ComprobanteId = c.ComprobanteId,
-                              CodigoProduto = c.Codigo,
+                              CodigoProducto = c.Codigo,
                               DescripcionProducto = c.Descripcion,
                               DetalleId = c.Id,
                               ProductoId = c.ArticuloId

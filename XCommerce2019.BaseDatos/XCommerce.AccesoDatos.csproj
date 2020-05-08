@@ -98,6 +98,9 @@
     <Compile Include="Empresa.cs">
       <DependentUpon>ModeloXCommerce.tt</DependentUpon>
     </Compile>
+    <Compile Include="EstadoComprobanteSalon.cs">
+      <DependentUpon>ModeloXCommerce.tt</DependentUpon>
+    </Compile>
     <Compile Include="EstadoMesa.cs">
       <DependentUpon>ModeloXCommerce.tt</DependentUpon>
     </Compile>

@@ -23,5 +23,7 @@ namespace XCommerce.Servicios.Core.Empleado
 
         void Eliminar(long empleadoId);
 
+        
+
     }
 }
