@@ -153,6 +153,11 @@
                     {
                         Limpiar(ctrolPanel);
                     }
+
+                    if (ctrolPanel is PictureBox)
+                    {
+                        ((PictureBox)ctrolPanel).Image = Constatntes.Imagenes.ImagenUsuario;
+                    }
                 }
             }
         }
