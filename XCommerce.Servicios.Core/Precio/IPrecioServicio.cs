@@ -14,6 +14,7 @@ namespace XCommerce.Servicios.Core.Precio
         PrecioDTO ObtenerPorId(long id);
         IEnumerable<PrecioDTO> ObtenerUltimaActualizacion(string cadenaBuscar);
         PrecioDTO ObtenerPorArticuloListaPrecio(long articuloId, long listaPrecioId);
+        IEnumerable<PrecioDTO> ObtenerPorArticulo(long id, long idListaPrecio);
 
     }
 }

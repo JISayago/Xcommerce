@@ -143,6 +143,31 @@ namespace XCommerce.Servicios.Core.Precio
                     }).OrderByDescending(x => x.FechaActualizacion).FirstOrDefault(x => x.ArticuloId == articuloId && x.ListaPrecioId == listaPrecioId);
             }
         }
+
+        public IEnumerable<PrecioDTO> ObtenerPorArticulo(long idArticulo, long idListaPrecio)
+        {
+            using (var context = new ModeloXCommerceContainer())
+            {
+                return context.Precios
+                    .Include(x => x.Articulo)
+                    .AsNoTracking()
+                    .Where(x => x.ArticuloId == idArticulo && x.ListaPrecioId == idListaPrecio)
+                    .Select(x => new PrecioDTO
+                    {
+                        Id = x.Id,
+                        ActivarHoraVenta = x.ActivarHoraVenta,
+                        ArticuloId = x.ArticuloId,
+                        DescripcionArticulo = x.Articulo.Descripcion,
+                        HoraVenta = x.HoraVenta,
+                        ListaPrecioId = x.ListaPrecioId,
+                        PrecioCosto = x.PrecioCosto,
+                        PrecioPublico = x.PrecioPublico,
+                        FechaActualizacion = x.FechaActualizacion,
+                        NombreListaPrecio = x.ListaPrecio.Descripcion
+                    }).OrderByDescending(x => x.FechaActualizacion).ToList();
+            }
+
+        }
     }
 
 
