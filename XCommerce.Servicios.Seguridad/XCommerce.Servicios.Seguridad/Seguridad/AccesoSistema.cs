@@ -12,8 +12,6 @@ namespace XCommerce.Servicios.Seguridad.XCommerce.Servicios.Seguridad.Seguridad
 
     public class AccesoSistema : IAccesoSistema
     {
-        
-
         public bool VerificarExisteUsuario(string nombreUsuario, string contraseñaUsuario)
         {
             using (var basedatos = new ModeloXCommerceContainer())
@@ -22,6 +20,7 @@ namespace XCommerce.Servicios.Seguridad.XCommerce.Servicios.Seguridad.Seguridad
                 {
                     return true;
                 }
+
                 var PassEncriptado = Encriptar(contraseñaUsuario);
                 return basedatos.Usuarios
                     .Any(x => x.Nombre == nombreUsuario
@@ -38,5 +37,15 @@ namespace XCommerce.Servicios.Seguridad.XCommerce.Servicios.Seguridad.Seguridad
                     && x.EstaBloqueado);
             }
         }
+        public long ObtenerId(string nombreUsuario)
+        {
+            if (nombreUsuario == "Admin"){return 0;}
+
+            using (var context = new ModeloXCommerceContainer())
+            {
+                return context.Usuarios.FirstOrDefault(x => x.Nombre == nombreUsuario).Id;
+            }
+        }
+
     }
 }

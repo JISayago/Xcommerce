@@ -106,7 +106,7 @@ namespace XCommerce.Servicios.Core.Articulo
                     .Include(x => x.Rubro)
                     .Include(x => x.Marca)
                     .AsNoTracking().Where(x =>
-                        x.Abreviatura.Contains(cadenaBuscar) || x.Codigo == cadenaBuscar ||
+                        x.Descripcion.Contains(cadenaBuscar) || x.Abreviatura.Contains(cadenaBuscar) || x.Codigo == cadenaBuscar ||
                         x.CodigoBarra == cadenaBuscar || x.Marca.Descripcion == cadenaBuscar ||
                         x.Rubro.Descripcion == cadenaBuscar && x.EstaEliminado == obtenerEliminados)
                     .Select(x => new ArticuloDTO
@@ -143,9 +143,34 @@ namespace XCommerce.Servicios.Core.Articulo
             throw new NotImplementedException();
         }
 
-        public ArticuloDTO ObtenerPorId(long entidadId)
+        public ArticuloDTO ObtenerPorId(long articuloId)
         {
-            throw new NotImplementedException();
+            using (var context = new ModeloXCommerceContainer())
+            {
+                return context.Articulos
+                    .AsNoTracking()
+                    .Select(x => new ArticuloDTO
+                    {
+                        Descripcion = x.Descripcion,
+                        Abreviatura = x.Abreviatura,
+                        Codigo = x.Codigo,
+                        CodigoBarra = x.CodigoBarra,
+                        ActivarLimiteVenta = x.ActivarLimiteVenta,
+                        DescuentaStock = x.DescuentaStock,
+                        Detalle = x.Detalle,
+                        EstaDiscontinuado = x.EstaDiscontinuado,
+                        EstaEliminado = x.EstaEliminado,
+                        Foto = x.Foto,
+                        Id = x.Id,
+                        LimiteVenta = x.LimiteVenta,
+                        MarcaId = x.MarcaId,
+                        PermiteStockNegativo = x.PermiteStockNegativo,
+                        RubroId = x.RubroId,
+                        Stock = x.Stock,
+                        StockMaximo = x.StockMaximo,
+                        StockMinimo = x.StockMinimo
+                    }).FirstOrDefault(x => !x.EstaEliminado && x.Id == articuloId);
+            }
         }
     }
 }
