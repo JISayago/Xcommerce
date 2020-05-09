@@ -5,8 +5,10 @@ namespace VentanaPrincipal
     using Presentacion.Core.Articulo;
     using Presentacion.Core.Articulo.Marca;
     using Presentacion.Core.Articulo.Rubro;
+    using Presentacion.Core.Caja;
     using Presentacion.Core.Cliente;
     using Presentacion.Core.Empleado;
+    using Presentacion.Core.ListaPrecio;
     using Presentacion.Core.Provincia;
     using Presentacion.Core.Provincia.Localidad;
     using Presentacion.Core.Salon;
@@ -91,6 +93,18 @@ namespace VentanaPrincipal
         {
             var FormularioConsultaCliente = new FormularioClienteConsulta();
             FormularioConsultaCliente.Show();
+        }
+
+        private void cajaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var Caja = new FormularioCaja();
+            Caja.Show();
+        }
+
+        private void consultaToolStripMenuItem7_Click(object sender, EventArgs e)
+        {
+            var FormularioConsultaListaPrecio = new FormularioListaPrecioConsulta();
+            FormularioConsultaListaPrecio.Show();
         }
     }
 }
