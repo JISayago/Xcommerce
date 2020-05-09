@@ -43,7 +43,6 @@
     <EntitySet Name="Comprobantes_ComprobanteDelivery" EntityType="ModeloXCommerce.Store.Comprobantes_ComprobanteDelivery" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Comprobantes_ComprobanteFactura" EntityType="ModeloXCommerce.Store.Comprobantes_ComprobanteFactura" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="FormasPagos_FormaPagoEfectivo" EntityType="ModeloXCommerce.Store.FormasPagos_FormaPagoEfectivo" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="ListaPrecioSalon" EntityType="ModeloXCommerce.Store.ListaPrecioSalon" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="ProvinciaLocalidad" Association="ModeloXCommerce.Store.ProvinciaLocalidad">
       <End Role="Provincia" EntitySet="Provincias" />
       <End Role="Localidad" EntitySet="Localidades" />
@@ -107,14 +106,6 @@
     <AssociationSet Name="SalonMesa" Association="ModeloXCommerce.Store.SalonMesa">
       <End Role="Salon" EntitySet="Salones" />
       <End Role="Mesa" EntitySet="Mesas" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ListaPrecioSalon_ListaPrecio" Association="ModeloXCommerce.Store.FK_ListaPrecioSalon_ListaPrecio">
-      <End Role="ListaPrecio" EntitySet="ListaPrecios" />
-      <End Role="ListaPrecioSalon" EntitySet="ListaPrecioSalon" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ListaPrecioSalon_Salon" Association="ModeloXCommerce.Store.FK_ListaPrecioSalon_Salon">
-      <End Role="Salon" EntitySet="Salones" />
-      <End Role="ListaPrecioSalon" EntitySet="ListaPrecioSalon" />
     </AssociationSet>
     <AssociationSet Name="MesaReserva" Association="ModeloXCommerce.Store.MesaReserva">
       <End Role="Mesa" EntitySet="Mesas" />
@@ -191,6 +182,10 @@
     <AssociationSet Name="ProveedorComprobanteCompra" Association="ModeloXCommerce.Store.ProveedorComprobanteCompra">
       <End Role="Proveedor" EntitySet="Proveedores" />
       <End Role="ComprobanteCompra" EntitySet="Comprobantes_ComprobanteCompra" />
+    </AssociationSet>
+    <AssociationSet Name="SalonListaPrecio" Association="ModeloXCommerce.Store.SalonListaPrecio">
+      <End Role="Salon" EntitySet="Salones" />
+      <End Role="ListaPrecio" EntitySet="ListaPrecios" />
     </AssociationSet>
     <AssociationSet Name="FK_Cliente_inherits_Persona" Association="ModeloXCommerce.Store.FK_Cliente_inherits_Persona">
       <End Role="Persona" EntitySet="Personas" />
@@ -423,6 +418,7 @@
     <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Descripcion" Type="nvarchar" Nullable="false" MaxLength="250" />
     <Property Name="EstaEliminado" Type="bit" Nullable="false" />
+    <Property Name="ListaPrecioId" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="Mesas">
     <Key>
@@ -460,6 +456,7 @@
     <Property Name="UsuarioId" Type="bigint" Nullable="false" />
     <Property Name="ClienteId" Type="bigint" Nullable="false" />
     <Property Name="TipoComprobante" Type="int" Nullable="false" />
+    <Property Name="EstadoComprobanteSalon" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="DetalleComprobantes">
     <Key>
@@ -554,7 +551,7 @@
     </Key>
     <Property Name="Comensal" Type="nvarchar(max)" Nullable="false" />
     <Property Name="MesaId" Type="bigint" Nullable="false" />
-    <Property Name="MozoId" Type="bigint" Nullable="false" />
+    <Property Name="MozoId" Type="bigint" Nullable="true" />
     <Property Name="Id" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="Personas_Empleado">
@@ -606,14 +603,6 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="bigint" Nullable="false" />
-  </EntityType>
-  <EntityType Name="ListaPrecioSalon">
-    <Key>
-      <PropertyRef Name="ListaPrecios_Id" />
-      <PropertyRef Name="Salones_Id" />
-    </Key>
-    <Property Name="ListaPrecios_Id" Type="bigint" Nullable="false" />
-    <Property Name="Salones_Id" Type="bigint" Nullable="false" />
   </EntityType>
   <Association Name="ProvinciaLocalidad">
     <End Role="Provincia" Type="ModeloXCommerce.Store.Provincias" Multiplicity="1" />
@@ -964,7 +953,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="EmpleadoComprobanteSalon">
-    <End Role="Empleado" Type="ModeloXCommerce.Store.Personas_Empleado" Multiplicity="1" />
+    <End Role="Empleado" Type="ModeloXCommerce.Store.Personas_Empleado" Multiplicity="0..1" />
     <End Role="ComprobanteSalon" Type="ModeloXCommerce.Store.Comprobantes_ComprobanteSalon" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Empleado">
@@ -1035,27 +1024,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ListaPrecioSalon_ListaPrecio">
+  <Association Name="SalonListaPrecio">
+    <End Role="Salon" Type="ModeloXCommerce.Store.Salones" Multiplicity="*" />
     <End Role="ListaPrecio" Type="ModeloXCommerce.Store.ListaPrecios" Multiplicity="1" />
-    <End Role="ListaPrecioSalon" Type="ModeloXCommerce.Store.ListaPrecioSalon" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ListaPrecio">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="ListaPrecioSalon">
-        <PropertyRef Name="ListaPrecios_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ListaPrecioSalon_Salon">
-    <End Role="ListaPrecioSalon" Type="ModeloXCommerce.Store.ListaPrecioSalon" Multiplicity="*" />
-    <End Role="Salon" Type="ModeloXCommerce.Store.Salones" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Salon">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ListaPrecioSalon">
-        <PropertyRef Name="Salones_Id" />
+      <Dependent Role="Salon">
+        <PropertyRef Name="ListaPrecioId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1286,10 +1263,6 @@
             <End Role="Salon" EntitySet="Salones" />
             <End Role="Mesa" EntitySet="Mesas" />
           </AssociationSet>
-          <AssociationSet Name="ListaPrecioSalon" Association="ModeloXCommerce.ListaPrecioSalon">
-            <End Role="ListaPrecio" EntitySet="ListaPrecios" />
-            <End Role="Salon" EntitySet="Salones" />
-          </AssociationSet>
           <EntitySet Name="Reservas" EntityType="ModeloXCommerce.Reserva" />
           <AssociationSet Name="MesaReserva" Association="ModeloXCommerce.MesaReserva">
             <End Role="Mesa" EntitySet="Mesas" />
@@ -1374,6 +1347,10 @@
           <AssociationSet Name="ProveedorComprobanteCompra" Association="ModeloXCommerce.ProveedorComprobanteCompra">
             <End Role="Proveedor" EntitySet="Proveedores" />
             <End Role="ComprobanteCompra" EntitySet="Comprobantes" />
+          </AssociationSet>
+          <AssociationSet Name="SalonListaPrecio" Association="ModeloXCommerce.SalonListaPrecio">
+            <End Role="Salon" EntitySet="Salones" />
+            <End Role="ListaPrecio" EntitySet="ListaPrecios" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Persona">
@@ -1692,7 +1669,7 @@
           <Property Name="Rentabilidad" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="EstaEliminado" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Precios" Relationship="ModeloXCommerce.ListaPrecioPrecio" FromRole="ListaPrecio" ToRole="Precio" />
-          <NavigationProperty Name="Salones" Relationship="ModeloXCommerce.ListaPrecioSalon" FromRole="ListaPrecio" ToRole="Salon" />
+          <NavigationProperty Name="Salon" Relationship="ModeloXCommerce.SalonListaPrecio" FromRole="ListaPrecio" ToRole="Salon" />
         </EntityType>
         <EntityType Name="Precio">
           <Key>
@@ -1782,7 +1759,8 @@
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="250" />
           <Property Name="EstaEliminado" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Mesas" Relationship="ModeloXCommerce.SalonMesa" FromRole="Salon" ToRole="Mesa" />
-          <NavigationProperty Name="ListaPrecios" Relationship="ModeloXCommerce.ListaPrecioSalon" FromRole="Salon" ToRole="ListaPrecio" />
+          <NavigationProperty Name="ListaPrecio" Relationship="ModeloXCommerce.SalonListaPrecio" FromRole="Salon" ToRole="ListaPrecio" />
+          <Property Name="ListaPrecioId" Type="Int64" Nullable="false" />
         </EntityType>
         <EntityType Name="Mesa">
           <Key>
@@ -1809,10 +1787,6 @@
               <PropertyRef Name="SalonId" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
-        <Association Name="ListaPrecioSalon">
-          <End Type="ModeloXCommerce.ListaPrecio" Role="ListaPrecio" Multiplicity="*" />
-          <End Type="ModeloXCommerce.Salon" Role="Salon" Multiplicity="*" />
         </Association>
         <EntityType Name="Reserva">
           <Key>
@@ -1888,6 +1862,7 @@
           <NavigationProperty Name="DetalleComprobantes" Relationship="ModeloXCommerce.ComprobanteDetalleComprobante" FromRole="Comprobante" ToRole="DetalleComprobante" />
           <NavigationProperty Name="Movimientos" Relationship="ModeloXCommerce.ComprobanteMovimiento" FromRole="Comprobante" ToRole="Movimiento" />
           <NavigationProperty Name="FormaPagos" Relationship="ModeloXCommerce.ComprobanteFormaPago" FromRole="Comprobante" ToRole="FormaPago" />
+          <Property Name="EstadoComprobanteSalon" Type="ModeloXCommerce.EstadoComprobanteSalon" Nullable="false" />
         </EntityType>
         <Association Name="UsuarioComprobante">
           <End Type="ModeloXCommerce.Usuario" Role="Usuario" Multiplicity="1" />
@@ -1926,7 +1901,7 @@
           <NavigationProperty Name="Mesa" Relationship="ModeloXCommerce.MesaComprobanteSalon" FromRole="ComprobanteSalon" ToRole="Mesa" />
           <Property Name="MesaId" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Mozo" Relationship="ModeloXCommerce.EmpleadoComprobanteSalon" FromRole="ComprobanteSalon" ToRole="Empleado" />
-          <Property Name="MozoId" Type="Int64" Nullable="false" />
+          <Property Name="MozoId" Type="Int64" Nullable="true" />
         </EntityType>
         <EnumType Name="EstadoMesa">
           <Member Name="Cerrada" Value="1" />
@@ -2097,7 +2072,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="EmpleadoComprobanteSalon">
-          <End Type="ModeloXCommerce.Empleado" Role="Empleado" Multiplicity="1" />
+          <End Type="ModeloXCommerce.Empleado" Role="Empleado" Multiplicity="0..1" />
           <End Type="ModeloXCommerce.ComprobanteSalon" Role="ComprobanteSalon" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Empleado">
@@ -2216,6 +2191,22 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="SalonListaPrecio">
+          <End Type="ModeloXCommerce.Salon" Role="Salon" Multiplicity="*" />
+          <End Type="ModeloXCommerce.ListaPrecio" Role="ListaPrecio" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="ListaPrecio">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Salon">
+              <PropertyRef Name="ListaPrecioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EnumType Name="EstadoComprobanteSalon">
+          <Member Name="EnProceso" Value="1" />
+          <Member Name="Facturada" Value="2" />
+        </EnumType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2438,6 +2429,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
           <ScalarProperty Name="EstaEliminado" ColumnName="EstaEliminado" />
+          <ScalarProperty Name="ListaPrecioId" ColumnName="ListaPrecioId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -2478,6 +2470,7 @@
           <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
           <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
           <ScalarProperty Name="TipoComprobante" ColumnName="TipoComprobante" />
+          <ScalarProperty Name="EstadoComprobanteSalon" ColumnName="EstadoComprobanteSalon" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(ModeloXCommerce.ComprobanteSalon)">
@@ -2625,14 +2618,6 @@
       </EndProperty>
       <EndProperty Name="Empresa">
         <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="ListaPrecioSalon" TypeName="ModeloXCommerce.ListaPrecioSalon" StoreEntitySet="ListaPrecioSalon">
-      <EndProperty Name="ListaPrecio">
-        <ScalarProperty Name="Id" ColumnName="ListaPrecios_Id" />
-      </EndProperty>
-      <EndProperty Name="Salon">
-        <ScalarProperty Name="Id" ColumnName="Salones_Id" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

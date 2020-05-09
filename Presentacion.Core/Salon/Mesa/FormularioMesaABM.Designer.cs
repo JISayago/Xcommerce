@@ -90,7 +90,6 @@
             this.txtNumeroMesa.Name = "txtNumeroMesa";
             this.txtNumeroMesa.Size = new System.Drawing.Size(64, 22);
             this.txtNumeroMesa.TabIndex = 27;
-            this.txtNumeroMesa.UseWaitCursor = true;
             // 
             // label2
             // 

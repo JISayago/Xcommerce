@@ -2,6 +2,7 @@
 
 namespace VentanaPrincipal
 {
+    using Presentacion.Helpers;
     using Presentacion.Login;
     using System;
     using System.Collections.Generic;
@@ -26,7 +27,10 @@ namespace VentanaPrincipal
 
             if (login.PuedeAccederSistema)
             {
+                DatosSistema.NombreUsuario =  login.NombreUsuario;
+                DatosSistema.UsuarioId = login.IdUsuario;
                 Application.Run(new VentanaPrincipal());
+                
             }
             else
             {

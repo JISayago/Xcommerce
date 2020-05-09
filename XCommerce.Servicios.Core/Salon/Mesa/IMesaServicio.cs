@@ -18,6 +18,8 @@ namespace XCommerce.Servicios.Core.Salon.Mesa
 
         bool ExisteNumeroMesa(int numeroMesa);
 
+      
+
         MesaDTO ObtenerPorId(long mesaId);
 
         long Insertar(MesaDTO mesaDTO);

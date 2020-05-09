@@ -59,6 +59,8 @@ namespace Presentacion.Core.Salon.Mesa
             txtDescripcion.KeyPress += Validacion.NoSimbolos;
             txtDescripcion.KeyPress += Validacion.NoNumeros;
 
+
+
             txtNumeroMesa.KeyPress += Validacion.NoSimbolos;
             txtNumeroMesa.KeyPress += Validacion.NoLetras;
         }
@@ -104,13 +106,31 @@ namespace Presentacion.Core.Salon.Mesa
 
         public override bool EjecutarComandoNuevo()
         {
-            if (_mesaServicio.ExisteNumeroMesa(Convert.ToInt32(txtNumeroMesa.Text)))
+            if (string.IsNullOrEmpty(txtNumeroMesa.Text))
             {
-                MessageBox.Show(@"Ya existe una mesa con ese número", @"Error Mesa", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 txtNumeroMesa.Clear();
+                
                 txtNumeroMesa.Focus();
+                MessageBox.Show($"Este campo es obligarorio", @"Error Mesa", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return false;
             }
+            if (_mesaServicio.ExisteNumeroMesa(Convert.ToInt32(txtNumeroMesa.Text)))
+                {                
+                var mesas = _mesaServicio.ObtenerMesa(string.Empty);
+                var ultimoNumero = 0;
+                foreach (var mesaNumero in mesas)
+                {
+                    ultimoNumero = mesaNumero.Numero;
+                }         
+
+                
+                MessageBox.Show($"Ya existe una mesa con ese número", @"Error Mesa", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show($"El último numero registrado es: {ultimoNumero}", @"Error Mesa", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                txtNumeroMesa.Clear();
+                txtNumeroMesa.Text = Convert.ToString(ultimoNumero+1);
+                txtNumeroMesa.Focus();
+                return false;
+                }
             else
             {
 

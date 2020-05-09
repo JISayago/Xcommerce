@@ -1,4 +1,5 @@
-﻿using Presentacion.FormulariosBase;
+﻿using Presentacion.Core.ListaPrecio;
+using Presentacion.FormulariosBase;
 using Presentacion.FormulariosBase.Helpers;
 using Presentacion.Helpers;
 using System;
@@ -10,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using XCommerce.Servicios.Core.ListaPrecio;
 using XCommerce.Servicios.Core.Salon;
 using XCommerce.Servicios.Core.Salon.DTO;
 
@@ -18,6 +20,8 @@ namespace Presentacion.Core.Salon
     public partial class FormularioSalonABM : FormularioBaseABM
     {
         private readonly ISalonServicio _salonServicio;
+
+        private readonly IListaPrecioServicio _listaPrecio;
 
 
         public override void FormularioBaseABM_Load(object sender, EventArgs e)
@@ -31,6 +35,7 @@ namespace Presentacion.Core.Salon
             InitializeComponent();
 
             _salonServicio = new SalonServicio();
+            _listaPrecio = new ListaPrecioServicio();
 
             if (tipoOperacion == TipoOperacion.Eliminar || tipoOperacion == TipoOperacion.Modificar)
             {
@@ -47,6 +52,8 @@ namespace Presentacion.Core.Salon
         public override void Inicializador(long? entidadId)
         {
             if (entidadId.HasValue) return;
+
+            CargarComboBox(cmbListaPrecio, _listaPrecio.Obtener(string.Empty), "Descripcion", "Id");
 
             txtSalon.KeyPress += Validacion.NoSimbolos;
             txtSalon.KeyPress += Validacion.NoNumeros;
@@ -78,12 +85,17 @@ namespace Presentacion.Core.Salon
 
             if (salon != null)
             {
+                
+                CargarComboBox(cmbListaPrecio,_listaPrecio.Obtener(string.Empty), "Descripcion", "Id");//corregir para traer con id no toda la lista
+                                                                                                       //por algun motivo se rompe al traer por id
                 txtSalon.Text = salon.Descripcion;
+
             }
             else
             {
                 MessageBox.Show(@"Ocurrio un Error Grave", @"Error Grave", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
+
 
         }
         public override bool EjecutarComandoNuevo()
@@ -91,6 +103,7 @@ namespace Presentacion.Core.Salon
             var salonNuevo = new SalonDTO
             {
                 Descripcion = txtSalon.Text,
+                listaPrecioId = (long)cmbListaPrecio.SelectedValue,
                 EstaEliminado = false
 
             };
@@ -113,11 +126,18 @@ namespace Presentacion.Core.Salon
             {
                 Id = EntidadId.Value,
                 Descripcion = txtSalon.Text,
+                listaPrecioId = (long)cmbListaPrecio.SelectedValue
             };
             _salonServicio.Modificar(salonModificar);
 
             return true;
 
+        }
+
+        private void btnNuevaListaPrecio_Click(object sender, EventArgs e)
+        {
+            var FormularioABMListaPrecio = new FormularioListaPrecioABM(TipoOperacion.Nuevo);
+            FormularioABMListaPrecio.ShowDialog();
         }
     }
 }

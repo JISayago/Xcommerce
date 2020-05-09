@@ -4,6 +4,7 @@
     using global::XCommerce.Servicios.Seguridad.XCommerce.Servicios.Seguridad.Usuario.DTO;
     using System;
     using System.Collections.Generic;
+    using System.Data.Entity;
     using System.Linq;
     using static Presentacion.Helpers.CadenaCaracteres;
 
@@ -71,7 +72,7 @@
         {
             using (var basedatos = new ModeloXCommerceContainer())
             {
-                return basedatos.Personas
+                return basedatos.Personas.OfType<AccesoDatos.Empleado>()
                     .AsNoTracking()
                     .Where(x=>!x.EstaEliminado && (x.Apellido.Contains(cadenaBuscar) || x.Nombre.Contains(cadenaBuscar)))
                     .Select(x => new UsuarioDTO

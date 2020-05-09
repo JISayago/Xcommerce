@@ -161,6 +161,8 @@ namespace XCommerce.Servicios.Core.Salon.Mesa
                     }).FirstOrDefault(x => !x.EstaEliminado && x.Id == mesaId);
             }
         }
+
+        
     }
 
 }

@@ -2,11 +2,18 @@
 
 namespace VentanaPrincipal
 {
+    using Presentacion.Core.Articulo;
+    using Presentacion.Core.Articulo.Marca;
+    using Presentacion.Core.Articulo.Rubro;
+    using Presentacion.Core.Caja;
+    using Presentacion.Core.Cliente;
     using Presentacion.Core.Empleado;
+    using Presentacion.Core.ListaPrecio;
     using Presentacion.Core.Provincia;
     using Presentacion.Core.Provincia.Localidad;
     using Presentacion.Core.Salon;
     using Presentacion.Core.Salon.Mesa;
+    using Presentacion.Core.VentaSalon;
     using Presentacion.Login.Usuario;
     using System;
     using System.Windows.Forms;
@@ -56,6 +63,48 @@ namespace VentanaPrincipal
         {
             var FormularioConsultaMesa = new FormularioMesaConsulta();
             FormularioConsultaMesa.Show();
+        }
+
+        private void consultaToolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            var FormularioConsultaArticulo = new FormularioArticuloConsulta();
+            FormularioConsultaArticulo.Show();
+        }
+
+        private void consultaToolStripMenuItem5_Click(object sender, EventArgs e)
+        {
+            var FormularioventaSalon = new FormularioVentaSalon();
+            FormularioventaSalon.Show();
+        }
+
+        private void marcaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var FormularioConsultaMarca = new FormularioMarcaConsulta();
+            FormularioConsultaMarca.Show();
+        }
+
+        private void rubroToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var FormularioConsultaRubro = new FormularioRubroConsulta();
+            FormularioConsultaRubro.Show();
+        }
+
+        private void consultaToolStripMenuItem6_Click(object sender, EventArgs e)
+        {
+            var FormularioConsultaCliente = new FormularioClienteConsulta();
+            FormularioConsultaCliente.Show();
+        }
+
+        private void cajaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var Caja = new FormularioCaja();
+            Caja.Show();
+        }
+
+        private void consultaToolStripMenuItem7_Click(object sender, EventArgs e)
+        {
+            var FormularioConsultaListaPrecio = new FormularioListaPrecioConsulta();
+            FormularioConsultaListaPrecio.Show();
         }
     }
 }

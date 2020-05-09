@@ -18,7 +18,7 @@ namespace XCommerce.AccesoDatos
         public ListaPrecio()
         {
             this.Precios = new HashSet<Precio>();
-            this.Salones = new HashSet<Salon>();
+            this.Salon = new HashSet<Salon>();
         }
     
         public long Id { get; set; }
@@ -29,6 +29,6 @@ namespace XCommerce.AccesoDatos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Precio> Precios { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Salon> Salones { get; set; }
+        public virtual ICollection<Salon> Salon { get; set; }
     }
 }

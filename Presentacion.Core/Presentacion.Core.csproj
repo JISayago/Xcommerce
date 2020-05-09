@@ -55,6 +55,60 @@
     <Compile Include="Articulo\FormularioArticuloConsulta.Designer.cs">
       <DependentUpon>FormularioArticuloConsulta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Articulo\Marca\FormularioMarcaABM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Articulo\Marca\FormularioMarcaABM.Designer.cs">
+      <DependentUpon>FormularioMarcaABM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Articulo\Marca\FormularioMarcaConsulta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Articulo\Marca\FormularioMarcaConsulta.Designer.cs">
+      <DependentUpon>FormularioMarcaConsulta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Articulo\Rubro\FormularioRubroABM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Articulo\Rubro\FormularioRubroABM.Designer.cs">
+      <DependentUpon>FormularioRubroABM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Articulo\Rubro\FormularioRubroConsulta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Articulo\Rubro\FormularioRubroConsulta.Designer.cs">
+      <DependentUpon>FormularioRubroConsulta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Caja\FormularioAbrirCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Caja\FormularioAbrirCaja.Designer.cs">
+      <DependentUpon>FormularioAbrirCaja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Caja\FormularioCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Caja\FormularioCaja.Designer.cs">
+      <DependentUpon>FormularioCaja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Caja\FormularioCerrarCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Caja\FormularioCerrarCaja.Designer.cs">
+      <DependentUpon>FormularioCerrarCaja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cliente\FormularioClienteABM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cliente\FormularioClienteABM.Designer.cs">
+      <DependentUpon>FormularioClienteABM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cliente\FormularioClienteConsulta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cliente\FormularioClienteConsulta.Designer.cs">
+      <DependentUpon>FormularioClienteConsulta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Empleado\FormularioEmpleadoABM.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +176,12 @@
     <Compile Include="Salon\FormularioSalonConsulta.Designer.cs">
       <DependentUpon>FormularioSalonConsulta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Salon\Mesa\Control\CtrolMesa.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Salon\Mesa\Control\CtrolMesa.Designer.cs">
+      <DependentUpon>CtrolMesa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Salon\Mesa\FormularioMesaABM.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +193,18 @@
     </Compile>
     <Compile Include="Salon\Mesa\FormularioMesaConsulta.Designer.cs">
       <DependentUpon>FormularioMesaConsulta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VentaSalon\FormularioComprobanteMesa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VentaSalon\FormularioComprobanteMesa.Designer.cs">
+      <DependentUpon>FormularioComprobanteMesa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VentaSalon\FormularioVentaSalon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VentaSalon\FormularioVentaSalon.Designer.cs">
+      <DependentUpon>FormularioVentaSalon.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +237,24 @@
     <EmbeddedResource Include="Articulo\FormularioArticuloABM.resx">
       <DependentUpon>FormularioArticuloABM.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Articulo\Marca\FormularioMarcaABM.resx">
+      <DependentUpon>FormularioMarcaABM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Articulo\Rubro\FormularioRubroABM.resx">
+      <DependentUpon>FormularioRubroABM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Caja\FormularioAbrirCaja.resx">
+      <DependentUpon>FormularioAbrirCaja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Caja\FormularioCaja.resx">
+      <DependentUpon>FormularioCaja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Caja\FormularioCerrarCaja.resx">
+      <DependentUpon>FormularioCerrarCaja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cliente\FormularioClienteABM.resx">
+      <DependentUpon>FormularioClienteABM.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Empleado\FormularioEmpleadoABM.resx">
       <DependentUpon>FormularioEmpleadoABM.cs</DependentUpon>
     </EmbeddedResource>
@@ -173,6 +263,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Empleado\Usuario\FormularioUsuario.resx">
       <DependentUpon>FormularioUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListaPrecio\FormularioListaPrecioABM.resx">
+      <DependentUpon>FormularioListaPrecioABM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Provincia\FormularioProvinciaABM.resx">
       <DependentUpon>FormularioProvinciaABM.cs</DependentUpon>
@@ -183,10 +276,21 @@
     <EmbeddedResource Include="Salon\FormularioSalonABM.resx">
       <DependentUpon>FormularioSalonABM.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Salon\Mesa\Control\CtrolMesa.resx">
+      <DependentUpon>CtrolMesa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Salon\Mesa\FormularioMesaABM.resx">
       <DependentUpon>FormularioMesaABM.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VentaSalon\FormularioComprobanteMesa.resx">
+      <DependentUpon>FormularioComprobanteMesa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VentaSalon\FormularioVentaSalon.resx">
+      <DependentUpon>FormularioVentaSalon.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Comprobante\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

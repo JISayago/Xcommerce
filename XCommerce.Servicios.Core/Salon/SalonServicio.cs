@@ -30,7 +30,10 @@ namespace XCommerce.Servicios.Core.Salon
             {
                 var salonNuevo = new AccesoDatos.Salon
                 {
-                    Descripcion = salonDTO.Descripcion
+                    Descripcion = salonDTO.Descripcion,
+                    ListaPrecioId = salonDTO.listaPrecioId,
+                    EstaEliminado = false
+
                 };
 
                 baseDatos.Salones.Add(salonNuevo);
@@ -51,6 +54,7 @@ namespace XCommerce.Servicios.Core.Salon
                 if (salonModificar == null) throw new Exception("Ocurrió un error al obtener esl Salón para Modificarlo");
 
                 salonModificar.Descripcion = salonDTO.Descripcion;
+                salonModificar.ListaPrecioId = salonDTO.listaPrecioId;
 
                 baseDatos.SaveChanges();
             };
@@ -65,6 +69,7 @@ namespace XCommerce.Servicios.Core.Salon
                     .Select(x => new SalonDTO
                     {
                         Id = x.Id,
+                        listaPrecioId = x.ListaPrecioId,
                         Descripcion = x.Descripcion,
                         EstaEliminado = x.EstaEliminado
 
@@ -82,6 +87,7 @@ namespace XCommerce.Servicios.Core.Salon
                     .Select(x => new SalonDTO
                     {
                         Id = x.Id,
+                        listaPrecioId = x.ListaPrecioId,
                         Descripcion = x.Descripcion,
                         EstaEliminado = x.EstaEliminado
 
@@ -100,6 +106,7 @@ namespace XCommerce.Servicios.Core.Salon
                     {
                         Id = x.Id,
                         Descripcion = x.Descripcion,
+                        listaPrecioId = x.ListaPrecioId,
                         EstaEliminado = x.EstaEliminado
 
                     }).ToList();
