@@ -139,7 +139,10 @@ namespace Presentacion.Core.Provincia.Localidad
         {
             var FormularioABMProvincia = new FormularioProvinciaABM(TipoOperacion.Nuevo);
             FormularioABMProvincia.ShowDialog();
-            
+            this.Close();
+            var FormularioABMLocalidad = new FormularioLocalidadABM(TipoOperacion.Nuevo);
+            FormularioABMLocalidad.ShowDialog();
+
         }
     }
 }
