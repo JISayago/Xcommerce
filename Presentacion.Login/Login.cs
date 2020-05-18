@@ -32,8 +32,7 @@ namespace Presentacion.Login
         {
             InitializeComponent();
 
-            txtUsuario.Text = "dmaradona";
-            txtContraseña.Text = "1";
+           
          
         }
         public Login(IAccesoSistema accesoSistema, IUsuarioServicio usuarioServicio)
