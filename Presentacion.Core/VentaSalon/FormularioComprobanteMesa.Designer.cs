@@ -134,6 +134,7 @@
             this.btnBuscar.TabIndex = 8;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // label1
             // 
@@ -231,10 +232,13 @@
             this.btnAgregar.TabIndex = 17;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // nudSubTotal
             // 
             this.nudSubTotal.DecimalPlaces = 2;
+            this.nudSubTotal.Enabled = false;
+            this.nudSubTotal.InterceptArrowKeys = false;
             this.nudSubTotal.Location = new System.Drawing.Point(705, 462);
             this.nudSubTotal.Maximum = new decimal(new int[] {
             9999999,
@@ -242,6 +246,7 @@
             0,
             0});
             this.nudSubTotal.Name = "nudSubTotal";
+            this.nudSubTotal.ReadOnly = true;
             this.nudSubTotal.Size = new System.Drawing.Size(70, 20);
             this.nudSubTotal.TabIndex = 19;
             this.nudSubTotal.ThousandsSeparator = true;
@@ -276,6 +281,8 @@
             // nudTotal
             // 
             this.nudTotal.DecimalPlaces = 2;
+            this.nudTotal.Enabled = false;
+            this.nudTotal.InterceptArrowKeys = false;
             this.nudTotal.Location = new System.Drawing.Point(705, 534);
             this.nudTotal.Maximum = new decimal(new int[] {
             9999999,
@@ -283,6 +290,7 @@
             0,
             0});
             this.nudTotal.Name = "nudTotal";
+            this.nudTotal.ReadOnly = true;
             this.nudTotal.Size = new System.Drawing.Size(70, 20);
             this.nudTotal.TabIndex = 23;
             this.nudTotal.ThousandsSeparator = true;

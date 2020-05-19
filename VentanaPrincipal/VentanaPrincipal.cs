@@ -108,10 +108,11 @@ namespace VentanaPrincipal
             FormularioConsultaListaPrecio.Show();
         }
 
-        private void ConsultaToolStripMenuItem8_Click(object sender, EventArgs e)
+        private void agregarActualizarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var fPrecio = new FormularioPrecio();
-            fPrecio.Show();
+            var FormularioActualizarPrecio = new FormularioPrecio();
+            FormularioActualizarPrecio.Show();
+
         }
     }
 }

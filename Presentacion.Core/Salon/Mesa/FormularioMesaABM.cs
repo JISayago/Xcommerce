@@ -114,6 +114,20 @@ namespace Presentacion.Core.Salon.Mesa
                 MessageBox.Show($"Este campo es obligarorio", @"Error Mesa", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return false;
             }
+            if (string.IsNullOrEmpty(txtDescripcion.Text))
+            {
+                txtDescripcion.Clear();
+
+                txtDescripcion.Focus();
+                MessageBox.Show($"Este campo es obligarorio", @"Error Mesa", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return false;
+            }
+            if (cmbSalon.SelectedValue == null)
+            {
+                txtDescripcion.Focus();
+                MessageBox.Show($"Asignar la Mesa al Salon es obligarorio", @"Error Mesa", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return false;
+            }
             if (_mesaServicio.ExisteNumeroMesa(Convert.ToInt32(txtNumeroMesa.Text)))
                 {                
                 var mesas = _mesaServicio.ObtenerMesa(string.Empty);
@@ -176,6 +190,14 @@ namespace Presentacion.Core.Salon.Mesa
 
         }
 
-
+        private void btnNuevoSalon_Click(object sender, EventArgs e)
+        {
+            var formularioABMSalon = new FormularioSalonABM(TipoOperacion.Nuevo);
+            this.Close();
+            formularioABMSalon.ShowDialog();
+            var formularioABMMesa = new FormularioMesaABM(TipoOperacion.Nuevo);
+            
+            formularioABMMesa.ShowDialog();
+        }
     }
 }
