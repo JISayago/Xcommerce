@@ -138,6 +138,9 @@ namespace Presentacion.Core.Salon
         {
             var FormularioABMListaPrecio = new FormularioListaPrecioABM(TipoOperacion.Nuevo);
             FormularioABMListaPrecio.ShowDialog();
+            this.Close();
+            var FormularioABMSalon = new FormularioSalonABM(TipoOperacion.Nuevo);
+            FormularioABMSalon.ShowDialog();
         }
     }
 }
