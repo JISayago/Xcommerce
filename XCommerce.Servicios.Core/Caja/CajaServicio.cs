@@ -14,12 +14,13 @@ namespace XCommerce.Servicios.Core.Caja
         {
             using (var context = new ModeloXCommerceContainer())
             {
+                DateTime date = DateTime.Now;
                 var caja = new AccesoDatos.Caja
                 {
                     UsuarioAperturaId = dto.UsuarioAperturaId,
                     MontoApertura = dto.MontoApertura,
-                    FechaApertura = DateTime.Now,
-                    FechaCierre = DateTime.Now,
+                    FechaApertura = date,
+                    FechaCierre = date,
                     UsuarioCierreId = dto.UsuarioAperturaId,
                     MontoCierre = dto.MontoApertura,
                     MontoSistema = 0,
@@ -67,8 +68,23 @@ namespace XCommerce.Servicios.Core.Caja
             }
         }
 
+        public bool HayCajaAbierta()
+        {
+
+            using (var context = new ModeloXCommerceContainer())
+            {
+                return context.Cajas.Any(x => x.FechaApertura == x.FechaCierre);
+            }
+        }
+
+        public long ObtenerCajaAbierta()
+        {
+
+            using (var context = new ModeloXCommerceContainer())
+            {
+                return context.Cajas.Where(x => x.FechaApertura == x.FechaCierre).FirstOrDefault().Id;
+            }
+        }
 
     }
-
-
 }
