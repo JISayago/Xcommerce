@@ -68,6 +68,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.cmbListaPrecio = new System.Windows.Forms.ComboBox();
             this.nudStockMin = new System.Windows.Forms.NumericUpDown();
+            this.Archivo = new System.Windows.Forms.OpenFileDialog();
             this.pnlFoto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgFotoArticulo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStockMax)).BeginInit();
@@ -87,7 +88,7 @@
             this.pnlFoto.Location = new System.Drawing.Point(579, 77);
             this.pnlFoto.Name = "pnlFoto";
             this.pnlFoto.Size = new System.Drawing.Size(193, 250);
-            this.pnlFoto.TabIndex = 24;
+            this.pnlFoto.TabIndex = 20;
             // 
             // btnAgregarImagen
             // 
@@ -98,9 +99,10 @@
             this.btnAgregarImagen.Location = new System.Drawing.Point(8, 204);
             this.btnAgregarImagen.Name = "btnAgregarImagen";
             this.btnAgregarImagen.Size = new System.Drawing.Size(176, 38);
-            this.btnAgregarImagen.TabIndex = 0;
+            this.btnAgregarImagen.TabIndex = 1;
             this.btnAgregarImagen.Text = "Agregar Imagen";
             this.btnAgregarImagen.UseVisualStyleBackColor = false;
+            this.btnAgregarImagen.Click += new System.EventHandler(this.btnAgregarImagen_Click_1);
             // 
             // lblTituloFoto
             // 
@@ -131,7 +133,7 @@
             this.lblNombre.Location = new System.Drawing.Point(19, 161);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(61, 13);
-            this.lblNombre.TabIndex = 51;
+            this.lblNombre.TabIndex = 28;
             this.lblNombre.Text = "Abreviatura";
             // 
             // txtBoxAbreviatura
@@ -139,7 +141,7 @@
             this.txtBoxAbreviatura.Location = new System.Drawing.Point(88, 158);
             this.txtBoxAbreviatura.Name = "txtBoxAbreviatura";
             this.txtBoxAbreviatura.Size = new System.Drawing.Size(485, 20);
-            this.txtBoxAbreviatura.TabIndex = 49;
+            this.txtBoxAbreviatura.TabIndex = 4;
             // 
             // lblApellido
             // 
@@ -147,7 +149,7 @@
             this.lblApellido.Location = new System.Drawing.Point(19, 105);
             this.lblApellido.Name = "lblApellido";
             this.lblApellido.Size = new System.Drawing.Size(63, 13);
-            this.lblApellido.TabIndex = 50;
+            this.lblApellido.TabIndex = 28;
             this.lblApellido.Text = "Descripcion";
             // 
             // txtBoxDescripcion
@@ -155,7 +157,7 @@
             this.txtBoxDescripcion.Location = new System.Drawing.Point(86, 102);
             this.txtBoxDescripcion.Name = "txtBoxDescripcion";
             this.txtBoxDescripcion.Size = new System.Drawing.Size(487, 20);
-            this.txtBoxDescripcion.TabIndex = 48;
+            this.txtBoxDescripcion.TabIndex = 2;
             // 
             // label1
             // 
@@ -163,7 +165,7 @@
             this.label1.Location = new System.Drawing.Point(19, 135);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(40, 13);
-            this.label1.TabIndex = 53;
+            this.label1.TabIndex = 26;
             this.label1.Text = "Detalle";
             // 
             // txtBoxDetalle
@@ -171,7 +173,7 @@
             this.txtBoxDetalle.Location = new System.Drawing.Point(88, 132);
             this.txtBoxDetalle.Name = "txtBoxDetalle";
             this.txtBoxDetalle.Size = new System.Drawing.Size(485, 20);
-            this.txtBoxDetalle.TabIndex = 52;
+            this.txtBoxDetalle.TabIndex = 3;
             // 
             // label19
             // 
@@ -190,7 +192,7 @@
             this.lblLegajo.Location = new System.Drawing.Point(20, 71);
             this.lblLegajo.Name = "lblLegajo";
             this.lblLegajo.Size = new System.Drawing.Size(40, 13);
-            this.lblLegajo.TabIndex = 127;
+            this.lblLegajo.TabIndex = 26;
             this.lblLegajo.Text = "Codigo";
             // 
             // label2
@@ -218,18 +220,20 @@
             this.btnLocalidad.Location = new System.Drawing.Point(511, 287);
             this.btnLocalidad.Name = "btnLocalidad";
             this.btnLocalidad.Size = new System.Drawing.Size(41, 21);
-            this.btnLocalidad.TabIndex = 137;
+            this.btnLocalidad.TabIndex = 17;
             this.btnLocalidad.Text = "...";
             this.btnLocalidad.UseVisualStyleBackColor = true;
+            this.btnLocalidad.Click += new System.EventHandler(this.btnLocalidad_Click);
             // 
             // btnNuevaProvincia
             // 
             this.btnNuevaProvincia.Location = new System.Drawing.Point(511, 260);
             this.btnNuevaProvincia.Name = "btnNuevaProvincia";
             this.btnNuevaProvincia.Size = new System.Drawing.Size(41, 21);
-            this.btnNuevaProvincia.TabIndex = 135;
+            this.btnNuevaProvincia.TabIndex = 16;
             this.btnNuevaProvincia.Text = "...";
             this.btnNuevaProvincia.UseVisualStyleBackColor = true;
+            this.btnNuevaProvincia.Click += new System.EventHandler(this.btnNuevaProvincia_Click);
             // 
             // label10
             // 
@@ -237,7 +241,7 @@
             this.label10.Location = new System.Drawing.Point(19, 294);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(36, 13);
-            this.label10.TabIndex = 139;
+            this.label10.TabIndex = 35;
             this.label10.Text = "Rubro";
             // 
             // label9
@@ -246,7 +250,7 @@
             this.label9.Location = new System.Drawing.Point(18, 260);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(37, 13);
-            this.label9.TabIndex = 138;
+            this.label9.TabIndex = 34;
             this.label9.Text = "Marca";
             // 
             // cmbRubro
@@ -256,7 +260,7 @@
             this.cmbRubro.Location = new System.Drawing.Point(61, 291);
             this.cmbRubro.Name = "cmbRubro";
             this.cmbRubro.Size = new System.Drawing.Size(435, 21);
-            this.cmbRubro.TabIndex = 136;
+            this.cmbRubro.TabIndex = 15;
             // 
             // cmbMarca
             // 
@@ -265,7 +269,7 @@
             this.cmbMarca.Location = new System.Drawing.Point(61, 257);
             this.cmbMarca.Name = "cmbMarca";
             this.cmbMarca.Size = new System.Drawing.Size(435, 21);
-            this.cmbMarca.TabIndex = 134;
+            this.cmbMarca.TabIndex = 14;
             // 
             // cbxActivarLimiteVenta
             // 
@@ -273,7 +277,7 @@
             this.cbxActivarLimiteVenta.Location = new System.Drawing.Point(23, 194);
             this.cbxActivarLimiteVenta.Name = "cbxActivarLimiteVenta";
             this.cbxActivarLimiteVenta.Size = new System.Drawing.Size(135, 17);
-            this.cbxActivarLimiteVenta.TabIndex = 140;
+            this.cbxActivarLimiteVenta.TabIndex = 5;
             this.cbxActivarLimiteVenta.Text = "Activar Limite de Venta";
             this.cbxActivarLimiteVenta.ThreeState = true;
             this.cbxActivarLimiteVenta.UseVisualStyleBackColor = true;
@@ -284,7 +288,7 @@
             this.cbxDescuentaStock.Location = new System.Drawing.Point(23, 220);
             this.cbxDescuentaStock.Name = "cbxDescuentaStock";
             this.cbxDescuentaStock.Size = new System.Drawing.Size(109, 17);
-            this.cbxDescuentaStock.TabIndex = 141;
+            this.cbxDescuentaStock.TabIndex = 6;
             this.cbxDescuentaStock.Text = "Descuenta Stock";
             this.cbxDescuentaStock.ThreeState = true;
             this.cbxDescuentaStock.UseVisualStyleBackColor = true;
@@ -295,7 +299,7 @@
             this.cbxPermiteStockNegativo.Location = new System.Drawing.Point(312, 197);
             this.cbxPermiteStockNegativo.Name = "cbxPermiteStockNegativo";
             this.cbxPermiteStockNegativo.Size = new System.Drawing.Size(138, 17);
-            this.cbxPermiteStockNegativo.TabIndex = 142;
+            this.cbxPermiteStockNegativo.TabIndex = 9;
             this.cbxPermiteStockNegativo.Text = "Permite Stock Negativo";
             this.cbxPermiteStockNegativo.ThreeState = true;
             this.cbxPermiteStockNegativo.UseVisualStyleBackColor = true;
@@ -310,7 +314,7 @@
             0});
             this.nudStockMax.Name = "nudStockMax";
             this.nudStockMax.Size = new System.Drawing.Size(40, 20);
-            this.nudStockMax.TabIndex = 143;
+            this.nudStockMax.TabIndex = 12;
             // 
             // label4
             // 
@@ -318,7 +322,7 @@
             this.label4.Location = new System.Drawing.Point(453, 201);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(74, 13);
-            this.label4.TabIndex = 144;
+            this.label4.TabIndex = 10;
             this.label4.Text = "Stock Máximo";
             // 
             // label5
@@ -327,7 +331,7 @@
             this.label5.Location = new System.Drawing.Point(454, 227);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(73, 13);
-            this.label5.TabIndex = 146;
+            this.label5.TabIndex = 11;
             this.label5.Text = "Stock Mínimo";
             // 
             // label6
@@ -336,7 +340,7 @@
             this.label6.Location = new System.Drawing.Point(158, 196);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(36, 13);
-            this.label6.TabIndex = 148;
+            this.label6.TabIndex = 22;
             this.label6.Text = "Límite";
             // 
             // nudLimiteVenta
@@ -349,21 +353,21 @@
             0});
             this.nudLimiteVenta.Name = "nudLimiteVenta";
             this.nudLimiteVenta.Size = new System.Drawing.Size(40, 20);
-            this.nudLimiteVenta.TabIndex = 147;
+            this.nudLimiteVenta.TabIndex = 7;
             // 
             // txtBoxCodigo
             // 
             this.txtBoxCodigo.Location = new System.Drawing.Point(86, 68);
             this.txtBoxCodigo.Name = "txtBoxCodigo";
             this.txtBoxCodigo.Size = new System.Drawing.Size(104, 20);
-            this.txtBoxCodigo.TabIndex = 150;
+            this.txtBoxCodigo.TabIndex = 0;
             // 
             // txtBoxCodigoBarra
             // 
             this.txtBoxCodigoBarra.Location = new System.Drawing.Point(323, 69);
             this.txtBoxCodigoBarra.Name = "txtBoxCodigoBarra";
             this.txtBoxCodigoBarra.Size = new System.Drawing.Size(104, 20);
-            this.txtBoxCodigoBarra.TabIndex = 151;
+            this.txtBoxCodigoBarra.TabIndex = 1;
             // 
             // label7
             // 
@@ -371,7 +375,7 @@
             this.label7.Location = new System.Drawing.Point(159, 222);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(35, 13);
-            this.label7.TabIndex = 153;
+            this.label7.TabIndex = 6;
             this.label7.Text = "Stock";
             // 
             // nudStock
@@ -384,7 +388,7 @@
             0});
             this.nudStock.Name = "nudStock";
             this.nudStock.Size = new System.Drawing.Size(40, 20);
-            this.nudStock.TabIndex = 152;
+            this.nudStock.TabIndex = 8;
             // 
             // nudPrecioCosto
             // 
@@ -396,7 +400,7 @@
             0});
             this.nudPrecioCosto.Name = "nudPrecioCosto";
             this.nudPrecioCosto.Size = new System.Drawing.Size(254, 20);
-            this.nudPrecioCosto.TabIndex = 154;
+            this.nudPrecioCosto.TabIndex = 18;
             // 
             // label8
             // 
@@ -426,14 +430,14 @@
             0});
             this.nudPrecioPublico.Name = "nudPrecioPublico";
             this.nudPrecioPublico.Size = new System.Drawing.Size(254, 20);
-            this.nudPrecioPublico.TabIndex = 156;
+            this.nudPrecioPublico.TabIndex = 19;
             // 
             // btnNuevaListaPrecio
             // 
             this.btnNuevaListaPrecio.Location = new System.Drawing.Point(386, 404);
             this.btnNuevaListaPrecio.Name = "btnNuevaListaPrecio";
             this.btnNuevaListaPrecio.Size = new System.Drawing.Size(41, 21);
-            this.btnNuevaListaPrecio.TabIndex = 159;
+            this.btnNuevaListaPrecio.TabIndex = 21;
             this.btnNuevaListaPrecio.Text = "...";
             this.btnNuevaListaPrecio.UseVisualStyleBackColor = true;
             this.btnNuevaListaPrecio.Click += new System.EventHandler(this.BtnNuevaListaPrecio_Click);
@@ -454,7 +458,7 @@
             this.cmbListaPrecio.Location = new System.Drawing.Point(117, 404);
             this.cmbListaPrecio.Name = "cmbListaPrecio";
             this.cmbListaPrecio.Size = new System.Drawing.Size(260, 21);
-            this.cmbListaPrecio.TabIndex = 158;
+            this.cmbListaPrecio.TabIndex = 20;
             // 
             // nudStockMin
             // 
@@ -466,7 +470,11 @@
             0});
             this.nudStockMin.Name = "nudStockMin";
             this.nudStockMin.Size = new System.Drawing.Size(40, 20);
-            this.nudStockMin.TabIndex = 145;
+            this.nudStockMin.TabIndex = 13;
+            // 
+            // Archivo
+            // 
+            this.Archivo.FileName = "Archivo";
             // 
             // FormularioArticuloABM
             // 
@@ -604,5 +612,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox cmbListaPrecio;
         private System.Windows.Forms.NumericUpDown nudStockMin;
+        private System.Windows.Forms.OpenFileDialog Archivo;
     }
 }
