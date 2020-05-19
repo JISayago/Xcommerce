@@ -45,6 +45,7 @@
             this.btnNuevoSalon.TabIndex = 26;
             this.btnNuevoSalon.Text = "...";
             this.btnNuevoSalon.UseVisualStyleBackColor = true;
+            this.btnNuevoSalon.Click += new System.EventHandler(this.btnNuevoSalon_Click);
             // 
             // cmbSalon
             // 

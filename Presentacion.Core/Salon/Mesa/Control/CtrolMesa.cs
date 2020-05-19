@@ -10,12 +10,14 @@ using System.Windows.Forms;
 using XCommerce.AccesoDatos;
 using Presentacion.Core.VentaSalon;
 using XCommerce.Servicios.Core.Comprobante;
+using Presentacion.Helpers;
 
 namespace Presentacion.Core.Salon.Mesa.Control
 {
     public partial class CtrolMesa : UserControl
     {
         private long _mesaID;
+       
 
         public long mesaId
         {
@@ -24,6 +26,8 @@ namespace Presentacion.Core.Salon.Mesa.Control
                 _mesaID = value;
             }
         }
+
+   
 
         private int _numeroMesa;
         public int NumeroMesa
@@ -91,7 +95,7 @@ namespace Presentacion.Core.Salon.Mesa.Control
             if (estadoMesa == EstadoMesa.Abierta) return;
 
 
-            _comprobanteSalonServicio.GenerarComprobanteSalon(_mesaID,1,1);//usuario hay q agregar lo de juan y su usuario global
+            _comprobanteSalonServicio.GenerarComprobanteSalon(_mesaID, DatosSistema.UsuarioId, 1);
             Estado = EstadoMesa.Abierta;
 
 

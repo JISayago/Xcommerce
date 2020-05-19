@@ -111,21 +111,26 @@ namespace Presentacion.Core.VentaSalon
         {
             if ((char)Keys.Enter == e.KeyChar)
             {
-                if (string.IsNullOrEmpty(txtCodigoBarras.Text))
-                {
-                    MessageBox.Show("Por favor ingrese un codigo");
-                    return;
-                }
-                var producto = _productoServicio.ObtenerPorCodigo(_mesaId, txtCodigoBarras.Text);
+                busquedaArticulo();
+            }
+        }
 
-                if(producto != null)
-                {
-                    txtDescripcion.Text = producto.Descripcion;
-                    txtPrecioUnitario.Text = Convert.ToString(producto.Precio);
-                    _comprobanteSalonServicio.AgregarItems(_mesaId, nudCantidadArticulo.Value, producto);
+        private void busquedaArticulo()
+        {
+            if (string.IsNullOrEmpty(txtCodigoBarras.Text))
+            {
+                MessageBox.Show("Por favor ingrese un codigo");
+                return;
+            }
+            var producto = _productoServicio.ObtenerPorCodigo(_mesaId, txtCodigoBarras.Text);
 
-                    ObtenerComprobanteMesa(_mesaId);
-                }
+            if (producto != null)
+            {
+                txtDescripcion.Text = producto.Descripcion;
+                txtPrecioUnitario.Text = Convert.ToString(producto.Precio);
+                _comprobanteSalonServicio.AgregarItems(_mesaId, nudCantidadArticulo.Value, producto);
+
+                ObtenerComprobanteMesa(_mesaId);
             }
         }
 
@@ -133,23 +138,38 @@ namespace Presentacion.Core.VentaSalon
         {
             if ((char)Keys.Enter == e.KeyChar)
             {
-                if (string.IsNullOrEmpty(txtMozoLegajo.Text))
-                {
-                    MessageBox.Show("Por favor ingrese un legajo");
-                    return;
-                }
-                
-                var mozo = _mozoServicio.ObtenerMozoPorLegajo(Convert.ToInt32(txtMozoLegajo.Text));
+                buscarMozo();
+            }
+        }
 
-                if (mozo != null)
-                {
-                    txtMozoLegajo.Text = Convert.ToString(mozo.Legajo);
-                    txtApyNomMozo.Text = mozo.ApyNom;
-                   _mozoServicio.asignarMozoAMesa(_mesaId,mozo);
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            busquedaArticulo();
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            buscarMozo();
+        }
+
+        private void buscarMozo()
+        {
+            if (string.IsNullOrEmpty(txtMozoLegajo.Text))
+            {
+                MessageBox.Show("Por favor ingrese un legajo");
+                return;
+            }
+
+            var mozo = _mozoServicio.ObtenerMozoPorLegajo(Convert.ToInt32(txtMozoLegajo.Text));
+
+            if (mozo != null)
+            {
+                txtMozoLegajo.Text = Convert.ToString(mozo.Legajo);
+                txtApyNomMozo.Text = mozo.ApyNom;
+                _mozoServicio.asignarMozoAMesa(_mesaId, mozo);
 
 
 
-                }
             }
         }
     }
