@@ -76,7 +76,7 @@ namespace Presentacion.Core.Salon.Mesa
             if (check.Checked)
             {
                 grilla.DataSource = _mesaServicio.ObtenerMesaEliminada(cadenaBuscar);
-                toolStrip.Enabled = false;
+              
             }
             else
             {

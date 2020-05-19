@@ -116,7 +116,22 @@
 
         public virtual void ActualizarDatos(DataGridView grilla, string cadenaBuscar, CheckBox check, ToolStrip toolStrip)
         {
+            if (check.Checked)
+            {
+                btnEliminar.Enabled = false;
 
+                btnNuevo.Enabled = false;
+
+                btnModificar.Enabled = false;
+            }
+            else
+            {
+                btnEliminar.Enabled = true;
+
+                btnNuevo.Enabled = true;
+
+                btnModificar.Enabled = true;
+            }
 
         }
 
