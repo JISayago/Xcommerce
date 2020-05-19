@@ -28,6 +28,7 @@ namespace Presentacion.Core.Caja
 
         private void BtnAbrir_Click(object sender, EventArgs e)
         {
+            if (DatosSistema.UsuarioId == 0) throw new Exception("La caja no se puede abrir como admin!");
             var caja = new CajaDTO
             {
                 MontoApertura = nudMontoApertura.Value,

@@ -21,7 +21,6 @@ namespace VentanaPrincipal
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            
             var login = new Login();
             login.ShowDialog();
 
@@ -29,6 +28,9 @@ namespace VentanaPrincipal
             {
                 DatosSistema.NombreUsuario =  login.NombreUsuario;
                 DatosSistema.UsuarioId = login.IdUsuario;
+                DatosSistema.EstaCajaAbierta = login.IniciarConCajaAbierta;
+                if (login.IniciarConCajaAbierta) DatosSistema.CajaId = login.CajaId;
+
                 Application.Run(new VentanaPrincipal());
                 
             }
