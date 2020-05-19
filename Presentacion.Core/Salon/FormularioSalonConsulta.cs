@@ -46,12 +46,12 @@ namespace Presentacion.Core.Salon
             if (check.Checked)
             {
                 grilla.DataSource = _salonServicio.ObtenerSalonEliminado(cadenaBuscar);
-                toolStrip.Enabled = false;
+                
             }
             else
             {
                 grilla.DataSource = _salonServicio.ObtenerSalon(cadenaBuscar);
-                toolStrip.Enabled = true;
+              
             }
 
 

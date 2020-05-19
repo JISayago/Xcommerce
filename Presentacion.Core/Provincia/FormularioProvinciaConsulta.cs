@@ -46,12 +46,13 @@
             if (check.Checked)
             {
                 grilla.DataSource = _provinciaServicio.ObtenerProvinciaEliminada(cadenaBuscar);
-                toolStrip.Enabled = false;
+                          
+                
             }
             else
             {
                 grilla.DataSource = _provinciaServicio.ObtenerProvincia(cadenaBuscar);
-                toolStrip.Enabled = true;
+                
             }
 
             

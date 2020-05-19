@@ -297,6 +297,9 @@
     <EmbeddedResource Include="Provincia\FormularioProvinciaABM.resx">
       <DependentUpon>FormularioProvinciaABM.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Provincia\FormularioProvinciaConsulta.resx">
+      <DependentUpon>FormularioProvinciaConsulta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Provincia\Localidad\FormularioLocalidadABM.resx">
       <DependentUpon>FormularioLocalidadABM.cs</DependentUpon>
     </EmbeddedResource>
