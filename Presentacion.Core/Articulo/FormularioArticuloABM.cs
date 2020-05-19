@@ -1,4 +1,6 @@
-﻿using Presentacion.Core.ListaPrecio;
+﻿using Presentacion.Core.Articulo.Marca;
+using Presentacion.Core.Articulo.Rubro;
+using Presentacion.Core.ListaPrecio;
 using Presentacion.FormulariosBase;
 using Presentacion.FormulariosBase.Helpers;
 using Presentacion.Helpers;
@@ -13,10 +15,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using XCommerce.Servicios.Core.Articulo;
 using XCommerce.Servicios.Core.Articulo.DTO;
+using XCommerce.Servicios.Core.Articulo.Marca;
+using XCommerce.Servicios.Core.Articulo.Marca.DTO;
+using XCommerce.Servicios.Core.Articulo.Rubro;
+using XCommerce.Servicios.Core.Articulo.Rubro.DTO;
 using XCommerce.Servicios.Core.ListaPrecio;
 using XCommerce.Servicios.Core.ListaPrecio.DTO;
 using XCommerce.Servicios.Core.Precio;
 using XCommerce.Servicios.Core.Precio.DTO;
+using static Presentacion.Helpers.ImagenDb;
 
 namespace Presentacion.Core.Articulo
 {
@@ -25,7 +32,10 @@ namespace Presentacion.Core.Articulo
         private IArticuloServicio _articuloServicio;
         private IPrecioServicio _precioServicio;
         private IListaPrecioServicio _listaPrecioServicio;
-        private byte[] byte_vacio_foto = { 0 }; //¿que hacía?
+        private IMarcaServicio _marcaServicio;
+        private IRubroServicio _rubroServicio;
+
+      
 
         public FormularioArticuloABM()
         {
@@ -40,8 +50,12 @@ namespace Presentacion.Core.Articulo
             _articuloServicio = new ArticuloServicio();
             _precioServicio = new PrecioServicio();
             _listaPrecioServicio = new ListaPrecioServicio();
+            _marcaServicio = new MarcaServicio();
+            _rubroServicio = new RubroServicio();
 
             CargarComboBox(cmbListaPrecio, _listaPrecioServicio.Obtener(string.Empty), "Descripcion", "Id");
+            CargarComboBox(cmbMarca, _marcaServicio.ObtenerMarca(string.Empty), "Descripcion", "Id");
+            CargarComboBox(cmbRubro, _rubroServicio.ObtenerRubro(string.Empty), "Descripcion", "Id");
 
             if (tipoOperacion == TipoOperacion.Eliminar || tipoOperacion == TipoOperacion.Modificar)
             {
@@ -88,18 +102,16 @@ namespace Presentacion.Core.Articulo
                 cbxPermiteStockNegativo.Checked = articulo.PermiteStockNegativo;
                 imgFotoArticulo.Image = ImagenDb.Convertir_Bytes_Imagen(articulo.Foto);
 
-                //CargarComboBox(cmbMarca, _marcaServicio.Obtener(string.Empty), "Descripcion", "Id");
-                //cmbMarca.SelectedItem = articulo.MarcaId;
-                //CargarComboBox(cmbRubro, _rubroServicio.Obtener(string.Empty), "Descripcion", "Id");
-                //cmbRubro.SelectedItem = articulo.RubroId;
-
+                CargarComboBox(cmbMarca, _marcaServicio.ObtenerMarca(string.Empty), "Descripcion", "Id");
+                cmbMarca.SelectedItem = articulo.MarcaId;
+                CargarComboBox(cmbRubro, _rubroServicio.ObtenerRubro(string.Empty), "Descripcion", "Id");
+                cmbRubro.SelectedItem = articulo.RubroId;
 
                 nudStockMax.Value = articulo.StockMaximo;
                 nudStock.Value = articulo.Stock;
                 nudStockMin.Value = articulo.StockMinimo;
 
-
-                //Foto = byte_vacio_foto//TODO//ImagenDb.Convertir_Imagen_Bytes(imgFotoArticulo.Image),
+                
             }
             else
             {
@@ -130,22 +142,13 @@ namespace Presentacion.Core.Articulo
                 DescuentaStock = cbxDescuentaStock.Checked,
                 LimiteVenta = nudLimiteVenta.Value,
                 PermiteStockNegativo = cbxPermiteStockNegativo.Checked,
-
-                ////////
-                // TODO:
-                //MarcaId = ((MarcaDto)cmbMarca.SelectedItem).Id,
-                //RubroId = ((RubroDto)cmbRubro.SelectedItem).Id,
-                ////////
-
-                MarcaId = 1,
-                RubroId = 1,
+                MarcaId = ((MarcaDTO)cmbMarca.SelectedItem).Id,
+                RubroId = ((RubroDTO)cmbRubro.SelectedItem).Id,
                 StockMaximo = nudStockMax.Value,
                 Stock = nudStock.Value,
                 StockMinimo = nudStockMin.Value,
-
                 EstaDiscontinuado = false,
-
-                Foto = byte_vacio_foto//TODO//ImagenDb.Convertir_Imagen_Bytes(imgFotoArticulo.Image),
+                Foto = Convertir_Imagen_Bytes(imgFotoArticulo.Image),
             };
 
             _articuloServicio.Modificar(articuloAModificar);
@@ -178,22 +181,14 @@ namespace Presentacion.Core.Articulo
                 DescuentaStock = cbxDescuentaStock.Checked,
                 LimiteVenta = nudLimiteVenta.Value,
                 PermiteStockNegativo = cbxPermiteStockNegativo.Checked,
-
-                ////////
-                // TODO:
-                //MarcaId = ((MarcaDto)cmbMarca.SelectedItem).Id,
-                //RubroId = ((RubroDto)cmbRubro.SelectedItem).Id,
-                ////////
-
-                MarcaId = 1,
-                RubroId = 1,
+                MarcaId = ((MarcaDTO)cmbMarca.SelectedItem).Id,
+                RubroId = ((RubroDTO)cmbRubro.SelectedItem).Id,
                 StockMaximo = nudStockMax.Value,
                 Stock = nudStock.Value,
                 StockMinimo = nudStockMin.Value,
-
                 EstaDiscontinuado = false,
-
-                Foto = byte_vacio_foto//TODO//ImagenDb.Convertir_Imagen_Bytes(imgFotoArticulo.Image),
+                Foto = Convertir_Imagen_Bytes(imgFotoArticulo.Image)
+                
 
             };
 
@@ -225,6 +220,45 @@ namespace Presentacion.Core.Articulo
             fABMListaPrecio.ShowDialog();
 
             CargarComboBox(cmbListaPrecio, _listaPrecioServicio.Obtener(string.Empty), "Descripcion", "Id");
+        }
+
+       
+
+        private void btnAgregarImagen_Click_1(object sender, EventArgs e)
+        {
+            if (Archivo.ShowDialog() == DialogResult.OK)
+            {
+                if (!string.IsNullOrEmpty(Archivo.FileName))
+                {
+                    imgFotoArticulo.Image = Image.FromFile(Archivo.FileName);
+                }
+                else
+                {
+                    imgFotoArticulo.Image = Presentacion.Constatntes.Imagenes.ImagenBotonBuscar;
+                }
+            }
+            else
+            {
+                imgFotoArticulo.Image = Presentacion.Constatntes.Imagenes.ImagenBotonBuscar;
+            }
+        }
+
+        private void btnNuevaProvincia_Click(object sender, EventArgs e)
+        {
+            var MarcaABM = new FormularioMarcaABM(TipoOperacion.Nuevo);
+            this.Close();
+            MarcaABM.ShowDialog();
+            var articuloAbm = new FormularioArticuloABM(TipoOperacion.Nuevo);
+            articuloAbm.ShowDialog();
+        }
+
+        private void btnLocalidad_Click(object sender, EventArgs e)
+        {
+            var RubroABM = new FormularioRubroABM(TipoOperacion.Nuevo);           
+            this.Close();
+            RubroABM.ShowDialog();
+            var articuloAbm = new FormularioArticuloABM(TipoOperacion.Nuevo);
+            articuloAbm.ShowDialog();
         }
     }
 }
