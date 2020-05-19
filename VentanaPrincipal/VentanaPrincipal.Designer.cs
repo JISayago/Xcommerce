@@ -53,6 +53,7 @@
             this.cajaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.precioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.agregarActualizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -165,7 +166,8 @@
             this.articuloToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.consultaToolStripMenuItem4,
             this.marcaToolStripMenuItem,
-            this.rubroToolStripMenuItem});
+            this.rubroToolStripMenuItem,
+            this.precioToolStripMenuItem});
             this.articuloToolStripMenuItem1.Name = "articuloToolStripMenuItem1";
             this.articuloToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.articuloToolStripMenuItem1.Text = "Articulo";
@@ -247,6 +249,7 @@
             // 
             this.precioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.agregarActualizarToolStripMenuItem});
+
             this.precioToolStripMenuItem.Name = "precioToolStripMenuItem";
             this.precioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.precioToolStripMenuItem.Text = "Precio";
@@ -257,6 +260,7 @@
             this.agregarActualizarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.agregarActualizarToolStripMenuItem.Text = "Agregar/Actualizar";
             this.agregarActualizarToolStripMenuItem.Click += new System.EventHandler(this.agregarActualizarToolStripMenuItem_Click);
+
             // 
             // VentanaPrincipal
             // 
@@ -301,6 +305,7 @@
         private System.Windows.Forms.ToolStripMenuItem consultaToolStripMenuItem7;
         private System.Windows.Forms.ToolStripMenuItem precioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem agregarActualizarToolStripMenuItem;
+
     }
 }
 

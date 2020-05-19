@@ -11,6 +11,7 @@ namespace Presentacion.Login
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows.Forms;
+    using XCommerce.Servicios.Core.Caja;
     using XCommerce.Servicios.Seguridad.XCommerce.Servicios.Seguridad.Seguridad;
     using XCommerce.Servicios.Seguridad.XCommerce.Servicios.Seguridad.Usuario;
 
@@ -18,6 +19,7 @@ namespace Presentacion.Login
     {
         private readonly IAccesoSistema _accesoSistema;
         private readonly IUsuarioServicio _usuarioServicio;
+        private readonly ICajaServicio _cajaServicio;
 
         private int CantidadFallos;
 
@@ -26,19 +28,21 @@ namespace Presentacion.Login
 
         public String NombreUsuario { get; private set; }
         public long IdUsuario { get; private set; }
+        public bool IniciarConCajaAbierta { get; private set; }
+        public long CajaId { get; private set; }
 
-      
-        public Login():this(new AccesoSistema(), new UsuarioServicio())
+    public Login():this(new AccesoSistema(), new UsuarioServicio(), new CajaServicio())
         {
             InitializeComponent();
 
            
          
         }
-        public Login(IAccesoSistema accesoSistema, IUsuarioServicio usuarioServicio)
+        public Login(IAccesoSistema accesoSistema, IUsuarioServicio usuarioServicio, ICajaServicio cajaServicio)
         {
             _accesoSistema = accesoSistema;
             _usuarioServicio = usuarioServicio;
+            _cajaServicio = cajaServicio;
             CantidadFallos = 0;
 
         }
@@ -79,11 +83,20 @@ namespace Presentacion.Login
                 {
                     if (!_accesoSistema.VerificarSiEstaBloqueado(txtUsuario.Text))
                     {
+                        IniciarConCajaAbierta = false;
+                        if (_cajaServicio.HayCajaAbierta())
+                        {
+                            //throw new Exception("probando");
+                            IniciarConCajaAbierta = true;
+                            CajaId = _cajaServicio.ObtenerCajaAbierta();
+                            MessageBox.Show("¡La caja está abierta!");
+                        }
                         NombreUsuario = txtUsuario.Text;
                         IdUsuario = _accesoSistema.ObtenerId(NombreUsuario);
                         if (NombreUsuario.ToLower() == "admin") IdUsuario = 0;
 
                         PuedeAccederSistema = true;
+
                         this.Close();
                     }
                     else

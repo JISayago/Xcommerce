@@ -120,7 +120,8 @@
             this.Text = "Ingreso al Sistema";
             this.ResumeLayout(false);
             this.PerformLayout();
-
+            this.AcceptButton = this.btnIngresar;
+            this.CancelButton = this.btnCancelar;
         }
 
         #endregion

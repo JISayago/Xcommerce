@@ -12,5 +12,7 @@ namespace XCommerce.Servicios.Core.Caja
         long Abrir(CajaDTO dto);
         void Cerrar(CajaDTO dto);
         CajaDTO Obtener(long id);
+        bool HayCajaAbierta();
+        long ObtenerCajaAbierta();
     }
 }

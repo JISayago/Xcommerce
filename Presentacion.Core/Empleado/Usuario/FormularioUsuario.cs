@@ -29,7 +29,10 @@
             btnActualizar.Image = Constatntes.Imagenes.ImagenBotonActualizar;
             btnSalir.Image = Constatntes.Imagenes.ImagenBotonSalir;
 
+            cbxEstaBloqueado.Visible = false;
+
             entidad = null;
+
 
         }
 

@@ -102,6 +102,8 @@
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormularioBaseABM_KeyDown);
+            this.KeyPreview = true;
 
         }
 

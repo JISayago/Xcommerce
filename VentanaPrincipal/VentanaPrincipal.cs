@@ -112,6 +112,7 @@ namespace VentanaPrincipal
         {
             var FormularioActualizarPrecio = new FormularioPrecio();
             FormularioActualizarPrecio.Show();
+
         }
     }
 }
