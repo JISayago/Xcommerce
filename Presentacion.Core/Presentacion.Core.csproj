@@ -127,6 +127,12 @@
     <Compile Include="Empleado\Usuario\FormularioUsuario.Designer.cs">
       <DependentUpon>FormularioUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Kiosco\FormularioKiosco.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kiosco\FormularioKiosco.Designer.cs">
+      <DependentUpon>FormularioKiosco.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListaPrecio\FormularioListaPrecioABM.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -281,6 +287,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Empleado\Usuario\FormularioUsuario.resx">
       <DependentUpon>FormularioUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kiosco\FormularioKiosco.resx">
+      <DependentUpon>FormularioKiosco.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListaPrecio\FormularioListaPrecioABM.resx">
       <DependentUpon>FormularioListaPrecioABM.cs</DependentUpon>
