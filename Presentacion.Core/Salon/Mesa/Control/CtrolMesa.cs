@@ -11,12 +11,14 @@ using XCommerce.AccesoDatos;
 using Presentacion.Core.VentaSalon;
 using XCommerce.Servicios.Core.Comprobante;
 using Presentacion.Helpers;
+using XCommerce.Servicios.Core.Movimiento;
 
 namespace Presentacion.Core.Salon.Mesa.Control
 {
     public partial class CtrolMesa : UserControl
     {
         private long _mesaID;
+        private long _comproID;
        
 
         public long mesaId
@@ -49,7 +51,7 @@ namespace Presentacion.Core.Salon.Mesa.Control
         }
         private EstadoMesa estadoMesa;
         
-
+    
         
         public EstadoMesa Estado
         {            
@@ -79,27 +81,31 @@ namespace Presentacion.Core.Salon.Mesa.Control
         }
 
         private readonly IComprobanteSalonServicio _comprobanteSalonServicio;
+        private readonly IMovimientoServicio _movimientoServicio;
 
-        public CtrolMesa() : this(new ComprobanteSalonServicio())
+        public CtrolMesa() : this(new ComprobanteSalonServicio(), new MovimientoServicio())
         {
             InitializeComponent();
         }
 
-        public CtrolMesa(IComprobanteSalonServicio comprobanteSalonServicio)
+        public CtrolMesa(IComprobanteSalonServicio comprobanteSalonServicio,IMovimientoServicio movimientoServicio)
         {
             _comprobanteSalonServicio = comprobanteSalonServicio;
-        }
+            _movimientoServicio = movimientoServicio;
 
+        }
+      
         private void menuAbrirMesa_Click(object sender, EventArgs e)
         {
             if (estadoMesa == EstadoMesa.Abierta) return;
 
 
-            _comprobanteSalonServicio.GenerarComprobanteSalon(_mesaID, DatosSistema.UsuarioId, 1);
-            Estado = EstadoMesa.Abierta;
+            var comproId = _comprobanteSalonServicio.GenerarComprobanteSalon(_mesaID, DatosSistema.UsuarioId, 1);
+            _comproID = comproId;
+            Estado = EstadoMesa.Abierta;               
 
 
-            var fComprobanteMesa = new FormularioComprobanteMesa(_mesaID,_numeroMesa);
+            var fComprobanteMesa = new FormularioComprobanteMesa(_mesaID,_numeroMesa,comproId);
             
             fComprobanteMesa.ShowDialog();
             
@@ -109,10 +115,24 @@ namespace Presentacion.Core.Salon.Mesa.Control
         private void lblNumeroMesa_DoubleClick(object sender, EventArgs e)
         {
             if (estadoMesa != EstadoMesa.Abierta) return;
-
-            var fComprobanteMesa = new FormularioComprobanteMesa(_mesaID,_numeroMesa);
+          
+            var fComprobanteMesa = new FormularioComprobanteMesa(_mesaID,_numeroMesa,-1);
           
             fComprobanteMesa.ShowDialog();
+        }
+
+        private bool cerrarMesa;
+        private void menuCerrarMesa_Click(object sender, EventArgs e)
+        {
+            if (estadoMesa == EstadoMesa.Cerrada) return;
+
+            _comprobanteSalonServicio.FacturarComprobanteSalon(_mesaID);
+
+            cerrarMesa = true;
+
+            var fcomprobanteMesa = new FormularioComprobanteMesa(_mesaID, _numeroMesa, cerrarMesa);
+
+            Estado = EstadoMesa.Cerrada; 
         }
     }
 }

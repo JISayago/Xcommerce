@@ -37,6 +37,8 @@ namespace XCommerce.Servicios.Core.Producto
                                  .Where(l2 => l2.ListaPrecio.Salon.Any(s2 => s2.Mesas.Any(m2 => m2.Id == mesaID))
                                          && l2.ArticuloId == x.Id).Max(max => max.FechaActualizacion)).PrecioPublico
                     }).FirstOrDefault(x => x.Codigo == codigo || x.CodigoBarra == codigo);
+
+                    
             }
         }
     }

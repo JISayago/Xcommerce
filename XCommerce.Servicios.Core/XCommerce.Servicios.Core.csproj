@@ -52,6 +52,9 @@
     <Compile Include="Articulo\DTO\ArticuloDTO.cs" />
     <Compile Include="Articulo\IArticuloServicio.cs" />
     <Compile Include="Caja\CajaServicio.cs" />
+    <Compile Include="Caja\DetalleCaja\DetalleCajaServicio.cs" />
+    <Compile Include="Caja\DetalleCaja\DTO\DetalleCajaDTO.cs" />
+    <Compile Include="Caja\DetalleCaja\IDetalleCajaServicio.cs" />
     <Compile Include="Caja\DTO\CajaDTO.cs" />
     <Compile Include="Caja\ICajaServicio.cs" />
     <Compile Include="Articulo\Marca\DTO\MarcaDTO.cs" />
@@ -80,6 +83,9 @@
     <Compile Include="ListaPrecio\DTO\ListaPrecioDTO.cs" />
     <Compile Include="ListaPrecio\IListaPrecioServicio.cs" />
     <Compile Include="ListaPrecio\ListaPrecioServicio.cs" />
+    <Compile Include="Movimiento\DTO\MovimientoDTO.cs" />
+    <Compile Include="Movimiento\IMovimientoServicio.cs" />
+    <Compile Include="Movimiento\MovimientoServicio.cs" />
     <Compile Include="Producto\DTO\ProductoMesaDTO.cs" />
     <Compile Include="Producto\IProductoServicio.cs" />
     <Compile Include="Producto\ProductoServicio.cs" />

@@ -31,7 +31,6 @@ namespace XCommerce.AccesoDatos
         public long UsuarioId { get; set; }
         public long ClienteId { get; set; }
         public TipoComprobante TipoComprobante { get; set; }
-        public EstadoComprobanteSalon EstadoComprobanteSalon { get; set; }
     
         public virtual Usuario Usuario { get; set; }
         public virtual Cliente Cliente { get; set; }

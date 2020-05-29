@@ -54,7 +54,41 @@ namespace XCommerce.Servicios.Core.Comprobante
             }
         }
 
-        public void GenerarComprobanteSalon(long mesaId, long usuarioId, int comensales, long? mozoId = null)
+        public void CambiarEstadoComprobante(long mesaId, long comprobanteId)
+        {
+            using (var baseDatos = new ModeloXCommerceContainer())
+            {
+                var comprobante = baseDatos.Comprobantes
+                    .OfType<ComprobanteSalon>()
+                    .FirstOrDefault(x => x.MesaId == mesaId && x.Id == comprobanteId);
+
+                comprobante.EstadoComprobanteSalon = EstadoComprobanteSalon.Facturada;
+                baseDatos.SaveChanges();
+            }
+        }
+
+        public void FacturarComprobanteSalon(long mesaId)
+        {
+            using (var baseDatos = new ModeloXCommerceContainer())
+            {
+                var comprobante = baseDatos.Comprobantes
+                    .OfType<ComprobanteSalon>()
+                    .FirstOrDefault(x => x.MesaId == mesaId && x.EstadoComprobanteSalon == EstadoComprobanteSalon.EnProceso);
+
+                var mesa = baseDatos.Mesas.FirstOrDefault(x => x.Id == mesaId);
+
+                mesa.EstadoMesa = EstadoMesa.Cerrada;
+                if (mesa == null) throw new Exception("Ocurrió un error al conseguir la Mesa");
+
+                comprobante.EstadoComprobanteSalon = EstadoComprobanteSalon.Facturada;
+
+                baseDatos.SaveChanges();
+
+
+            }
+        }
+
+        public long GenerarComprobanteSalon(long mesaId, long usuarioId, int comensales, long? mozoId = null)
         {
             using (var baseDatos = new ModeloXCommerceContainer())
             {
@@ -68,6 +102,7 @@ namespace XCommerce.Servicios.Core.Comprobante
                 if (clienteConsumidorFinal == null) throw new Exception("Ocurrió un error al conseguir al Consumidor final");
 
                 var mesa = baseDatos.Mesas.FirstOrDefault(x => x.Id == mesaId);
+
                 if (mesa == null) throw new Exception("Ocurrió un error al conseguir la Mesa");
 
                 mesa.EstadoMesa = EstadoMesa.Abierta;
@@ -93,6 +128,9 @@ namespace XCommerce.Servicios.Core.Comprobante
 
                 baseDatos.Comprobantes.Add(nuevoComprobante);
                 baseDatos.SaveChanges();
+                return nuevoComprobante.Id;
+
+               
             }
         }
 
@@ -102,7 +140,8 @@ namespace XCommerce.Servicios.Core.Comprobante
         {
             using (var baseDatos = new ModeloXCommerceContainer())
             {
-                return baseDatos.Comprobantes.OfType<ComprobanteSalon>()
+                return baseDatos.Comprobantes
+                      .OfType<ComprobanteSalon>()
                       .Include(x => x.Mozo)
                       .AsNoTracking()
                       .Select(x => new ComprobanteMesaDTO
@@ -128,11 +167,49 @@ namespace XCommerce.Servicios.Core.Comprobante
                               ProductoId = c.ArticuloId
 
                           }).ToList()
-                      }).FirstOrDefault(x => x.MesaId == mesaId);
+                      }).OrderByDescending(x=> x.Fecha)
+                      .FirstOrDefault(x => x.MesaId == mesaId);
 
 
             }
             
+        }
+
+        public ComprobanteMesaDTO ObtenerPorId(long mesaId, long comproId)
+        {
+            using (var baseDatos = new ModeloXCommerceContainer())
+            {
+                return baseDatos.Comprobantes
+                      .OfType<ComprobanteSalon>()
+                      .Include(x => x.Mozo)
+                      .AsNoTracking()
+                      .Select(x => new ComprobanteMesaDTO
+                      {
+                          ClienteId = x.ClienteId,
+                          ComprobanteId = x.Id,
+                          Descuento = x.Descuento,
+                          Fecha = x.Fecha,
+                          MesaId = x.MesaId,
+                          MozoId = x.MozoId,
+                          Legajo = x.MozoId.HasValue ? x.Mozo.Legajo : 0,
+                          ApellidoMozo = x.MozoId.HasValue ? x.Mozo.Apellido : "No ",
+                          NombreMozo = x.MozoId.HasValue ? x.Mozo.Nombre : "Asignado...",
+                          UsuarioId = x.UsuarioId,
+                          Items = x.DetalleComprobantes.Select(c => new DetalleComprobanteSalonDTO
+                          {
+                              CantidadProducto = c.Cantidad,
+                              PrecioUnitario = c.PrecioUnitario,
+                              ComprobanteId = c.ComprobanteId,
+                              CodigoProducto = c.Codigo,
+                              DescripcionProducto = c.Descripcion,
+                              DetalleId = c.Id,
+                              ProductoId = c.ArticuloId
+
+                          }).ToList()
+                      }).FirstOrDefault(x => x.MesaId == mesaId && x.ComprobanteId == comproId);
+
+
+            }
         }
     }
 }

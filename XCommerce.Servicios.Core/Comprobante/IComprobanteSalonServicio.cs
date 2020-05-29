@@ -10,10 +10,15 @@ namespace XCommerce.Servicios.Core.Comprobante
 {
     public interface IComprobanteSalonServicio
     {
-        void GenerarComprobanteSalon(long mesaId, long usuarioId, int comensales, long? mozoId = null);
+        long GenerarComprobanteSalon(long mesaId, long usuarioId, int comensales, long? mozoId = null);
+
+        void FacturarComprobanteSalon(long mesaId);
 
         ComprobanteMesaDTO Obtener(long mesaId);
 
+        ComprobanteMesaDTO ObtenerPorId(long mesaId,long comproId);
+
+        void CambiarEstadoComprobante(long mesaId ,long comprobanteId);
         void AgregarItems(long mesaId,decimal cantidad, ProductoMesaDTO dto);  
     }
 }
