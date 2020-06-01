@@ -27,7 +27,7 @@ namespace XCommerce.Servicios.Core.Articulo.BajaArticulo.MotivoBaja
             }
         }
 
-        public void Modificar(MotivoBajaDTO dto)
+        /*public void Modificar(MotivoBajaDTO dto)
         {
             using (var context = new ModeloXCommerceContainer())
             {
@@ -39,11 +39,21 @@ namespace XCommerce.Servicios.Core.Articulo.BajaArticulo.MotivoBaja
 
                 context.SaveChanges();
             }
-        }
+        }*/
 
         public IEnumerable<MotivoBajaDTO> ObtenerMotivoBaja(string cadenaBuscar)
         {
-            throw new NotImplementedException();
+            using (var context = new ModeloXCommerceContainer())
+            {
+                return context.MotivosBajas
+                    .AsNoTracking()
+                    .Where(x => x.Descripcion.Contains(cadenaBuscar))
+                    .Select(x => new MotivoBajaDTO
+                    {
+                        Descripcion = x.Descripcion
+
+                    }).ToList();
+            }
         }
 
         public MotivoBajaDTO ObtenerPorId(long motivoBajaId)

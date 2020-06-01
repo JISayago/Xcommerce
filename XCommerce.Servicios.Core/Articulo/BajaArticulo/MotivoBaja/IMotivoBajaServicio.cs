@@ -15,7 +15,7 @@ namespace XCommerce.Servicios.Core.Articulo.BajaArticulo.MotivoBaja
 
         long Insertar(MotivoBajaDTO dto);
 
-        void Modificar(MotivoBajaDTO dto);
+        //void Modificar(MotivoBajaDTO dto);
 
         //void Eliminar(long motivoBajaId);
     }
