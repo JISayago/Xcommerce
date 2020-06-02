@@ -52,9 +52,9 @@
     <Compile Include="Articulo\BajaArticulo\BajaArticuloServicio.cs" />
     <Compile Include="Articulo\BajaArticulo\DTO\BajaArticuloDTO.cs" />
     <Compile Include="Articulo\BajaArticulo\IBajaArticuloServicio.cs" />
-    <Compile Include="Articulo\BajaArticulo\MotivoBaja\DTO\MotivoBajaDTO.cs" />
-    <Compile Include="Articulo\BajaArticulo\MotivoBaja\IMotivoBajaServicio.cs" />
-    <Compile Include="Articulo\BajaArticulo\MotivoBaja\MotivoBajaServicio.cs" />
+    <Compile Include="Articulo\MotivoBaja\DTO\MotivoBajaDTO.cs" />
+    <Compile Include="Articulo\MotivoBaja\IMotivoBajaServicio.cs" />
+    <Compile Include="Articulo\MotivoBaja\MotivoBajaServicio.cs" />
     <Compile Include="Articulo\DTO\ArticuloDTO.cs" />
     <Compile Include="Articulo\IArticuloServicio.cs" />
     <Compile Include="Caja\CajaServicio.cs" />

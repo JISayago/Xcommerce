@@ -12,6 +12,8 @@ namespace XCommerce.Servicios.Core.Articulo.BajaArticulo.DTO
 
         public DateTime Fecha { get; set;}
 
+        public string ArticuloDescrip { get; set; }
+
         public decimal Cantidad { get; set;}
 
         public string Observacion { get; set;}
@@ -20,5 +22,7 @@ namespace XCommerce.Servicios.Core.Articulo.BajaArticulo.DTO
 
         public long ArticuloId { get; set; }
 
+        public string MotivoDescrip { get; set; }
+        
     }
 }

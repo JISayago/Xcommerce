@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using XCommerce.AccesoDatos;
 using XCommerce.Servicios.Core.Articulo.BajaArticulo.DTO;
 
+
 namespace XCommerce.Servicios.Core.Articulo.BajaArticulo
 {
     public class BajaArticuloServicio : IBajaArticuloServicio
@@ -69,10 +70,23 @@ namespace XCommerce.Servicios.Core.Articulo.BajaArticulo
                     }).FirstOrDefault(x => x.Id == BajaArticuloId);
             }
         }
-
+        
         public IEnumerable<BajaArticuloDTO> Obtener(string cadenaBuscar, bool obtenerEliminados = false)
         {
-            throw new NotImplementedException();
+            using (var baseDatos = new ModeloXCommerceContainer())
+            {
+                return baseDatos.BajaArticulos
+                    .AsNoTracking()
+                    .Select(x => new BajaArticuloDTO
+                    {
+                        Id = x.Id,
+                        Observacion = x.Observacion,
+                        Fecha = x.Fecha,
+                        Cantidad = x.Cantidad,
+                        ArticuloDescrip = x.Articulo.Descripcion,
+                        MotivoDescrip = x.MotivoBaja.Descripcion
+                    }).ToList();
+            }
         }
     }
 }
