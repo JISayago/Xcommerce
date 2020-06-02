@@ -23,9 +23,9 @@ namespace Presentacion.Core.VentaSalon
     public partial class FormularioComprobanteMesa : FormularioBase
     {
         private readonly long _mesaId;
-       
-        private readonly long _comproId;
-        
+
+        private int row;
+
         private readonly IComprobanteSalonServicio _comprobanteSalonServicio;
 
         private readonly IMovimientoServicio _movimientoServicio;
@@ -51,9 +51,11 @@ namespace Presentacion.Core.VentaSalon
                                                   new MesaServicio())
         {
             InitializeComponent();
+            
 
 
         }
+    
         public FormularioComprobanteMesa(IComprobanteSalonServicio comprobanteSalonServicio, 
                                          IProductoServicio productoServicio,
                                          IMozoServicio mozoServicio,
@@ -66,7 +68,7 @@ namespace Presentacion.Core.VentaSalon
             _mozoServicio = mozoServicio;
             _movimientoServicio = movimientoServicio;
             _detalleCajaServicio = detalleCajaServicio;
-            _mesaServicio = mesaServicio;
+            _mesaServicio = mesaServicio;         
 
 
         }
@@ -109,29 +111,26 @@ namespace Presentacion.Core.VentaSalon
         }
         
 
-        public FormularioComprobanteMesa(long mesaId, int _numeroMesa,long comproId) : this()
+        public FormularioComprobanteMesa(long mesaId, int _numeroMesa) :this()
         {
             this.Text = $"Venta -- Mesa: {_numeroMesa}";
             _mesaId = mesaId;
           
-            ObtenerComprobanteMesa(mesaId,comproId);
+            ObtenerComprobanteMesa(mesaId);
 
             ResetearGrilla(dgvGrilla);
-            _comproId = comproId;
+           
         }
              
 
-        private void ObtenerComprobanteMesa(long mesaId, long comproId = -1)
+        private void ObtenerComprobanteMesa(long mesaId)
         {
             var comprobanteMesaDTO = new ComprobanteMesaDTO();
-            if (comproId == -1)
-            {
+          
+            
                  comprobanteMesaDTO = _comprobanteSalonServicio.Obtener(mesaId);
-            }
-            else
-            {
-                comprobanteMesaDTO = _comprobanteSalonServicio.ObtenerPorId(mesaId, comproId);
-            }
+            
+         
 
             if(comprobanteMesaDTO == null)
             {
@@ -145,7 +144,7 @@ namespace Presentacion.Core.VentaSalon
 
             nudSubTotal.Value = comprobanteMesaDTO.SubTotal;
             nudDescuento.Value = comprobanteMesaDTO.Descuento;
-            nudTotal.Value = comprobanteMesaDTO.Total;
+            nudTotal.Value = comprobanteMesaDTO.Total; 
 
             dgvGrilla.DataSource = comprobanteMesaDTO.Items.ToList();
 
@@ -251,7 +250,8 @@ namespace Presentacion.Core.VentaSalon
             }
 
             var comprobanteMesaDto = _comprobanteSalonServicio.Obtener(mesaId);
-            _comprobanteSalonServicio.CambiarEstadoComprobante(mesaId, comprobanteMesaDto.ComprobanteId);
+            
+            _comprobanteSalonServicio.FacturarComprobanteSalon(mesaId,comprobanteMesaDto);
             
             var mesaParaCerrar = _mesaServicio.ObtenerPorId(mesaId);
             mesaParaCerrar.estadoMesa = EstadoMesa.Cerrada;
@@ -278,6 +278,70 @@ namespace Presentacion.Core.VentaSalon
                     busquedaArticulo();
                 }
             }
+        }
+
+        
+        private void dgvGrilla_CellMouseClick_1(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+               
+                dgvGrilla.CurrentCell = dgvGrilla.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                row = e.RowIndex;            
+
+                Rectangle coordenada = dgvGrilla.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false);
+
+                int anchoCelda = coordenada.Location.X; //Ancho de la localizacion de la celda
+                int altoCelda = coordenada.Location.Y;  //Alto de la localizacion de la celda
+
+                // mostrar el menú en la posicion  
+                int X = anchoCelda;
+                int Y = altoCelda;
+
+                menu.Show(dgvGrilla, new Point(X, Y));
+
+            }
+        }
+
+             
+
+        private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dgvGrilla.SelectedRows == null)
+            {
+                MessageBox.Show("Por favor seleccione un item");
+                return;
+            }
+
+
+           
+           List<DetalleComprobanteSalonDTO> listaItems = (List< DetalleComprobanteSalonDTO>)dgvGrilla.DataSource;
+          
+           var itemSelectedDetalleId = listaItems[row].DetalleId;
+
+           _comprobanteSalonServicio.QuitarItems(itemSelectedDetalleId);
+
+            ObtenerComprobanteMesa(_mesaId);
+
+        }
+
+        private void cambiarCantidadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<DetalleComprobanteSalonDTO> listaItems = (List<DetalleComprobanteSalonDTO>)dgvGrilla.DataSource;
+        
+            var itemSelectedDetalleId = listaItems[row].DetalleId;
+            var itemSelectedCodigo = listaItems[row].CodigoProducto;
+            var itemSelectedDescripcion = listaItems[row].DescripcionProducto;
+            var itemSelectedPrecio = listaItems[row].PrecioUnitario;
+
+            txtCodigoBarras.Text = itemSelectedCodigo;
+            txtDescripcion.Text = itemSelectedDescripcion;
+            txtPrecioUnitario.Text = Convert.ToString(itemSelectedPrecio);
+            nudCantidadArticulo.Value = 1.00m;
+            nudCantidadArticulo.Focus();
+
+            _comprobanteSalonServicio.QuitarItems(itemSelectedDetalleId);
+            ObtenerComprobanteMesa(_mesaId);
         }
     }
 }

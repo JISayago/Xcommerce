@@ -12,6 +12,7 @@ using Presentacion.Core.VentaSalon;
 using XCommerce.Servicios.Core.Comprobante;
 using Presentacion.Helpers;
 using XCommerce.Servicios.Core.Movimiento;
+using XCommerce.Servicios.Core.Comprobante.DTO;
 
 namespace Presentacion.Core.Salon.Mesa.Control
 {
@@ -99,13 +100,11 @@ namespace Presentacion.Core.Salon.Mesa.Control
         {
             if (estadoMesa == EstadoMesa.Abierta) return;
 
-
             var comproId = _comprobanteSalonServicio.GenerarComprobanteSalon(_mesaID, DatosSistema.UsuarioId, 1);
-            _comproID = comproId;
+            
             Estado = EstadoMesa.Abierta;               
 
-
-            var fComprobanteMesa = new FormularioComprobanteMesa(_mesaID,_numeroMesa,comproId);
+            var fComprobanteMesa = new FormularioComprobanteMesa(_mesaID,_numeroMesa);
             
             fComprobanteMesa.ShowDialog();
             
@@ -116,7 +115,7 @@ namespace Presentacion.Core.Salon.Mesa.Control
         {
             if (estadoMesa != EstadoMesa.Abierta) return;
           
-            var fComprobanteMesa = new FormularioComprobanteMesa(_mesaID,_numeroMesa,-1);
+            var fComprobanteMesa = new FormularioComprobanteMesa(_mesaID,_numeroMesa);
           
             fComprobanteMesa.ShowDialog();
         }
@@ -125,14 +124,11 @@ namespace Presentacion.Core.Salon.Mesa.Control
         private void menuCerrarMesa_Click(object sender, EventArgs e)
         {
             if (estadoMesa == EstadoMesa.Cerrada) return;
-
-            _comprobanteSalonServicio.FacturarComprobanteSalon(_mesaID);
-
             cerrarMesa = true;
 
             var fcomprobanteMesa = new FormularioComprobanteMesa(_mesaID, _numeroMesa, cerrarMesa);
 
-            Estado = EstadoMesa.Cerrada; 
+            Estado = EstadoMesa.Cerrada;
         }
     }
 }

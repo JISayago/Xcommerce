@@ -12,13 +12,12 @@ namespace XCommerce.Servicios.Core.Comprobante
     {
         long GenerarComprobanteSalon(long mesaId, long usuarioId, int comensales, long? mozoId = null);
 
-        void FacturarComprobanteSalon(long mesaId);
+        void FacturarComprobanteSalon(long mesaId, ComprobanteMesaDTO comprobanteMesa);
 
-        ComprobanteMesaDTO Obtener(long mesaId);
+        ComprobanteMesaDTO Obtener(long mesaId);        
 
-        ComprobanteMesaDTO ObtenerPorId(long mesaId,long comproId);
+        void AgregarItems(long mesaId,decimal cantidad, ProductoMesaDTO dto);
 
-        void CambiarEstadoComprobante(long mesaId ,long comprobanteId);
-        void AgregarItems(long mesaId,decimal cantidad, ProductoMesaDTO dto);  
+        void QuitarItems(long detalleID);
     }
 }

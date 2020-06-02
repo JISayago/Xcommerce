@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dgvGrilla = new System.Windows.Forms.DataGridView();
             this.lblComensales = new System.Windows.Forms.Label();
             this.nudComensales = new System.Windows.Forms.NumericUpDown();
@@ -58,6 +59,9 @@
             this.rdbEfectivo = new System.Windows.Forms.RadioButton();
             this.btnCerrarMesa = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.menu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.eliminarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cambiarCantidadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrilla)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudComensales)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidadArticulo)).BeginInit();
@@ -65,12 +69,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudDescuento)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTotal)).BeginInit();
             this.gbxFormaPago.SuspendLayout();
+            this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvGrilla
             // 
             this.dgvGrilla.AllowUserToAddRows = false;
-            this.dgvGrilla.AllowUserToDeleteRows = false;
             this.dgvGrilla.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dgvGrilla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvGrilla.Location = new System.Drawing.Point(3, 144);
@@ -80,6 +84,7 @@
             this.dgvGrilla.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvGrilla.Size = new System.Drawing.Size(781, 302);
             this.dgvGrilla.TabIndex = 2;
+            this.dgvGrilla.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvGrilla_CellMouseClick_1);
             // 
             // lblComensales
             // 
@@ -405,6 +410,28 @@
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
+            // menu
+            // 
+            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.eliminarToolStripMenuItem,
+            this.cambiarCantidadToolStripMenuItem});
+            this.menu.Name = "menu";
+            this.menu.Size = new System.Drawing.Size(181, 70);
+            // 
+            // eliminarToolStripMenuItem
+            // 
+            this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
+            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eliminarToolStripMenuItem.Text = "Eliminar";
+            this.eliminarToolStripMenuItem.Click += new System.EventHandler(this.eliminarToolStripMenuItem_Click);
+            // 
+            // cambiarCantidadToolStripMenuItem
+            // 
+            this.cambiarCantidadToolStripMenuItem.Name = "cambiarCantidadToolStripMenuItem";
+            this.cambiarCantidadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cambiarCantidadToolStripMenuItem.Text = "Cambiar Cantidad";
+            this.cambiarCantidadToolStripMenuItem.Click += new System.EventHandler(this.cambiarCantidadToolStripMenuItem_Click);
+            // 
             // FormularioComprobanteMesa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -447,6 +474,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudTotal)).EndInit();
             this.gbxFormaPago.ResumeLayout(false);
             this.gbxFormaPago.PerformLayout();
+            this.menu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -484,5 +512,8 @@
         private System.Windows.Forms.RadioButton rdbEfectivo;
         private System.Windows.Forms.Button btnCerrarMesa;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.ContextMenuStrip menu;
+        private System.Windows.Forms.ToolStripMenuItem eliminarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cambiarCantidadToolStripMenuItem;
     }
 }
