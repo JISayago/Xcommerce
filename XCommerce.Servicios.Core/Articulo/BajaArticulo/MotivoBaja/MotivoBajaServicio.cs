@@ -50,6 +50,7 @@ namespace XCommerce.Servicios.Core.Articulo.BajaArticulo.MotivoBaja
                     .Where(x => x.Descripcion.Contains(cadenaBuscar))
                     .Select(x => new MotivoBajaDTO
                     {
+                        Id = x.Id,
                         Descripcion = x.Descripcion
 
                     }).ToList();

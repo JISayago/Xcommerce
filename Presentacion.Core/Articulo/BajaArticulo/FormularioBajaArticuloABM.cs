@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using XCommerce.Servicios.Core.Articulo;
 using XCommerce.Servicios.Core.Articulo.BajaArticulo;
 using XCommerce.Servicios.Core.Articulo.BajaArticulo.DTO;
 using XCommerce.Servicios.Core.Articulo.BajaArticulo.MotivoBaja;
@@ -23,14 +24,12 @@ namespace Presentacion.Core.Articulo.BajaArticulo
 
         private readonly IBajaArticuloServicio _bajaArticuloServicio;
         private readonly IMotivoBajaServicio _motivoBajaServicio;
+        private readonly IArticuloServicio _articuloServicio;
 
 
-
-        public override void FormularioBaseABM_Load(object sender, EventArgs e)
+        public FormularioBajaArticuloABM()
         {
-            base.FormularioBaseABM_Load(sender, e);
-
-            Inicializador(EntidadId);
+            InitializeComponent();
         }
 
         public FormularioBajaArticuloABM(TipoOperacion tipoOperacion, long? entidadId = null)
@@ -41,34 +40,59 @@ namespace Presentacion.Core.Articulo.BajaArticulo
 
             _motivoBajaServicio = new MotivoBajaServicio();
             _bajaArticuloServicio = new BajaArticuloServicio();
+            _articuloServicio = new ArticuloServicio();
+            /* if (tipoOperacion == TipoOperacion.Eliminar || tipoOperacion == TipoOperacion.Modificar)
+             {
+                 CargarDatos(entidadId);
+             }
 
-            if (tipoOperacion == TipoOperacion.Eliminar || tipoOperacion == TipoOperacion.Modificar)
-            {
-                CargarDatos(entidadId);
-            }
-
-            if (tipoOperacion == TipoOperacion.Eliminar)
-            {
-                DesactivarControles(this);
-            }
-
-        }
-
-        public override void Inicializador(long? entidadId)
-        {
-            //fue negado para que siga la funcion, no tengo cargar datos sera por eso?
+             if (tipoOperacion == TipoOperacion.Eliminar)
+             {
+                 DesactivarControles(this);
+             }
+             */
 
             CargarComboBox(cmbMotivo, _motivoBajaServicio.ObtenerMotivoBaja(string.Empty), "Descripcion", "Id");
 
+            //cuando abris motivoBajaABM y se vuelve a abrir bajaArticuloABM se piede entidadID del articulo!!!!!
+            var articuloDTO = _articuloServicio.ObtenerPorId(entidadId.Value);
+            lblArticulo.Text = articuloDTO.Descripcion;
+
+            nudCantidad.Value = articuloDTO.Stock;
             nudCantidad.Minimum = 1;
-            nudCantidad.Maximum = 99999;
+            nudCantidad.Maximum = articuloDTO.Stock;
 
             richBajaArticulo.KeyPress += Validacion.NoSimbolos;
             richBajaArticulo.KeyPress += Validacion.NoNumeros;
 
             nudCantidad.Focus();
 
-            if (entidadId.HasValue) return;
+        }
+
+        public override bool EjecutarComandoNuevo()
+        {
+            var bajaArticuloNuevo = new BajaArticuloDTO
+            {
+                Cantidad = nudCantidad.Value,
+                Fecha = DateTime.Now,
+                Observacion = richBajaArticulo.Text,
+                MotivoBajaId = (long)cmbMotivo.SelectedValue,
+                ArticuloId = EntidadId.Value
+            };
+
+            _bajaArticuloServicio.Insertar(bajaArticuloNuevo);
+            return true;
+
+        }
+
+        private void btnNuevoMotivoBaja_Click(object sender, EventArgs e)
+        {
+
+            var motivoBajaABM = new FormularioMotivoBajaABM(TipoOperacion.Nuevo);
+            this.Close();
+            motivoBajaABM.ShowDialog();
+            var bajaArticuloABM = new FormularioBajaArticuloABM(TipoOperacion.Nuevo);
+            bajaArticuloABM.ShowDialog();
         }
 
         public override void DesactivarControles(object obj)
@@ -79,7 +103,7 @@ namespace Presentacion.Core.Articulo.BajaArticulo
             btnLimpiar.Visible = false;
         }
 
-        public override void CargarDatos(long? entidadId)
+        /*public override void CargarDatos(long? entidadId)
         {
             if (!entidadId.HasValue)
             {
@@ -100,33 +124,7 @@ namespace Presentacion.Core.Articulo.BajaArticulo
 
             CargarComboBox(cmbMotivo, _motivoBajaServicio.ObtenerMotivoBaja(string.Empty), "Descripcion", "Id");
             cmbMotivo.SelectedItem = bajaArticulo.MotivoBajaId;
-
-        }
-
-        private void btnNuevoMotivoBaja_Click(object sender, EventArgs e)
-        {
             
-            var motivoBajaABM = new FormularioMotivoBajaABM(TipoOperacion.Nuevo);
-            this.Close();
-            motivoBajaABM.ShowDialog();
-            var bajaArticuloABM = new FormularioBajaArticuloABM(TipoOperacion.Nuevo);
-            bajaArticuloABM.ShowDialog();            
-        }
-
-        public override bool EjecutarComandoNuevo()
-        {
-            var bajaArticuloNuevo = new BajaArticuloDTO
-            {
-                Cantidad = nudCantidad.Value,
-                Fecha = DateTime.Now,
-                Observacion = richBajaArticulo.Text,
-                MotivoBajaId = (long)cmbMotivo.SelectedValue,
-                ArticuloId = EntidadId.Value
-            };
-
-            _bajaArticuloServicio.Insertar(bajaArticuloNuevo);
-            return true;
-
-        }
+        }*/
     }
 }
