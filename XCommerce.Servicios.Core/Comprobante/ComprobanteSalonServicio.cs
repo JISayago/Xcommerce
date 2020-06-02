@@ -58,21 +58,6 @@ namespace XCommerce.Servicios.Core.Comprobante
         }
 
 
-
-
-        public void CambiarEstadoComprobante(long mesaId, long comprobanteId)
-        {
-            using (var baseDatos = new ModeloXCommerceContainer())
-            {
-                var comprobante = baseDatos.Comprobantes
-                    .OfType<ComprobanteSalon>()
-                    .FirstOrDefault(x => x.MesaId == mesaId && x.Id == comprobanteId);
-
-                comprobante.EstadoComprobanteSalon = EstadoComprobanteSalon.Facturada;
-                baseDatos.SaveChanges();
-            }
-        }
-
         public void FacturarComprobanteSalon(long mesaId,ComprobanteMesaDTO comprobanteMesa)
         {
             using (var baseDatos = new ModeloXCommerceContainer())
