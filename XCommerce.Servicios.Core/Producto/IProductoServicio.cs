@@ -9,6 +9,7 @@ namespace XCommerce.Servicios.Core.Producto
 {
     public interface IProductoServicio
     {
+        ProductoMesaDTO ObtenerPorCodigoKiosco(string codigo);
         ProductoMesaDTO ObtenerPorCodigo(long mesaID, string codigo);
     }
 }
