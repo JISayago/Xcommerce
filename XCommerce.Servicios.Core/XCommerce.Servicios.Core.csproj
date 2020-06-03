@@ -49,6 +49,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Articulo\ArticuloServicio.cs" />
+    <Compile Include="Articulo\BajaArticulo\BajaArticuloServicio.cs" />
+    <Compile Include="Articulo\BajaArticulo\DTO\BajaArticuloDTO.cs" />
+    <Compile Include="Articulo\BajaArticulo\IBajaArticuloServicio.cs" />
+    <Compile Include="Articulo\MotivoBaja\DTO\MotivoBajaDTO.cs" />
+    <Compile Include="Articulo\MotivoBaja\IMotivoBajaServicio.cs" />
+    <Compile Include="Articulo\MotivoBaja\MotivoBajaServicio.cs" />
     <Compile Include="Articulo\DTO\ArticuloDTO.cs" />
     <Compile Include="Articulo\IArticuloServicio.cs" />
     <Compile Include="Caja\CajaServicio.cs" />
@@ -67,10 +73,17 @@
     <Compile Include="Cliente\DTO\ClienteDTO.cs" />
     <Compile Include="Cliente\IClienteServicio.cs" />
     <Compile Include="Comprobante\ComprobanteSalonServicio.cs" />
+    <Compile Include="Comprobante\ComprobanteServicio.cs" />
     <Compile Include="Comprobante\Descuento.cs" />
+    <Compile Include="Comprobante\DTO\ComprobanteDTO.cs" />
     <Compile Include="Comprobante\DTO\ComprobanteMesaDTO.cs" />
+    <Compile Include="Comprobante\DTO\DetalleComprobanteDTO.cs" />
     <Compile Include="Comprobante\DTO\DetalleComprobanteSalonDTO.cs" />
     <Compile Include="Comprobante\IComprobanteSalonServicio.cs" />
+    <Compile Include="Comprobante\IComprobanteServicio.cs" />
+    <Compile Include="DetalleCaja\DetalleCajaServicio.cs" />
+    <Compile Include="DetalleCaja\DTO\DetalleCajaDTO.cs" />
+    <Compile Include="DetalleCaja\IDetalleCajaServicio.cs" />
     <Compile Include="Empleado\DTO\EmpleadoDTO.cs" />
     <Compile Include="Empleado\EmpleadoServicio.cs" />
     <Compile Include="Empleado\IEmpleadoServicio.cs" />
@@ -80,6 +93,11 @@
     <Compile Include="Empleado\Usuario\DTO\UsuarioDTO.cs" />
     <Compile Include="Empleado\Usuario\IUsuarioServicio.cs" />
     <Compile Include="Empleado\Usuario\UsuarioServicio.cs" />
+    <Compile Include="Kiosco\ComprobanteKioscoServicio.cs" />
+    <Compile Include="Movimiento\DTO\MovimientoDTO.cs" />
+    <Compile Include="Movimiento\IMovimientoServicio.cs" />
+    <Compile Include="Movimiento\MovimientoServicio.cs" />
+    <Compile Include="Producto\DTO\ProductoKioscoDTO.cs" />
     <Compile Include="ListaPrecio\DTO\ListaPrecioDTO.cs" />
     <Compile Include="ListaPrecio\IListaPrecioServicio.cs" />
     <Compile Include="ListaPrecio\ListaPrecioServicio.cs" />
@@ -120,6 +138,8 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Kiosco\DTO\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

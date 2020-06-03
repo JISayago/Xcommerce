@@ -11,7 +11,7 @@ namespace XCommerce.Servicios.Core.Movimiento.DTO
     {
 
         public long Id { get; set; }
-        public long cajaID { get; set; }
+        public long CajaID { get; set; }
         public long ComprobanteID { get; set; }
         public TipoMovimiento TipoMovimiento { get; set; }
         public long UsuarioID { get; set; }
