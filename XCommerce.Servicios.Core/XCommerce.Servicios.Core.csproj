@@ -94,7 +94,6 @@
     <Compile Include="Empleado\Usuario\IUsuarioServicio.cs" />
     <Compile Include="Empleado\Usuario\UsuarioServicio.cs" />
     <Compile Include="Kiosco\ComprobanteKioscoServicio.cs" />
-    <Compile Include="Movimiento\DTO\MovimientoDTO.cs" />
     <Compile Include="Movimiento\IMovimientoServicio.cs" />
     <Compile Include="Movimiento\MovimientoServicio.cs" />
     <Compile Include="Producto\DTO\ProductoKioscoDTO.cs" />
@@ -102,8 +101,6 @@
     <Compile Include="ListaPrecio\IListaPrecioServicio.cs" />
     <Compile Include="ListaPrecio\ListaPrecioServicio.cs" />
     <Compile Include="Movimiento\DTO\MovimientoDTO.cs" />
-    <Compile Include="Movimiento\IMovimientoServicio.cs" />
-    <Compile Include="Movimiento\MovimientoServicio.cs" />
     <Compile Include="Producto\DTO\ProductoMesaDTO.cs" />
     <Compile Include="Producto\IProductoServicio.cs" />
     <Compile Include="Producto\ProductoServicio.cs" />

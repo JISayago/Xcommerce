@@ -17,7 +17,6 @@ namespace XCommerce.Servicios.Core.Comprobante
                 var nuevoComprobante = new AccesoDatos.ComprobanteFactura
                 {
                     ClienteId = dto.ClienteId,
-                    EstadoComprobanteSalon = EstadoComprobanteSalon.Facturada,
                     Descuento = dto.Descuento,
                     Fecha = dto.Fecha,
                     Numero = 0,

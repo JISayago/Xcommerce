@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using XCommerce.AccesoDatos;
 using XCommerce.Servicios.Core.Movimiento.DTO;
 
-
 namespace XCommerce.Servicios.Core.Movimiento
 {
     public interface IMovimientoServicio

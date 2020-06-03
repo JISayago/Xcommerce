@@ -22,7 +22,7 @@ namespace XCommerce.Servicios.Core.Movimiento
                     UsuarioId = idUsuario,
                     Monto = monto,
                     Fecha = DateTime.Now,
-                    Descripcion = descripcion                     
+                    Descripcion = descripcion
                 };
 
                 baseDatos.Movimientos.Add(nuevoMovimiento);
@@ -53,4 +53,3 @@ namespace XCommerce.Servicios.Core.Movimiento
         }
     }
 }
-
