@@ -128,6 +128,7 @@
             this.Controls.Add(this.label9);
             this.Name = "FormularioBajaArticuloABM";
             this.Text = "FormularioBajaArticuloABM";
+            this.Activated += new System.EventHandler(this.FormularioBajaArticuloABM_Activated);
             this.Controls.SetChildIndex(this.label9, 0);
             this.Controls.SetChildIndex(this.btnNuevoMotivoBaja, 0);
             this.Controls.SetChildIndex(this.label1, 0);

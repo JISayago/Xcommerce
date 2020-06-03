@@ -246,19 +246,21 @@ namespace Presentacion.Core.Articulo
         private void btnNuevaProvincia_Click(object sender, EventArgs e)
         {
             var MarcaABM = new FormularioMarcaABM(TipoOperacion.Nuevo);
-            this.Close();
             MarcaABM.ShowDialog();
-            var articuloAbm = new FormularioArticuloABM(TipoOperacion.Nuevo);
-            articuloAbm.ShowDialog();
         }
 
         private void btnLocalidad_Click(object sender, EventArgs e)
         {
             var RubroABM = new FormularioRubroABM(TipoOperacion.Nuevo);           
-            this.Close();
             RubroABM.ShowDialog();
-            var articuloAbm = new FormularioArticuloABM(TipoOperacion.Nuevo);
-            articuloAbm.ShowDialog();
+        }
+
+        private void FormularioArticuloABM_Activated(object sender, EventArgs e)
+        {
+            CargarComboBox(cmbListaPrecio, _listaPrecioServicio.Obtener(string.Empty), "Descripcion", "Id");
+            CargarComboBox(cmbRubro, _rubroServicio.ObtenerRubro(string.Empty), "Descripcion", "Id");
+            CargarComboBox(cmbMarca, _marcaServicio.ObtenerMarca(string.Empty), "Descripcion", "Id");
+
         }
     }
 }

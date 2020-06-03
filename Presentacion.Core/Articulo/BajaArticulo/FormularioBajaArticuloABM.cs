@@ -90,12 +90,8 @@ namespace Presentacion.Core.Articulo.BajaArticulo
 
         private void btnNuevoMotivoBaja_Click(object sender, EventArgs e)
         {
-
             var motivoBajaABM = new FormularioMotivoBajaABM(TipoOperacion.Nuevo);
-            this.Close();
             motivoBajaABM.ShowDialog();
-            var bajaArticuloABM = new FormularioBajaArticuloABM(TipoOperacion.Nuevo);
-            bajaArticuloABM.ShowDialog();
         }
 
         public override void DesactivarControles(object obj)
@@ -104,6 +100,11 @@ namespace Presentacion.Core.Articulo.BajaArticulo
 
             btnLimpiar.Enabled = false;
             btnLimpiar.Visible = false;
+        }
+
+        private void FormularioBajaArticuloABM_Activated(object sender, EventArgs e)
+        {
+            CargarComboBox(cmbMotivo, _motivoBajaServicio.ObtenerMotivoBaja(string.Empty), "Descripcion", "Id");
         }
 
         /*public override void CargarDatos(long? entidadId)
