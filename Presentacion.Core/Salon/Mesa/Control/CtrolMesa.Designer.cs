@@ -30,10 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             this.lblNumeroMesa = new System.Windows.Forms.Label();
-            this.lblPrecio = new System.Windows.Forms.Label();
             this.MenuControlMesa = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuAbrirMesa = new System.Windows.Forms.ToolStripMenuItem();
             this.menuCerrarMesa = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblPrecio = new System.Windows.Forms.Label();
             this.MenuControlMesa.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,24 +49,13 @@
             this.lblNumeroMesa.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.lblNumeroMesa.DoubleClick += new System.EventHandler(this.lblNumeroMesa_DoubleClick);
             // 
-            // lblPrecio
-            // 
-            this.lblPrecio.ContextMenuStrip = this.MenuControlMesa;
-            this.lblPrecio.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecio.Location = new System.Drawing.Point(0, 67);
-            this.lblPrecio.Name = "lblPrecio";
-            this.lblPrecio.Size = new System.Drawing.Size(100, 33);
-            this.lblPrecio.TabIndex = 1;
-            this.lblPrecio.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
             // MenuControlMesa
             // 
             this.MenuControlMesa.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuAbrirMesa,
             this.menuCerrarMesa});
             this.MenuControlMesa.Name = "MenuControlMesa";
-            this.MenuControlMesa.Size = new System.Drawing.Size(138, 48);
+            this.MenuControlMesa.Size = new System.Drawing.Size(181, 70);
             // 
             // menuAbrirMesa
             // 
@@ -78,8 +67,20 @@
             // menuCerrarMesa
             // 
             this.menuCerrarMesa.Name = "menuCerrarMesa";
-            this.menuCerrarMesa.Size = new System.Drawing.Size(137, 22);
+            this.menuCerrarMesa.Size = new System.Drawing.Size(180, 22);
             this.menuCerrarMesa.Text = "Cerrar Mesa";
+            this.menuCerrarMesa.Click += new System.EventHandler(this.menuCerrarMesa_Click);
+            // 
+            // lblPrecio
+            // 
+            this.lblPrecio.ContextMenuStrip = this.MenuControlMesa;
+            this.lblPrecio.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrecio.Location = new System.Drawing.Point(0, 67);
+            this.lblPrecio.Name = "lblPrecio";
+            this.lblPrecio.Size = new System.Drawing.Size(100, 33);
+            this.lblPrecio.TabIndex = 1;
+            this.lblPrecio.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // CtrolMesa
             // 

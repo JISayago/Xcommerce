@@ -72,6 +72,7 @@
             this.Controls.Add(this.toolStrip1);
             this.Name = "FormularioVentaSalon";
             this.Text = "FormularioVentaSalon";
+            this.Activated += new System.EventHandler(this.FormularioVentaSalon_Activated);
             this.Load += new System.EventHandler(this.FormularioVentaSalon_Load_1);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();

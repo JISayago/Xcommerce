@@ -193,11 +193,15 @@ namespace Presentacion.Core.Salon.Mesa
         private void btnNuevoSalon_Click(object sender, EventArgs e)
         {
             var formularioABMSalon = new FormularioSalonABM(TipoOperacion.Nuevo);
-            this.Close();
+           
             formularioABMSalon.ShowDialog();
-            var formularioABMMesa = new FormularioMesaABM(TipoOperacion.Nuevo);
-            
-            formularioABMMesa.ShowDialog();
+           
+        }
+
+        private void FormularioMesaABM_Activated(object sender, EventArgs e)
+        {
+            CargarComboBox(cmbSalon, _salonServicio.ObtenerSalon(string.Empty), "Descripcion", "Id");
+
         }
     }
 }
