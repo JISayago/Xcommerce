@@ -117,6 +117,7 @@
             this.Controls.Add(this.lblProvincia);
             this.Name = "FormularioMesaABM";
             this.Text = "Mesa";
+            this.Activated += new System.EventHandler(this.FormularioMesaABM_Activated);
             this.Controls.SetChildIndex(this.lblProvincia, 0);
             this.Controls.SetChildIndex(this.txtDescripcion, 0);
             this.Controls.SetChildIndex(this.label1, 0);

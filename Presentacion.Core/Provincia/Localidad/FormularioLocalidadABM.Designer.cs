@@ -96,6 +96,7 @@
             this.MinimumSize = new System.Drawing.Size(413, 198);
             this.Name = "FormularioLocalidadABM";
             this.Text = "FormularioLocalidadABM";
+            this.Activated += new System.EventHandler(this.FormularioLocalidadABM_Activated);
             this.Controls.SetChildIndex(this.lblProvincia, 0);
             this.Controls.SetChildIndex(this.txtLocalidad, 0);
             this.Controls.SetChildIndex(this.label1, 0);

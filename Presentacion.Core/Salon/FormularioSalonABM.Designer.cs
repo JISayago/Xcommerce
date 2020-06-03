@@ -94,6 +94,7 @@
             this.Controls.Add(this.lblProvincia);
             this.Name = "FormularioSalonABM";
             this.Text = "FormularioSalonABM";
+            this.Activated += new System.EventHandler(this.FormularioSalonABM_Activated);
             this.Controls.SetChildIndex(this.lblProvincia, 0);
             this.Controls.SetChildIndex(this.txtSalon, 0);
             this.Controls.SetChildIndex(this.lblListaPrecio, 0);
