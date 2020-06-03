@@ -45,7 +45,7 @@
             this.btnNuevoMotivoBaja.Margin = new System.Windows.Forms.Padding(4);
             this.btnNuevoMotivoBaja.Name = "btnNuevoMotivoBaja";
             this.btnNuevoMotivoBaja.Size = new System.Drawing.Size(55, 24);
-            this.btnNuevoMotivoBaja.TabIndex = 160;
+            this.btnNuevoMotivoBaja.TabIndex = 1;
             this.btnNuevoMotivoBaja.Text = "...";
             this.btnNuevoMotivoBaja.UseVisualStyleBackColor = true;
             this.btnNuevoMotivoBaja.Click += new System.EventHandler(this.btnNuevoMotivoBaja_Click);
@@ -53,7 +53,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(22, 119);
+            this.label9.Location = new System.Drawing.Point(13, 120);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(81, 17);
@@ -80,17 +80,17 @@
             // 
             // nudCantidad
             // 
-            this.nudCantidad.Location = new System.Drawing.Point(556, 119);
+            this.nudCantidad.Location = new System.Drawing.Point(556, 117);
             this.nudCantidad.Name = "nudCantidad";
             this.nudCantidad.Size = new System.Drawing.Size(53, 22);
-            this.nudCantidad.TabIndex = 164;
+            this.nudCantidad.TabIndex = 2;
             // 
             // richBajaArticulo
             // 
             this.richBajaArticulo.Location = new System.Drawing.Point(109, 154);
             this.richBajaArticulo.Name = "richBajaArticulo";
             this.richBajaArticulo.Size = new System.Drawing.Size(500, 72);
-            this.richBajaArticulo.TabIndex = 165;
+            this.richBajaArticulo.TabIndex = 3;
             this.richBajaArticulo.Text = "";
             // 
             // cmbMotivo
@@ -100,13 +100,13 @@
             this.cmbMotivo.Location = new System.Drawing.Point(110, 117);
             this.cmbMotivo.Name = "cmbMotivo";
             this.cmbMotivo.Size = new System.Drawing.Size(290, 24);
-            this.cmbMotivo.TabIndex = 166;
+            this.cmbMotivo.TabIndex = 0;
             // 
             // lblArticulo
             // 
             this.lblArticulo.AutoSize = true;
             this.lblArticulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblArticulo.Location = new System.Drawing.Point(251, 70);
+            this.lblArticulo.Location = new System.Drawing.Point(12, 71);
             this.lblArticulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblArticulo.Name = "lblArticulo";
             this.lblArticulo.Size = new System.Drawing.Size(147, 31);

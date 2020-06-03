@@ -26,6 +26,11 @@ namespace XCommerce.Servicios.Core.Articulo.BajaArticulo
                     ArticuloId = dto.ArticuloId
                 };
 
+                var articuloDescontarStock = context.Articulos
+                    .FirstOrDefault(x => x.Id == dto.ArticuloId);
+
+                articuloDescontarStock.Stock = articuloDescontarStock.Stock - nuevaBajaArticulo.Cantidad;
+
                 context.BajaArticulos.Add(nuevaBajaArticulo);
 
                 context.SaveChanges();
@@ -76,7 +81,8 @@ namespace XCommerce.Servicios.Core.Articulo.BajaArticulo
             using (var baseDatos = new ModeloXCommerceContainer())
             {
                 return baseDatos.BajaArticulos
-                    .AsNoTracking()
+                    .AsNoTracking().Where(x => 
+                        x.MotivoBaja.Descripcion.Contains(cadenaBuscar) || x.Articulo.Descripcion.Contains(cadenaBuscar))
                     .Select(x => new BajaArticuloDTO
                     {
                         Id = x.Id,

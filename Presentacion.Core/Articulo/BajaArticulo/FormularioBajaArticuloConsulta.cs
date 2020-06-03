@@ -59,9 +59,9 @@ namespace Presentacion.Core.Articulo.BajaArticulo
 
             grilla.Columns["ProvinciaDescrip"].HeaderText = "Provincia";
             */
-            
+
             grilla.Columns["Fecha"].Visible = true;
-            grilla.Columns["Fecha"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            grilla.Columns["Fecha"].Width = 100;
             grilla.Columns["Fecha"].HeaderText = "Fecha";
 
             grilla.Columns["ArticuloDescrip"].Visible = true;
@@ -77,7 +77,7 @@ namespace Presentacion.Core.Articulo.BajaArticulo
             grilla.Columns["MotivoDescrip"].HeaderText = "Motivo";
 
             grilla.Columns["Cantidad"].Visible = true;
-            grilla.Columns["Cantidad"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            grilla.Columns["Cantidad"].Width = 60;
             grilla.Columns["Cantidad"].HeaderText = "Cantidad";
 
         }

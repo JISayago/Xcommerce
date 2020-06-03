@@ -58,9 +58,9 @@ namespace Presentacion.Core.Articulo.BajaArticulo
             var articuloDTO = _articuloServicio.ObtenerPorId(entidadId.Value);
             lblArticulo.Text = articuloDTO.Descripcion;
 
-            nudCantidad.Value = articuloDTO.Stock;
             nudCantidad.Minimum = 1;
             nudCantidad.Maximum = articuloDTO.Stock;
+            nudCantidad.Value = articuloDTO.Stock;//No funca, porque? noc
 
             richBajaArticulo.KeyPress += Validacion.NoSimbolos;
             richBajaArticulo.KeyPress += Validacion.NoNumeros;
@@ -81,6 +81,9 @@ namespace Presentacion.Core.Articulo.BajaArticulo
             };
 
             _bajaArticuloServicio.Insertar(bajaArticuloNuevo);
+
+            this.Close();
+
             return true;
 
         }

@@ -279,6 +279,9 @@
     <EmbeddedResource Include="Articulo\BajaArticulo\FormularioBajaArticuloABM.resx">
       <DependentUpon>FormularioBajaArticuloABM.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Articulo\BajaArticulo\FormularioBajaArticuloConsulta.resx">
+      <DependentUpon>FormularioBajaArticuloConsulta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Articulo\FormularioArticuloABM.resx">
       <DependentUpon>FormularioArticuloABM.cs</DependentUpon>
     </EmbeddedResource>
