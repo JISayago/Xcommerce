@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/02/2020 18:38:01
--- Generated from EDMX file: D:\Facultad\Final LAB 2\XCommerce2019\XCommerce2019.BaseDatos\ModeloXCommerce.edmx
+-- Date Created: 05/27/2020 15:16:48
+-- Generated from EDMX file: D:\Facultad\Final LAB 2\finalLab\XCommerce2019.BaseDatos\ModeloXCommerce.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [db_marcaRubro];
+USE [x];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -501,8 +501,7 @@ CREATE TABLE [dbo].[Comprobantes] (
     [Total] decimal(18,0)  NOT NULL,
     [UsuarioId] bigint  NOT NULL,
     [ClienteId] bigint  NOT NULL,
-    [TipoComprobante] int  NOT NULL,
-    [EstadoComprobanteSalon] int  NOT NULL
+    [TipoComprobante] int  NOT NULL
 );
 GO
 
@@ -598,6 +597,7 @@ CREATE TABLE [dbo].[Comprobantes_ComprobanteSalon] (
     [Comensal] nvarchar(max)  NOT NULL,
     [MesaId] bigint  NOT NULL,
     [MozoId] bigint  NULL,
+    [EstadoComprobanteSalon] int  NOT NULL,
     [Id] bigint  NOT NULL
 );
 GO

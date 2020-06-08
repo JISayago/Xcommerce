@@ -116,7 +116,22 @@
 
         public virtual void ActualizarDatos(DataGridView grilla, string cadenaBuscar, CheckBox check, ToolStrip toolStrip)
         {
+            if (check.Checked)
+            {
+                btnEliminar.Enabled = false;
 
+                btnNuevo.Enabled = false;
+
+                btnModificar.Enabled = false;
+            }
+            else
+            {
+                btnEliminar.Enabled = true;
+
+                btnNuevo.Enabled = true;
+
+                btnModificar.Enabled = true;
+            }
 
         }
 
@@ -155,6 +170,14 @@
                 grilla.Columns[i].Visible = false;
             }
         }
-     
+
+        private void FormularioBaseConsulta_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+
+        }
     }
 }

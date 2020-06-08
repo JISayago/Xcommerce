@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dgvGrilla = new System.Windows.Forms.DataGridView();
             this.lblComensales = new System.Windows.Forms.Label();
             this.nudComensales = new System.Windows.Forms.NumericUpDown();
@@ -51,18 +52,29 @@
             this.nudTotal = new System.Windows.Forms.NumericUpDown();
             this.lblTotal = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.gbxFormaPago = new System.Windows.Forms.GroupBox();
+            this.rdbCheque = new System.Windows.Forms.RadioButton();
+            this.rdbCtaCte = new System.Windows.Forms.RadioButton();
+            this.rdbTarjeta = new System.Windows.Forms.RadioButton();
+            this.rdbEfectivo = new System.Windows.Forms.RadioButton();
+            this.btnCerrarMesa = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.menu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.eliminarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cambiarCantidadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrilla)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudComensales)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidadArticulo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSubTotal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDescuento)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTotal)).BeginInit();
+            this.gbxFormaPago.SuspendLayout();
+            this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvGrilla
             // 
             this.dgvGrilla.AllowUserToAddRows = false;
-            this.dgvGrilla.AllowUserToDeleteRows = false;
             this.dgvGrilla.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dgvGrilla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvGrilla.Location = new System.Drawing.Point(3, 144);
@@ -72,6 +84,7 @@
             this.dgvGrilla.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvGrilla.Size = new System.Drawing.Size(781, 302);
             this.dgvGrilla.TabIndex = 2;
+            this.dgvGrilla.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvGrilla_CellMouseClick_1);
             // 
             // lblComensales
             // 
@@ -134,6 +147,7 @@
             this.btnBuscar.TabIndex = 8;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // label1
             // 
@@ -212,6 +226,7 @@
             0,
             0,
             0});
+            this.nudCantidadArticulo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.nudCantidadArticulo_KeyPress);
             // 
             // lblCantidad
             // 
@@ -231,10 +246,13 @@
             this.btnAgregar.TabIndex = 17;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // nudSubTotal
             // 
             this.nudSubTotal.DecimalPlaces = 2;
+            this.nudSubTotal.Enabled = false;
+            this.nudSubTotal.InterceptArrowKeys = false;
             this.nudSubTotal.Location = new System.Drawing.Point(705, 462);
             this.nudSubTotal.Maximum = new decimal(new int[] {
             9999999,
@@ -242,6 +260,7 @@
             0,
             0});
             this.nudSubTotal.Name = "nudSubTotal";
+            this.nudSubTotal.ReadOnly = true;
             this.nudSubTotal.Size = new System.Drawing.Size(70, 20);
             this.nudSubTotal.TabIndex = 19;
             this.nudSubTotal.ThousandsSeparator = true;
@@ -276,6 +295,8 @@
             // nudTotal
             // 
             this.nudTotal.DecimalPlaces = 2;
+            this.nudTotal.Enabled = false;
+            this.nudTotal.InterceptArrowKeys = false;
             this.nudTotal.Location = new System.Drawing.Point(705, 534);
             this.nudTotal.Maximum = new decimal(new int[] {
             9999999,
@@ -283,6 +304,7 @@
             0,
             0});
             this.nudTotal.Name = "nudTotal";
+            this.nudTotal.ReadOnly = true;
             this.nudTotal.Size = new System.Drawing.Size(70, 20);
             this.nudTotal.TabIndex = 23;
             this.nudTotal.ThousandsSeparator = true;
@@ -309,12 +331,116 @@
             this.toolStrip1.TabIndex = 24;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // gbxFormaPago
+            // 
+            this.gbxFormaPago.Controls.Add(this.rdbCheque);
+            this.gbxFormaPago.Controls.Add(this.rdbCtaCte);
+            this.gbxFormaPago.Controls.Add(this.rdbTarjeta);
+            this.gbxFormaPago.Controls.Add(this.rdbEfectivo);
+            this.gbxFormaPago.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbxFormaPago.Location = new System.Drawing.Point(21, 457);
+            this.gbxFormaPago.Name = "gbxFormaPago";
+            this.gbxFormaPago.Size = new System.Drawing.Size(239, 100);
+            this.gbxFormaPago.TabIndex = 25;
+            this.gbxFormaPago.TabStop = false;
+            this.gbxFormaPago.Text = "Formas de Pago";
+            // 
+            // rdbCheque
+            // 
+            this.rdbCheque.AutoSize = true;
+            this.rdbCheque.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbCheque.Location = new System.Drawing.Point(151, 62);
+            this.rdbCheque.Name = "rdbCheque";
+            this.rdbCheque.Size = new System.Drawing.Size(83, 24);
+            this.rdbCheque.TabIndex = 3;
+            this.rdbCheque.Text = "Cheque";
+            this.rdbCheque.UseVisualStyleBackColor = true;
+            // 
+            // rdbCtaCte
+            // 
+            this.rdbCtaCte.AutoSize = true;
+            this.rdbCtaCte.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbCtaCte.Location = new System.Drawing.Point(151, 28);
+            this.rdbCtaCte.Name = "rdbCtaCte";
+            this.rdbCtaCte.Size = new System.Drawing.Size(81, 24);
+            this.rdbCtaCte.TabIndex = 2;
+            this.rdbCtaCte.Text = "Cta.Cte";
+            this.rdbCtaCte.UseVisualStyleBackColor = true;
+            // 
+            // rdbTarjeta
+            // 
+            this.rdbTarjeta.AutoSize = true;
+            this.rdbTarjeta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbTarjeta.Location = new System.Drawing.Point(7, 63);
+            this.rdbTarjeta.Name = "rdbTarjeta";
+            this.rdbTarjeta.Size = new System.Drawing.Size(76, 24);
+            this.rdbTarjeta.TabIndex = 1;
+            this.rdbTarjeta.Text = "Tarjeta";
+            this.rdbTarjeta.UseVisualStyleBackColor = true;
+            // 
+            // rdbEfectivo
+            // 
+            this.rdbEfectivo.AutoSize = true;
+            this.rdbEfectivo.Checked = true;
+            this.rdbEfectivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbEfectivo.Location = new System.Drawing.Point(7, 29);
+            this.rdbEfectivo.Name = "rdbEfectivo";
+            this.rdbEfectivo.Size = new System.Drawing.Size(84, 24);
+            this.rdbEfectivo.TabIndex = 0;
+            this.rdbEfectivo.TabStop = true;
+            this.rdbEfectivo.Text = "Efectivo";
+            this.rdbEfectivo.UseVisualStyleBackColor = true;
+            // 
+            // btnCerrarMesa
+            // 
+            this.btnCerrarMesa.Location = new System.Drawing.Point(324, 462);
+            this.btnCerrarMesa.Name = "btnCerrarMesa";
+            this.btnCerrarMesa.Size = new System.Drawing.Size(159, 38);
+            this.btnCerrarMesa.TabIndex = 26;
+            this.btnCerrarMesa.Text = "Cerrar Mesa";
+            this.btnCerrarMesa.UseVisualStyleBackColor = true;
+            this.btnCerrarMesa.Click += new System.EventHandler(this.btnCerrarMesa_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(324, 520);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(159, 37);
+            this.btnCancelar.TabIndex = 27;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            // 
+            // menu
+            // 
+            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.eliminarToolStripMenuItem,
+            this.cambiarCantidadToolStripMenuItem});
+            this.menu.Name = "menu";
+            this.menu.Size = new System.Drawing.Size(181, 70);
+            // 
+            // eliminarToolStripMenuItem
+            // 
+            this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
+            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eliminarToolStripMenuItem.Text = "Eliminar";
+            this.eliminarToolStripMenuItem.Click += new System.EventHandler(this.eliminarToolStripMenuItem_Click);
+            // 
+            // cambiarCantidadToolStripMenuItem
+            // 
+            this.cambiarCantidadToolStripMenuItem.Name = "cambiarCantidadToolStripMenuItem";
+            this.cambiarCantidadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cambiarCantidadToolStripMenuItem.Text = "Cambiar Cantidad";
+            this.cambiarCantidadToolStripMenuItem.Click += new System.EventHandler(this.cambiarCantidadToolStripMenuItem_Click);
+            // 
             // FormularioComprobanteMesa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnCerrarMesa);
+            this.Controls.Add(this.gbxFormaPago);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.nudTotal);
             this.Controls.Add(this.lblTotal);
@@ -346,6 +472,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudSubTotal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDescuento)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTotal)).EndInit();
+            this.gbxFormaPago.ResumeLayout(false);
+            this.gbxFormaPago.PerformLayout();
+            this.menu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -376,5 +505,15 @@
         private System.Windows.Forms.NumericUpDown nudTotal;
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.GroupBox gbxFormaPago;
+        private System.Windows.Forms.RadioButton rdbCheque;
+        private System.Windows.Forms.RadioButton rdbCtaCte;
+        private System.Windows.Forms.RadioButton rdbTarjeta;
+        private System.Windows.Forms.RadioButton rdbEfectivo;
+        private System.Windows.Forms.Button btnCerrarMesa;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.ContextMenuStrip menu;
+        private System.Windows.Forms.ToolStripMenuItem eliminarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cambiarCantidadToolStripMenuItem;
     }
 }

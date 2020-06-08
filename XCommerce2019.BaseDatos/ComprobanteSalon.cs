@@ -17,6 +17,7 @@ namespace XCommerce.AccesoDatos
         public string Comensal { get; set; }
         public long MesaId { get; set; }
         public Nullable<long> MozoId { get; set; }
+        public EstadoComprobanteSalon EstadoComprobanteSalon { get; set; }
     
         public virtual Mesa Mesa { get; set; }
         public virtual Empleado Mozo { get; set; }

@@ -64,7 +64,7 @@ namespace Presentacion.Core.Provincia.Localidad
             if (check.Checked)
             {
                 grilla.DataSource = _localidadServicio.ObtenerLocalidadEliminada(cadenaBuscar);
-                toolStrip.Enabled = false;
+                
             }
             else
             {

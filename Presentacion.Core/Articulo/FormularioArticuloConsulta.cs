@@ -1,4 +1,5 @@
-﻿using Presentacion.FormulariosBase;
+﻿using Presentacion.Core.Articulo.BajaArticulo;
+using Presentacion.FormulariosBase;
 using Presentacion.FormulariosBase.Helpers;
 using System;
 using System.Collections.Generic;
@@ -70,6 +71,7 @@ namespace Presentacion.Core.Articulo
 
         public override void EjecutarBtnEliminar()
         {
+            /*
             base.EjecutarBtnEliminar();
             if (puedeEjecutarComando)
             {
@@ -77,6 +79,10 @@ namespace Presentacion.Core.Articulo
                 fArticuloABM.ShowDialog();
                 ActualizarSegunOperacion(fArticuloABM.RealizoAlgunaOperacion);
             }
+
+            descativado para probar unas weas sin tocar el form */
+            var FormularioBajaArticulo = new FormularioBajaArticuloABM(TipoOperacion.Nuevo, entidadId);
+            FormularioBajaArticulo.Show();
         }
 
         private void ActualizarSegunOperacion(bool realizoOperacion)

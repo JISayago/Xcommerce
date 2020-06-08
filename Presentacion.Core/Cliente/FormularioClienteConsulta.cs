@@ -52,12 +52,12 @@ namespace Presentacion.Core.Cliente
             if (check.Checked)
             {
                 grilla.DataSource = _clienteServicio.ObtenerClienteEliminado(cadenaBuscar);
-                toolStrip.Enabled = false;
+              
             }
             else
             {
                 grilla.DataSource = _clienteServicio.ObtenerCliente(cadenaBuscar);
-                toolStrip.Enabled = true;
+                
             }
         }
 

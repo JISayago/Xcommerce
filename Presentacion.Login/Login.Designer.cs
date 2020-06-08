@@ -65,7 +65,7 @@
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(188, 27);
             this.txtUsuario.TabIndex = 1;
-            this.txtUsuario.Text = "Admin";
+            this.txtUsuario.Text = "jsayago";
             this.txtUsuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUsuario_KeyPress);
             // 
             // txtContraseña
@@ -75,7 +75,7 @@
             this.txtContraseña.Name = "txtContraseña";
             this.txtContraseña.Size = new System.Drawing.Size(188, 27);
             this.txtContraseña.TabIndex = 2;
-            this.txtContraseña.Text = "Admin";
+            this.txtContraseña.Text = "Pa$$word";
             this.txtContraseña.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtContraseña_KeyPress);
             // 
             // lblContaseña
@@ -120,7 +120,8 @@
             this.Text = "Ingreso al Sistema";
             this.ResumeLayout(false);
             this.PerformLayout();
-
+            this.AcceptButton = this.btnIngresar;
+            this.CancelButton = this.btnCancelar;
         }
 
         #endregion

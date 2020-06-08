@@ -86,8 +86,7 @@ namespace Presentacion.Core.Salon
             if (salon != null)
             {
                 
-                CargarComboBox(cmbListaPrecio,_listaPrecio.Obtener(string.Empty), "Descripcion", "Id");//corregir para traer con id no toda la lista
-                                                                                                       //por algun motivo se rompe al traer por id
+                CargarComboBox(cmbListaPrecio,_listaPrecio.Obtener(string.Empty), "Descripcion", "Id");
                 txtSalon.Text = salon.Descripcion;
 
             }
@@ -138,6 +137,12 @@ namespace Presentacion.Core.Salon
         {
             var FormularioABMListaPrecio = new FormularioListaPrecioABM(TipoOperacion.Nuevo);
             FormularioABMListaPrecio.ShowDialog();
+           
+        }
+
+        private void FormularioSalonABM_Activated(object sender, EventArgs e)
+        {
+            CargarComboBox(cmbListaPrecio, _listaPrecio.Obtener(string.Empty), "Descripcion", "Id");
         }
     }
 }

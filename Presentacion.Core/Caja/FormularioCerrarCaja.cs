@@ -28,11 +28,14 @@ namespace Presentacion.Core.Caja
         //que hacer cuando el programa se cierra y no se cerro la caja
         private void BtnCerrar_Click(object sender, EventArgs e)
         {
-            DatosSistema.EstaCajaAbierta = false;
+            if (DatosSistema.UsuarioId == 0) throw new Exception("La caja no se puede cerrar como admin!");
+
             var caja = _cajaServicio.Obtener(DatosSistema.CajaId);
             caja.UsuarioCierreId = DatosSistema.UsuarioId;
             caja.MontoCierre = nudMonto.Value;
             _cajaServicio.Cerrar(caja);
+
+            DatosSistema.EstaCajaAbierta = false;
             this.Close();
         }
     }

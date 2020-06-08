@@ -456,7 +456,6 @@
     <Property Name="UsuarioId" Type="bigint" Nullable="false" />
     <Property Name="ClienteId" Type="bigint" Nullable="false" />
     <Property Name="TipoComprobante" Type="int" Nullable="false" />
-    <Property Name="EstadoComprobanteSalon" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="DetalleComprobantes">
     <Key>
@@ -552,6 +551,7 @@
     <Property Name="Comensal" Type="nvarchar(max)" Nullable="false" />
     <Property Name="MesaId" Type="bigint" Nullable="false" />
     <Property Name="MozoId" Type="bigint" Nullable="true" />
+    <Property Name="EstadoComprobanteSalon" Type="int" Nullable="false" />
     <Property Name="Id" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="Personas_Empleado">
@@ -1862,7 +1862,6 @@
           <NavigationProperty Name="DetalleComprobantes" Relationship="ModeloXCommerce.ComprobanteDetalleComprobante" FromRole="Comprobante" ToRole="DetalleComprobante" />
           <NavigationProperty Name="Movimientos" Relationship="ModeloXCommerce.ComprobanteMovimiento" FromRole="Comprobante" ToRole="Movimiento" />
           <NavigationProperty Name="FormaPagos" Relationship="ModeloXCommerce.ComprobanteFormaPago" FromRole="Comprobante" ToRole="FormaPago" />
-          <Property Name="EstadoComprobanteSalon" Type="ModeloXCommerce.EstadoComprobanteSalon" Nullable="false" />
         </EntityType>
         <Association Name="UsuarioComprobante">
           <End Type="ModeloXCommerce.Usuario" Role="Usuario" Multiplicity="1" />
@@ -1902,6 +1901,7 @@
           <Property Name="MesaId" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Mozo" Relationship="ModeloXCommerce.EmpleadoComprobanteSalon" FromRole="ComprobanteSalon" ToRole="Empleado" />
           <Property Name="MozoId" Type="Int64" Nullable="true" />
+          <Property Name="EstadoComprobanteSalon" Type="ModeloXCommerce.EstadoComprobanteSalon" Nullable="false" />
         </EntityType>
         <EnumType Name="EstadoMesa">
           <Member Name="Cerrada" Value="1" />
@@ -2470,7 +2470,6 @@
           <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
           <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
           <ScalarProperty Name="TipoComprobante" ColumnName="TipoComprobante" />
-          <ScalarProperty Name="EstadoComprobanteSalon" ColumnName="EstadoComprobanteSalon" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(ModeloXCommerce.ComprobanteSalon)">
@@ -2479,6 +2478,7 @@
           <ScalarProperty Name="Comensal" ColumnName="Comensal" />
           <ScalarProperty Name="MesaId" ColumnName="MesaId" />
           <ScalarProperty Name="MozoId" ColumnName="MozoId" />
+          <ScalarProperty Name="EstadoComprobanteSalon" ColumnName="EstadoComprobanteSalon" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(ModeloXCommerce.ComprobanteCompra)">

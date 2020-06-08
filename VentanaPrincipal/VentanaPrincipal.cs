@@ -3,12 +3,14 @@
 namespace VentanaPrincipal
 {
     using Presentacion.Core.Articulo;
+    using Presentacion.Core.Articulo.BajaArticulo;
     using Presentacion.Core.Articulo.Marca;
     using Presentacion.Core.Articulo.Rubro;
     using Presentacion.Core.Caja;
     using Presentacion.Core.Cliente;
     using Presentacion.Core.Empleado;
     using Presentacion.Core.ListaPrecio;
+    using Presentacion.Core.Precio;
     using Presentacion.Core.Provincia;
     using Presentacion.Core.Provincia.Localidad;
     using Presentacion.Core.Salon;
@@ -105,6 +107,19 @@ namespace VentanaPrincipal
         {
             var FormularioConsultaListaPrecio = new FormularioListaPrecioConsulta();
             FormularioConsultaListaPrecio.Show();
+        }
+
+        private void agregarActualizarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var FormularioActualizarPrecio = new FormularioPrecio();
+            FormularioActualizarPrecio.Show();
+
+        }
+
+        private void bajasArticulosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var FormularioBajaArticulo = new FormularioBajaArticuloConsulta();
+            FormularioBajaArticulo.Show();
         }
     }
 }

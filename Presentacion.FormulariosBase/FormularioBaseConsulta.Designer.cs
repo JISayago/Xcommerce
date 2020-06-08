@@ -228,7 +228,7 @@
             this.cbxEstaEliminado.Size = new System.Drawing.Size(164, 17);
             this.cbxEstaEliminado.TabIndex = 127;
             this.cbxEstaEliminado.Text = "Mostrar elementos eliminados";
-            this.cbxEstaEliminado.ThreeState = true;
+            this.cbxEstaEliminado.ThreeState = false;
             this.cbxEstaEliminado.UseVisualStyleBackColor = true;
             // 
             // FormularioBaseConsulta
@@ -253,6 +253,8 @@
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormularioBaseConsulta_KeyDown);
+            this.KeyPreview = true;
 
         }
 

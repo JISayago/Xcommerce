@@ -139,7 +139,11 @@ namespace Presentacion.Core.Provincia.Localidad
         {
             var FormularioABMProvincia = new FormularioProvinciaABM(TipoOperacion.Nuevo);
             FormularioABMProvincia.ShowDialog();
-            
+        }
+
+        private void FormularioLocalidadABM_Activated(object sender, EventArgs e)
+        {
+            CargarComboBox(cmbProvincia, _provinciaServicio.ObtenerProvincia(string.Empty), "Descripcion", "Id");
         }
     }
 }

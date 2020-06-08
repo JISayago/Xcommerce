@@ -20,11 +20,12 @@ namespace XCommerce.Servicios.Core.Comprobante
                     .OfType<ComprobanteSalon>()
                     .FirstOrDefault(x => x.MesaId == mesaId && x.EstadoComprobanteSalon == EstadoComprobanteSalon.EnProceso);
 
+
                 if (comprobante == null) throw new Exception("ocurrio un Error al obtener el comprobante");
                 var item = comprobante.DetalleComprobantes
                          .FirstOrDefault(x => x.Codigo == dto.Codigo);
 
-                if(item == null)
+                if (item == null)
                 {
                     comprobante.DetalleComprobantes.Add(new DetalleComprobante
                     {
@@ -36,6 +37,7 @@ namespace XCommerce.Servicios.Core.Comprobante
                         PrecioUnitario = dto.Precio,
                         SubTotal = dto.Precio * cantidad
                     });
+                    
                 }
                 else
                 {
@@ -47,19 +49,44 @@ namespace XCommerce.Servicios.Core.Comprobante
                         if (articulo == null) throw new Exception("Ocurrió un error");
                         articulo.Stock -= cantidad;
                     }
-                    
-                }
+                }           
+
+
                 basedatos.SaveChanges();
 
             }
         }
 
-        public void GenerarComprobanteSalon(long mesaId, long usuarioId, int comensales, long? mozoId = null)
+
+        public void FacturarComprobanteSalon(long mesaId,ComprobanteMesaDTO comprobanteMesa)
         {
             using (var baseDatos = new ModeloXCommerceContainer())
             {
+                var comprobante = baseDatos.Comprobantes
+                    .OfType<ComprobanteSalon>()
+                    .FirstOrDefault(x => x.MesaId == mesaId && x.EstadoComprobanteSalon == EstadoComprobanteSalon.EnProceso);
 
-                
+                var mesa = baseDatos.Mesas.FirstOrDefault(x => x.Id == mesaId);
+
+                mesa.EstadoMesa = EstadoMesa.Cerrada;
+                if (mesa == null) throw new Exception("Ocurrió un error al conseguir la Mesa");
+
+                comprobante.SubTotal = comprobanteMesa.SubTotal;
+                comprobante.Total = comprobanteMesa.Total;
+                comprobante.Descuento = comprobanteMesa.Descuento;
+                comprobante.EstadoComprobanteSalon = EstadoComprobanteSalon.Facturada;
+
+                baseDatos.SaveChanges();
+
+
+            }
+        }
+
+        public long GenerarComprobanteSalon(long mesaId, long usuarioId, int comensales, long? mozoId = null)
+        {
+            using (var baseDatos = new ModeloXCommerceContainer())           {
+
+
                 var clienteConsumidorFinal = baseDatos.Personas
                     .OfType<AccesoDatos.Cliente>()
                     .FirstOrDefault(x => x.Dni == "99999999");
@@ -68,6 +95,7 @@ namespace XCommerce.Servicios.Core.Comprobante
                 if (clienteConsumidorFinal == null) throw new Exception("Ocurrió un error al conseguir al Consumidor final");
 
                 var mesa = baseDatos.Mesas.FirstOrDefault(x => x.Id == mesaId);
+
                 if (mesa == null) throw new Exception("Ocurrió un error al conseguir la Mesa");
 
                 mesa.EstadoMesa = EstadoMesa.Abierta;
@@ -93,16 +121,20 @@ namespace XCommerce.Servicios.Core.Comprobante
 
                 baseDatos.Comprobantes.Add(nuevoComprobante);
                 baseDatos.SaveChanges();
+                return nuevoComprobante.Id;
+
+
             }
         }
 
-    
+
 
         public ComprobanteMesaDTO Obtener(long mesaId)
         {
             using (var baseDatos = new ModeloXCommerceContainer())
             {
-                return baseDatos.Comprobantes.OfType<ComprobanteSalon>()
+                return baseDatos.Comprobantes
+                      .OfType<ComprobanteSalon>()
                       .Include(x => x.Mozo)
                       .AsNoTracking()
                       .Select(x => new ComprobanteMesaDTO
@@ -115,7 +147,7 @@ namespace XCommerce.Servicios.Core.Comprobante
                           MozoId = x.MozoId,
                           Legajo = x.MozoId.HasValue ? x.Mozo.Legajo : 0,
                           ApellidoMozo = x.MozoId.HasValue ? x.Mozo.Apellido : "No ",
-                          NombreMozo =x.MozoId.HasValue ? x.Mozo.Nombre : "Asignado...",
+                          NombreMozo = x.MozoId.HasValue ? x.Mozo.Nombre : "Asignado...",
                           UsuarioId = x.UsuarioId,
                           Items = x.DetalleComprobantes.Select(c => new DetalleComprobanteSalonDTO
                           {
@@ -128,11 +160,33 @@ namespace XCommerce.Servicios.Core.Comprobante
                               ProductoId = c.ArticuloId
 
                           }).ToList()
-                      }).FirstOrDefault(x => x.MesaId == mesaId);
+                      }).OrderByDescending(x => x.Fecha)
+                      .FirstOrDefault(x => x.MesaId == mesaId);
 
 
             }
-            
+
+        }
+
+
+
+        public void QuitarItems(long detalleID)
+        {
+            using (var baseDatos = new ModeloXCommerceContainer())
+            {
+
+                var DetalleComprobante = baseDatos.DetalleComprobantes
+                            .FirstOrDefault(x => x.Id == detalleID);                    
+                             
+
+                baseDatos.DetalleComprobantes.Remove(DetalleComprobante);
+                baseDatos.SaveChanges();
+
+
+            }
+
         }
     }
 }
+
+
