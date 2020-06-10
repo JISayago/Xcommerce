@@ -94,6 +94,7 @@ namespace Presentacion.Core.VentaSalon
             grilla.Columns["CantidadProducto"].Visible = true;
             grilla.Columns["CantidadProducto"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             grilla.Columns["CantidadProducto"].HeaderText = "Cantidad";
+         
 
             grilla.Columns["PrecioUnitario"].Visible = true;
             grilla.Columns["PrecioUnitario"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -102,6 +103,7 @@ namespace Presentacion.Core.VentaSalon
             grilla.Columns["SubtotalLinea"].Visible = true;
             grilla.Columns["SubtotalLinea"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             grilla.Columns["SubtotalLinea"].HeaderText = "Sub-Total";
+            grilla.Columns["SubtotalLinea"].DefaultCellStyle.Format = "N2";
 
         }
         public FormularioComprobanteMesa(long mesaId, int _numeroMesa, bool cerrarMesa) : this()
