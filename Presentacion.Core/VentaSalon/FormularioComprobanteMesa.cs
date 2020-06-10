@@ -24,6 +24,8 @@ namespace Presentacion.Core.VentaSalon
     {
         private readonly long _mesaId;
 
+        private readonly int _numeroMesa;
+
         private int row;
 
         private readonly IComprobanteSalonServicio _comprobanteSalonServicio;
@@ -111,10 +113,11 @@ namespace Presentacion.Core.VentaSalon
         }
         
 
-        public FormularioComprobanteMesa(long mesaId, int _numeroMesa) :this()
+        public FormularioComprobanteMesa(long mesaId, int numeroMesa) :this()
         {
             this.Text = $"Venta -- Mesa: {_numeroMesa}";
             _mesaId = mesaId;
+            _numeroMesa = numeroMesa;
           
             ObtenerComprobanteMesa(mesaId);
 
@@ -250,15 +253,24 @@ namespace Presentacion.Core.VentaSalon
             }
 
             var comprobanteMesaDto = _comprobanteSalonServicio.Obtener(mesaId);
-            
-            _comprobanteSalonServicio.FacturarComprobanteSalon(mesaId,comprobanteMesaDto);
-            
+
+            if (nudTotal.Value > 0)
+            {
+                _comprobanteSalonServicio.FacturarComprobanteSalon(mesaId, comprobanteMesaDto);
+
+                _movimientoServicio.GenerarMovimiento(DatosSistema.CajaId, comprobanteMesaDto.ComprobanteId, TipoMovimiento.Ingreso, DatosSistema.UsuarioId, nudTotal.Value, $" Ingreso de Mesa n°:{numeroMesa}");
+                _detalleCajaServicio.GenerarDetalleCaja(DatosSistema.CajaId, nudTotal.Value, _tPago);
+
+            }
+            else
+            {
+                _comprobanteSalonServicio.Eliminar(comprobanteMesaDto.ComprobanteId);
+              
+            }
+
             var mesaParaCerrar = _mesaServicio.ObtenerPorId(mesaId);
             mesaParaCerrar.estadoMesa = EstadoMesa.Cerrada;
-            _mesaServicio.Modificar(mesaParaCerrar);          
-            
-            _movimientoServicio.GenerarMovimiento(DatosSistema.CajaId, comprobanteMesaDto.ComprobanteId, TipoMovimiento.Ingreso, DatosSistema.UsuarioId, nudTotal.Value, $" Ingreso de Mesa n°:{numeroMesa}");
-            _detalleCajaServicio.GenerarDetalleCaja(DatosSistema.CajaId, nudTotal.Value, _tPago);
+            _mesaServicio.Modificar(mesaParaCerrar);
 
             this.Close();
             
@@ -342,6 +354,22 @@ namespace Presentacion.Core.VentaSalon
 
             _comprobanteSalonServicio.QuitarItems(itemSelectedDetalleId);
             ObtenerComprobanteMesa(_mesaId);
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            List<DetalleComprobanteSalonDTO> listaItems = (List<DetalleComprobanteSalonDTO>)dgvGrilla.DataSource;
+
+            foreach (var item in listaItems)
+            {
+                _comprobanteSalonServicio.QuitarItems(item.DetalleId);
+            }
+            
+            nudTotal.Value = 0;
+
+            cerrarLaMesa(_mesaId,_numeroMesa);
+         
+            
         }
     }
 }
