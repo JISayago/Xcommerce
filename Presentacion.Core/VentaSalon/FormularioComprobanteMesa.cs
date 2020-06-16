@@ -93,8 +93,7 @@ namespace Presentacion.Core.VentaSalon
 
             grilla.Columns["CantidadProducto"].Visible = true;
             grilla.Columns["CantidadProducto"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            grilla.Columns["CantidadProducto"].HeaderText = "Cantidad";
-         
+            grilla.Columns["CantidadProducto"].HeaderText = "Cantidad";         
 
             grilla.Columns["PrecioUnitario"].Visible = true;
             grilla.Columns["PrecioUnitario"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -117,7 +116,7 @@ namespace Presentacion.Core.VentaSalon
 
         public FormularioComprobanteMesa(long mesaId, int numeroMesa) :this()
         {
-            this.Text = $"Venta -- Mesa: {_numeroMesa}";
+            this.Text = $"Venta -- Mesa: {numeroMesa}";
             _mesaId = mesaId;
             _numeroMesa = numeroMesa;
           
@@ -372,6 +371,26 @@ namespace Presentacion.Core.VentaSalon
             cerrarLaMesa(_mesaId,_numeroMesa);
          
             
+        }
+
+        private void nudDescuento_ValueChanged(object sender, EventArgs e)
+        {
+
+            var comprobanteMesaDTO = new ComprobanteMesaDTO();
+
+
+            comprobanteMesaDTO = _comprobanteSalonServicio.Obtener(_mesaId);
+
+
+
+            if (comprobanteMesaDTO == null)
+            {
+                MessageBox.Show("Ocurrió un Error");
+                this.Close();
+            }
+
+            nudTotal.Value = nudSubTotal.Value - (nudSubTotal.Value * nudDescuento.Value) / 100;
+
         }
     }
 }

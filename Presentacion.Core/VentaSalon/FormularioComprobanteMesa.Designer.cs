@@ -281,6 +281,7 @@
             this.nudDescuento.Name = "nudDescuento";
             this.nudDescuento.Size = new System.Drawing.Size(70, 20);
             this.nudDescuento.TabIndex = 21;
+            this.nudDescuento.ValueChanged += new System.EventHandler(this.nudDescuento_ValueChanged);
             // 
             // lblDescuento
             // 
