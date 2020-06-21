@@ -66,6 +66,25 @@ namespace XCommerce.Servicios.Core.Cliente
             }
         }
 
+        public bool DescontarDeCuenta(long clienteId, decimal monto)
+        {
+            using (var baseDatos = new ModeloXCommerceContainer())
+            {
+                var clienteModificar = baseDatos.Personas.OfType<AccesoDatos.Cliente>()
+                    .Include(x => x.Direccion)
+                    .FirstOrDefault(x => x.Id == clienteId);
+
+                if (clienteModificar == null)
+                    throw new Exception("No se encontro el Cliente");
+
+               clienteModificar.MontoMaximoCtaCte -= monto;
+                if (clienteModificar.MontoMaximoCtaCte < 0)
+                    return false;
+
+                baseDatos.SaveChanges();
+                return true;
+            }
+        }
         public void Modificar(ClienteDTO clienteDto)
         {
             using (var baseDatos = new ModeloXCommerceContainer())

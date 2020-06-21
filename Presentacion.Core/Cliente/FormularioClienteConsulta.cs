@@ -16,17 +16,32 @@ namespace Presentacion.Core.Cliente
     public partial class FormularioClienteConsulta : FormularioBaseConsulta
     {
         private readonly IClienteServicio _clienteServicio;
+        private bool vieneDeSelecFPago = false;
+        public long clienteSeleccionado = 0;
 
         public FormularioClienteConsulta():this(new ClienteServicio())
         {
             InitializeComponent();
+        }
+        public FormularioClienteConsulta(bool vieneDeSelecFPago) : this(new ClienteServicio())
+        {
+            InitializeComponent();
+            this.vieneDeSelecFPago = vieneDeSelecFPago;
         }
 
         public FormularioClienteConsulta(IClienteServicio clienteServicio)
         {
             _clienteServicio = clienteServicio;
         }
-
+        public override void EjecutarDobleClickFila()
+        {
+            if (vieneDeSelecFPago)
+            {
+                Console.WriteLine("In ClienteCons");
+                clienteSeleccionado = (long)entidadId;
+                Close();
+            }
+        }
         public override void ResetearGrilla(DataGridView grilla)
         {
             base.ResetearGrilla(grilla);
@@ -98,6 +113,11 @@ namespace Presentacion.Core.Cliente
             var FormularioABMCliente = new FormularioClienteABM(TipoOperacion.Nuevo);
             FormularioABMCliente.ShowDialog();
             ActualizarSegunOperacion(FormularioABMCliente.RealizoAlgunaOperacion);
+        }
+
+        private void FormularioClienteConsulta_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
         }
     }
 }

@@ -43,7 +43,7 @@
             this.txtCodigoBarras = new System.Windows.Forms.TextBox();
             this.dgvGrilla = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rbCta = new System.Windows.Forms.RadioButton();
+            this.rbCtaCte = new System.Windows.Forms.RadioButton();
             this.rbEfectivo = new System.Windows.Forms.RadioButton();
             this.groupBoxCliente = new System.Windows.Forms.GroupBox();
             this.txtNombreCliente = new System.Windows.Forms.TextBox();
@@ -59,6 +59,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnFacturar = new System.Windows.Forms.Button();
             this.cbConsumidorFinal = new System.Windows.Forms.CheckBox();
+            this.btnBuscarCliente = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudTotal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDescuento)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSubTotal)).BeginInit();
@@ -143,9 +144,9 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(733, 41);
+            this.btnAgregar.Location = new System.Drawing.Point(715, 41);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(75, 20);
+            this.btnAgregar.Size = new System.Drawing.Size(93, 20);
             this.btnAgregar.TabIndex = 33;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
@@ -189,7 +190,7 @@
             // 
             this.lblDescripcion.AutoSize = true;
             this.lblDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescripcion.Location = new System.Drawing.Point(193, 14);
+            this.lblDescripcion.Location = new System.Drawing.Point(152, 13);
             this.lblDescripcion.Name = "lblDescripcion";
             this.lblDescripcion.Size = new System.Drawing.Size(103, 20);
             this.lblDescripcion.TabIndex = 28;
@@ -198,9 +199,9 @@
             // txtDescripcion
             // 
             this.txtDescripcion.Enabled = false;
-            this.txtDescripcion.Location = new System.Drawing.Point(196, 39);
+            this.txtDescripcion.Location = new System.Drawing.Point(156, 40);
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(428, 20);
+            this.txtDescripcion.Size = new System.Drawing.Size(457, 20);
             this.txtDescripcion.TabIndex = 27;
             // 
             // label1
@@ -235,11 +236,10 @@
             this.dgvGrilla.TabIndex = 24;
             this.dgvGrilla.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvGrilla_CellDoubleClick);
             this.dgvGrilla.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvGrilla_CellValueChanged);
-            
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.rbCta);
+            this.groupBox1.Controls.Add(this.rbCtaCte);
             this.groupBox1.Controls.Add(this.rbEfectivo);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.groupBox1.Location = new System.Drawing.Point(545, 374);
@@ -251,16 +251,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "TIPO PAGO";
             // 
-            // rbCta
+            // rbCtaCte
             // 
-            this.rbCta.AutoSize = true;
-            this.rbCta.Location = new System.Drawing.Point(20, 62);
-            this.rbCta.Name = "rbCta";
-            this.rbCta.Size = new System.Drawing.Size(164, 24);
-            this.rbCta.TabIndex = 33;
-            this.rbCta.TabStop = true;
-            this.rbCta.Text = "Cuenta Corriente";
-            this.rbCta.UseVisualStyleBackColor = true;
+            this.rbCtaCte.AutoSize = true;
+            this.rbCtaCte.Location = new System.Drawing.Point(20, 62);
+            this.rbCtaCte.Name = "rbCtaCte";
+            this.rbCtaCte.Size = new System.Drawing.Size(164, 24);
+            this.rbCtaCte.TabIndex = 33;
+            this.rbCtaCte.TabStop = true;
+            this.rbCtaCte.Text = "Cuenta Corriente";
+            this.rbCtaCte.UseVisualStyleBackColor = true;
+            this.rbCtaCte.CheckedChanged += new System.EventHandler(this.RbCtaCte_CheckedChanged);
             // 
             // rbEfectivo
             // 
@@ -273,6 +274,7 @@
             this.rbEfectivo.TabStop = true;
             this.rbEfectivo.Text = "Efectivo";
             this.rbEfectivo.UseVisualStyleBackColor = true;
+            this.rbEfectivo.CheckedChanged += new System.EventHandler(this.RbEfectivo_CheckedChanged);
             // 
             // groupBoxCliente
             // 
@@ -287,7 +289,7 @@
             this.groupBoxCliente.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxCliente.Name = "groupBoxCliente";
             this.groupBoxCliente.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxCliente.Size = new System.Drawing.Size(251, 134);
+            this.groupBoxCliente.Size = new System.Drawing.Size(251, 172);
             this.groupBoxCliente.TabIndex = 41;
             this.groupBoxCliente.TabStop = false;
             this.groupBoxCliente.Text = "CLIENTE";
@@ -419,7 +421,7 @@
             this.cbConsumidorFinal.AutoSize = true;
             this.cbConsumidorFinal.Checked = true;
             this.cbConsumidorFinal.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbConsumidorFinal.Location = new System.Drawing.Point(288, 517);
+            this.cbConsumidorFinal.Location = new System.Drawing.Point(46, 516);
             this.cbConsumidorFinal.Name = "cbConsumidorFinal";
             this.cbConsumidorFinal.Size = new System.Drawing.Size(106, 17);
             this.cbConsumidorFinal.TabIndex = 44;
@@ -427,11 +429,22 @@
             this.cbConsumidorFinal.UseVisualStyleBackColor = true;
             this.cbConsumidorFinal.CheckedChanged += new System.EventHandler(this.CbConsumidorFinal_CheckedChanged);
             // 
+            // btnBuscarCliente
+            // 
+            this.btnBuscarCliente.Location = new System.Drawing.Point(391, 514);
+            this.btnBuscarCliente.Name = "btnBuscarCliente";
+            this.btnBuscarCliente.Size = new System.Drawing.Size(117, 23);
+            this.btnBuscarCliente.TabIndex = 45;
+            this.btnBuscarCliente.Text = "Buscar Cliente";
+            this.btnBuscarCliente.UseVisualStyleBackColor = true;
+            this.btnBuscarCliente.Click += new System.EventHandler(this.BtnBuscarCliente_Click);
+            // 
             // FormularioKiosco
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(836, 644);
+            this.Controls.Add(this.btnBuscarCliente);
             this.Controls.Add(this.cbConsumidorFinal);
             this.Controls.Add(this.btnFacturar);
             this.Controls.Add(this.groupBox1);
@@ -454,6 +467,7 @@
             this.MaximumSize = new System.Drawing.Size(900, 800);
             this.MinimumSize = new System.Drawing.Size(0, 0);
             this.Name = "FormularioKiosco";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormularioKiosco";
             ((System.ComponentModel.ISupportInitialize)(this.nudTotal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDescuento)).EndInit();
@@ -488,7 +502,7 @@
         private System.Windows.Forms.TextBox txtCodigoBarras;
         protected System.Windows.Forms.DataGridView dgvGrilla;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton rbCta;
+        private System.Windows.Forms.RadioButton rbCtaCte;
         private System.Windows.Forms.RadioButton rbEfectivo;
         private System.Windows.Forms.GroupBox groupBoxCliente;
         private System.Windows.Forms.TextBox txtNombreCliente;
@@ -504,5 +518,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnFacturar;
         private System.Windows.Forms.CheckBox cbConsumidorFinal;
+        private System.Windows.Forms.Button btnBuscarCliente;
     }
 }

@@ -163,6 +163,7 @@
             this.dgvGrilla.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvGrilla.Size = new System.Drawing.Size(691, 509);
             this.dgvGrilla.TabIndex = 1;
+            this.dgvGrilla.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvGrilla_CellMouseDoubleClick);
             this.dgvGrilla.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvGrilla_RowEnter);
             // 
             // panel1
@@ -228,7 +229,6 @@
             this.cbxEstaEliminado.Size = new System.Drawing.Size(164, 17);
             this.cbxEstaEliminado.TabIndex = 127;
             this.cbxEstaEliminado.Text = "Mostrar elementos eliminados";
-            this.cbxEstaEliminado.ThreeState = false;
             this.cbxEstaEliminado.UseVisualStyleBackColor = true;
             // 
             // FormularioBaseConsulta
@@ -242,10 +242,12 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgvGrilla);
             this.Controls.Add(this.BarraLateralBotones);
+            this.KeyPreview = true;
             this.Name = "FormularioBaseConsulta";
             this.Text = "FormularioBaseConsulta";
             this.Load += new System.EventHandler(this.FormularioBaseConsulta_Load);
             this.Enter += new System.EventHandler(this.BtnBuscar_Click);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormularioBaseConsulta_KeyDown);
             this.BarraLateralBotones.ResumeLayout(false);
             this.BarraLateralBotones.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrilla)).EndInit();
@@ -253,8 +255,6 @@
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormularioBaseConsulta_KeyDown);
-            this.KeyPreview = true;
 
         }
 
