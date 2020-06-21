@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using XCommerce.AccesoDatos;
+using XCommerce.Servicios.Core.Comprobante;
 using XCommerce.Servicios.Core.Salon;
 using XCommerce.Servicios.Core.Salon.Mesa;
 
@@ -19,6 +21,7 @@ namespace Presentacion.Core.VentaSalon
         
         private readonly ISalonServicio _salonServicio;
         private readonly IMesaServicio _mesaServicio;
+        private readonly IComprobanteSalonServicio _comprobanteServicio;
 
         public FormularioVentaSalon()
         {
@@ -26,6 +29,7 @@ namespace Presentacion.Core.VentaSalon
 
             _salonServicio = new SalonServicio();
             _mesaServicio = new MesaServicio();
+            _comprobanteServicio = new ComprobanteSalonServicio();
 
         }
 
@@ -47,22 +51,38 @@ namespace Presentacion.Core.VentaSalon
 
                     };
 
-                    foreach (var mesa in mesas)
-
-                    {
-                        var controlMesa = new CtrolMesa
+                     foreach (var mesa in mesas)
+                     {
+                        if (mesa.estadoMesa == EstadoMesa.Abierta)
                         {
+                           var mesaDto = _comprobanteServicio.Obtener(mesa.Id);
 
+                           var controlMesa = new CtrolMesa
+                           {
                             mesaId = mesa.Id,
                             Estado = mesa.estadoMesa,
                             NumeroMesa = mesa.Numero,
-                            PrecioCosumido = 0m
+                            PrecioCosumido = mesaDto.SubTotal
+                           };
 
-                        };
-
-                        flowPanel.Controls.Add(controlMesa);
-
-                    }
+                             flowPanel.Controls.Add(controlMesa);
+                        }
+                        else
+                        {
+                             var controlMesa = new CtrolMesa
+                             {
+                            
+                                 mesaId = mesa.Id,
+                                 Estado = mesa.estadoMesa,
+                                 NumeroMesa = mesa.Numero,
+                                 PrecioCosumido = 0m
+                            
+                             };
+                            
+                             flowPanel.Controls.Add(controlMesa);
+                        }
+                     }
+                    
 
 
                     var pagina = new TabPage

@@ -84,7 +84,8 @@ namespace XCommerce.Servicios.Core.Comprobante
 
         public long GenerarComprobanteSalon(long mesaId, long usuarioId, int comensales, long? mozoId = null)
         {
-            using (var baseDatos = new ModeloXCommerceContainer())           {
+            using (var baseDatos = new ModeloXCommerceContainer())
+            {
 
 
                 var clienteConsumidorFinal = baseDatos.Personas
@@ -125,6 +126,20 @@ namespace XCommerce.Servicios.Core.Comprobante
 
 
             }
+        }
+
+        public void Eliminar(long comprobanteID)
+        {
+            using (var baseDatos = new ModeloXCommerceContainer())
+            {
+                var comprobanteEliminar = baseDatos.Comprobantes
+                    .OfType<ComprobanteSalon>()
+                    .FirstOrDefault(x => x.Id == comprobanteID);
+
+                baseDatos.Comprobantes.Remove(comprobanteEliminar);
+                baseDatos.SaveChanges();
+            }
+                
         }
 
 

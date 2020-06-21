@@ -281,6 +281,7 @@
             this.nudDescuento.Name = "nudDescuento";
             this.nudDescuento.Size = new System.Drawing.Size(70, 20);
             this.nudDescuento.TabIndex = 21;
+            this.nudDescuento.ValueChanged += new System.EventHandler(this.nudDescuento_ValueChanged);
             // 
             // lblDescuento
             // 
@@ -409,6 +410,7 @@
             this.btnCancelar.TabIndex = 27;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // menu
             // 
@@ -416,19 +418,19 @@
             this.eliminarToolStripMenuItem,
             this.cambiarCantidadToolStripMenuItem});
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(181, 70);
+            this.menu.Size = new System.Drawing.Size(171, 48);
             // 
             // eliminarToolStripMenuItem
             // 
             this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
-            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.eliminarToolStripMenuItem.Text = "Eliminar";
             this.eliminarToolStripMenuItem.Click += new System.EventHandler(this.eliminarToolStripMenuItem_Click);
             // 
             // cambiarCantidadToolStripMenuItem
             // 
             this.cambiarCantidadToolStripMenuItem.Name = "cambiarCantidadToolStripMenuItem";
-            this.cambiarCantidadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cambiarCantidadToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.cambiarCantidadToolStripMenuItem.Text = "Cambiar Cantidad";
             this.cambiarCantidadToolStripMenuItem.Click += new System.EventHandler(this.cambiarCantidadToolStripMenuItem_Click);
             // 

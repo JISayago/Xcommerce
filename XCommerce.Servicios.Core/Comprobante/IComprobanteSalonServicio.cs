@@ -12,6 +12,8 @@ namespace XCommerce.Servicios.Core.Comprobante
     {
         long GenerarComprobanteSalon(long mesaId, long usuarioId, int comensales, long? mozoId = null);
 
+        void Eliminar(long comprobanteID);
+
         void FacturarComprobanteSalon(long mesaId, ComprobanteMesaDTO comprobanteMesa);
 
         ComprobanteMesaDTO Obtener(long mesaId);        

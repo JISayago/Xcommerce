@@ -13,13 +13,16 @@ using XCommerce.Servicios.Core.Comprobante;
 using Presentacion.Helpers;
 using XCommerce.Servicios.Core.Movimiento;
 using XCommerce.Servicios.Core.Comprobante.DTO;
+using XCommerce.Servicios.Core.Salon.Mesa;
 
 namespace Presentacion.Core.Salon.Mesa.Control
 {
     public partial class CtrolMesa : UserControl
     {
+        
+
         private long _mesaID;
-        private long _comproID;
+        
        
 
         public long mesaId
@@ -83,6 +86,7 @@ namespace Presentacion.Core.Salon.Mesa.Control
 
         private readonly IComprobanteSalonServicio _comprobanteSalonServicio;
         private readonly IMovimientoServicio _movimientoServicio;
+      
 
         public CtrolMesa() : this(new ComprobanteSalonServicio(), new MovimientoServicio())
         {
@@ -93,6 +97,9 @@ namespace Presentacion.Core.Salon.Mesa.Control
         {
             _comprobanteSalonServicio = comprobanteSalonServicio;
             _movimientoServicio = movimientoServicio;
+
+          
+
 
         }
       
