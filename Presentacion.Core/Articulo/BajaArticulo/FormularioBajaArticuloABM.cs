@@ -41,33 +41,58 @@ namespace Presentacion.Core.Articulo.BajaArticulo
             _motivoBajaServicio = new MotivoBajaServicio();
             _bajaArticuloServicio = new BajaArticuloServicio();
             _articuloServicio = new ArticuloServicio();
-            /* if (tipoOperacion == TipoOperacion.Eliminar || tipoOperacion == TipoOperacion.Modificar)
-             {
-                 CargarDatos(entidadId);
-             }
 
-             if (tipoOperacion == TipoOperacion.Eliminar)
-             {
-                 DesactivarControles(this);
-             }
-             */
+            /*if (tipoOperacion == TipoOperacion.Eliminar)
+            {
+                DesactivarControles(this);
+            }
+            */
 
-            CargarComboBox(cmbMotivo, _motivoBajaServicio.ObtenerMotivoBaja(string.Empty), "Descripcion", "Id");
 
-            //cuando abris motivoBajaABM y se vuelve a abrir bajaArticuloABM se piede entidadID del articulo!!!!!
-            var articuloDTO = _articuloServicio.ObtenerPorId(entidadId.Value);
-            lblArticulo.Text = articuloDTO.Descripcion;
+            if (TipoOperacion == TipoOperacion.Modificar)
+            {
+                var articuloModDTO = _articuloServicio.ObtenerArticuloPorBaja(entidadId.Value);
+                var bajaArticuloDTO = _bajaArticuloServicio.ObtenerBajaMotivoPorId(entidadId.Value);
+                //articulo servicio t banco
+                //arreglar cmb 
+                CargarComboBox(cmbMotivo, _motivoBajaServicio.ObtenerMotivoBaja(string.Empty), "Descripcion", "Id");
+                cmbMotivo.SelectedItem = bajaArticuloDTO.MotivoBajaId;
 
-            nudCantidad.Minimum = 1;
-            nudCantidad.Maximum = articuloDTO.Stock;
-            nudCantidad.Value = articuloDTO.Stock;//No funca, porque? noc
+                lblArticulo.Text = articuloModDTO.Descripcion;
 
-            richBajaArticulo.KeyPress += Validacion.NoSimbolos;
-            richBajaArticulo.KeyPress += Validacion.NoNumeros;
+                nudCantidad.ReadOnly = true;
+                nudCantidad.Minimum = bajaArticuloDTO.Cantidad;
+                nudCantidad.Maximum = bajaArticuloDTO.Cantidad;
+                nudCantidad.Value = bajaArticuloDTO.Cantidad;
+                //no se puede modificar la cantidad de la baja, dejarlo asi o que tambien se pueda cambiar?
+                richBajaArticulo.KeyPress += Validacion.NoSimbolos;
+                richBajaArticulo.KeyPress += Validacion.NoNumeros;
 
-            nudCantidad.Focus();
+                nudCantidad.Focus();
 
+            }
+
+            if (TipoOperacion == TipoOperacion.Nuevo)
+            { 
+
+                CargarComboBox(cmbMotivo, _motivoBajaServicio.ObtenerMotivoBaja(string.Empty), "Descripcion", "Id");
+                //cuando abris motivoBajaABM y se vuelve a abrir bajaArticuloABM se piede entidadID del articulo!!!!!
+                var articuloDTO = _articuloServicio.ObtenerPorId(entidadId.Value);
+                lblArticulo.Text = articuloDTO.Descripcion;
+                //se rompe al querer modificar, crear funcion que traiga el articulo segun la bajaArticulo y devuelta articulo.Descripcion/Stock - if(tipoOperaicon.Modificar) cargara de diferente forma a NUEVO
+                nudCantidad.Minimum = 1;
+                nudCantidad.Maximum = articuloDTO.Stock;
+                nudCantidad.Value = articuloDTO.Stock;//No funca, porque? noc
+
+                richBajaArticulo.KeyPress += Validacion.NoSimbolos;
+                richBajaArticulo.KeyPress += Validacion.NoNumeros;
+
+                nudCantidad.Focus();
+
+            }
         }
+
+
 
         public override bool EjecutarComandoNuevo()
         {
@@ -107,7 +132,7 @@ namespace Presentacion.Core.Articulo.BajaArticulo
             CargarComboBox(cmbMotivo, _motivoBajaServicio.ObtenerMotivoBaja(string.Empty), "Descripcion", "Id");
         }
 
-        /*public override void CargarDatos(long? entidadId)
+        public override void CargarDatos(long? entidadId)
         {
             if (!entidadId.HasValue)
             {
@@ -129,6 +154,6 @@ namespace Presentacion.Core.Articulo.BajaArticulo
             CargarComboBox(cmbMotivo, _motivoBajaServicio.ObtenerMotivoBaja(string.Empty), "Descripcion", "Id");
             cmbMotivo.SelectedItem = bajaArticulo.MotivoBajaId;
             
-        }*/
+        }
     }
 }

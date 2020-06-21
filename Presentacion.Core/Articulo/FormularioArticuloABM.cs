@@ -123,6 +123,7 @@ namespace Presentacion.Core.Articulo
         {
             if (EntidadId == null) return false;
 
+
             _articuloServicio.Eliminar(EntidadId.Value);
 
             return true;
