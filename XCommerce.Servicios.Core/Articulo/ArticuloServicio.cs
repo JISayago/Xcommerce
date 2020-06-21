@@ -172,5 +172,40 @@ namespace XCommerce.Servicios.Core.Articulo
                     }).FirstOrDefault(x => !x.EstaEliminado && x.Id == articuloId);
             }
         }
+
+        public ArticuloDTO ObtenerArticuloPorBaja(long bajaArticuloId)
+        {
+
+
+            using (var context = new ModeloXCommerceContainer())
+            {
+                var BajaArticulo = context.BajaArticulos
+                .FirstOrDefault(x => x.Id == bajaArticuloId);
+
+                return context.Articulos
+                    .AsNoTracking()
+                    .Select(x => new ArticuloDTO
+                    {
+                        Descripcion = x.Descripcion,
+                        Abreviatura = x.Abreviatura,
+                        Codigo = x.Codigo,
+                        CodigoBarra = x.CodigoBarra,
+                        ActivarLimiteVenta = x.ActivarLimiteVenta,
+                        DescuentaStock = x.DescuentaStock,
+                        Detalle = x.Detalle,
+                        EstaDiscontinuado = x.EstaDiscontinuado,
+                        EstaEliminado = x.EstaEliminado,
+                        Foto = x.Foto,
+                        Id = x.Id,
+                        LimiteVenta = x.LimiteVenta,
+                        MarcaId = x.MarcaId,
+                        PermiteStockNegativo = x.PermiteStockNegativo,
+                        RubroId = x.RubroId,
+                        Stock = x.Stock,
+                        StockMaximo = x.StockMaximo,
+                        StockMinimo = x.StockMinimo
+                    }).FirstOrDefault(x => x.Id == BajaArticulo.ArticuloId);
+            }
+        }
     }
 }
