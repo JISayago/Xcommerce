@@ -57,6 +57,11 @@
             return dgvGrilla.RowCount > 0;
         }
 
+        public virtual void EjecutarDobleClickFila()
+        {
+
+        }
+
         public virtual void EjecutarBtnEliminar()
         {
             if (HayDatosCargados())
@@ -178,6 +183,11 @@
                 this.Close();
             }
 
+        }
+
+        private void DgvGrilla_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            EjecutarDobleClickFila();
         }
     }
 }
