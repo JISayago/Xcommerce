@@ -1,4 +1,5 @@
-﻿using Presentacion.FormulariosBase;
+﻿using Presentacion.Core.Cliente;
+using Presentacion.FormulariosBase;
 using Presentacion.Helpers;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using XCommerce.AccesoDatos;
 using XCommerce.Servicios.Core.Articulo;
+using XCommerce.Servicios.Core.Articulo.DTO;
+using XCommerce.Servicios.Core.Cliente;
 using XCommerce.Servicios.Core.Comprobante;
 using XCommerce.Servicios.Core.Comprobante.DTO;
 using XCommerce.Servicios.Core.DetalleCaja;
@@ -29,7 +32,10 @@ namespace Presentacion.Core.Kiosco
         private readonly IComprobanteServicio _comprobanteServicio;
         private readonly IDetalleCajaServicio _detalleCajaServicio;
         private readonly IMovimientoServicio _movimientoServicio;
+        private readonly IClienteServicio _clienteServicio;
+
         private Dictionary<string, DetalleComprobanteDTO> detalles;
+        private long idCliente;
 
         public FormularioKiosco()
         {
@@ -39,23 +45,19 @@ namespace Presentacion.Core.Kiosco
             _comprobanteServicio = new ComprobanteServicio();
             _detalleCajaServicio = new DetalleCajaServicio();
             _movimientoServicio = new MovimientoServicio();
+            _clienteServicio = new ClienteServicio();
 
             detalles = new Dictionary<string, DetalleComprobanteDTO>();
             txtNombreEmpleado.Text = DatosSistema.NombreUsuario;
             SetConsumidorFinal();
         }
-
+        public FormularioKiosco(long idCliente) : this()
+        {
+            this.idCliente = idCliente;
+        }
         private void SetConsumidorFinal()
         {
-            if (cbConsumidorFinal.Checked)
-            {
-                txtDniCliente.Text = "99999999";
-                txtDniCliente.Enabled = false;
-                txtNombreCliente.Text = "Consumidor";
-                txtNombreCliente.Enabled = false;
-                txtApellidoCliente.Text = "Final";
-                txtApellidoCliente.Enabled = false;
-            } else
+            if (rbCtaCte.Checked)
             {
                 txtDniCliente.Text = "";
                 txtDniCliente.Enabled = true;
@@ -63,6 +65,19 @@ namespace Presentacion.Core.Kiosco
                 txtNombreCliente.Enabled = true;
                 txtApellidoCliente.Text = "";
                 txtApellidoCliente.Enabled = true;
+                btnBuscarCliente.Enabled = false;
+                btnBuscarCliente.Enabled = true;
+
+            }
+            else if (rbEfectivo.Checked)
+            {
+                txtDniCliente.Text = "99999999";
+                txtDniCliente.Enabled = false;
+                txtNombreCliente.Text = "Consumidor";
+                txtNombreCliente.Enabled = false;
+                txtApellidoCliente.Text = "Final";
+                txtApellidoCliente.Enabled = false;
+                btnBuscarCliente.Enabled = false;
             }
         }
 
@@ -103,6 +118,19 @@ namespace Presentacion.Core.Kiosco
 
         }
 
+
+        private bool ChequeoArticulo(ArticuloDTO articulo)
+        {
+            //if (articulo != null)
+            //if (articulo.Precio != null) throw new Exception("error grave, no tendria que traer articulo sin precio nunca");
+
+            if (!articulo.EstaDiscontinuado && !articulo.EstaEliminado) throw new Exception("Not handled");
+            if (!articulo.ActivarLimiteVenta || articulo.LimiteVenta >= nudCantidadArticulo.Value) throw new Exception("Not handled");
+            if (articulo.Stock >= nudCantidadArticulo.Value || articulo.PermiteStockNegativo || !articulo.DescuentaStock) throw new Exception("Not handled");
+            if (articulo.StockMinimo >= articulo.Stock && articulo.DescuentaStock) throw new Exception("Not handled");
+
+            return true;
+        }
         private void AgregarArticulo()
         {
             if (string.IsNullOrEmpty(txtCodigoBarras.Text))
@@ -182,6 +210,63 @@ namespace Presentacion.Core.Kiosco
             AgregarArticulo();
         }
 
+        private void Facturar()
+        {
+            ComprobanteDTO comprobante = new ComprobanteDTO
+            {
+                Fecha = DateTime.Now,
+                UsuarioId = DatosSistema.UsuarioId,
+                ClienteId = 2,
+                Descuento = nudDescuento.Value,
+                Items = detalles.Values.ToList()
+            };
+
+
+            var formaDePago = TipoPago.Efectivo;
+            if (rbCtaCte.Checked)
+            {
+                formaDePago = TipoPago.CtaCte;
+            }
+
+            DetalleCajaDTO detalleCaja = new DetalleCajaDTO
+            {
+                CajaId = DatosSistema.CajaId,
+                Monto = comprobante.Total,
+                TipoPago = formaDePago
+            };
+
+            if (rbCtaCte.Checked)
+            {
+                if (_clienteServicio.DescontarDeCuenta(idCliente, comprobante.Total))
+                {
+                    //nada?
+                }
+                else
+                {
+                    throw new Exception("Si tiene menos de 0 deberia un cartel que no deje que siga el tema ya vemos yadayadayada");
+                }
+            }
+
+            long comproboante_id = _comprobanteServicio.Generar(comprobante);
+            _detalleCajaServicio.Generar(detalleCaja);
+
+            MovimientoDTO movimiento = new MovimientoDTO
+            {
+                CajaID = DatosSistema.CajaId,
+                ComprobanteID = comproboante_id,
+                TipoMovimiento = TipoMovimiento.Ingreso,
+                UsuarioID = DatosSistema.UsuarioId,
+                Monto = comprobante.Total,
+                Fecha = DateTime.Now,
+                Descripcion = "_____",
+            };
+            _movimientoServicio.GenerarMovimiento(movimiento);
+
+
+            MessageBox.Show("factura3");
+            Close();
+        }
+
         private void BtnFacturar_Click(object sender, EventArgs e)
         {
             if (!DatosSistema.EstaCajaAbierta)
@@ -191,40 +276,14 @@ namespace Presentacion.Core.Kiosco
             }
             else
             {
-                ComprobanteDTO comprobante = new ComprobanteDTO
+                if (detalles.Count > 0)
                 {
-                    Fecha = DateTime.Now,
-                    UsuarioId = DatosSistema.UsuarioId,
-                    ClienteId = 2,
-                    Descuento = nudDescuento.Value,
-                    Items = detalles.Values.ToList()
-                };
-
-                DetalleCajaDTO detalleCaja = new DetalleCajaDTO
+                    Facturar();
+                }
+                else
                 {
-                    CajaId = DatosSistema.CajaId,
-                    Monto = comprobante.Total,
-                    TipoPago = TipoPago.Efectivo //directo de acceso datos??
-                };
-
-                //detallecajadto detallecaja = new detallecaja;
-                long comproboante_id = _comprobanteServicio.Generar(comprobante);
-                _detalleCajaServicio.Generar(detalleCaja);
-
-                MovimientoDTO movimiento = new MovimientoDTO
-                {
-                    CajaID = DatosSistema.CajaId,
-                    ComprobanteID = comproboante_id,
-                    TipoMovimiento = TipoMovimiento.Ingreso,
-                    UsuarioID = DatosSistema.UsuarioId,
-                    Monto = comprobante.Total,
-                    Fecha = DateTime.Now,
-                    Descripcion = "_____",
-                };
-                _movimientoServicio.GenerarMovimiento(movimiento);
-
-                MessageBox.Show("factura3");
-                Close();
+                    MessageBox.Show("Cargue algun producto para facturar");
+                }
             }
         }
 
@@ -232,8 +291,6 @@ namespace Presentacion.Core.Kiosco
         {
             SetConsumidorFinal();
         }
-
-       
 
         private void NudDescuento_ValueChanged(object sender, EventArgs e)
         {
@@ -269,6 +326,41 @@ namespace Presentacion.Core.Kiosco
             string codigo = dgvGrilla.Rows[e.RowIndex].Cells["CodigoProducto"].Value.ToString();
             detalles.Remove(codigo);
             ActualizarNudsGrid();
+        }
+
+        private void RbCtaCte_CheckedChanged(object sender, EventArgs e)
+        {
+            SetConsumidorFinal();           
+        }
+
+        private void RbEfectivo_CheckedChanged(object sender, EventArgs e)
+        {
+            SetConsumidorFinal();
+        }
+        
+        private void BtnBuscarCliente_Click(object sender, EventArgs e)
+        {
+            bool vieneDeSelecFPago = true;
+            FormularioClienteConsulta f = new FormularioClienteConsulta(vieneDeSelecFPago);
+
+            f.ShowDialog();
+
+            idCliente = f.clienteSeleccionado;
+
+            //idCliente = ((Func<long>)(() => {FormularioClienteConsulta f_ = new FormularioClienteConsulta(true);f_.ShowDialog();return f_.clienteSeleccionado;}))();
+
+            var cliente = _clienteServicio.ObtenerClientePorId(idCliente);
+            if (cliente != null)
+            {
+                txtDniCliente.Text = cliente.Dni;
+                txtApellidoCliente.Text = cliente.Apellido;
+                txtNombreCliente.Text = cliente.Nombre;
+            }
+            
+            //ObtenerClientePorId
+            
+            Console.WriteLine(idCliente);
+            Console.WriteLine("Cerró");
         }
     }
 }

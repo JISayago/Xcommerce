@@ -20,5 +20,7 @@ namespace XCommerce.Servicios.Core.Cliente
         void Modificar(ClienteDTO clienteDto);
 
         void Eliminar(long clienteId);
+
+        bool DescontarDeCuenta(long clienteId, decimal monto);
     }
 }
