@@ -107,9 +107,11 @@ namespace Presentacion.Core.VentaSalon
         }
         public FormularioComprobanteMesa(long mesaId, int _numeroMesa, bool cerrarMesa) : this()
         {
+            ObtenerComprobanteMesa(mesaId);
             if (cerrarMesa)
             {
-                cerrarLaMesa(mesaId, _numeroMesa);
+                this.Show();
+                cerrarLaMesa(mesaId, _numeroMesa);             
             }
         }
         
@@ -270,9 +272,9 @@ namespace Presentacion.Core.VentaSalon
             }
 
             var mesaParaCerrar = _mesaServicio.ObtenerPorId(mesaId);
-            mesaParaCerrar.estadoMesa = EstadoMesa.Cerrada;
+            mesaParaCerrar.estadoMesa = EstadoMesa.Cerrada;            
             _mesaServicio.Modificar(mesaParaCerrar);
-
+           
             this.Close();
             
 
