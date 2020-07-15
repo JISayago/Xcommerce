@@ -11,5 +11,7 @@ namespace XCommerce.Servicios.Core.Producto
     {
         ProductoMesaDTO ObtenerPorCodigoKiosco(string codigo);
         ProductoMesaDTO ObtenerPorCodigo(long mesaID, string codigo);
+        ProductoMesaDTO ObtenerPorCodigoSalon(string salonDesc, string codigo);
+        
     }
 }

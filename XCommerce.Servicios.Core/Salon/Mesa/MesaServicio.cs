@@ -162,7 +162,13 @@ namespace XCommerce.Servicios.Core.Salon.Mesa
             }
         }
 
-        
+        public string ObtenerSalon(long _mesaId)
+        {
+            using (var context = new ModeloXCommerceContainer())
+            {
+                return context.Mesas.FirstOrDefault(x => x.Id == _mesaId).Salon.Descripcion;
+            }
+        }
     }
 
 }
