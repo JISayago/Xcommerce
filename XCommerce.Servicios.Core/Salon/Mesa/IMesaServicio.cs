@@ -23,6 +23,7 @@ namespace XCommerce.Servicios.Core.Salon.Mesa
         MesaDTO ObtenerPorId(long mesaId);
 
         long Insertar(MesaDTO mesaDTO);
+        string ObtenerSalon(long _mesaId);
 
         void Modificar(MesaDTO mesaDTO);
 

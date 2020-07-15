@@ -27,7 +27,7 @@ namespace Presentacion.Core.Kiosco
 {
     public partial class FormularioKiosco : FormularioBase
     {
-        //private readonly IArticuloServicio _articuloServicio;
+        private readonly IArticuloServicio _articuloServicio;
         private readonly IProductoServicio _productoServicio;
         private readonly IComprobanteServicio _comprobanteServicio;
         private readonly IDetalleCajaServicio _detalleCajaServicio;
@@ -41,6 +41,7 @@ namespace Presentacion.Core.Kiosco
         {
             InitializeComponent();
             //ResetearGrilla(dgvGrilla);
+            _articuloServicio = new ArticuloServicio();
             _productoServicio = new ProductoServicio();
             _comprobanteServicio = new ComprobanteServicio();
             _detalleCajaServicio = new DetalleCajaServicio();
@@ -94,18 +95,18 @@ namespace Presentacion.Core.Kiosco
             grilla.Columns["CodigoProducto"].Visible = true;
             grilla.Columns["CodigoProducto"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             grilla.Columns["CodigoProducto"].HeaderText = "Codigo del Producto";
-            grilla.Columns["CodigoProducto"].ReadOnly = true; 
+            grilla.Columns["CodigoProducto"].ReadOnly = true;
 
             grilla.Columns["DescripcionProducto"].Visible = true;
             grilla.Columns["DescripcionProducto"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             grilla.Columns["DescripcionProducto"].HeaderText = "Descripcion";
             grilla.Columns["DescripcionProducto"].ReadOnly = true;
-            
+
             grilla.Columns["CantidadProducto"].Visible = true;
             grilla.Columns["CantidadProducto"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             grilla.Columns["CantidadProducto"].HeaderText = "Cantidad";
 
-            
+
             grilla.Columns["PrecioUnitario"].Visible = true;
             grilla.Columns["PrecioUnitario"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             grilla.Columns["PrecioUnitario"].HeaderText = "Precio Unitario";
@@ -131,6 +132,33 @@ namespace Presentacion.Core.Kiosco
 
             return true;
         }
+
+
+        private bool ChequearDisponibilidadArticulo(string codigo, decimal cantidad)
+        {
+            var articulo = _articuloServicio.Obtener(codigo).First();
+
+            Func<bool,string,bool> check_showm = (c,m) => { if(c) MessageBox.Show(m); return false; };
+
+            if (articulo.EstaDiscontinuado) { MessageBox.Show("Articulo descontinuado"); return false; }
+            if (articulo.EstaEliminado)     { MessageBox.Show("Articulo eliminado"); return false; }
+
+            if (articulo.DescuentaStock) {
+                if (!articulo.PermiteStockNegativo
+                    && articulo.Stock - cantidad < 0) { MessageBox.Show("Stock insuficiente"); return false; }
+
+                if (articulo.Stock - cantidad < articulo.StockMinimo) { MessageBox.Show("Stock minimo superado"); return false; }
+            }
+
+            //if(check_showm(articulo.EstaDiscontinuado, "Articulo descontinuado") ||
+            //check_showm(articulo.EstaEliminado, "Articulo eliminado")) return false;
+
+            //if (articulo.DescuentaStock)
+            //    if(check_showm(!articulo.PermiteStockNegativo && articulo.Stock - cantidad < 0, "Stock insuficiente") ||
+            //    check_showm(articulo.Stock - cantidad < articulo.StockMinimo, "Stock minimo superado")) return false;
+
+            return true;
+        }
         private void AgregarArticulo()
         {
             if (string.IsNullOrEmpty(txtCodigoBarras.Text))
@@ -151,16 +179,23 @@ namespace Presentacion.Core.Kiosco
             //if(detalles.FirstOrDefault(x => x.CodigoProducto == txtCodigoBarras.Text))
             //else list_detalles.add)= new detalle_comprobante y cuando aprieto facturar, new comprobante y listo?
 
+
             if (detalles.TryGetValue(txtCodigoBarras.Text, out DetalleComprobanteDTO det))
             {
+                
+                if (!ChequearDisponibilidadArticulo(txtCodigoBarras.Text, nudCantidadArticulo.Value + det.CantidadProducto))
+                    return;
+
                 det.CantidadProducto += nudCantidadArticulo.Value;
             }
             else
             {
-                ProductoMesaDTO producto = _productoServicio.ObtenerPorCodigoKiosco(txtCodigoBarras.Text);
+                //ProductoMesaDTO producto = _productoServicio.ObtenerPorCodigoKiosco(txtCodigoBarras.Text);
+                ProductoMesaDTO producto = _productoServicio.ObtenerPorCodigoSalon("Kiosco", txtCodigoBarras.Text);
 
                 if (producto != null)
                 {
+                    if (!ChequearDisponibilidadArticulo(txtCodigoBarras.Text, 1)) return;
                     detalles[txtCodigoBarras.Text] =
                         new DetalleComprobanteDTO
                         {
@@ -210,17 +245,17 @@ namespace Presentacion.Core.Kiosco
             AgregarArticulo();
         }
 
+        private long consumidorFinalId = 2; // temporal, para no perder la referencia
         private void Facturar()
         {
             ComprobanteDTO comprobante = new ComprobanteDTO
             {
                 Fecha = DateTime.Now,
                 UsuarioId = DatosSistema.UsuarioId,
-                ClienteId = 2,
+                ClienteId = rbCtaCte.Checked ? idCliente : consumidorFinalId,
                 Descuento = nudDescuento.Value,
                 Items = detalles.Values.ToList()
             };
-
 
             var formaDePago = TipoPago.Efectivo;
             if (rbCtaCte.Checked)
@@ -260,8 +295,14 @@ namespace Presentacion.Core.Kiosco
                 Fecha = DateTime.Now,
                 Descripcion = "_____",
             };
+
             _movimientoServicio.GenerarMovimiento(movimiento);
 
+            foreach (var d in detalles)
+            {
+                //producto tendria que tener si descuenta stock o no...
+                _articuloServicio.DescontarStock(d.Value.ProductoId, d.Value.CantidadProducto);
+            }
 
             MessageBox.Show("factura3");
             Close();

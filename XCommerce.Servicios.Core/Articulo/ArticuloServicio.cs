@@ -13,7 +13,27 @@ namespace XCommerce.Servicios.Core.Articulo
     {
         public void DescontarStock(long articuloId, decimal cantidad)
         {
-            throw new NotImplementedException();
+            using (var context = new ModeloXCommerceContainer())
+            {
+                var articulo = context.Articulos
+                    .FirstOrDefault(x => x.Id == articuloId);
+
+                if (articulo == null || articulo.EstaEliminado) throw new Exception("No se encontro el artículo");
+                if (articulo.EstaDiscontinuado) throw new Exception("error articulo discontinuado");
+
+                //aca tendría que ir la Exception como en el resto pero como producto no tiene campo descuenta stok
+                //hay que cortar acá si no descuenta stock
+                //ver foreach final en metodo Facturar() en formulariokiosco
+                if (!articulo.DescuentaStock) return; //throw new Exception("Error articulo no descueta stock");
+
+                articulo.Stock -= cantidad;
+
+                if (articulo.Stock < 0 && !articulo.PermiteStockNegativo) throw new Exception("Error articulo no permite stock negativo");
+                if (articulo.Stock < articulo.StockMinimo && !articulo.PermiteStockNegativo) throw new Exception("Error articulo no permite stock menor a stock mininmo");
+
+                context.SaveChanges();
+            }
+
         }
 
         public void Eliminar(long articuloId)
