@@ -29,9 +29,11 @@ namespace Presentacion.Core.VentaSalon
 
             _salonServicio = new SalonServicio();
             _mesaServicio = new MesaServicio();
-            _comprobanteServicio = new ComprobanteSalonServicio();
+            _comprobanteServicio = new ComprobanteSalonServicio();        
+            
 
         }
+       
 
 
         private void CrearControles()
@@ -122,13 +124,16 @@ namespace Presentacion.Core.VentaSalon
 
         private void FormularioVentaSalon_Load_1(object sender, EventArgs e)
         {
+           
             CrearControles();
-            
+           
         }
 
         private void FormularioVentaSalon_Activated(object sender, EventArgs e)
         {
             CrearControles();
         }
+
+     
     }
 }

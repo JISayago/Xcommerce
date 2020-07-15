@@ -212,6 +212,18 @@
     <Compile Include="Provincia\Localidad\FormularioLocalidadConsulta.Designer.cs">
       <DependentUpon>FormularioLocalidadConsulta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reserva\FormularioReservaABM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reserva\FormularioReservaABM.Designer.cs">
+      <DependentUpon>FormularioReservaABM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reserva\FormularioReservaConsulta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reserva\FormularioReservaConsulta.Designer.cs">
+      <DependentUpon>FormularioReservaConsulta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Salon\FormularioSalonABM.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -350,6 +362,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Provincia\Localidad\FormularioLocalidadABM.resx">
       <DependentUpon>FormularioLocalidadABM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reserva\FormularioReservaABM.resx">
+      <DependentUpon>FormularioReservaABM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Salon\FormularioSalonABM.resx">
       <DependentUpon>FormularioSalonABM.cs</DependentUpon>

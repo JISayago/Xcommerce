@@ -114,6 +114,9 @@
     <Compile Include="Provincia\DTO\ProvinciaDTO.cs" />
     <Compile Include="Provincia\IProvinciaServicio.cs" />
     <Compile Include="Provincia\ProvinciaServicio.cs" />
+    <Compile Include="Reserva\DTO\ReservaDTO.cs" />
+    <Compile Include="Reserva\IReservaServicio.cs" />
+    <Compile Include="Reserva\ReservaServicio.cs" />
     <Compile Include="Salon\DTO\SalonDTO.cs" />
     <Compile Include="Salon\ISalonServicio.cs" />
     <Compile Include="Salon\Mesa\DTO\MesaDTO.cs" />
