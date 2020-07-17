@@ -1,4 +1,5 @@
-﻿using Presentacion.FormulariosBase;
+﻿using Presentacion.Core.Cliente;
+using Presentacion.FormulariosBase;
 using Presentacion.Helpers;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using XCommerce.AccesoDatos;
 using XCommerce.Servicios.Core.Caja.DetalleCaja;
+using XCommerce.Servicios.Core.Cliente;
 using XCommerce.Servicios.Core.Comprobante;
 using XCommerce.Servicios.Core.Comprobante.DTO;
 using XCommerce.Servicios.Core.Empleado.Mozo;
@@ -24,6 +26,8 @@ namespace Presentacion.Core.VentaSalon
     {
         private readonly long _mesaId;
 
+        private long idCliente;
+
         private readonly int _numeroMesa;
 
         private int row;
@@ -31,6 +35,8 @@ namespace Presentacion.Core.VentaSalon
         private readonly IComprobanteSalonServicio _comprobanteSalonServicio;
 
         private readonly IMovimientoServicio _movimientoServicio;
+
+        private readonly IClienteServicio _clienteServicio;
 
         private readonly IDetalleCajaServicio _detalleCajaServicio;
 
@@ -50,7 +56,8 @@ namespace Presentacion.Core.VentaSalon
                                                   new MozoServicio(),
                                                   new MovimientoServicio(),
                                                   new DetalleCajaServicio(),
-                                                  new MesaServicio())
+                                                  new MesaServicio(),
+                                                  new ClienteServicio())
         {
             InitializeComponent();
             
@@ -63,14 +70,16 @@ namespace Presentacion.Core.VentaSalon
                                          IMozoServicio mozoServicio,
                                          IMovimientoServicio movimientoServicio,
                                          IDetalleCajaServicio detalleCajaServicio,
-                                         IMesaServicio mesaServicio)
+                                         IMesaServicio mesaServicio,
+                                         IClienteServicio clienteServicio)
         {
             _comprobanteSalonServicio = comprobanteSalonServicio;
             _productoServicio = productoServicio;
             _mozoServicio = mozoServicio;
             _movimientoServicio = movimientoServicio;
             _detalleCajaServicio = detalleCajaServicio;
-            _mesaServicio = mesaServicio;         
+            _mesaServicio = mesaServicio;
+            _clienteServicio = clienteServicio;
 
 
         }
@@ -259,6 +268,19 @@ namespace Presentacion.Core.VentaSalon
 
             if (nudTotal.Value > 0)
             {
+                
+                if(_tPago == TipoPago.CtaCte)
+                {
+                    
+                    if (_clienteServicio.DescontarDeCuenta(idCliente, comprobanteMesaDto.Total))
+                    {
+                        //nada?
+                    }
+                    else
+                    {
+                        throw new Exception("Si tiene menos de 0 deberia un cartel que no deje que siga el tema ya vemos yadayadayada");
+                    }
+                }
                 _comprobanteSalonServicio.FacturarComprobanteSalon(mesaId, comprobanteMesaDto);
 
                 _movimientoServicio.GenerarMovimiento(DatosSistema.CajaId, comprobanteMesaDto.ComprobanteId, TipoMovimiento.Ingreso, DatosSistema.UsuarioId, nudTotal.Value, $" Ingreso de Mesa n°:{numeroMesa}");
@@ -393,6 +415,29 @@ namespace Presentacion.Core.VentaSalon
 
             nudTotal.Value = nudSubTotal.Value - (nudSubTotal.Value * nudDescuento.Value) / 100;
 
+        }
+        
+
+        private void btnBuscarCliente_Click_1(object sender, EventArgs e)
+        {
+            bool vieneDeSelecFPago = true;
+            FormularioClienteConsulta f = new FormularioClienteConsulta(vieneDeSelecFPago);
+
+            f.ShowDialog();
+
+            idCliente = f.clienteSeleccionado;
+
+
+
+            var cliente = _clienteServicio.ObtenerClientePorId(idCliente);
+            if (cliente != null)
+            {
+                txtClienteDni.Text = cliente.Dni;
+
+                txtClienteApyNom.Text = $"{cliente.Apellido} {cliente.Nombre}";
+            }
+
+            //ObtenerClientePorId
         }
     }
 }
