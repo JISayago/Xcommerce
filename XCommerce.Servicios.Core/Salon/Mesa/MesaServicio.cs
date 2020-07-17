@@ -169,6 +169,21 @@ namespace XCommerce.Servicios.Core.Salon.Mesa
                 return context.Mesas.FirstOrDefault(x => x.Id == _mesaId).Salon.Descripcion;
             }
         }
+        public string ObtenerListaPrecio(long _mesaId)
+        {
+            using (var context = new ModeloXCommerceContainer())
+            {
+                return context.Mesas.FirstOrDefault(x => x.Id == _mesaId).Salon.ListaPrecio.Descripcion;
+            }
+        }
+
+        public bool HayMesasAbiertas()
+        {
+            using (var context = new ModeloXCommerceContainer())
+            {
+                return context.Mesas.Any(x => x.EstadoMesa == EstadoMesa.Abierta);
+            }
+        }
     }
 
 }

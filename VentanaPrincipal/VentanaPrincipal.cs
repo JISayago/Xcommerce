@@ -9,6 +9,7 @@ namespace VentanaPrincipal
     using Presentacion.Core.Caja;
     using Presentacion.Core.Cliente;
     using Presentacion.Core.Empleado;
+    using Presentacion.Core.Kiosco;
     using Presentacion.Core.ListaPrecio;
     using Presentacion.Core.Precio;
     using Presentacion.Core.Provincia;
@@ -120,6 +121,12 @@ namespace VentanaPrincipal
         {
             var FormularioBajaArticulo = new FormularioBajaArticuloConsulta();
             FormularioBajaArticulo.Show();
+        }
+
+        private void KioscoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var fKiosco = new FormularioKiosco();
+            fKiosco.Show();
         }
     }
 }

@@ -33,6 +33,8 @@
             this.btnCerrar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblCaja = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblMontoSistema = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnAbrir
@@ -74,11 +76,31 @@
             this.lblCaja.TabIndex = 3;
             this.lblCaja.Text = "La Caja";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(77, 217);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(85, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Montos Sistema:";
+            // 
+            // lblMontoSistema
+            // 
+            this.lblMontoSistema.AutoSize = true;
+            this.lblMontoSistema.Location = new System.Drawing.Point(168, 217);
+            this.lblMontoSistema.Name = "lblMontoSistema";
+            this.lblMontoSistema.Size = new System.Drawing.Size(13, 13);
+            this.lblMontoSistema.TabIndex = 5;
+            this.lblMontoSistema.Text = "0";
+            // 
             // FormularioCaja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(398, 219);
+            this.ClientSize = new System.Drawing.Size(398, 248);
+            this.Controls.Add(this.lblMontoSistema);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblCaja);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnCerrar);
@@ -96,5 +118,7 @@
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblCaja;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblMontoSistema;
     }
 }

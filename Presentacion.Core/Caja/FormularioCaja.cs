@@ -8,14 +8,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using XCommerce.Servicios.Core.Caja;
 
 namespace Presentacion.Core.Caja
 {
     public partial class FormularioCaja : Form
     {
+        private readonly ICajaServicio _cajaServicio;
         public FormularioCaja()
         {
             InitializeComponent();
+            _cajaServicio = new CajaServicio();
+            if (DatosSistema.EstaCajaAbierta)
+            {
+                lblMontoSistema.Text = _cajaServicio.ObtenerMontoSistema(DatosSistema.CajaId).ToString();
+            } else
+            {
+                lblMontoSistema.Text = "Caja Cerrada";
+            }
         }
 
         private void BtnAbrir_Click(object sender, EventArgs e)

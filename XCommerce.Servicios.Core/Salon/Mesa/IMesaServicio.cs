@@ -17,13 +17,15 @@ namespace XCommerce.Servicios.Core.Salon.Mesa
         IEnumerable<MesaDTO> ObtenerMesaPorSalon(long salonId, string cadenaBuscar);
 
         bool ExisteNumeroMesa(int numeroMesa);
+        bool HayMesasAbiertas();
 
-      
+
 
         MesaDTO ObtenerPorId(long mesaId);
 
         long Insertar(MesaDTO mesaDTO);
         string ObtenerSalon(long _mesaId);
+        string ObtenerListaPrecio(long _mesaId);
 
         void Modificar(MesaDTO mesaDTO);
 

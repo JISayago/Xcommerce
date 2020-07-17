@@ -71,6 +71,37 @@ namespace XCommerce.Servicios.Core.Producto
 
         }
 
+        public ProductoMesaDTO ObtenerPorCodigoListaPrecio(string listaPrecioDesc, string codigo)
+        {
+            using (var context = new ModeloXCommerceContainer())
+            {
+                var producto = context.Articulos
+                    .Include(x => x.Precios)
+                    .Include("Precios.ListaPrecio")
+                    .AsNoTracking()
+                    .Select(x => new ProductoMesaDTO
+                    {
+                        Id = x.Id,
+                        Descripcion = x.Descripcion,
+                        EstaEliminado = x.EstaEliminado,
+                        Codigo = x.Codigo,
+                        CodigoBarra = x.CodigoBarra,
+                        DescuentaStock = x.DescuentaStock,
+                        Precio = x.Precios.Any(lp => lp.ListaPrecio.Descripcion == listaPrecioDesc) ?
+                        x.Precios.Where(l => l.ListaPrecio.Descripcion == listaPrecioDesc)
+                        .OrderByDescending(f => f.FechaActualizacion).FirstOrDefault().PrecioPublico
+                        : -1,
+                    }).FirstOrDefault(x => x.Codigo == codigo || x.CodigoBarra == codigo);
+
+                if (producto != null)
+                {
+                    if (producto.Precio == -1) return null;
+                }
+                return producto;
+            }
+
+        }
+
         public ProductoMesaDTO ObtenerPorCodigoKiosco(string codigo)
         {
             using (var context = new ModeloXCommerceContainer())

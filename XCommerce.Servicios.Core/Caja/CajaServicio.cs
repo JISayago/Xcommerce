@@ -86,5 +86,32 @@ namespace XCommerce.Servicios.Core.Caja
             }
         }
 
+        public decimal ObtenerMontoSistema(long cajaId)
+        {
+            using (var context = new ModeloXCommerceContainer())
+            {
+                var detCajas = context.DetalleCajas.Where(x => x.CajaId == cajaId);
+
+                if (detCajas == null) return 0;
+
+                decimal total = 0;
+                foreach(var d in detCajas)
+                {
+                    switch(d.TipoPago)
+                    {
+                        case TipoPago.Efectivo:
+                            total += d.Monto;
+                            break;
+                        case TipoPago.CtaCte:
+                        case TipoPago.Tarjeta:
+                            break;
+                        default:
+                            throw new Exception("Error tipo pago no existe");
+                    }
+                }
+
+                return total;
+            }
+        }
     }
 }
