@@ -39,6 +39,7 @@
             this.cmbArticulo = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btn_aplicarRentabilidad = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrecioPublico)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrecioCosto)).BeginInit();
             this.SuspendLayout();
@@ -46,7 +47,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(36, 205);
+            this.label11.Location = new System.Drawing.Point(11, 204);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(75, 13);
             this.label11.TabIndex = 164;
@@ -54,20 +55,20 @@
             // 
             // nudPrecioPublico
             // 
-            this.nudPrecioPublico.Location = new System.Drawing.Point(135, 205);
+            this.nudPrecioPublico.Location = new System.Drawing.Point(110, 204);
             this.nudPrecioPublico.Maximum = new decimal(new int[] {
             999999,
             0,
             0,
             0});
             this.nudPrecioPublico.Name = "nudPrecioPublico";
-            this.nudPrecioPublico.Size = new System.Drawing.Size(254, 20);
+            this.nudPrecioPublico.Size = new System.Drawing.Size(265, 20);
             this.nudPrecioPublico.TabIndex = 163;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(36, 179);
+            this.label8.Location = new System.Drawing.Point(11, 178);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(67, 13);
             this.label8.TabIndex = 162;
@@ -75,20 +76,20 @@
             // 
             // nudPrecioCosto
             // 
-            this.nudPrecioCosto.Location = new System.Drawing.Point(135, 179);
+            this.nudPrecioCosto.Location = new System.Drawing.Point(110, 178);
             this.nudPrecioCosto.Maximum = new decimal(new int[] {
             999999,
             0,
             0,
             0});
             this.nudPrecioCosto.Name = "nudPrecioCosto";
-            this.nudPrecioCosto.Size = new System.Drawing.Size(254, 20);
+            this.nudPrecioCosto.Size = new System.Drawing.Size(265, 20);
             this.nudPrecioCosto.TabIndex = 161;
             // 
             // artLbl
             // 
             this.artLbl.AutoSize = true;
-            this.artLbl.Location = new System.Drawing.Point(60, 75);
+            this.artLbl.Location = new System.Drawing.Point(24, 75);
             this.artLbl.Name = "artLbl";
             this.artLbl.Size = new System.Drawing.Size(42, 13);
             this.artLbl.TabIndex = 165;
@@ -97,7 +98,7 @@
             // lblNombreArticulo
             // 
             this.lblNombreArticulo.AutoSize = true;
-            this.lblNombreArticulo.Location = new System.Drawing.Point(131, 75);
+            this.lblNombreArticulo.Location = new System.Drawing.Point(95, 75);
             this.lblNombreArticulo.Name = "lblNombreArticulo";
             this.lblNombreArticulo.Size = new System.Drawing.Size(82, 13);
             this.lblNombreArticulo.TabIndex = 166;
@@ -117,9 +118,9 @@
             // 
             this.cmbListaPrecio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbListaPrecio.FormattingEnabled = true;
-            this.cmbListaPrecio.Location = new System.Drawing.Point(110, 135);
+            this.cmbListaPrecio.Location = new System.Drawing.Point(74, 135);
             this.cmbListaPrecio.Name = "cmbListaPrecio";
-            this.cmbListaPrecio.Size = new System.Drawing.Size(315, 21);
+            this.cmbListaPrecio.Size = new System.Drawing.Size(397, 21);
             this.cmbListaPrecio.TabIndex = 170;
             this.cmbListaPrecio.SelectionChangeCommitted += new System.EventHandler(this.CmbListaPrecio_SelectionChangeCommitted);
             // 
@@ -127,16 +128,16 @@
             // 
             this.cmbArticulo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbArticulo.FormattingEnabled = true;
-            this.cmbArticulo.Location = new System.Drawing.Point(110, 108);
+            this.cmbArticulo.Location = new System.Drawing.Point(74, 108);
             this.cmbArticulo.Name = "cmbArticulo";
-            this.cmbArticulo.Size = new System.Drawing.Size(315, 21);
+            this.cmbArticulo.Size = new System.Drawing.Size(397, 21);
             this.cmbArticulo.TabIndex = 168;
             this.cmbArticulo.SelectionChangeCommitted += new System.EventHandler(this.CmbArticulo_SelectionChangeCommitted);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(48, 112);
+            this.label1.Location = new System.Drawing.Point(12, 112);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(42, 13);
             this.label1.TabIndex = 172;
@@ -145,17 +146,28 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(42, 143);
+            this.label2.Location = new System.Drawing.Point(6, 143);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 13);
             this.label2.TabIndex = 173;
             this.label2.Text = "Lista Precio";
+            // 
+            // btn_aplicarRentabilidad
+            // 
+            this.btn_aplicarRentabilidad.Location = new System.Drawing.Point(381, 199);
+            this.btn_aplicarRentabilidad.Name = "btn_aplicarRentabilidad";
+            this.btn_aplicarRentabilidad.Size = new System.Drawing.Size(90, 36);
+            this.btn_aplicarRentabilidad.TabIndex = 174;
+            this.btn_aplicarRentabilidad.Text = "Aplicar Rentabilidad";
+            this.btn_aplicarRentabilidad.UseVisualStyleBackColor = true;
+            this.btn_aplicarRentabilidad.Click += new System.EventHandler(this.Btn_aplicarRentabilidad_Click);
             // 
             // FormularioActualizarPrecio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(483, 302);
+            this.Controls.Add(this.btn_aplicarRentabilidad);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbListaPrecio);
@@ -180,6 +192,7 @@
             this.Controls.SetChildIndex(this.cmbListaPrecio, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.label2, 0);
+            this.Controls.SetChildIndex(this.btn_aplicarRentabilidad, 0);
             ((System.ComponentModel.ISupportInitialize)(this.nudPrecioPublico)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrecioCosto)).EndInit();
             this.ResumeLayout(false);
@@ -199,5 +212,6 @@
         private System.Windows.Forms.ComboBox cmbArticulo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btn_aplicarRentabilidad;
     }
 }

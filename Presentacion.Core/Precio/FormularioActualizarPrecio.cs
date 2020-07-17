@@ -162,5 +162,11 @@ namespace Presentacion.Core.Precio
             var fHistorial = new HistorialPrecio(art.Id, lp.Id);
             fHistorial.ShowDialog();
         }
+
+        private void Btn_aplicarRentabilidad_Click(object sender, EventArgs e)
+        {
+            ListaPrecioDTO lp = (ListaPrecioDTO)cmbListaPrecio.SelectedItem;
+            nudPrecioPublico.Value = nudPrecioCosto.Value + (nudPrecioCosto.Value/100*lp.Rentabilidad);
+        }
     }
 }

@@ -24,6 +24,7 @@ namespace Presentacion.Core.VentaSalon
 {
     public partial class FormularioComprobanteMesa : FormularioBase
     {
+        private readonly string _listaPrecio;
         private readonly long _mesaId;
 
         private long idCliente;
@@ -60,9 +61,9 @@ namespace Presentacion.Core.VentaSalon
                                                   new ClienteServicio())
         {
             InitializeComponent();
-            
 
 
+            if (_tfPAgo == 0) { int a = 1; a++; }
         }
     
         public FormularioComprobanteMesa(IComprobanteSalonServicio comprobanteSalonServicio, 
@@ -130,7 +131,9 @@ namespace Presentacion.Core.VentaSalon
             this.Text = $"Venta -- Mesa: {numeroMesa}";
             _mesaId = mesaId;
             _numeroMesa = numeroMesa;
-          
+
+            _listaPrecio = _mesaServicio.ObtenerListaPrecio(_mesaId);
+
             ObtenerComprobanteMesa(mesaId);
 
             ResetearGrilla(dgvGrilla);
@@ -183,7 +186,7 @@ namespace Presentacion.Core.VentaSalon
                 MessageBox.Show("Por favor ingrese un codigo");
                 return;
             }
-            var producto = _productoServicio.ObtenerPorCodigo(_mesaId, txtCodigoBarras.Text);
+            var producto = _productoServicio.ObtenerPorCodigoListaPrecio(_listaPrecio, txtCodigoBarras.Text);
 
             if (producto != null)
             {
@@ -192,6 +195,10 @@ namespace Presentacion.Core.VentaSalon
                 _comprobanteSalonServicio.AgregarItems(_mesaId, nudCantidadArticulo.Value, producto);
 
                 ObtenerComprobanteMesa(_mesaId);
+            }
+            else
+            {
+                MessageBox.Show($"Articulo no existe o no esta en lista precio: {_listaPrecio}.");
             }
         }
 
