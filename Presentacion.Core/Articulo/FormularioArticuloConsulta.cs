@@ -64,39 +64,20 @@ namespace Presentacion.Core.Articulo
             {
                 obtenerEliminados = true;
             }
-            
+
             grilla.DataSource = _articuloServicio.Obtener(cadenaBuscar, obtenerEliminados);
             toolStrip.Enabled = true;
         }
 
         public override void EjecutarBtnEliminar()
         {
-            var eliminarDarBAja = new FormularioEliminarDarBaja();
-            eliminarDarBAja.ShowDialog();
-
-           /* DialogResult res = MessageBox.Show("Are you sure you want to Delete", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-            if (res == DialogResult.OK)
-            {
-                MessageBox.Show("You have clicked Ok Button");
-                //Some task…  
-            }
-            if (res == DialogResult.Cancel)
-            {
-                MessageBox.Show("You have clicked Cancel Button");
-                //Some task…  
-            }
-            
             base.EjecutarBtnEliminar();
             if (puedeEjecutarComando)
             {
                 var fArticuloABM = new FormularioArticuloABM(TipoOperacion.Eliminar, entidadId);
                 fArticuloABM.ShowDialog();
                 ActualizarSegunOperacion(fArticuloABM.RealizoAlgunaOperacion);
-            }*/
-
-            
-            var FormularioBajaArticulo = new FormularioBajaArticuloABM(TipoOperacion.Nuevo, entidadId);
-            FormularioBajaArticulo.Show();
+            }
         }
 
         private void ActualizarSegunOperacion(bool realizoOperacion)
@@ -125,5 +106,10 @@ namespace Presentacion.Core.Articulo
             ActualizarSegunOperacion(fArticuloABM.RealizoAlgunaOperacion);
         }
 
+        private void btnBajaArticulo_Click(object sender, EventArgs e)
+        {
+            var bajaArticulo = new FormularioBajaArticuloABM(TipoOperacion.Nuevo, entidadId);
+            bajaArticulo.ShowDialog();    
+        }
     }
 }

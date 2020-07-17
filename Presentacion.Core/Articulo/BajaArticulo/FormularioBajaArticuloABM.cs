@@ -74,21 +74,19 @@ namespace Presentacion.Core.Articulo.BajaArticulo
 
             if (TipoOperacion == TipoOperacion.Nuevo)
             { 
-
                 CargarComboBox(cmbMotivo, _motivoBajaServicio.ObtenerMotivoBaja(string.Empty), "Descripcion", "Id");
-                //cuando abris motivoBajaABM y se vuelve a abrir bajaArticuloABM se piede entidadID del articulo!!!!!
                 var articuloDTO = _articuloServicio.ObtenerPorId(entidadId.Value);
+
                 lblArticulo.Text = articuloDTO.Descripcion;
-                //se rompe al querer modificar, crear funcion que traiga el articulo segun la bajaArticulo y devuelta articulo.Descripcion/Stock - if(tipoOperaicon.Modificar) cargara de diferente forma a NUEVO
+
                 nudCantidad.Minimum = 1;
                 nudCantidad.Maximum = articuloDTO.Stock;
-                nudCantidad.Value = articuloDTO.Stock;//No funca, porque? noc
+                nudCantidad.Value = articuloDTO.Stock;
 
                 richBajaArticulo.KeyPress += Validacion.NoSimbolos;
                 richBajaArticulo.KeyPress += Validacion.NoNumeros;
 
                 nudCantidad.Focus();
-
             }
         }
 
@@ -110,7 +108,22 @@ namespace Presentacion.Core.Articulo.BajaArticulo
             this.Close();
 
             return true;
+        }
 
+        public override bool EjecutarComandoModificar()
+        {
+            var bajaArticuloMod = new BajaArticuloDTO
+            {
+                Id = EntidadId.Value,
+                Observacion = richBajaArticulo.Text,
+                MotivoBajaId = (long)cmbMotivo.SelectedValue,
+            };
+
+            _bajaArticuloServicio.Modificar(bajaArticuloMod);
+
+            this.Close();
+
+            return true;
         }
 
         private void btnNuevoMotivoBaja_Click(object sender, EventArgs e)

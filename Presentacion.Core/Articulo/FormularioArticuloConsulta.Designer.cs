@@ -28,6 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.btnBajaArticulo = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // btnBajaArticulo
+            // 
+            this.btnBajaArticulo.Location = new System.Drawing.Point(352, 12);
+            this.btnBajaArticulo.Name = "btnBajaArticulo";
+            this.btnBajaArticulo.Size = new System.Drawing.Size(128, 26);
+            this.btnBajaArticulo.TabIndex = 128;
+            this.btnBajaArticulo.Text = "Baja Articulos";
+            this.btnBajaArticulo.UseVisualStyleBackColor = true;
+            this.btnBajaArticulo.Click += new System.EventHandler(this.btnBajaArticulo_Click);
+            //
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
@@ -35,5 +48,7 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btnBajaArticulo;
     }
 }
