@@ -265,7 +265,7 @@
             this.MinimumSize = new System.Drawing.Size(527, 277);
             this.Name = "FormularioReservaABM";
             this.Text = "FormularioReservaABM";
-            this.Activated += new System.EventHandler(this.FormularioReservaABM_Activated);
+            //this.Activated += new System.EventHandler(this.FormularioReservaABM_Activated);
             this.Controls.SetChildIndex(this.lblSenia, 0);
             this.Controls.SetChildIndex(this.dtpFecha, 0);
             this.Controls.SetChildIndex(this.nudSenia, 0);

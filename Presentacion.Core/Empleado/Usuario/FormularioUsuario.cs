@@ -23,11 +23,11 @@
 
             _usuarioServicio = new UsuarioServicio();
 
-            btnNuevo.Image = Constatntes.Imagenes.ImagenBotonNuevo;
-            btnBloquear.Image = Constatntes.Imagenes.ImagenBotonEliminar;
-            btnDesbloquear.Image = Constatntes.Imagenes.ImagenBotonImprimir;
-            btnActualizar.Image = Constatntes.Imagenes.ImagenBotonActualizar;
-            btnSalir.Image = Constatntes.Imagenes.ImagenBotonSalir;
+            btnNuevo.Image = Constantes.Imagenes.ImagenBotonNuevo;
+            btnBloquear.Image = Constantes.Imagenes.ImagenBotonEliminar;
+            btnDesbloquear.Image = Constantes.Imagenes.ImagenBotonImprimir;
+            btnActualizar.Image = Constantes.Imagenes.ImagenBotonActualizar;
+            btnSalir.Image = Constantes.Imagenes.ImagenBotonSalir;
 
             cbxEstaBloqueado.Visible = false;
 

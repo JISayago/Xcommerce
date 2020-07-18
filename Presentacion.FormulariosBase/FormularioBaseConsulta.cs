@@ -20,12 +20,12 @@
             InitializeComponent();
 
             btnImprimir.Visible = false;
-            btnNuevo.Image = Constatntes.Imagenes.ImagenBotonNuevo;
-            btnModificar.Image = Constatntes.Imagenes.ImagenBotonModificar;
-            btnEliminar.Image = Constatntes.Imagenes.ImagenBotonEliminar;
-            btnImprimir.Image = Constatntes.Imagenes.ImagenBotonImprimir;
-            btnActualizar.Image = Constatntes.Imagenes.ImagenBotonActualizar;
-            btnSalir.Image = Constatntes.Imagenes.ImagenBotonSalir;           
+            btnNuevo.Image = Constantes.Imagenes.ImagenBotonNuevo;
+            btnModificar.Image = Constantes.Imagenes.ImagenBotonModificar;
+            btnEliminar.Image = Constantes.Imagenes.ImagenBotonEliminar;
+            btnImprimir.Image = Constantes.Imagenes.ImagenBotonImprimir;
+            btnActualizar.Image = Constantes.Imagenes.ImagenBotonActualizar;
+            btnSalir.Image = Constantes.Imagenes.ImagenBotonSalir;           
 
 
             entidadId = null;

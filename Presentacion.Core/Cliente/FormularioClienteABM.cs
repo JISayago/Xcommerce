@@ -88,7 +88,7 @@ namespace Presentacion.Core.Cliente
             txtCelular.KeyPress += Validacion.NoSimbolos;
             txtCelular.KeyPress += Validacion.NoLetras;
 
-            imgFotoCliente.Image = Constatntes.Imagenes.ImagenUsuario;
+            imgFotoCliente.Image = Constantes.Imagenes.ImagenUsuario;
 
             txtApellido.Focus();
         }
@@ -169,12 +169,12 @@ namespace Presentacion.Core.Cliente
                 }
                 else
                 {
-                    imgFotoCliente.Image = Presentacion.Constatntes.Imagenes.ImagenUsuario;
+                    imgFotoCliente.Image = Presentacion.Constantes.Imagenes.ImagenUsuario;
                 }
             }
             else
             {
-                imgFotoCliente.Image = Presentacion.Constatntes.Imagenes.ImagenUsuario;
+                imgFotoCliente.Image = Presentacion.Constantes.Imagenes.ImagenUsuario;
             }
         }
 

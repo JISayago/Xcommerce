@@ -17,6 +17,7 @@ namespace VentanaPrincipal
     using Presentacion.Core.Salon;
     using Presentacion.Core.Salon.Mesa;
     using Presentacion.Core.VentaSalon;
+    using Presentacion.Helpers;
     using Presentacion.Login.Usuario;
     using System;
     using System.Windows.Forms;
@@ -26,9 +27,12 @@ namespace VentanaPrincipal
         public VentanaPrincipal()
         {
             InitializeComponent();
+
+            lblNombreUsuario.Text = DatosSistema.NombreUsuario;
+            lblEstadoCaja.Text = DatosSistema.EstaCajaAbierta ? "Abierta" : "Cerrada";
         }
 
-           
+
 
         private void consultaToolStripMenuItem1_Click_1(object sender, EventArgs e)
         {
@@ -36,8 +40,8 @@ namespace VentanaPrincipal
             FormularioConsultaProvincia.Show();
         }
 
-      
-     
+
+
         private void consultaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var FormularioConsultaEmpleado = new FormularioEmpleadoConsulta();
@@ -100,8 +104,6 @@ namespace VentanaPrincipal
 
         private void cajaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var Caja = new FormularioCaja();
-            Caja.Show();
         }
 
         private void consultaToolStripMenuItem7_Click(object sender, EventArgs e)
@@ -127,6 +129,24 @@ namespace VentanaPrincipal
         {
             var fKiosco = new FormularioKiosco();
             fKiosco.Show();
+        }
+
+        private void btnKiosco_Click(object sender, EventArgs e)
+        {
+            var fKiosco = new FormularioKiosco();
+            fKiosco.Show();
+        }
+
+        private void btnCaja_Click(object sender, EventArgs e)
+        {
+            var Caja = new FormularioCaja();
+            Caja.Show();
+        }
+
+        private void btnVentaSalon_Click(object sender, EventArgs e)
+        {
+            var fVentaSalon = new FormularioVentaSalon();
+            fVentaSalon.Show();
         }
     }
 }

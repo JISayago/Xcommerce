@@ -235,12 +235,12 @@ namespace Presentacion.Core.Articulo
                 }
                 else
                 {
-                    imgFotoArticulo.Image = Presentacion.Constatntes.Imagenes.ImagenBotonBuscar;
+                    imgFotoArticulo.Image = Presentacion.Constantes.Imagenes.ImagenBotonBuscar;
                 }
             }
             else
             {
-                imgFotoArticulo.Image = Presentacion.Constatntes.Imagenes.ImagenBotonBuscar;
+                imgFotoArticulo.Image = Presentacion.Constantes.Imagenes.ImagenBotonBuscar;
             }
         }
 

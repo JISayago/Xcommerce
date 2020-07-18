@@ -3,6 +3,7 @@
     using Presentacion.FormulariosBase.Helpers;
     using System;
     using System.Windows.Forms;
+    
 
     public partial class FormularioBaseABM : FormularioBase
     {
@@ -16,7 +17,7 @@
         public FormularioBaseABM() 
         {
             InitializeComponent();
-            btnSalir.Image = Constatntes.Imagenes.ImagenBotonSalir; 
+            btnSalir.Image = Constantes.Imagenes.ImagenBotonSalir; 
         }
 
         public FormularioBaseABM(TipoOperacion tipoOperacion, long? entidadId) : this()
@@ -33,14 +34,14 @@
             if (tipoOperacion == TipoOperacion.Eliminar)
             {
                 btnEjecutar.Text = "Eliminar";
-                btnEjecutar.Image = Constatntes.Imagenes.ImagenBotonEliminar;
-                btnLimpiar.Image = Constatntes.Imagenes.ImagenBotonLimpiar;
+                btnEjecutar.Image = Constantes.Imagenes.ImagenBotonEliminar;
+                btnLimpiar.Image = Constantes.Imagenes.ImagenBotonLimpiar;
             }
             else
             {
                 btnEjecutar.Text = "Guardar";
-                btnEjecutar.Image = Constatntes.Imagenes.ImagenBotonGuardar;
-                btnLimpiar.Image = Constatntes.Imagenes.ImagenBotonLimpiar;
+                btnEjecutar.Image = Constantes.Imagenes.ImagenBotonGuardar;
+                btnLimpiar.Image = Constantes.Imagenes.ImagenBotonLimpiar;
             }
         }
 

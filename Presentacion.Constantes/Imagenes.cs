@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Presentacion.Constatntes
+namespace Presentacion.Constantes
 {
     public static class Imagenes
     {

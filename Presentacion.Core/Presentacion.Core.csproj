@@ -268,7 +268,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Presentacion.Constatntes\Presentacion.Constantes.csproj">
+    <ProjectReference Include="..\Presentacion.Constantes\Presentacion.Constantes.csproj">
       <Project>{4f44a178-3658-482f-b40b-6ec813483349}</Project>
       <Name>Presentacion.Constantes</Name>
     </ProjectReference>
