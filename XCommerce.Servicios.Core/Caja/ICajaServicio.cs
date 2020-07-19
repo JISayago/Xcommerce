@@ -14,5 +14,6 @@ namespace XCommerce.Servicios.Core.Caja
         CajaDTO Obtener(long id);
         bool HayCajaAbierta();
         long ObtenerCajaAbierta();
+        decimal ObtenerMontoSistema(long cajaId);
     }
 }

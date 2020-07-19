@@ -15,10 +15,14 @@ namespace XCommerce.Servicios.Core.Cliente
 
         ClienteDTO ObtenerClientePorId(long clienteId);
 
+        ClienteDTO ObtenerClientePorDni(string dni);
+
         long Insertar(ClienteDTO clienteDto);
 
         void Modificar(ClienteDTO clienteDto);
 
         void Eliminar(long clienteId);
+
+        bool DescontarDeCuenta(long clienteId, decimal monto);
     }
 }

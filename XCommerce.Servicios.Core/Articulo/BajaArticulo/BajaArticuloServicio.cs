@@ -29,7 +29,7 @@ namespace XCommerce.Servicios.Core.Articulo.BajaArticulo
                 var articuloDescontarStock = context.Articulos
                     .FirstOrDefault(x => x.Id == dto.ArticuloId);
 
-                articuloDescontarStock.Stock = articuloDescontarStock.Stock - nuevaBajaArticulo.Cantidad;
+                articuloDescontarStock.Stock -= nuevaBajaArticulo.Cantidad;
 
                 context.BajaArticulos.Add(nuevaBajaArticulo);
 
@@ -49,7 +49,6 @@ namespace XCommerce.Servicios.Core.Articulo.BajaArticulo
 
                 if (bajaArticuloModificar == null) throw new Exception("Ocurrió un error al obtener la Baja del Articulo para Modificarla");
 
-                bajaArticuloModificar.Cantidad = dto.Cantidad;
                 bajaArticuloModificar.Observacion = dto.Observacion;
                 bajaArticuloModificar.MotivoBajaId = dto.MotivoBajaId;
 

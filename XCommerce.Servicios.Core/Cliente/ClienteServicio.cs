@@ -66,6 +66,25 @@ namespace XCommerce.Servicios.Core.Cliente
             }
         }
 
+        public bool DescontarDeCuenta(long clienteId, decimal monto)
+        {
+            using (var baseDatos = new ModeloXCommerceContainer())
+            {
+                var clienteModificar = baseDatos.Personas.OfType<AccesoDatos.Cliente>()
+                    .Include(x => x.Direccion)
+                    .FirstOrDefault(x => x.Id == clienteId);
+
+                if (clienteModificar == null)
+                    throw new Exception("No se encontro el Cliente");
+
+               clienteModificar.MontoMaximoCtaCte -= monto;
+                if (clienteModificar.MontoMaximoCtaCte < 0)
+                    return false;
+
+                baseDatos.SaveChanges();
+                return true;
+            }
+        }
         public void Modificar(ClienteDTO clienteDto)
         {
             using (var baseDatos = new ModeloXCommerceContainer())
@@ -219,6 +238,44 @@ namespace XCommerce.Servicios.Core.Cliente
                           ProvinciaId = x.Direccion.Localidad.ProvinciaId
                       }
                       ).FirstOrDefault(x => x.Id == clienteId);
+            }
+        }
+
+        public ClienteDTO ObtenerClientePorDni(string dni)
+        {
+            using (var baseDatos = new ModeloXCommerceContainer())
+            {
+                return baseDatos.Personas.OfType<AccesoDatos.Cliente>()
+                      .AsNoTracking()
+                      .Where(x => !x.EstaEliminado)
+                      .Include(x => x.Direccion)
+                      .Include(x => x.Direccion.Localidad)
+                      .Select(x => new ClienteDTO
+                      {
+                          Id = x.Id,
+                          MontoMaximoCtaCte = x.MontoMaximoCtaCte,
+                          Apellido = x.Apellido,
+                          Nombre = x.Nombre,
+                          Dni = x.Dni,
+                          Telefono = x.Telefono,
+                          Celular = x.Celular,
+                          Email = x.Email,
+                          Cuil = x.Cuil,
+                          FechaNacimiento = x.FechaNacimiento,
+                          Foto = x.Foto,
+                          EstaEliminado = x.EstaEliminado,
+                          Calle = x.Direccion.Calle,
+                          Numero = x.Direccion.Numero,
+                          Piso = x.Direccion.Piso,
+                          Dpto = x.Direccion.Dpto,
+                          Casa = x.Direccion.Casa,
+                          Lote = x.Direccion.Lote,
+                          Barrio = x.Direccion.Barrio,
+                          Mza = x.Direccion.Mza,
+                          LocalidadId = x.Direccion.LocalidadId,
+                          ProvinciaId = x.Direccion.Localidad.ProvinciaId
+                      }
+                      ).FirstOrDefault(x => x.Dni == dni);
             }
         }
     }

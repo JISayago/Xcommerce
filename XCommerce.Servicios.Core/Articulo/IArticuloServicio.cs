@@ -21,8 +21,10 @@ namespace XCommerce.Servicios.Core.Articulo
 
         void DescontarStock(long articuloId, decimal cantidad);
 
-        ArticuloDTO ObtenerPorCodigo(string codigoBuscar, string codigoBarraBuscar);
+        ArticuloDTO ObtenerPorCodigo(string codigoBuscar);
 
         ArticuloDTO ObtenerPorCodigoModificar(string CodigoBuscar, string CodigoBarraBuscar, long EntidadId);
+
+        ArticuloDTO ObtenerArticuloPorBaja(long bajaArticuloId);
     }
 }

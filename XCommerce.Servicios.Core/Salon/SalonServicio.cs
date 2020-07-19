@@ -77,6 +77,7 @@ namespace XCommerce.Servicios.Core.Salon
             }
         }
 
+
         public IEnumerable<SalonDTO> ObtenerSalon(string cadenaBuscar)
         {
             using (var baseDatos = new ModeloXCommerceContainer())

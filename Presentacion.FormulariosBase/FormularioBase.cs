@@ -156,7 +156,7 @@
 
                     if (ctrolPanel is PictureBox)
                     {
-                        ((PictureBox)ctrolPanel).Image = Constatntes.Imagenes.ImagenUsuario;
+                        ((PictureBox)ctrolPanel).Image = Constantes.Imagenes.ImagenUsuario;
                     }
                 }
             }

@@ -93,7 +93,7 @@
             txtCelular.KeyPress += Validacion.NoSimbolos;
             txtCelular.KeyPress += Validacion.NoLetras;
 
-            imgFotoEmpleado.Image = Constatntes.Imagenes.ImagenUsuario;
+            imgFotoEmpleado.Image = Constantes.Imagenes.ImagenUsuario;
 
             txtApellido.Focus();
 
@@ -180,12 +180,12 @@
                 }
                 else
                 {
-                    imgFotoEmpleado.Image = Presentacion.Constatntes.Imagenes.ImagenUsuario;
+                    imgFotoEmpleado.Image = Presentacion.Constantes.Imagenes.ImagenUsuario;
                 }
             }
             else
             {
-                imgFotoEmpleado.Image = Presentacion.Constatntes.Imagenes.ImagenUsuario;
+                imgFotoEmpleado.Image = Presentacion.Constantes.Imagenes.ImagenUsuario;
             }
         }
 

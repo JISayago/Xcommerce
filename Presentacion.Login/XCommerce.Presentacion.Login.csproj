@@ -57,10 +57,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Presentacion.Constatntes\Presentacion.Constantes.csproj">
-      <Project>{4f44a178-3658-482f-b40b-6ec813483349}</Project>
-      <Name>Presentacion.Constantes</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Presentacion.FormulariosBase\Presentacion.FormulariosBase.csproj">
       <Project>{1C900590-52D4-4F5F-871D-653A396FE935}</Project>
       <Name>Presentacion.FormulariosBase</Name>

@@ -36,10 +36,70 @@ namespace XCommerce.Servicios.Core.Producto
                                          && l.FechaActualizacion == x.Precios
                                  .Where(l2 => l2.ListaPrecio.Salon.Any(s2 => s2.Mesas.Any(m2 => m2.Id == mesaID))
                                          && l2.ArticuloId == x.Id).Max(max => max.FechaActualizacion)).PrecioPublico
+                    }).FirstOrDefault(x => x.Codigo == codigo || x.CodigoBarra == codigo) ;
+            }
+        }
+
+        public ProductoMesaDTO ObtenerPorCodigoSalon(string salonDesc, string codigo)
+        {
+            using (var context = new ModeloXCommerceContainer())
+            {
+                var producto = context.Articulos
+                    .Include(x => x.Precios)
+                    .Include("Precios.ListaPrecio")
+                    .AsNoTracking()
+                    .Select(x => new ProductoMesaDTO
+                    {
+                        Id = x.Id,
+                        Descripcion = x.Descripcion,
+                        EstaEliminado = x.EstaEliminado,
+                        Codigo = x.Codigo,
+                        CodigoBarra = x.CodigoBarra,
+                        DescuentaStock = x.DescuentaStock,
+                        Precio = x.Precios.Any(lp => lp.ListaPrecio.Descripcion  == salonDesc) ?
+                        x.Precios.Where(l => l.ListaPrecio.Descripcion == salonDesc)
+                        .OrderByDescending(f => f.FechaActualizacion).FirstOrDefault().PrecioPublico
+                        : -1,
                     }).FirstOrDefault(x => x.Codigo == codigo || x.CodigoBarra == codigo);
 
-                    
+                if (producto != null)
+                {
+                    if (producto.Precio == -1) return null;
+                }
+                return producto;
             }
+
+        }
+
+        public ProductoMesaDTO ObtenerPorCodigoListaPrecio(string listaPrecioDesc, string codigo)
+        {
+            using (var context = new ModeloXCommerceContainer())
+            {
+                var producto = context.Articulos
+                    .Include(x => x.Precios)
+                    .Include("Precios.ListaPrecio")
+                    .AsNoTracking()
+                    .Select(x => new ProductoMesaDTO
+                    {
+                        Id = x.Id,
+                        Descripcion = x.Descripcion,
+                        EstaEliminado = x.EstaEliminado,
+                        Codigo = x.Codigo,
+                        CodigoBarra = x.CodigoBarra,
+                        DescuentaStock = x.DescuentaStock,
+                        Precio = x.Precios.Any(lp => lp.ListaPrecio.Descripcion == listaPrecioDesc) ?
+                        x.Precios.Where(l => l.ListaPrecio.Descripcion == listaPrecioDesc)
+                        .OrderByDescending(f => f.FechaActualizacion).FirstOrDefault().PrecioPublico
+                        : -1,
+                    }).FirstOrDefault(x => x.Codigo == codigo || x.CodigoBarra == codigo);
+
+                if (producto != null)
+                {
+                    if (producto.Precio == -1) return null;
+                }
+                return producto;
+            }
+
         }
 
         public ProductoMesaDTO ObtenerPorCodigoKiosco(string codigo)
@@ -56,9 +116,9 @@ namespace XCommerce.Servicios.Core.Producto
                         Descripcion = x.Descripcion,
                         Codigo = x.Codigo,
                         CodigoBarra = x.CodigoBarra,
-                        Precio = x.Precios.Any(lp => lp.ListaPrecio.Descripcion.Contains("Kiosco")) ? 
+                        Precio = x.Precios.Any(lp => lp.ListaPrecio.Descripcion.Contains("Kiosco")) ?
                         x.Precios.Where(l => l.ListaPrecio.Descripcion.Contains("Kiosco"))
-                        .OrderByDescending(f => f.FechaActualizacion).FirstOrDefault().PrecioPublico 
+                        .OrderByDescending(f => f.FechaActualizacion).FirstOrDefault().PrecioPublico
                         : -1,
                         DescuentaStock = x.DescuentaStock,
 

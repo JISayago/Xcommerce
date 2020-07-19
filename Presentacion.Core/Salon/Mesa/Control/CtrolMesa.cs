@@ -13,14 +13,17 @@ using XCommerce.Servicios.Core.Comprobante;
 using Presentacion.Helpers;
 using XCommerce.Servicios.Core.Movimiento;
 using XCommerce.Servicios.Core.Comprobante.DTO;
+using XCommerce.Servicios.Core.Salon.Mesa;
+using Presentacion.Core.Reserva;
+using Presentacion.FormulariosBase.Helpers;
 
 namespace Presentacion.Core.Salon.Mesa.Control
 {
     public partial class CtrolMesa : UserControl
     {
+        
+
         private long _mesaID;
-        private long _comproID;
-       
 
         public long mesaId
         {
@@ -29,8 +32,6 @@ namespace Presentacion.Core.Salon.Mesa.Control
                 _mesaID = value;
             }
         }
-
-   
 
         private int _numeroMesa;
         public int NumeroMesa
@@ -83,6 +84,7 @@ namespace Presentacion.Core.Salon.Mesa.Control
 
         private readonly IComprobanteSalonServicio _comprobanteSalonServicio;
         private readonly IMovimientoServicio _movimientoServicio;
+      
 
         public CtrolMesa() : this(new ComprobanteSalonServicio(), new MovimientoServicio())
         {
@@ -93,7 +95,6 @@ namespace Presentacion.Core.Salon.Mesa.Control
         {
             _comprobanteSalonServicio = comprobanteSalonServicio;
             _movimientoServicio = movimientoServicio;
-
         }
       
         private void menuAbrirMesa_Click(object sender, EventArgs e)
@@ -121,14 +122,23 @@ namespace Presentacion.Core.Salon.Mesa.Control
         }
 
         private bool cerrarMesa;
+
         private void menuCerrarMesa_Click(object sender, EventArgs e)
         {
             if (estadoMesa == EstadoMesa.Cerrada) return;
             cerrarMesa = true;
 
+            
             var fcomprobanteMesa = new FormularioComprobanteMesa(_mesaID, _numeroMesa, cerrarMesa);
+            
+        }
 
-            Estado = EstadoMesa.Cerrada;
+   
+        private void reservasToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            var fReservas = new FormularioReservaConsulta(_mesaID);
+
+            fReservas.ShowDialog();
         }
     }
 }

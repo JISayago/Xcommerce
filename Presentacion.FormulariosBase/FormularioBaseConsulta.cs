@@ -20,12 +20,12 @@
             InitializeComponent();
 
             btnImprimir.Visible = false;
-            btnNuevo.Image = Constatntes.Imagenes.ImagenBotonNuevo;
-            btnModificar.Image = Constatntes.Imagenes.ImagenBotonModificar;
-            btnEliminar.Image = Constatntes.Imagenes.ImagenBotonEliminar;
-            btnImprimir.Image = Constatntes.Imagenes.ImagenBotonImprimir;
-            btnActualizar.Image = Constatntes.Imagenes.ImagenBotonActualizar;
-            btnSalir.Image = Constatntes.Imagenes.ImagenBotonSalir;           
+            btnNuevo.Image = Constantes.Imagenes.ImagenBotonNuevo;
+            btnModificar.Image = Constantes.Imagenes.ImagenBotonModificar;
+            btnEliminar.Image = Constantes.Imagenes.ImagenBotonEliminar;
+            btnImprimir.Image = Constantes.Imagenes.ImagenBotonImprimir;
+            btnActualizar.Image = Constantes.Imagenes.ImagenBotonActualizar;
+            btnSalir.Image = Constantes.Imagenes.ImagenBotonSalir;           
 
 
             entidadId = null;
@@ -55,6 +55,11 @@
         private bool HayDatosCargados()
         {
             return dgvGrilla.RowCount > 0;
+        }
+
+        public virtual void EjecutarDobleClickFila()
+        {
+
         }
 
         public virtual void EjecutarBtnEliminar()
@@ -178,6 +183,11 @@
                 this.Close();
             }
 
+        }
+
+        private void DgvGrilla_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            EjecutarDobleClickFila();
         }
     }
 }

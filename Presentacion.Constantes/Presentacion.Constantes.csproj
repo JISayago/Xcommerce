@@ -7,8 +7,8 @@
     <ProjectGuid>{4F44A178-3658-482F-B40B-6EC813483349}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Presentacion.Constatntes</RootNamespace>
-    <AssemblyName>Presentacion.Constatntes</AssemblyName>
+    <RootNamespace>Presentacion.Constantes</RootNamespace>
+    <AssemblyName>Presentacion.Constantes</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

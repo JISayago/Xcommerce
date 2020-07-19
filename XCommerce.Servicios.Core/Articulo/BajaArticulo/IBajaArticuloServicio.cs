@@ -17,7 +17,7 @@ namespace XCommerce.Servicios.Core.Articulo.BajaArticulo
 
         IEnumerable<BajaArticuloDTO> Obtener(string cadenaBuscar , bool obtenerEliminados = false);
 
-        //BajaArticuloDTO ObtenerBajaMotivoPorId(long BajaArticuloId);
+        BajaArticuloDTO ObtenerBajaMotivoPorId(long BajaArticuloId);
 
         //void DescontarStock(long articuloId, decimal cantidad);
 

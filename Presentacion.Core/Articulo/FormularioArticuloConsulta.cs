@@ -64,14 +64,13 @@ namespace Presentacion.Core.Articulo
             {
                 obtenerEliminados = true;
             }
-            
+
             grilla.DataSource = _articuloServicio.Obtener(cadenaBuscar, obtenerEliminados);
             toolStrip.Enabled = true;
         }
 
         public override void EjecutarBtnEliminar()
         {
-            /*
             base.EjecutarBtnEliminar();
             if (puedeEjecutarComando)
             {
@@ -79,10 +78,6 @@ namespace Presentacion.Core.Articulo
                 fArticuloABM.ShowDialog();
                 ActualizarSegunOperacion(fArticuloABM.RealizoAlgunaOperacion);
             }
-
-            descativado para probar unas weas sin tocar el form */
-            var FormularioBajaArticulo = new FormularioBajaArticuloABM(TipoOperacion.Nuevo, entidadId);
-            FormularioBajaArticulo.Show();
         }
 
         private void ActualizarSegunOperacion(bool realizoOperacion)
@@ -111,5 +106,10 @@ namespace Presentacion.Core.Articulo
             ActualizarSegunOperacion(fArticuloABM.RealizoAlgunaOperacion);
         }
 
+        private void btnBajaArticulo_Click(object sender, EventArgs e)
+        {
+            var bajaArticulo = new FormularioBajaArticuloABM(TipoOperacion.Nuevo, entidadId);
+            bajaArticulo.ShowDialog();    
+        }
     }
 }

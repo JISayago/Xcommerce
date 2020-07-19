@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XCommerce.AccesoDatos;
+using XCommerce.Servicios.Core.Articulo;
+using XCommerce.Servicios.Core.Articulo.DTO;
 using XCommerce.Servicios.Core.Comprobante.DTO;
 using XCommerce.Servicios.Core.Producto.DTO;
 
@@ -62,6 +64,8 @@ namespace XCommerce.Servicios.Core.Comprobante
         {
             using (var baseDatos = new ModeloXCommerceContainer())
             {
+                var articuloServicio = new ArticuloServicio();
+
                 var comprobante = baseDatos.Comprobantes
                     .OfType<ComprobanteSalon>()
                     .FirstOrDefault(x => x.MesaId == mesaId && x.EstadoComprobanteSalon == EstadoComprobanteSalon.EnProceso);
@@ -76,6 +80,15 @@ namespace XCommerce.Servicios.Core.Comprobante
                 comprobante.Descuento = comprobanteMesa.Descuento;
                 comprobante.EstadoComprobanteSalon = EstadoComprobanteSalon.Facturada;
 
+
+                var items = comprobanteMesa.Items;
+                foreach(var item in items)
+                {
+                    var productoId = articuloServicio.ObtenerPorCodigo(item.CodigoProducto).Id;
+                    articuloServicio.DescontarStock(productoId,item.CantidadProducto);                    
+                }
+
+
                 baseDatos.SaveChanges();
 
 
@@ -84,7 +97,8 @@ namespace XCommerce.Servicios.Core.Comprobante
 
         public long GenerarComprobanteSalon(long mesaId, long usuarioId, int comensales, long? mozoId = null)
         {
-            using (var baseDatos = new ModeloXCommerceContainer())           {
+            using (var baseDatos = new ModeloXCommerceContainer())
+            {
 
 
                 var clienteConsumidorFinal = baseDatos.Personas
@@ -125,6 +139,20 @@ namespace XCommerce.Servicios.Core.Comprobante
 
 
             }
+        }
+
+        public void Eliminar(long comprobanteID)
+        {
+            using (var baseDatos = new ModeloXCommerceContainer())
+            {
+                var comprobanteEliminar = baseDatos.Comprobantes
+                    .OfType<ComprobanteSalon>()
+                    .FirstOrDefault(x => x.Id == comprobanteID);
+
+                baseDatos.Comprobantes.Remove(comprobanteEliminar);
+                baseDatos.SaveChanges();
+            }
+                
         }
 
 

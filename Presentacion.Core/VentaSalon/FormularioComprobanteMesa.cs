@@ -1,4 +1,5 @@
-﻿using Presentacion.FormulariosBase;
+﻿using Presentacion.Core.Cliente;
+using Presentacion.FormulariosBase;
 using Presentacion.Helpers;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using XCommerce.AccesoDatos;
 using XCommerce.Servicios.Core.Caja.DetalleCaja;
+using XCommerce.Servicios.Core.Cliente;
 using XCommerce.Servicios.Core.Comprobante;
 using XCommerce.Servicios.Core.Comprobante.DTO;
 using XCommerce.Servicios.Core.Empleado.Mozo;
@@ -22,13 +24,20 @@ namespace Presentacion.Core.VentaSalon
 {
     public partial class FormularioComprobanteMesa : FormularioBase
     {
+        private readonly string _listaPrecio;
         private readonly long _mesaId;
+
+        private long idCliente;
+
+        private readonly int _numeroMesa;
 
         private int row;
 
         private readonly IComprobanteSalonServicio _comprobanteSalonServicio;
 
         private readonly IMovimientoServicio _movimientoServicio;
+
+        private readonly IClienteServicio _clienteServicio;
 
         private readonly IDetalleCajaServicio _detalleCajaServicio;
 
@@ -48,12 +57,13 @@ namespace Presentacion.Core.VentaSalon
                                                   new MozoServicio(),
                                                   new MovimientoServicio(),
                                                   new DetalleCajaServicio(),
-                                                  new MesaServicio())
+                                                  new MesaServicio(),
+                                                  new ClienteServicio())
         {
             InitializeComponent();
-            
 
 
+            if (_tfPAgo == 0) { int a = 1; a++; }
         }
     
         public FormularioComprobanteMesa(IComprobanteSalonServicio comprobanteSalonServicio, 
@@ -61,14 +71,16 @@ namespace Presentacion.Core.VentaSalon
                                          IMozoServicio mozoServicio,
                                          IMovimientoServicio movimientoServicio,
                                          IDetalleCajaServicio detalleCajaServicio,
-                                         IMesaServicio mesaServicio)
+                                         IMesaServicio mesaServicio,
+                                         IClienteServicio clienteServicio)
         {
             _comprobanteSalonServicio = comprobanteSalonServicio;
             _productoServicio = productoServicio;
             _mozoServicio = mozoServicio;
             _movimientoServicio = movimientoServicio;
             _detalleCajaServicio = detalleCajaServicio;
-            _mesaServicio = mesaServicio;         
+            _mesaServicio = mesaServicio;
+            _clienteServicio = clienteServicio;
 
 
         }
@@ -91,7 +103,7 @@ namespace Presentacion.Core.VentaSalon
 
             grilla.Columns["CantidadProducto"].Visible = true;
             grilla.Columns["CantidadProducto"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            grilla.Columns["CantidadProducto"].HeaderText = "Cantidad";
+            grilla.Columns["CantidadProducto"].HeaderText = "Cantidad";         
 
             grilla.Columns["PrecioUnitario"].Visible = true;
             grilla.Columns["PrecioUnitario"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -100,22 +112,28 @@ namespace Presentacion.Core.VentaSalon
             grilla.Columns["SubtotalLinea"].Visible = true;
             grilla.Columns["SubtotalLinea"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             grilla.Columns["SubtotalLinea"].HeaderText = "Sub-Total";
+            grilla.Columns["SubtotalLinea"].DefaultCellStyle.Format = "N2";
 
         }
         public FormularioComprobanteMesa(long mesaId, int _numeroMesa, bool cerrarMesa) : this()
         {
+            ObtenerComprobanteMesa(mesaId);
             if (cerrarMesa)
             {
-                cerrarLaMesa(mesaId, _numeroMesa);
+                this.Show();
+                cerrarLaMesa(mesaId, _numeroMesa);             
             }
         }
         
 
-        public FormularioComprobanteMesa(long mesaId, int _numeroMesa) :this()
+        public FormularioComprobanteMesa(long mesaId, int numeroMesa) :this()
         {
-            this.Text = $"Venta -- Mesa: {_numeroMesa}";
+            this.Text = $"Venta -- Mesa: {numeroMesa}";
             _mesaId = mesaId;
-          
+            _numeroMesa = numeroMesa;
+
+            _listaPrecio = _mesaServicio.ObtenerListaPrecio(_mesaId);
+
             ObtenerComprobanteMesa(mesaId);
 
             ResetearGrilla(dgvGrilla);
@@ -168,7 +186,7 @@ namespace Presentacion.Core.VentaSalon
                 MessageBox.Show("Por favor ingrese un codigo");
                 return;
             }
-            var producto = _productoServicio.ObtenerPorCodigo(_mesaId, txtCodigoBarras.Text);
+            var producto = _productoServicio.ObtenerPorCodigoListaPrecio(_listaPrecio, txtCodigoBarras.Text);
 
             if (producto != null)
             {
@@ -177,6 +195,10 @@ namespace Presentacion.Core.VentaSalon
                 _comprobanteSalonServicio.AgregarItems(_mesaId, nudCantidadArticulo.Value, producto);
 
                 ObtenerComprobanteMesa(_mesaId);
+            }
+            else
+            {
+                MessageBox.Show($"Articulo no existe o no esta en lista precio: {_listaPrecio}.");
             }
         }
 
@@ -250,16 +272,38 @@ namespace Presentacion.Core.VentaSalon
             }
 
             var comprobanteMesaDto = _comprobanteSalonServicio.Obtener(mesaId);
-            
-            _comprobanteSalonServicio.FacturarComprobanteSalon(mesaId,comprobanteMesaDto);
-            
-            var mesaParaCerrar = _mesaServicio.ObtenerPorId(mesaId);
-            mesaParaCerrar.estadoMesa = EstadoMesa.Cerrada;
-            _mesaServicio.Modificar(mesaParaCerrar);          
-            
-            _movimientoServicio.GenerarMovimiento(DatosSistema.CajaId, comprobanteMesaDto.ComprobanteId, TipoMovimiento.Ingreso, DatosSistema.UsuarioId, nudTotal.Value, $" Ingreso de Mesa n°:{numeroMesa}");
-            _detalleCajaServicio.GenerarDetalleCaja(DatosSistema.CajaId, nudTotal.Value, _tPago);
 
+            if (nudTotal.Value > 0)
+            {
+                
+                if(_tPago == TipoPago.CtaCte)
+                {
+                    
+                    if (_clienteServicio.DescontarDeCuenta(idCliente, comprobanteMesaDto.Total))
+                    {
+                        //nada?
+                    }
+                    else
+                    {
+                        throw new Exception("Si tiene menos de 0 deberia un cartel que no deje que siga el tema ya vemos yadayadayada");
+                    }
+                }
+                _comprobanteSalonServicio.FacturarComprobanteSalon(mesaId, comprobanteMesaDto);
+
+                _movimientoServicio.GenerarMovimiento(DatosSistema.CajaId, comprobanteMesaDto.ComprobanteId, TipoMovimiento.Ingreso, DatosSistema.UsuarioId, nudTotal.Value, $" Ingreso de Mesa n°:{numeroMesa}");
+                _detalleCajaServicio.GenerarDetalleCaja(DatosSistema.CajaId, nudTotal.Value, _tPago);
+
+            }
+            else
+            {
+                _comprobanteSalonServicio.Eliminar(comprobanteMesaDto.ComprobanteId);
+              
+            }
+
+            var mesaParaCerrar = _mesaServicio.ObtenerPorId(mesaId);
+            mesaParaCerrar.estadoMesa = EstadoMesa.Cerrada;            
+            _mesaServicio.Modificar(mesaParaCerrar);
+           
             this.Close();
             
 
@@ -342,6 +386,65 @@ namespace Presentacion.Core.VentaSalon
 
             _comprobanteSalonServicio.QuitarItems(itemSelectedDetalleId);
             ObtenerComprobanteMesa(_mesaId);
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            List<DetalleComprobanteSalonDTO> listaItems = (List<DetalleComprobanteSalonDTO>)dgvGrilla.DataSource;
+
+            foreach (var item in listaItems)
+            {
+                _comprobanteSalonServicio.QuitarItems(item.DetalleId);
+            }
+            
+            nudTotal.Value = 0;
+
+            cerrarLaMesa(_mesaId,_numeroMesa);
+         
+            
+        }
+
+        private void nudDescuento_ValueChanged(object sender, EventArgs e)
+        {
+
+            var comprobanteMesaDTO = new ComprobanteMesaDTO();
+
+
+            comprobanteMesaDTO = _comprobanteSalonServicio.Obtener(_mesaId);
+
+
+
+            if (comprobanteMesaDTO == null)
+            {
+                MessageBox.Show("Ocurrió un Error");
+                this.Close();
+            }
+
+            nudTotal.Value = nudSubTotal.Value - (nudSubTotal.Value * nudDescuento.Value) / 100;
+
+        }
+        
+
+        private void btnBuscarCliente_Click_1(object sender, EventArgs e)
+        {
+            bool vieneDeSelecFPago = true;
+            FormularioClienteConsulta f = new FormularioClienteConsulta(vieneDeSelecFPago);
+
+            f.ShowDialog();
+
+            idCliente = f.clienteSeleccionado;
+
+
+
+            var cliente = _clienteServicio.ObtenerClientePorId(idCliente);
+            if (cliente != null)
+            {
+                txtClienteDni.Text = cliente.Dni;
+
+                txtClienteApyNom.Text = $"{cliente.Apellido} {cliente.Nombre}";
+            }
+
+            //ObtenerClientePorId
         }
     }
 }

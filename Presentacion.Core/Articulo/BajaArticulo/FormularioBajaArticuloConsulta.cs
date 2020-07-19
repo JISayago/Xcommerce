@@ -1,4 +1,5 @@
 ﻿using Presentacion.FormulariosBase;
+using Presentacion.FormulariosBase.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -105,6 +106,17 @@ namespace Presentacion.Core.Articulo.BajaArticulo
             if (realizoOperacion)
             {
                 ActualizarDatos(dgvGrilla, string.Empty, cbxEstaEliminado, BarraLateralBotones);
+            }
+        }
+
+        public override void EjecutarBtnModificar()
+        {
+            base.EjecutarBtnModificar();
+            if (puedeEjecutarComando)
+            {
+                var fBajaArticuloABM = new FormularioBajaArticuloABM(TipoOperacion.Modificar, entidadId);
+                fBajaArticuloABM.ShowDialog();
+                ActualizarSegunOperacion(fBajaArticuloABM.RealizoAlgunaOperacion);
             }
         }
     }

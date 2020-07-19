@@ -123,6 +123,7 @@ namespace Presentacion.Core.Articulo
         {
             if (EntidadId == null) return false;
 
+
             _articuloServicio.Eliminar(EntidadId.Value);
 
             return true;
@@ -234,12 +235,12 @@ namespace Presentacion.Core.Articulo
                 }
                 else
                 {
-                    imgFotoArticulo.Image = Presentacion.Constatntes.Imagenes.ImagenBotonBuscar;
+                    imgFotoArticulo.Image = Presentacion.Constantes.Imagenes.ImagenBotonBuscar;
                 }
             }
             else
             {
-                imgFotoArticulo.Image = Presentacion.Constatntes.Imagenes.ImagenBotonBuscar;
+                imgFotoArticulo.Image = Presentacion.Constantes.Imagenes.ImagenBotonBuscar;
             }
         }
 

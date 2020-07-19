@@ -13,7 +13,27 @@ namespace XCommerce.Servicios.Core.Articulo
     {
         public void DescontarStock(long articuloId, decimal cantidad)
         {
-            throw new NotImplementedException();
+            using (var context = new ModeloXCommerceContainer())
+            {
+                var articulo = context.Articulos
+                    .FirstOrDefault(x => x.Id == articuloId);
+
+                if (articulo == null || articulo.EstaEliminado) throw new Exception("No se encontro el artículo");
+                if (articulo.EstaDiscontinuado) throw new Exception("error articulo discontinuado");
+
+                //aca tendría que ir la Exception como en el resto pero como producto no tiene campo descuenta stok
+                //hay que cortar acá si no descuenta stock
+                //ver foreach final en metodo Facturar() en formulariokiosco
+                if (!articulo.DescuentaStock) return; //throw new Exception("Error articulo no descueta stock");
+
+                articulo.Stock -= cantidad;
+
+                if (articulo.Stock < 0 && !articulo.PermiteStockNegativo) throw new Exception("Error articulo no permite stock negativo");
+                if (articulo.Stock < articulo.StockMinimo && !articulo.PermiteStockNegativo) throw new Exception("Error articulo no permite stock menor a stock mininmo");
+
+                context.SaveChanges();
+            }
+
         }
 
         public void Eliminar(long articuloId)
@@ -133,9 +153,34 @@ namespace XCommerce.Servicios.Core.Articulo
             }
         }
 
-        public ArticuloDTO ObtenerPorCodigo(string codigoBuscar, string codigoBarraBuscar)
+        public ArticuloDTO ObtenerPorCodigo(string codigoBuscar)
         {
-            throw new NotImplementedException();
+            using (var context = new ModeloXCommerceContainer())
+            {
+                return context.Articulos
+                    .AsNoTracking()
+                    .Select(x => new ArticuloDTO
+                    {
+                        Descripcion = x.Descripcion,
+                        Abreviatura = x.Abreviatura,
+                        Codigo = x.Codigo,
+                        CodigoBarra = x.CodigoBarra,
+                        ActivarLimiteVenta = x.ActivarLimiteVenta,
+                        DescuentaStock = x.DescuentaStock,
+                        Detalle = x.Detalle,
+                        EstaDiscontinuado = x.EstaDiscontinuado,
+                        EstaEliminado = x.EstaEliminado,
+                        Foto = x.Foto,
+                        Id = x.Id,
+                        LimiteVenta = x.LimiteVenta,
+                        MarcaId = x.MarcaId,
+                        PermiteStockNegativo = x.PermiteStockNegativo,
+                        RubroId = x.RubroId,
+                        Stock = x.Stock,
+                        StockMaximo = x.StockMaximo,
+                        StockMinimo = x.StockMinimo
+                    }).FirstOrDefault(x => !x.EstaEliminado && (x.Codigo == codigoBuscar || x.CodigoBarra == codigoBuscar));
+            }
         }
 
         public ArticuloDTO ObtenerPorCodigoModificar(string CodigoBuscar, string CodigoBarraBuscar, long EntidadId)
@@ -170,6 +215,41 @@ namespace XCommerce.Servicios.Core.Articulo
                         StockMaximo = x.StockMaximo,
                         StockMinimo = x.StockMinimo
                     }).FirstOrDefault(x => !x.EstaEliminado && x.Id == articuloId);
+            }
+        }
+
+        public ArticuloDTO ObtenerArticuloPorBaja(long bajaArticuloId)
+        {
+
+
+            using (var context = new ModeloXCommerceContainer())
+            {
+                var BajaArticulo = context.BajaArticulos
+                .FirstOrDefault(x => x.Id == bajaArticuloId);
+
+                return context.Articulos
+                    .AsNoTracking()
+                    .Select(x => new ArticuloDTO
+                    {
+                        Descripcion = x.Descripcion,
+                        Abreviatura = x.Abreviatura,
+                        Codigo = x.Codigo,
+                        CodigoBarra = x.CodigoBarra,
+                        ActivarLimiteVenta = x.ActivarLimiteVenta,
+                        DescuentaStock = x.DescuentaStock,
+                        Detalle = x.Detalle,
+                        EstaDiscontinuado = x.EstaDiscontinuado,
+                        EstaEliminado = x.EstaEliminado,
+                        Foto = x.Foto,
+                        Id = x.Id,
+                        LimiteVenta = x.LimiteVenta,
+                        MarcaId = x.MarcaId,
+                        PermiteStockNegativo = x.PermiteStockNegativo,
+                        RubroId = x.RubroId,
+                        Stock = x.Stock,
+                        StockMaximo = x.StockMaximo,
+                        StockMinimo = x.StockMinimo
+                    }).FirstOrDefault(x => x.Id == BajaArticulo.ArticuloId);
             }
         }
     }
