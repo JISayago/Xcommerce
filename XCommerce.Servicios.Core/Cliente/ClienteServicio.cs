@@ -278,5 +278,23 @@ namespace XCommerce.Servicios.Core.Cliente
                       ).FirstOrDefault(x => x.Dni == dni);
             }
         }
+
+        public void AgregarSaldoCtaCte(long clienteId, decimal monto)
+        {
+           using(var baseDatos = new ModeloXCommerceContainer())
+           {
+                var clienteCtaCte = baseDatos.Personas.OfType<AccesoDatos.Cliente>()
+                    .Include(x => x.Direccion)
+                    .FirstOrDefault(x => x.Id == clienteId);
+
+                if (clienteCtaCte == null)
+                    throw new Exception("No se encontro el Cliente");
+
+                clienteCtaCte.MontoMaximoCtaCte += monto;               
+
+                baseDatos.SaveChanges();
+                
+            }
+        }
     }
 }
