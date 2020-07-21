@@ -33,18 +33,26 @@
             // 
             // btnBajaArticulo
             // 
-            this.btnBajaArticulo.Location = new System.Drawing.Point(352, 12);
+            this.btnBajaArticulo.Location = new System.Drawing.Point(337, 13);
             this.btnBajaArticulo.Name = "btnBajaArticulo";
-            this.btnBajaArticulo.Size = new System.Drawing.Size(128, 26);
+            this.btnBajaArticulo.Size = new System.Drawing.Size(120, 23);
             this.btnBajaArticulo.TabIndex = 128;
-            this.btnBajaArticulo.Text = "Baja Articulos";
+            this.btnBajaArticulo.Text = "Baja Articulo";
             this.btnBajaArticulo.UseVisualStyleBackColor = true;
             this.btnBajaArticulo.Click += new System.EventHandler(this.btnBajaArticulo_Click);
-            //
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            // 
+            // FormularioArticuloConsulta
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            //this.ClientSize = new System.Drawing.Size(1391, 838);
+            this.Controls.Add(this.btnBajaArticulo);
+            this.Name = "FormularioArticuloConsulta";
             this.Text = "FormularioArticuloConsulta";
+            this.Controls.SetChildIndex(this.cbxEstaEliminado, 0);
+            this.Controls.SetChildIndex(this.btnBajaArticulo, 0);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion

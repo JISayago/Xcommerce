@@ -109,7 +109,7 @@ namespace Presentacion.Core.Articulo
         private void btnBajaArticulo_Click(object sender, EventArgs e)
         {
             var bajaArticulo = new FormularioBajaArticuloABM(TipoOperacion.Nuevo, entidadId);
-            bajaArticulo.ShowDialog();    
+            bajaArticulo.ShowDialog();
         }
     }
 }
