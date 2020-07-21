@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,6 +50,32 @@ namespace XCommerce.Servicios.Core.Movimiento
                 baseDatos.Movimientos.Add(nuevoMovimiento);
 
                 baseDatos.SaveChanges();
+            }
+        }
+
+        public IEnumerable<MovimientoDTO> Obtener(DateTime desde, DateTime hasta, TipoMovimiento? tipo, long? usuarioId, long? cajaId)
+        {
+            using (var context = new ModeloXCommerceContainer())
+            {
+                IQueryable<AccesoDatos.Movimiento> q = context.Movimientos;
+
+                q = q.Where(x => x.Fecha >= desde && x.Fecha <= hasta);
+                if (tipo != null)      q = q.Where(x => x.TipoMovimento == tipo);
+                if (usuarioId != null) q = q.Where(x => x.UsuarioId == usuarioId);
+                if (cajaId != null)    q = q.Where(x => x.CajaId == cajaId);
+                
+                return q.Select(x => new MovimientoDTO
+                {
+                    Id = x.Id,
+                    CajaID = x.CajaId,
+                    ComprobanteID = x.ComprobanteId,
+                    TipoMovimiento = x.TipoMovimento,
+                    UsuarioID = x.UsuarioId,
+                    Monto = x.Monto,
+                    Fecha = x.Fecha,
+                    Descripcion = x.Descripcion
+                }).ToList();
+
             }
         }
     }

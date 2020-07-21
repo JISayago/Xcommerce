@@ -133,6 +133,12 @@
     <Compile Include="Cliente\FormularioClienteConsulta.Designer.cs">
       <DependentUpon>FormularioClienteConsulta.cs</DependentUpon>
     </Compile>
+    <Compile Include="DetalleCaja\FormularioDetalleCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetalleCaja\FormularioDetalleCaja.Designer.cs">
+      <DependentUpon>FormularioDetalleCaja.cs</DependentUpon>
+    </Compile>
     <Compile Include="Empleado\FormularioEmpleadoABM.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +174,12 @@
     </Compile>
     <Compile Include="ListaPrecio\FormularioListaPrecioConsulta.Designer.cs">
       <DependentUpon>FormularioListaPrecioConsulta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Movimiento\FormularioMovimiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Movimiento\FormularioMovimiento.Designer.cs">
+      <DependentUpon>FormularioMovimiento.cs</DependentUpon>
     </Compile>
     <Compile Include="Precio\FormularioActualizarPrecio.cs">
       <SubType>Form</SubType>
@@ -330,6 +342,9 @@
     <EmbeddedResource Include="Cliente\FormularioClienteConsulta.resx">
       <DependentUpon>FormularioClienteConsulta.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DetalleCaja\FormularioDetalleCaja.resx">
+      <DependentUpon>FormularioDetalleCaja.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Empleado\FormularioEmpleadoABM.resx">
       <DependentUpon>FormularioEmpleadoABM.cs</DependentUpon>
     </EmbeddedResource>
@@ -344,6 +359,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ListaPrecio\FormularioListaPrecioABM.resx">
       <DependentUpon>FormularioListaPrecioABM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Movimiento\FormularioMovimiento.resx">
+      <DependentUpon>FormularioMovimiento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Precio\FormularioActualizarPrecio.resx">
       <DependentUpon>FormularioActualizarPrecio.cs</DependentUpon>

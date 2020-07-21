@@ -16,16 +16,28 @@
     public partial class FormularioEmpleadoConsulta : FormularioBaseConsulta
     {
         private readonly IEmpleadoServicio _empleadoServicio;
-
+        public long empleadoSeleccionado = 0;
+        public bool soloSeleccion;
         public FormularioEmpleadoConsulta():this(new EmpleadoServicio())
         {
             InitializeComponent();
+            soloSeleccion = false;
         }
 
         public FormularioEmpleadoConsulta(IEmpleadoServicio empleadoServicio)
         {
             _empleadoServicio = empleadoServicio;
+            soloSeleccion = false;
         }
+
+        public FormularioEmpleadoConsulta(bool soloSeleccion) 
+        {
+            InitializeComponent();
+            this.soloSeleccion = soloSeleccion;
+            _empleadoServicio = new EmpleadoServicio();
+        }
+        
+
 
         public override void ResetearGrilla(DataGridView grilla)
         {
@@ -66,8 +78,16 @@
                 grilla.DataSource = _empleadoServicio.ObtenerEmpleado(cadenaBuscar);
                 toolStrip.Enabled = true;
             }
+        }
 
-            
+        public override void EjecutarDobleClickFila()
+        {
+            if (soloSeleccion)
+            {
+                Console.WriteLine("In ClienteCons");
+                empleadoSeleccionado = (long)entidadId;
+                Close();
+            }
         }
 
         public override void EjecutarBtnEliminar()
