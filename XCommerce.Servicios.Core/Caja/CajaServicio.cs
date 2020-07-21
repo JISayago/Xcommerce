@@ -110,6 +110,8 @@ namespace XCommerce.Servicios.Core.Caja
                     }
                 }
 
+                //todo: ni idea si va esto
+                total += context.Cajas.Where(x => x.Id == cajaId).FirstOrDefault().MontoApertura;
                 return total;
             }
         }

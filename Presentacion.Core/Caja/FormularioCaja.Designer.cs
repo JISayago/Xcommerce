@@ -35,13 +35,15 @@
             this.lblCaja = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblMontoSistema = new System.Windows.Forms.Label();
+            this.btnMovimientos = new System.Windows.Forms.Button();
+            this.btnDetalles = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnAbrir
             // 
             this.btnAbrir.Location = new System.Drawing.Point(84, 159);
             this.btnAbrir.Name = "btnAbrir";
-            this.btnAbrir.Size = new System.Drawing.Size(75, 23);
+            this.btnAbrir.Size = new System.Drawing.Size(97, 23);
             this.btnAbrir.TabIndex = 0;
             this.btnAbrir.Text = "Abrir";
             this.btnAbrir.UseVisualStyleBackColor = true;
@@ -49,9 +51,9 @@
             // 
             // btnCerrar
             // 
-            this.btnCerrar.Location = new System.Drawing.Point(209, 159);
+            this.btnCerrar.Location = new System.Drawing.Point(187, 159);
             this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(75, 23);
+            this.btnCerrar.Size = new System.Drawing.Size(97, 23);
             this.btnCerrar.TabIndex = 1;
             this.btnCerrar.Text = "Cerrar";
             this.btnCerrar.UseVisualStyleBackColor = true;
@@ -79,7 +81,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(77, 217);
+            this.label1.Location = new System.Drawing.Point(134, 244);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(85, 13);
             this.label1.TabIndex = 4;
@@ -88,17 +90,39 @@
             // lblMontoSistema
             // 
             this.lblMontoSistema.AutoSize = true;
-            this.lblMontoSistema.Location = new System.Drawing.Point(168, 217);
+            this.lblMontoSistema.Location = new System.Drawing.Point(225, 244);
             this.lblMontoSistema.Name = "lblMontoSistema";
             this.lblMontoSistema.Size = new System.Drawing.Size(13, 13);
             this.lblMontoSistema.TabIndex = 5;
             this.lblMontoSistema.Text = "0";
             // 
+            // btnMovimientos
+            // 
+            this.btnMovimientos.Location = new System.Drawing.Point(84, 204);
+            this.btnMovimientos.Name = "btnMovimientos";
+            this.btnMovimientos.Size = new System.Drawing.Size(97, 23);
+            this.btnMovimientos.TabIndex = 6;
+            this.btnMovimientos.Text = "Movimientos";
+            this.btnMovimientos.UseVisualStyleBackColor = true;
+            this.btnMovimientos.Click += new System.EventHandler(this.btnMovimientos_Click);
+            // 
+            // btnDetalles
+            // 
+            this.btnDetalles.Location = new System.Drawing.Point(187, 204);
+            this.btnDetalles.Name = "btnDetalles";
+            this.btnDetalles.Size = new System.Drawing.Size(97, 23);
+            this.btnDetalles.TabIndex = 7;
+            this.btnDetalles.Text = "Detalles";
+            this.btnDetalles.UseVisualStyleBackColor = true;
+            this.btnDetalles.Click += new System.EventHandler(this.btnDetalles_Click);
+            // 
             // FormularioCaja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(398, 248);
+            this.ClientSize = new System.Drawing.Size(398, 276);
+            this.Controls.Add(this.btnDetalles);
+            this.Controls.Add(this.btnMovimientos);
             this.Controls.Add(this.lblMontoSistema);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblCaja);
@@ -120,5 +144,7 @@
         private System.Windows.Forms.Label lblCaja;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblMontoSistema;
+        private System.Windows.Forms.Button btnMovimientos;
+        private System.Windows.Forms.Button btnDetalles;
     }
 }

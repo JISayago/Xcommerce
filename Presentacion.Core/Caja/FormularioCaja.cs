@@ -1,4 +1,6 @@
-﻿using Presentacion.Helpers;
+﻿using Presentacion.Core.DetalleCaja;
+using Presentacion.Core.Movimiento;
+using Presentacion.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,10 +21,16 @@ namespace Presentacion.Core.Caja
         {
             InitializeComponent();
             _cajaServicio = new CajaServicio();
+            ActualizarMontoSistemalbl();
+        }
+
+        private void ActualizarMontoSistemalbl()
+        {
             if (DatosSistema.EstaCajaAbierta)
             {
                 lblMontoSistema.Text = _cajaServicio.ObtenerMontoSistema(DatosSistema.CajaId).ToString();
-            } else
+            }
+            else
             {
                 lblMontoSistema.Text = "Caja Cerrada";
             }
@@ -34,6 +42,7 @@ namespace Presentacion.Core.Caja
             {
                 FormularioAbrirCaja fAbrirCaja = new FormularioAbrirCaja();
                 fAbrirCaja.ShowDialog();
+                ActualizarMontoSistemalbl();
             }
         }
 
@@ -43,7 +52,20 @@ namespace Presentacion.Core.Caja
             {
                 FormularioCerrarCaja fCerrarCaja = new FormularioCerrarCaja();
                 fCerrarCaja.ShowDialog();
+                ActualizarMontoSistemalbl();
             }
+        }
+
+        private void btnMovimientos_Click(object sender, EventArgs e)
+        {
+            var f = new FormularioMovimiento();
+            f.Show();
+        }
+
+        private void btnDetalles_Click(object sender, EventArgs e)
+        {
+            var f = new FormularioDetalleCaja();
+            f.Show();
         }
     }
 }

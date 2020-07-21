@@ -13,5 +13,6 @@ namespace XCommerce.Servicios.Core.Movimiento
         void GenerarMovimiento(long idCaja, long idComprobante, TipoMovimiento tipoMovimiento, long idUsuario, decimal monto, string descripcion);
 
         void GenerarMovimiento(MovimientoDTO dto);
+        IEnumerable<MovimientoDTO> Obtener(DateTime desde, DateTime hasta, TipoMovimiento? tipo, long? usuarioId, long? cajaId);
     }
 }

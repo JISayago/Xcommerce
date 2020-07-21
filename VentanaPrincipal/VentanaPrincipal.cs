@@ -125,11 +125,6 @@ namespace VentanaPrincipal
             FormularioBajaArticulo.Show();
         }
 
-        private void KioscoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var fKiosco = new FormularioKiosco();
-            fKiosco.Show();
-        }
 
         private void btnKiosco_Click(object sender, EventArgs e)
         {
@@ -147,6 +142,12 @@ namespace VentanaPrincipal
         {
             var fVentaSalon = new FormularioVentaSalon();
             fVentaSalon.Show();
+        }
+
+        private void VentanaPrincipal_Activated(object sender, EventArgs e)
+        {
+
+            lblEstadoCaja.Text = DatosSistema.EstaCajaAbierta ? "Abierta" : "Cerrada";
         }
     }
 }

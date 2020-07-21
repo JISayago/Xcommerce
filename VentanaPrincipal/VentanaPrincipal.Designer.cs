@@ -354,6 +354,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "VentanaPrincipal";
             this.Text = "XCommerce";
+            this.Activated += new System.EventHandler(this.VentanaPrincipal_Activated);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
