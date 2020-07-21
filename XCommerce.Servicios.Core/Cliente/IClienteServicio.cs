@@ -13,6 +13,8 @@ namespace XCommerce.Servicios.Core.Cliente
 
         IEnumerable<ClienteDTO> ObtenerClienteEliminado(string cadenaBuscar);
 
+        void AgregarSaldoCtaCte(long clienteId, decimal monto);
+
         ClienteDTO ObtenerClientePorId(long clienteId);
 
         ClienteDTO ObtenerClientePorDni(string dni);
