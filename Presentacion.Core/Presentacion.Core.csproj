@@ -55,6 +55,12 @@
     <Compile Include="Articulo\BajaArticulo\FormularioBajaArticuloConsulta.Designer.cs">
       <DependentUpon>FormularioBajaArticuloConsulta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Articulo\FormularioAgregarStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Articulo\FormularioAgregarStock.Designer.cs">
+      <DependentUpon>FormularioAgregarStock.cs</DependentUpon>
+    </Compile>
     <Compile Include="Articulo\FormularioArticuloABM.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -311,6 +317,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Articulo\BajaArticulo\FormularioBajaArticuloConsulta.resx">
       <DependentUpon>FormularioBajaArticuloConsulta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Articulo\FormularioAgregarStock.resx">
+      <DependentUpon>FormularioAgregarStock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Articulo\FormularioArticuloABM.resx">
       <DependentUpon>FormularioArticuloABM.cs</DependentUpon>

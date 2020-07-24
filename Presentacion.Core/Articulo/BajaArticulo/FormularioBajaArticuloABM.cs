@@ -26,7 +26,6 @@ namespace Presentacion.Core.Articulo.BajaArticulo
         private readonly IMotivoBajaServicio _motivoBajaServicio;
         private readonly IArticuloServicio _articuloServicio;
 
-
         public FormularioBajaArticuloABM()
         {
             InitializeComponent();
@@ -51,42 +50,13 @@ namespace Presentacion.Core.Articulo.BajaArticulo
 
             if (TipoOperacion == TipoOperacion.Modificar)
             {
-                var articuloModDTO = _articuloServicio.ObtenerArticuloPorBaja(entidadId.Value);
-                var bajaArticuloDTO = _bajaArticuloServicio.ObtenerBajaMotivoPorId(entidadId.Value);
-                //articulo servicio t banco
-                //arreglar cmb 
-                CargarComboBox(cmbMotivo, _motivoBajaServicio.ObtenerMotivoBaja(string.Empty), "Descripcion", "Id");
-                cmbMotivo.SelectedItem = bajaArticuloDTO.MotivoBajaId;
-
-                lblArticulo.Text = articuloModDTO.Descripcion;
-
-                nudCantidad.ReadOnly = true;
-                nudCantidad.Minimum = bajaArticuloDTO.Cantidad;
-                nudCantidad.Maximum = bajaArticuloDTO.Cantidad;
-                nudCantidad.Value = bajaArticuloDTO.Cantidad;
-                //no se puede modificar la cantidad de la baja, dejarlo asi o que tambien se pueda cambiar?
-                richBajaArticulo.KeyPress += Validacion.NoSimbolos;
-                richBajaArticulo.KeyPress += Validacion.NoNumeros;
-
-                nudCantidad.Focus();
+                CargarModificar(entidadId);
 
             }
 
             if (TipoOperacion == TipoOperacion.Nuevo)
-            { 
-                CargarComboBox(cmbMotivo, _motivoBajaServicio.ObtenerMotivoBaja(string.Empty), "Descripcion", "Id");
-                var articuloDTO = _articuloServicio.ObtenerPorId(entidadId.Value);
-
-                lblArticulo.Text = articuloDTO.Descripcion;
-
-                nudCantidad.Minimum = 1;
-                nudCantidad.Maximum = articuloDTO.Stock;
-                nudCantidad.Value = articuloDTO.Stock;
-
-                richBajaArticulo.KeyPress += Validacion.NoSimbolos;
-                richBajaArticulo.KeyPress += Validacion.NoNumeros;
-
-                nudCantidad.Focus();
+            {
+                CargarNuevo(entidadId);
             }
         }
 
@@ -112,12 +82,36 @@ namespace Presentacion.Core.Articulo.BajaArticulo
 
         public override bool EjecutarComandoModificar()
         {
+            var bajaArticuloDTO = _bajaArticuloServicio.ObtenerBajaMotivoPorId(EntidadId.Value);
+
             var bajaArticuloMod = new BajaArticuloDTO
             {
                 Id = EntidadId.Value,
                 Observacion = richBajaArticulo.Text,
                 MotivoBajaId = (long)cmbMotivo.SelectedValue,
+                Cantidad = nudCantidad.Value,
+                ArticuloId = bajaArticuloDTO.ArticuloId,
+                StockModificado = null
             };
+
+            /*---------------------------------------------------------------------------------*/
+            var articuloModDTO = _articuloServicio.ObtenerArticuloPorBaja(bajaArticuloMod.Id);
+
+            if(bajaArticuloDTO.Cantidad != bajaArticuloMod.Cantidad)
+            {
+                if (bajaArticuloMod.Cantidad > bajaArticuloDTO.Cantidad)
+                {
+                    decimal stockMod = articuloModDTO.Stock - (bajaArticuloMod.Cantidad - bajaArticuloDTO.Cantidad);
+
+                    bajaArticuloMod.StockModificado = stockMod;
+                }
+                if (bajaArticuloMod.Cantidad < bajaArticuloDTO.Cantidad)
+                {
+                    decimal stockMod = articuloModDTO.Stock + (bajaArticuloDTO.Cantidad - bajaArticuloMod.Cantidad);
+
+                    bajaArticuloMod.StockModificado = stockMod;
+                }
+            }
 
             _bajaArticuloServicio.Modificar(bajaArticuloMod);
 
@@ -167,6 +161,45 @@ namespace Presentacion.Core.Articulo.BajaArticulo
             CargarComboBox(cmbMotivo, _motivoBajaServicio.ObtenerMotivoBaja(string.Empty), "Descripcion", "Id");
             cmbMotivo.SelectedItem = bajaArticulo.MotivoBajaId;
             
+        }
+
+        public void CargarNuevo(long? entidadId)
+        {
+            CargarComboBox(cmbMotivo, _motivoBajaServicio.ObtenerMotivoBaja(string.Empty), "Descripcion", "Id");
+            var articuloDTO = _articuloServicio.ObtenerPorId(entidadId.Value);
+
+            lblArticulo.Text = articuloDTO.Descripcion;
+
+            nudCantidad.Minimum = 1;
+            nudCantidad.Maximum = articuloDTO.Stock;
+            nudCantidad.Value = articuloDTO.Stock;
+
+            richBajaArticulo.KeyPress += Validacion.NoSimbolos;
+            richBajaArticulo.KeyPress += Validacion.NoNumeros;
+
+            nudCantidad.Focus();
+
+        }
+
+        public void CargarModificar(long? entidadId)////xq sin el ? no funca entidadId.value
+        {
+            var articuloModDTO = _articuloServicio.ObtenerArticuloPorBaja(entidadId.Value);
+            var bajaArticuloDTO = _bajaArticuloServicio.ObtenerBajaMotivoPorId(entidadId.Value);
+
+            CargarComboBox(cmbMotivo, _motivoBajaServicio.ObtenerMotivoBaja(string.Empty), "Descripcion", "Id");
+            cmbMotivo.SelectedItem = bajaArticuloDTO.MotivoBajaId;
+
+            lblArticulo.Text = articuloModDTO.Descripcion;
+
+            nudCantidad.Minimum = 0;
+            nudCantidad.Maximum = articuloModDTO.Stock + bajaArticuloDTO.Cantidad;
+            nudCantidad.Value = bajaArticuloDTO.Cantidad;
+
+            richBajaArticulo.KeyPress += Validacion.NoSimbolos;
+            richBajaArticulo.KeyPress += Validacion.NoNumeros;
+
+            nudCantidad.Focus();
+
         }
     }
 }

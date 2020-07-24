@@ -51,6 +51,19 @@ namespace XCommerce.Servicios.Core.Articulo.BajaArticulo
 
                 bajaArticuloModificar.Observacion = dto.Observacion;
                 bajaArticuloModificar.MotivoBajaId = dto.MotivoBajaId;
+                bajaArticuloModificar.Cantidad = dto.Cantidad;
+
+                /*-----------------------------------------------------*/
+                if (dto.StockModificado != null)
+                {
+                    var articuloModificarStock = context.Articulos
+                    .FirstOrDefault(x => x.Id == dto.ArticuloId);
+
+                    decimal stockArticulo = (decimal)dto.StockModificado;
+
+                    articuloModificarStock.Stock = stockArticulo;
+                }
+
 
                 context.SaveChanges();
             }

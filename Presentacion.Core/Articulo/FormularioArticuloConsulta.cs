@@ -111,5 +111,20 @@ namespace Presentacion.Core.Articulo
             var bajaArticulo = new FormularioBajaArticuloABM(TipoOperacion.Nuevo, entidadId);
             bajaArticulo.ShowDialog();
         }
+
+        private void btnStock_Click(object sender, EventArgs e)
+        {
+            AgregarStock(entidadId);     
+        }
+
+        private void AgregarStock(long? entidadId)
+        {
+            long stockId = (long)entidadId;
+
+            var altaArticulo = new FormularioAgregarStock(stockId);
+            //agregar mensajito de que todo esta bien
+
+            altaArticulo.ShowDialog();
+        }
     }
 }
