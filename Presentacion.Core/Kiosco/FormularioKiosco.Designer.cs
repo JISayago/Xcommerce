@@ -43,6 +43,8 @@
             this.txtCodigoBarras = new System.Windows.Forms.TextBox();
             this.dgvGrilla = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rbCheque = new System.Windows.Forms.RadioButton();
+            this.rbTarjeta = new System.Windows.Forms.RadioButton();
             this.rbCtaCte = new System.Windows.Forms.RadioButton();
             this.rbEfectivo = new System.Windows.Forms.RadioButton();
             this.groupBoxCliente = new System.Windows.Forms.GroupBox();
@@ -53,13 +55,20 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtDniCliente = new System.Windows.Forms.TextBox();
             this.groupBoxEmpleado = new System.Windows.Forms.GroupBox();
-            this.txtNombreEmpleado = new System.Windows.Forms.TextBox();
+            this.txtUsuarioEmpleado = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtLegajoEmpleado = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.btnFacturar = new System.Windows.Forms.Button();
-            this.cbConsumidorFinal = new System.Windows.Forms.CheckBox();
             this.btnBuscarCliente = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbPlan = new System.Windows.Forms.ComboBox();
+            this.cbTarjeta = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.btnBuscarEmpleado = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtNombreEmpleado = new System.Windows.Forms.TextBox();
+            this.txtApellidoEmpleado = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudTotal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDescuento)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSubTotal)).BeginInit();
@@ -68,6 +77,7 @@
             this.groupBox1.SuspendLayout();
             this.groupBoxCliente.SuspendLayout();
             this.groupBoxEmpleado.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // nudTotal
@@ -75,7 +85,7 @@
             this.nudTotal.DecimalPlaces = 2;
             this.nudTotal.Enabled = false;
             this.nudTotal.InterceptArrowKeys = false;
-            this.nudTotal.Location = new System.Drawing.Point(714, 574);
+            this.nudTotal.Location = new System.Drawing.Point(714, 622);
             this.nudTotal.Maximum = new decimal(new int[] {
             9999999,
             0,
@@ -91,7 +101,7 @@
             // 
             this.lblTotal.AutoSize = true;
             this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(612, 569);
+            this.lblTotal.Location = new System.Drawing.Point(612, 617);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(85, 25);
             this.lblTotal.TabIndex = 38;
@@ -99,7 +109,7 @@
             // 
             // nudDescuento
             // 
-            this.nudDescuento.Location = new System.Drawing.Point(715, 536);
+            this.nudDescuento.Location = new System.Drawing.Point(715, 584);
             this.nudDescuento.Name = "nudDescuento";
             this.nudDescuento.Size = new System.Drawing.Size(70, 20);
             this.nudDescuento.TabIndex = 37;
@@ -109,7 +119,7 @@
             // 
             this.lblDescuento.AutoSize = true;
             this.lblDescuento.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescuento.Location = new System.Drawing.Point(533, 531);
+            this.lblDescuento.Location = new System.Drawing.Point(533, 579);
             this.lblDescuento.Name = "lblDescuento";
             this.lblDescuento.Size = new System.Drawing.Size(165, 25);
             this.lblDescuento.TabIndex = 36;
@@ -120,7 +130,7 @@
             this.nudSubTotal.DecimalPlaces = 2;
             this.nudSubTotal.Enabled = false;
             this.nudSubTotal.InterceptArrowKeys = false;
-            this.nudSubTotal.Location = new System.Drawing.Point(714, 502);
+            this.nudSubTotal.Location = new System.Drawing.Point(714, 550);
             this.nudSubTotal.Maximum = new decimal(new int[] {
             9999999,
             0,
@@ -136,7 +146,7 @@
             // 
             this.lblSubTotal.AutoSize = true;
             this.lblSubTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSubTotal.Location = new System.Drawing.Point(583, 497);
+            this.lblSubTotal.Location = new System.Drawing.Point(583, 545);
             this.lblSubTotal.Name = "lblSubTotal";
             this.lblSubTotal.Size = new System.Drawing.Size(114, 25);
             this.lblSubTotal.TabIndex = 34;
@@ -239,6 +249,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.rbCheque);
+            this.groupBox1.Controls.Add(this.rbTarjeta);
             this.groupBox1.Controls.Add(this.rbCtaCte);
             this.groupBox1.Controls.Add(this.rbEfectivo);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
@@ -246,10 +258,33 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(249, 118);
+            this.groupBox1.Size = new System.Drawing.Size(249, 169);
             this.groupBox1.TabIndex = 42;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "TIPO PAGO";
+            // 
+            // rbCheque
+            // 
+            this.rbCheque.AutoSize = true;
+            this.rbCheque.Enabled = false;
+            this.rbCheque.Location = new System.Drawing.Point(20, 130);
+            this.rbCheque.Name = "rbCheque";
+            this.rbCheque.Size = new System.Drawing.Size(89, 24);
+            this.rbCheque.TabIndex = 35;
+            this.rbCheque.TabStop = true;
+            this.rbCheque.Text = "Cheque";
+            this.rbCheque.UseVisualStyleBackColor = true;
+            // 
+            // rbTarjeta
+            // 
+            this.rbTarjeta.AutoSize = true;
+            this.rbTarjeta.Location = new System.Drawing.Point(20, 97);
+            this.rbTarjeta.Name = "rbTarjeta";
+            this.rbTarjeta.Size = new System.Drawing.Size(83, 24);
+            this.rbTarjeta.TabIndex = 34;
+            this.rbTarjeta.TabStop = true;
+            this.rbTarjeta.Text = "Tarjeta";
+            this.rbTarjeta.UseVisualStyleBackColor = true;
             // 
             // rbCtaCte
             // 
@@ -353,81 +388,53 @@
             // 
             // groupBoxEmpleado
             // 
-            this.groupBoxEmpleado.Controls.Add(this.txtNombreEmpleado);
+            this.groupBoxEmpleado.Controls.Add(this.txtApellidoEmpleado);
+            this.groupBoxEmpleado.Controls.Add(this.btnBuscarEmpleado);
+            this.groupBoxEmpleado.Controls.Add(this.label9);
+            this.groupBoxEmpleado.Controls.Add(this.txtUsuarioEmpleado);
             this.groupBoxEmpleado.Controls.Add(this.label2);
-            this.groupBoxEmpleado.Controls.Add(this.txtLegajoEmpleado);
+            this.groupBoxEmpleado.Controls.Add(this.txtNombreEmpleado);
             this.groupBoxEmpleado.Controls.Add(this.label6);
             this.groupBoxEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.groupBoxEmpleado.Location = new System.Drawing.Point(26, 374);
             this.groupBoxEmpleado.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxEmpleado.Name = "groupBoxEmpleado";
             this.groupBoxEmpleado.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxEmpleado.Size = new System.Drawing.Size(222, 118);
+            this.groupBoxEmpleado.Size = new System.Drawing.Size(222, 172);
             this.groupBoxEmpleado.TabIndex = 40;
             this.groupBoxEmpleado.TabStop = false;
             this.groupBoxEmpleado.Text = "VENDEDOR";
             // 
-            // txtNombreEmpleado
+            // txtUsuarioEmpleado
             // 
-            this.txtNombreEmpleado.Location = new System.Drawing.Point(83, 67);
-            this.txtNombreEmpleado.Margin = new System.Windows.Forms.Padding(2);
-            this.txtNombreEmpleado.Name = "txtNombreEmpleado";
-            this.txtNombreEmpleado.ReadOnly = true;
-            this.txtNombreEmpleado.Size = new System.Drawing.Size(117, 26);
-            this.txtNombreEmpleado.TabIndex = 3;
+            this.txtUsuarioEmpleado.Enabled = false;
+            this.txtUsuarioEmpleado.Location = new System.Drawing.Point(84, 31);
+            this.txtUsuarioEmpleado.Margin = new System.Windows.Forms.Padding(2);
+            this.txtUsuarioEmpleado.Name = "txtUsuarioEmpleado";
+            this.txtUsuarioEmpleado.ReadOnly = true;
+            this.txtUsuarioEmpleado.Size = new System.Drawing.Size(117, 26);
+            this.txtUsuarioEmpleado.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 70);
+            this.label2.Location = new System.Drawing.Point(6, 106);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(71, 20);
             this.label2.TabIndex = 2;
             this.label2.Text = "Nombre";
             // 
-            // txtLegajoEmpleado
-            // 
-            this.txtLegajoEmpleado.Location = new System.Drawing.Point(83, 26);
-            this.txtLegajoEmpleado.Margin = new System.Windows.Forms.Padding(2);
-            this.txtLegajoEmpleado.Name = "txtLegajoEmpleado";
-            this.txtLegajoEmpleado.ReadOnly = true;
-            this.txtLegajoEmpleado.Size = new System.Drawing.Size(117, 26);
-            this.txtLegajoEmpleado.TabIndex = 1;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(16, 25);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(63, 20);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Legajo";
-            // 
             // btnFacturar
             // 
             this.btnFacturar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.btnFacturar.Location = new System.Drawing.Point(545, 603);
+            this.btnFacturar.Location = new System.Drawing.Point(545, 651);
             this.btnFacturar.Name = "btnFacturar";
             this.btnFacturar.Size = new System.Drawing.Size(244, 36);
             this.btnFacturar.TabIndex = 43;
             this.btnFacturar.Text = "Facturar";
             this.btnFacturar.UseVisualStyleBackColor = true;
             this.btnFacturar.Click += new System.EventHandler(this.BtnFacturar_Click);
-            // 
-            // cbConsumidorFinal
-            // 
-            this.cbConsumidorFinal.AutoSize = true;
-            this.cbConsumidorFinal.Checked = true;
-            this.cbConsumidorFinal.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbConsumidorFinal.Location = new System.Drawing.Point(46, 516);
-            this.cbConsumidorFinal.Name = "cbConsumidorFinal";
-            this.cbConsumidorFinal.Size = new System.Drawing.Size(106, 17);
-            this.cbConsumidorFinal.TabIndex = 44;
-            this.cbConsumidorFinal.Text = "Consumidor Final";
-            this.cbConsumidorFinal.UseVisualStyleBackColor = true;
-            this.cbConsumidorFinal.CheckedChanged += new System.EventHandler(this.CbConsumidorFinal_CheckedChanged);
             // 
             // btnBuscarCliente
             // 
@@ -439,13 +446,121 @@
             this.btnBuscarCliente.UseVisualStyleBackColor = true;
             this.btnBuscarCliente.Click += new System.EventHandler(this.BtnBuscarCliente_Click);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.cbPlan);
+            this.groupBox2.Controls.Add(this.cbTarjeta);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.groupBox2.Location = new System.Drawing.Point(27, 569);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox2.Size = new System.Drawing.Size(485, 118);
+            this.groupBox2.TabIndex = 41;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "TARJETA";
+            // 
+            // cbPlan
+            // 
+            this.cbPlan.Enabled = false;
+            this.cbPlan.FormattingEnabled = true;
+            this.cbPlan.Location = new System.Drawing.Point(74, 73);
+            this.cbPlan.Name = "cbPlan";
+            this.cbPlan.Size = new System.Drawing.Size(391, 28);
+            this.cbPlan.TabIndex = 4;
+            // 
+            // cbTarjeta
+            // 
+            this.cbTarjeta.Enabled = false;
+            this.cbTarjeta.FormattingEnabled = true;
+            this.cbTarjeta.Location = new System.Drawing.Point(74, 26);
+            this.cbTarjeta.Name = "cbTarjeta";
+            this.cbTarjeta.Size = new System.Drawing.Size(391, 28);
+            this.cbTarjeta.TabIndex = 3;
+            this.cbTarjeta.SelectedIndexChanged += new System.EventHandler(this.cbTarjeta_SelectedIndexChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(25, 73);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(44, 20);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Plan";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(4, 29);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(65, 20);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Tarjeta";
+            // 
+            // btnBuscarEmpleado
+            // 
+            this.btnBuscarEmpleado.Enabled = false;
+            this.btnBuscarEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.btnBuscarEmpleado.Location = new System.Drawing.Point(83, 144);
+            this.btnBuscarEmpleado.Name = "btnBuscarEmpleado";
+            this.btnBuscarEmpleado.Size = new System.Drawing.Size(117, 23);
+            this.btnBuscarEmpleado.TabIndex = 46;
+            this.btnBuscarEmpleado.Text = "Buscar Empleado";
+            this.btnBuscarEmpleado.UseVisualStyleBackColor = true;
+            this.btnBuscarEmpleado.Click += new System.EventHandler(this.btnBuscarEmpleado_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 31);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(71, 20);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Usuario";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // txtNombreEmpleado
+            // 
+            this.txtNombreEmpleado.Enabled = false;
+            this.txtNombreEmpleado.Location = new System.Drawing.Point(84, 106);
+            this.txtNombreEmpleado.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNombreEmpleado.Name = "txtNombreEmpleado";
+            this.txtNombreEmpleado.ReadOnly = true;
+            this.txtNombreEmpleado.Size = new System.Drawing.Size(117, 26);
+            this.txtNombreEmpleado.TabIndex = 1;
+            // 
+            // txtApellidoEmpleado
+            // 
+            this.txtApellidoEmpleado.Enabled = false;
+            this.txtApellidoEmpleado.Location = new System.Drawing.Point(84, 69);
+            this.txtApellidoEmpleado.Margin = new System.Windows.Forms.Padding(2);
+            this.txtApellidoEmpleado.Name = "txtApellidoEmpleado";
+            this.txtApellidoEmpleado.ReadOnly = true;
+            this.txtApellidoEmpleado.Size = new System.Drawing.Size(117, 26);
+            this.txtApellidoEmpleado.TabIndex = 11;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(4, 69);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(73, 20);
+            this.label9.TabIndex = 10;
+            this.label9.Text = "Apellido";
+            // 
             // FormularioKiosco
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(836, 644);
+            this.ClientSize = new System.Drawing.Size(836, 699);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnBuscarCliente);
-            this.Controls.Add(this.cbConsumidorFinal);
             this.Controls.Add(this.btnFacturar);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBoxCliente);
@@ -480,6 +595,8 @@
             this.groupBoxCliente.PerformLayout();
             this.groupBoxEmpleado.ResumeLayout(false);
             this.groupBoxEmpleado.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -512,12 +629,21 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtDniCliente;
         private System.Windows.Forms.GroupBox groupBoxEmpleado;
-        private System.Windows.Forms.TextBox txtNombreEmpleado;
+        private System.Windows.Forms.TextBox txtUsuarioEmpleado;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtLegajoEmpleado;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnFacturar;
-        private System.Windows.Forms.CheckBox cbConsumidorFinal;
         private System.Windows.Forms.Button btnBuscarCliente;
+        private System.Windows.Forms.RadioButton rbCheque;
+        private System.Windows.Forms.RadioButton rbTarjeta;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ComboBox cbPlan;
+        private System.Windows.Forms.ComboBox cbTarjeta;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtApellidoEmpleado;
+        private System.Windows.Forms.Button btnBuscarEmpleado;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtNombreEmpleado;
+        private System.Windows.Forms.Label label6;
     }
 }

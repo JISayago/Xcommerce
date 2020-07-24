@@ -51,6 +51,48 @@ namespace XCommerce.Servicios.Core.Comprobante
                 return nuevoComprobante.Id;
             }
         }
+
+        public long GenerarComprobanteDelivery(ComprobanteDTO dto)
+        {
+            using (var context = new ModeloXCommerceContainer())
+            {
+                var nuevoComprobante = new ComprobanteDelivery
+                {
+                    ClienteId = dto.ClienteId,
+                    Descuento = dto.Descuento,
+                    Fecha = dto.Fecha,
+                    Numero = 0,
+                    SubTotal = dto.SubTotal,
+                    Total = dto.Total,
+                    TipoComprobante = TipoComprobante.A,
+                    UsuarioId = dto.UsuarioId,
+                    DetalleComprobantes = new List<DetalleComprobante>()
+                };
+
+                context.Comprobantes.Add(nuevoComprobante);
+
+                var list = new List<DetalleComprobante>();
+                foreach (var it in dto.Items)
+                {
+                    var detalle = new DetalleComprobante
+                    {
+                        ComprobanteId = nuevoComprobante.Id,
+                        SubTotal = it.SubtotalLinea,
+                        Codigo = it.CodigoProducto,
+                        Cantidad = it.CantidadProducto,
+                        PrecioUnitario = it.PrecioUnitario,
+                        Descripcion = it.DescripcionProducto,
+                        ArticuloId = it.ProductoId
+                    };
+                    list.Add(detalle);
+                    context.DetalleComprobantes.Add(detalle);
+                }
+                nuevoComprobante.DetalleComprobantes = list;
+                context.SaveChanges();
+
+                return nuevoComprobante.Id;
+            }
+        }
     }
 }
 

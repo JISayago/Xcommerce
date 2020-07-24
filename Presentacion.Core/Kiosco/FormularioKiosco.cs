@@ -1,27 +1,26 @@
 ﻿using Presentacion.Core.Cliente;
+using Presentacion.Core.Empleado;
 using Presentacion.FormulariosBase;
 using Presentacion.Helpers;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using XCommerce.AccesoDatos;
 using XCommerce.Servicios.Core.Articulo;
-using XCommerce.Servicios.Core.Articulo.DTO;
 using XCommerce.Servicios.Core.Cliente;
 using XCommerce.Servicios.Core.Comprobante;
 using XCommerce.Servicios.Core.Comprobante.DTO;
 using XCommerce.Servicios.Core.DetalleCaja;
 using XCommerce.Servicios.Core.DetalleCaja.DTO;
+using XCommerce.Servicios.Core.Empleado;
 using XCommerce.Servicios.Core.Movimiento;
 using XCommerce.Servicios.Core.Movimiento.DTO;
 using XCommerce.Servicios.Core.Producto;
 using XCommerce.Servicios.Core.Producto.DTO;
+using XCommerce.Servicios.Core.Tarjeta;
+using XCommerce.Servicios.Core.Tarjeta.DTO;
+using XCommerce.Servicios.Core.Tarjeta.PlanTarjeta;
 
 namespace Presentacion.Core.Kiosco
 {
@@ -33,9 +32,14 @@ namespace Presentacion.Core.Kiosco
         private readonly IDetalleCajaServicio _detalleCajaServicio;
         private readonly IMovimientoServicio _movimientoServicio;
         private readonly IClienteServicio _clienteServicio;
+        private readonly ITarjetaServicio _tarjetaServicio;
+        private readonly IPlanTarjetaServicio _planTarjetaServicio;
+        private readonly IEmpleadoServicio _empleadoServicio;
 
         private Dictionary<string, DetalleComprobanteDTO> detalles;
         private long idCliente;
+
+        public bool delivery = false;
 
         public FormularioKiosco()
         {
@@ -47,14 +51,44 @@ namespace Presentacion.Core.Kiosco
             _detalleCajaServicio = new DetalleCajaServicio();
             _movimientoServicio = new MovimientoServicio();
             _clienteServicio = new ClienteServicio();
+            _tarjetaServicio = new TarjetaServicio();
+            _planTarjetaServicio = new PlanTarjetaServicio();
+            _empleadoServicio = new EmpleadoServicio();
 
             detalles = new Dictionary<string, DetalleComprobanteDTO>();
-            txtNombreEmpleado.Text = DatosSistema.NombreUsuario;
+            txtUsuarioEmpleado.Text = DatosSistema.NombreUsuario;
             SetConsumidorFinal();
+            cargarCbTarjetaPlan();
+
         }
         public FormularioKiosco(long idCliente) : this()
         {
             this.idCliente = idCliente;
+        }
+
+        public FormularioKiosco(bool delivery) : this()
+        {
+            this.delivery = delivery;
+            if (this.delivery)
+            {
+                groupBoxEmpleado.Text = "Cadete";
+                this.Text = "Formulario Delivery";
+                btnBuscarEmpleado.Enabled = true;
+            }
+        }
+
+        private void cargarCbTarjetaPlan()
+        {
+
+            CargarComboBox(cbTarjeta, _tarjetaServicio.Obtener(""), "Descripcion", "Id");
+            if (cbTarjeta.Items.Count != 0)
+            {
+                CargarComboBox(cbPlan, _planTarjetaServicio.ObtenerPorIdTarjeta(((TarjetaDTO)cbTarjeta.SelectedItem).Id), "Descripcion", "Id");
+            }
+            else
+            {
+                CargarComboBox(cbPlan, _planTarjetaServicio.Obtener(""), "Descripcion", "Id");
+            }
         }
         private void SetConsumidorFinal()
         {
@@ -70,7 +104,7 @@ namespace Presentacion.Core.Kiosco
                 btnBuscarCliente.Enabled = true;
 
             }
-            else if (rbEfectivo.Checked)
+            else //if (rbEfectivo.Checked)
             {
                 txtDniCliente.Text = "99999999";
                 txtDniCliente.Enabled = false;
@@ -118,21 +152,6 @@ namespace Presentacion.Core.Kiosco
 
 
         }
-
-
-        private bool ChequeoArticulo(ArticuloDTO articulo)
-        {
-            //if (articulo != null)
-            //if (articulo.Precio != null) throw new Exception("error grave, no tendria que traer articulo sin precio nunca");
-
-            if (!articulo.EstaDiscontinuado && !articulo.EstaEliminado) throw new Exception("Not handled");
-            if (!articulo.ActivarLimiteVenta || articulo.LimiteVenta >= nudCantidadArticulo.Value) throw new Exception("Not handled");
-            if (articulo.Stock >= nudCantidadArticulo.Value || articulo.PermiteStockNegativo || !articulo.DescuentaStock) throw new Exception("Not handled");
-            if (articulo.StockMinimo >= articulo.Stock && articulo.DescuentaStock) throw new Exception("Not handled");
-
-            return true;
-        }
-
 
         private bool ChequearDisponibilidadArticulo(string codigo, decimal cantidad)
         {
@@ -191,7 +210,7 @@ namespace Presentacion.Core.Kiosco
             else
             {
                 //ProductoMesaDTO producto = _productoServicio.ObtenerPorCodigoKiosco(txtCodigoBarras.Text);
-                ProductoMesaDTO producto = _productoServicio.ObtenerPorCodigoSalon("Kiosco", txtCodigoBarras.Text);
+                ProductoMesaDTO producto = _productoServicio.ObtenerPorCodigoSalon(delivery ? "Delivery" : "Kiosco", txtCodigoBarras.Text);  ;
 
                 if (producto != null)
                 {
@@ -208,7 +227,7 @@ namespace Presentacion.Core.Kiosco
                 }
                 else
                 {
-                    MessageBox.Show("Articulo no existe o no esta en lista precio kiosco.");
+                    MessageBox.Show(string.Format("Articulo no existe o no esta en lista precio {0}", delivery ? "delivery" : "kiosco")) ;
                 }
             }
 
@@ -248,6 +267,10 @@ namespace Presentacion.Core.Kiosco
         private long consumidorFinalId = 2; // temporal, para no perder la referencia
         private void Facturar()
         {
+
+            ////////////////
+            //Comprobante//
+            ////////////////
             ComprobanteDTO comprobante = new ComprobanteDTO
             {
                 Fecha = DateTime.Now,
@@ -257,18 +280,29 @@ namespace Presentacion.Core.Kiosco
                 Items = detalles.Values.ToList()
             };
 
+            //Forma Pago
             var formaDePago = TipoPago.Efectivo;
             if (rbCtaCte.Checked)
             {
                 formaDePago = TipoPago.CtaCte;
             }
+            if (rbTarjeta.Checked)
+            {
+                formaDePago = TipoPago.Tarjeta;
+            }
 
+            //formadepago.generar()
+
+            ////////////////
+            //Detalle Caja//
+            ////////////////
             DetalleCajaDTO detalleCaja = new DetalleCajaDTO
             {
                 CajaId = DatosSistema.CajaId,
                 Monto = comprobante.Total,
                 TipoPago = formaDePago
             };
+            _detalleCajaServicio.Generar(detalleCaja);
 
             if (rbCtaCte.Checked)
             {
@@ -282,13 +316,28 @@ namespace Presentacion.Core.Kiosco
                 }
             }
 
-            long comproboante_id = _comprobanteServicio.Generar(comprobante);
-            _detalleCajaServicio.Generar(detalleCaja);
+            if (rbTarjeta.Checked)
+            {
+                //todo: generar comprobante tarjeta?
+            }
 
+            long comprobante_id;
+            if (delivery)
+            {
+                comprobante_id = _comprobanteServicio.GenerarComprobanteDelivery(comprobante);
+            }
+            else
+            {
+                comprobante_id = _comprobanteServicio.Generar(comprobante);
+            }
+
+            //////////////
+            //Movimiento//
+            //////////////
             MovimientoDTO movimiento = new MovimientoDTO
             {
                 CajaID = DatosSistema.CajaId,
-                ComprobanteID = comproboante_id,
+                ComprobanteID = comprobante_id,
                 TipoMovimiento = TipoMovimiento.Ingreso,
                 UsuarioID = DatosSistema.UsuarioId,
                 Monto = comprobante.Total,
@@ -300,11 +349,11 @@ namespace Presentacion.Core.Kiosco
 
             foreach (var d in detalles)
             {
-                //producto tendria que tener si descuenta stock o no...
+                //todo:producto tendria que tener si descuenta stock o no...
                 _articuloServicio.DescontarStock(d.Value.ProductoId, d.Value.CantidadProducto);
             }
 
-            MessageBox.Show("factura3");
+            MessageBox.Show("Factura3", "Kiosco");
             Close();
         }
 
@@ -331,6 +380,7 @@ namespace Presentacion.Core.Kiosco
         private void CbConsumidorFinal_CheckedChanged(object sender, EventArgs e)
         {
             SetConsumidorFinal();
+            
         }
 
         private void NudDescuento_ValueChanged(object sender, EventArgs e)
@@ -371,12 +421,28 @@ namespace Presentacion.Core.Kiosco
 
         private void RbCtaCte_CheckedChanged(object sender, EventArgs e)
         {
-            SetConsumidorFinal();           
+            SetConsumidorFinal();
+            actualizarCbTarjeta();
         }
 
         private void RbEfectivo_CheckedChanged(object sender, EventArgs e)
         {
             SetConsumidorFinal();
+            actualizarCbTarjeta();
+        }
+
+        private void actualizarCbTarjeta()
+        {
+            if (rbTarjeta.Checked)
+            {
+                cbTarjeta.Enabled = true;
+                cbPlan.Enabled = true;
+            }
+            else
+            {
+                cbTarjeta.Enabled = false;
+                cbPlan.Enabled = false;
+            }
         }
         
         private void BtnBuscarCliente_Click(object sender, EventArgs e)
@@ -402,6 +468,32 @@ namespace Presentacion.Core.Kiosco
             
             Console.WriteLine(idCliente);
             Console.WriteLine("Cerró");
+        }
+
+        private void cbTarjeta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargarComboBox(cbPlan, _planTarjetaServicio.ObtenerPorIdTarjeta(((TarjetaDTO)cbTarjeta.SelectedItem).Id), "Descripcion", "Id");
+        }
+
+        private void btnBuscarEmpleado_Click(object sender, EventArgs e)
+        {
+            long? idEmpleado = ((Func<long>)(() => { 
+                var f_ = new FormularioEmpleadoConsulta(true); 
+                f_.ShowDialog();
+                return f_.empleadoSeleccionado; 
+            }))();
+
+            if (idEmpleado != null)
+            {
+                var empleado = _empleadoServicio.ObtenerEmpleadoPorId((long)idEmpleado);
+                if (empleado != null)
+                {
+                    txtUsuarioEmpleado.Text = "";
+                    txtNombreEmpleado.Text = empleado.Nombre;
+                    txtApellidoEmpleado.Text = empleado.Apellido;
+                }
+            }
+
         }
     }
 }
