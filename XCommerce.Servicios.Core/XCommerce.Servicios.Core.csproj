@@ -123,6 +123,12 @@
     <Compile Include="Salon\Mesa\IMesaServicio.cs" />
     <Compile Include="Salon\Mesa\MesaServicio.cs" />
     <Compile Include="Salon\SalonServicio.cs" />
+    <Compile Include="Tarjeta\DTO\TarjetaDTO.cs" />
+    <Compile Include="Tarjeta\ITarjetaServicio.cs" />
+    <Compile Include="Tarjeta\PlanTarjeta\DTO\PlanTarjetaDTO.cs" />
+    <Compile Include="Tarjeta\PlanTarjeta\IPlanTarjetaServicio.cs" />
+    <Compile Include="Tarjeta\PlanTarjeta\PlanTarjetaServicio.cs" />
+    <Compile Include="Tarjeta\TarjetaServicio.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Presentacion.Helpers\Presentacion.Helpers.csproj">
