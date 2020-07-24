@@ -16,6 +16,8 @@ namespace VentanaPrincipal
     using Presentacion.Core.Provincia.Localidad;
     using Presentacion.Core.Salon;
     using Presentacion.Core.Salon.Mesa;
+    using Presentacion.Core.Tarjeta;
+    using Presentacion.Core.Tarjeta.PlanTarjeta;
     using Presentacion.Core.VentaSalon;
     using Presentacion.Helpers;
     using Presentacion.Login.Usuario;
@@ -148,6 +150,26 @@ namespace VentanaPrincipal
         {
 
             lblEstadoCaja.Text = DatosSistema.EstaCajaAbierta ? "Abierta" : "Cerrada";
+        }
+
+        private void btnDelivery_Click(object sender, EventArgs e)
+        {
+            var fDel = new FormularioKiosco(true);
+            fDel.Show();
+        }
+
+        private void consultaToolStripMenuItem5_Click_1(object sender, EventArgs e)
+        {
+            var ft = new FormularioTarjetaConsulta();
+            ft.Show();
+
+        }
+
+        private void consultaToolStripMenuItem8_Click(object sender, EventArgs e)
+        {
+
+            var ft = new FormularioPlanTarjetaConsulta();
+            ft.Show();
         }
     }
 }
