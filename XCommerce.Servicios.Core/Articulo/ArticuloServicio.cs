@@ -252,5 +252,23 @@ namespace XCommerce.Servicios.Core.Articulo
                     }).FirstOrDefault(x => x.Id == BajaArticulo.ArticuloId);
             }
         }
+
+        public void AgregarStock(long articuloId, decimal cantidad)
+        {
+            using (var context = new ModeloXCommerceContainer())
+            {
+                var articuloAModificar = context.Articulos
+                    .Include(x => x.Rubro)
+                    .Include(x => x.Marca)
+                    .FirstOrDefault(x => x.Id == articuloId);
+
+                if (articuloAModificar == null) throw new Exception("No se encontro el artículo");
+
+                articuloAModificar.Stock += cantidad;
+
+
+                context.SaveChanges();
+            }
+        }
     }
 }

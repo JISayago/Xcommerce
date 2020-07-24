@@ -26,5 +26,7 @@ namespace XCommerce.Servicios.Core.Articulo
         ArticuloDTO ObtenerPorCodigoModificar(string CodigoBuscar, string CodigoBarraBuscar, long EntidadId);
 
         ArticuloDTO ObtenerArticuloPorBaja(long bajaArticuloId);
+
+        void AgregarStock(long articuloId, decimal cantidad);
     }
 }
