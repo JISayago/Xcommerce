@@ -12,6 +12,7 @@
         public FormularioBase()
         {
             InitializeComponent();
+            _listaControlesObligatorios = new List<ControlDTO>();
         }
 
         public virtual void DesactivarControles(object obj)
@@ -222,7 +223,6 @@
         {
             if (sender is TextBox)
             {
-              
                 error.SetError(((TextBox)sender),
                     !string.IsNullOrEmpty(((TextBox)sender).Text)
                         ? string.Empty

@@ -20,7 +20,6 @@
             base.Dispose(disposing);
         }
 
-        public System.Windows.Forms.ErrorProvider error;
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -29,7 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.error = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.error)).BeginInit();
             this.SuspendLayout();
+            // 
+            // error
+            // 
+            this.error.ContainerControl = this;
             // 
             // FormularioBase
             // 
@@ -44,10 +50,13 @@
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "FormularioBase";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            ((System.ComponentModel.ISupportInitialize)(this.error)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.ErrorProvider error;
     }
 }
