@@ -244,7 +244,11 @@ namespace Presentacion.Core.Cliente
                 EstaEliminado = false,
             };
 
-            _clienteServicio.Insertar(nuevoCliente);
+            var id = _clienteServicio.Insertar(nuevoCliente);
+            if (id == -1)
+            {
+                return false;
+            }
 
             return true;
         }

@@ -247,7 +247,11 @@
                 FechaIngreso = dtpFechaIngreso.Value
             };
 
-            _empleadoServicio.Insertar(nuevoEmpleado);
+            var id =  _empleadoServicio.Insertar(nuevoEmpleado);
+            if(id == -1)
+            {
+                return false;
+            }
 
             return true;
         }
