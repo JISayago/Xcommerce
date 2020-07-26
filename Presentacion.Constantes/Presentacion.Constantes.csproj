@@ -76,5 +76,11 @@
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Presentacion.Helpers\Presentacion.Helpers.csproj">
+      <Project>{c88922a0-334b-4764-8152-bc862ba8a084}</Project>
+      <Name>Presentacion.Helpers</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

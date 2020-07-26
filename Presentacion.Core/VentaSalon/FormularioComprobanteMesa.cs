@@ -1,4 +1,5 @@
-﻿using Presentacion.Core.Cliente;
+﻿using Presentacion.Core.Articulo;
+using Presentacion.Core.Cliente;
 using Presentacion.FormulariosBase;
 using Presentacion.Helpers;
 using System;
@@ -11,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using XCommerce.AccesoDatos;
+using XCommerce.Servicios.Core.Articulo;
 using XCommerce.Servicios.Core.Caja.DetalleCaja;
 using XCommerce.Servicios.Core.Cliente;
 using XCommerce.Servicios.Core.Comprobante;
@@ -26,22 +28,23 @@ namespace Presentacion.Core.VentaSalon
     {
         private readonly string _listaPrecio;
         private readonly long _mesaId;
-
         private long idCliente;
-
+        private long idArticulo;
         private readonly int _numeroMesa;
-
         private int row;
 
         private readonly IComprobanteSalonServicio _comprobanteSalonServicio;
 
         private readonly IMovimientoServicio _movimientoServicio;
+        
 
         private readonly IClienteServicio _clienteServicio;
 
         private readonly IDetalleCajaServicio _detalleCajaServicio;
 
         private readonly IProductoServicio _productoServicio;
+
+        private readonly IArticuloServicio _articuloServicio;
 
         private readonly IMozoServicio _mozoServicio;
 
@@ -54,6 +57,7 @@ namespace Presentacion.Core.VentaSalon
 
         public FormularioComprobanteMesa() : this(new ComprobanteSalonServicio(),
                                                   new ProductoServicio(),
+                                                  new ArticuloServicio(),
                                                   new MozoServicio(),
                                                   new MovimientoServicio(),
                                                   new DetalleCajaServicio(),
@@ -68,6 +72,7 @@ namespace Presentacion.Core.VentaSalon
     
         public FormularioComprobanteMesa(IComprobanteSalonServicio comprobanteSalonServicio, 
                                          IProductoServicio productoServicio,
+                                         IArticuloServicio articuloServicio,
                                          IMozoServicio mozoServicio,
                                          IMovimientoServicio movimientoServicio,
                                          IDetalleCajaServicio detalleCajaServicio,
@@ -76,6 +81,7 @@ namespace Presentacion.Core.VentaSalon
         {
             _comprobanteSalonServicio = comprobanteSalonServicio;
             _productoServicio = productoServicio;
+            _articuloServicio = articuloServicio;
             _mozoServicio = mozoServicio;
             _movimientoServicio = movimientoServicio;
             _detalleCajaServicio = detalleCajaServicio;
@@ -139,7 +145,7 @@ namespace Presentacion.Core.VentaSalon
             ResetearGrilla(dgvGrilla);
            
         }
-             
+
 
         private void ObtenerComprobanteMesa(long mesaId)
         {
@@ -446,5 +452,49 @@ namespace Presentacion.Core.VentaSalon
 
             //ObtenerClientePorId
         }
+
+       
+
+        private void btnBuscarArticulo_Click_1(object sender, EventArgs e)
+        {
+            bool vieneDeMesaKiosco = true;
+            FormularioArticuloConsulta fAConsulta = new FormularioArticuloConsulta(vieneDeMesaKiosco);
+
+            fAConsulta.ShowDialog();
+
+            idArticulo = fAConsulta.articuloSeleccionado;
+
+            if(idArticulo == 0)
+            {
+                MessageBox.Show("No se seleccionó ningún artículo");
+            }
+            else
+            {
+                var articulo = _articuloServicio.ObtenerPorId(idArticulo);
+                if (articulo == null)
+                {
+                    MessageBox.Show("Articulo no existe o no se encuentra en lista precio de este Salon.");
+                }
+                else
+                {
+                    var salonDescripcion = _mesaServicio.ObtenerPorId(_mesaId).SalonDescripcion;
+                    var producto = _productoServicio.ObtenerPorCodigoSalon(salonDescripcion, articulo.Codigo);
+                    if (producto != null)
+                    {
+                        txtCodigoBarras.Text = producto.CodigoBarra;
+                        txtDescripcion.Text = producto.Descripcion;
+                        txtPrecioUnitario.Text = Convert.ToString(producto.Precio);
+                      
+                    }
+                    else
+                    {
+                        MessageBox.Show("Articulo no existe o no se encuentra en lista precio de este Salon.");
+
+                    }
+                }
+            }
+                  
+        }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using Presentacion.Core.Cliente;
+﻿using Presentacion.Core.Articulo;
+using Presentacion.Core.Cliente;
 using Presentacion.Core.Empleado;
 using Presentacion.FormulariosBase;
 using Presentacion.Helpers;
@@ -38,6 +39,7 @@ namespace Presentacion.Core.Kiosco
 
         private Dictionary<string, DetalleComprobanteDTO> detalles;
         private long idCliente;
+        private long idArticulo;
 
         public bool delivery = false;
 
@@ -494,6 +496,59 @@ namespace Presentacion.Core.Kiosco
                 }
             }
 
+        }
+
+        private void btnAgregar_Click_1(object sender, EventArgs e)
+        {
+            AgregarArticulo();
+        }
+
+        private void btnBuscarArticulo_Click(object sender, EventArgs e)
+        {
+            bool vieneDeMesaKiosco = true;
+            FormularioArticuloConsulta fAConsulta = new FormularioArticuloConsulta(vieneDeMesaKiosco);
+
+            fAConsulta.ShowDialog();
+
+            idArticulo = fAConsulta.articuloSeleccionado;
+
+            if (idArticulo == 0)
+            {
+                MessageBox.Show("No se seleccionó ningún artículo");
+            }
+            else
+            {
+                var articulo = _articuloServicio.ObtenerPorId(idArticulo);
+                if (articulo == null)
+                {
+                    MessageBox.Show("Articulo no existe o no se encuentra en lista precio de este Salon.");
+                }
+                else
+                {                    
+                    var producto = _productoServicio.ObtenerPorCodigoSalon("Kiosco", articulo.Codigo);
+                    if (producto != null)
+                    {
+                        txtCodigoBarras.Text = producto.CodigoBarra;
+                        txtDescripcion.Text = producto.Descripcion;
+                        txtPrecio.Text = Convert.ToString(producto.Precio);
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Articulo no existe o no se encuentra en lista precio de este Salon.");
+
+                    }
+                }
+            }
+                 
+        }
+
+        private void txtCodigoBarras_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((char)Keys.Enter == e.KeyChar)
+            {
+                AgregarArticulo();
+            }
         }
     }
 }
