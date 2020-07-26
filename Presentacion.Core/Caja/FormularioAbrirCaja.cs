@@ -29,6 +29,7 @@ namespace Presentacion.Core.Caja
         private void BtnAbrir_Click(object sender, EventArgs e)
         {
             if (DatosSistema.UsuarioId == 0) throw new Exception("La caja no se puede abrir como admin!");
+
             var caja = new CajaDTO
             {
                 MontoApertura = nudMontoApertura.Value,
@@ -37,9 +38,15 @@ namespace Presentacion.Core.Caja
                 UsuarioCierreId = 0
             };
 
-            DatosSistema.CajaId = _cajaServicio.Abrir(caja);
-            DatosSistema.EstaCajaAbierta = true;
-            
+            if (caja.MontoApertura == 0)
+            {
+                MessageBox.Show("La caja no se puede abrir en $0");
+            }
+            else
+            {
+                DatosSistema.CajaId = _cajaServicio.Abrir(caja);
+                DatosSistema.EstaCajaAbierta = true;
+            }
             //detallecomprobante?
 
             this.Close();
