@@ -46,7 +46,8 @@ namespace Presentacion.Core.Provincia.Localidad
                 DesactivarControles(this);
                 
             }
-
+            AgregarControlesObligatorios(txtLocalidad, "Descripcion");
+            AgregarControlesObligatorios(cmbProvincia, "Provincia");
         }
 
         public override void Inicializador(long? entidadId)
@@ -100,6 +101,12 @@ namespace Presentacion.Core.Provincia.Localidad
         }
         public override bool EjecutarComandoNuevo()
         {
+            if (!VerificarDatosObligatorios())
+            {
+                MessageBox.Show(@"Por favor ingrese los campos Obligatorios.", @"Atención", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
             var localidadNueva = new LocalidadDTO
             {
                 ProvinciaId = (long)cmbProvincia.SelectedValue,
@@ -124,6 +131,12 @@ namespace Presentacion.Core.Provincia.Localidad
 
         public override bool EjecutarComandoModificar()
         {
+            if (!VerificarDatosObligatorios())
+            {
+                MessageBox.Show(@"Por favor ingrese los campos Obligatorios.", @"Atención", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
             var localidadModificar = new LocalidadDTO
             {
                 Id = EntidadId.Value,

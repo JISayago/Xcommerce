@@ -34,7 +34,6 @@
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.pnlSeparador = new System.Windows.Forms.Panel();
             this.pnlFoto = new System.Windows.Forms.Panel();
@@ -82,6 +81,10 @@
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.txtMontoMaximoCtaCte = new System.Windows.Forms.TextBox();
             this.Archivo = new System.Windows.Forms.OpenFileDialog();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
             this.pnlFoto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgFotoCliente)).BeginInit();
             this.SuspendLayout();
@@ -91,7 +94,7 @@
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.label25.ForeColor = System.Drawing.Color.Red;
-            this.label25.Location = new System.Drawing.Point(569, 396);
+            this.label25.Location = new System.Drawing.Point(583, 394);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(116, 13);
             this.label25.TabIndex = 183;
@@ -151,17 +154,6 @@
             this.label20.Size = new System.Drawing.Size(15, 20);
             this.label20.TabIndex = 160;
             this.label20.Text = "*";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ForeColor = System.Drawing.Color.Red;
-            this.label19.Location = new System.Drawing.Point(405, 214);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(15, 20);
-            this.label19.TabIndex = 181;
-            this.label19.Text = "*";
             // 
             // label18
             // 
@@ -557,17 +549,66 @@
             this.txtMontoMaximoCtaCte.Name = "txtMontoMaximoCtaCte";
             this.txtMontoMaximoCtaCte.Size = new System.Drawing.Size(128, 20);
             this.txtMontoMaximoCtaCte.TabIndex = 14;
+            this.txtMontoMaximoCtaCte.Text = "0";
             // 
             // Archivo
             // 
             this.Archivo.FileName = "Archivo";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.Red;
+            this.label12.Location = new System.Drawing.Point(241, 137);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(15, 20);
+            this.label12.TabIndex = 184;
+            this.label12.Text = "*";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.ForeColor = System.Drawing.Color.Red;
+            this.label27.Location = new System.Drawing.Point(181, 276);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(15, 20);
+            this.label27.TabIndex = 185;
+            this.label27.Text = "*";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.ForeColor = System.Drawing.Color.Red;
+            this.label28.Location = new System.Drawing.Point(475, 354);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(15, 20);
+            this.label28.TabIndex = 186;
+            this.label28.Text = "*";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.ForeColor = System.Drawing.Color.Red;
+            this.label29.Location = new System.Drawing.Point(475, 382);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(15, 20);
+            this.label29.TabIndex = 187;
+            this.label29.Text = "*";
             // 
             // FormularioClienteABM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(698, 416);
+            this.ClientSize = new System.Drawing.Size(711, 416);
+            this.Controls.Add(this.label29);
+            this.Controls.Add(this.label28);
+            this.Controls.Add(this.label27);
+            this.Controls.Add(this.label12);
             this.Controls.Add(this.txtMontoMaximoCtaCte);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.label24);
@@ -575,7 +616,6 @@
             this.Controls.Add(this.label22);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.label20);
-            this.Controls.Add(this.label19);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.pnlSeparador);
             this.Controls.Add(this.pnlFoto);
@@ -618,8 +658,9 @@
             this.Controls.Add(this.lblMontoMaximoCtaCte);
             this.Controls.Add(this.lblApellido);
             this.Controls.Add(this.txtApellido);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.MaximumSize = new System.Drawing.Size(1409, 883);
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximumSize = new System.Drawing.Size(727, 455);
+            this.MinimumSize = new System.Drawing.Size(727, 455);
             this.Name = "FormularioClienteABM";
             this.Text = "FormularioClienteABM";
             this.Controls.SetChildIndex(this.txtApellido, 0);
@@ -664,7 +705,6 @@
             this.Controls.SetChildIndex(this.pnlFoto, 0);
             this.Controls.SetChildIndex(this.pnlSeparador, 0);
             this.Controls.SetChildIndex(this.label18, 0);
-            this.Controls.SetChildIndex(this.label19, 0);
             this.Controls.SetChildIndex(this.label20, 0);
             this.Controls.SetChildIndex(this.label21, 0);
             this.Controls.SetChildIndex(this.label22, 0);
@@ -672,6 +712,10 @@
             this.Controls.SetChildIndex(this.label24, 0);
             this.Controls.SetChildIndex(this.label25, 0);
             this.Controls.SetChildIndex(this.txtMontoMaximoCtaCte, 0);
+            this.Controls.SetChildIndex(this.label12, 0);
+            this.Controls.SetChildIndex(this.label27, 0);
+            this.Controls.SetChildIndex(this.label28, 0);
+            this.Controls.SetChildIndex(this.label29, 0);
             this.pnlFoto.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgFotoCliente)).EndInit();
             this.ResumeLayout(false);
@@ -687,7 +731,6 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Panel pnlSeparador;
         private System.Windows.Forms.Panel pnlFoto;
@@ -735,5 +778,9 @@
         private System.Windows.Forms.TextBox txtApellido;
         private System.Windows.Forms.TextBox txtMontoMaximoCtaCte;
         private System.Windows.Forms.OpenFileDialog Archivo;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label29;
     }
 }

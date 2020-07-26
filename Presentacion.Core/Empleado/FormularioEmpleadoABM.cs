@@ -52,7 +52,17 @@
                 DesactivarControles(this);
             }
 
-            
+            AgregarControlesObligatorios(txtApellido, "Apellido");
+            AgregarControlesObligatorios(txtNombre, "Nombre");
+            AgregarControlesObligatorios(nudLegajo, "Legajo");
+            AgregarControlesObligatorios(txtDni, "Dni");
+            AgregarControlesObligatorios(txtTelefono, "Telefono");
+            AgregarControlesObligatorios(txtCuil, "Cuil");
+            AgregarControlesObligatorios(txtEmail, "Email");
+            AgregarControlesObligatorios(txtCalle, "Calle");
+            AgregarControlesObligatorios(txtNumero, "Numero");
+            AgregarControlesObligatorios(cmbLocalidad, "Localidad");
+            AgregarControlesObligatorios(cmbProvincia, "Provincia");
 
         }               
         
@@ -206,13 +216,12 @@
         }
         public override bool EjecutarComandoNuevo()
         {
-           /* if (!VerificarDatosObligatorios())
+            if (!VerificarDatosObligatorios())
             {
                 MessageBox.Show(@"Por favor ingrese los campos Obligatorios.", @"Atención", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return false;
             }
-            */
             var nuevoEmpleado = new EmpleadoDTO
             {
                 Apellido = txtApellido.Text,
@@ -244,13 +253,12 @@
         }
         public override bool EjecutarComandoModificar()
         {
-            /*if (!VerificarDatosObligatorios())
+            if (!VerificarDatosObligatorios())
             {
                 MessageBox.Show(@"Por favor ingrese los campos Obligatorios.", @"Atención", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return false;
             }
-            */
             var empleadoParaModificar = new EmpleadoDTO
             {
                 Id = EntidadId.Value,

@@ -43,6 +43,8 @@ namespace Presentacion.Core.Cliente
             _provinciaServicio = new ProvinciaServicio();
             _localidadServicio = new LocalidadServicio();
 
+            
+
             if (tipoOperacion == TipoOperacion.Eliminar || tipoOperacion == TipoOperacion.Modificar)
             {
                 CargarDatos(entidadId);
@@ -52,7 +54,22 @@ namespace Presentacion.Core.Cliente
             {
                 DesactivarControles(this);
             }
+
+            AgregarControlesObligatorios(txtApellido, "Apellido");
+            AgregarControlesObligatorios(txtNombre, "Nombre");
+            AgregarControlesObligatorios(txtDni, "Dni");
+            AgregarControlesObligatorios(txtTelefono, "Telefono");
+            AgregarControlesObligatorios(txtCuil, "Cuil");
+            AgregarControlesObligatorios(txtEmail, "Email");
+            AgregarControlesObligatorios(txtCalle, "Calle");
+            AgregarControlesObligatorios(txtNumero, "Numero");
+            AgregarControlesObligatorios(cmbLocalidad, "Localidad");
+            AgregarControlesObligatorios(cmbProvincia, "Provincia");
+            
+            
         }
+
+        
 
         public override void Inicializador(long? entidadId)
         {
@@ -180,6 +197,7 @@ namespace Presentacion.Core.Cliente
 
         private void btnNuevaProvincia_Click(object sender, EventArgs e)
         {
+
             var FormularioABMProvincia = new FormularioProvinciaABM(TipoOperacion.Nuevo);
             FormularioABMProvincia.ShowDialog();
 
@@ -196,13 +214,12 @@ namespace Presentacion.Core.Cliente
 
         public override bool EjecutarComandoNuevo()
         {
-            /* if (!VerificarDatosObligatorios())
-             {
-                 MessageBox.Show(@"Por favor ingrese los campos Obligatorios.", @"Atención", MessageBoxButtons.OK,
-                     MessageBoxIcon.Error);
-                 return false;
-             }
-             */
+            if (!VerificarDatosObligatorios())
+            {
+                MessageBox.Show(@"Por favor ingrese los campos Obligatorios.", @"Atención", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
             var nuevoCliente = new ClienteDTO
             {
                 MontoMaximoCtaCte = Convert.ToDecimal(txtMontoMaximoCtaCte.Text),
@@ -234,13 +251,12 @@ namespace Presentacion.Core.Cliente
 
         public override bool EjecutarComandoModificar()
         {
-            /*if (!VerificarDatosObligatorios())
+            if (!VerificarDatosObligatorios())
             {
                 MessageBox.Show(@"Por favor ingrese los campos Obligatorios.", @"Atención", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return false;
             }
-            */
             var clienteParaModificar = new ClienteDTO
             {
                 Id = EntidadId.Value,

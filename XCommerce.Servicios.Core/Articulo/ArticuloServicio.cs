@@ -215,6 +215,8 @@ namespace XCommerce.Servicios.Core.Articulo
                         StockMaximo = x.StockMaximo,
                         StockMinimo = x.StockMinimo
                     }).FirstOrDefault(x => !x.EstaEliminado && x.Id == articuloId);
+
+                
             }
         }
 

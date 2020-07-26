@@ -18,7 +18,7 @@
     public partial class FormularioProvinciaABM : FormularioBaseABM
     {
         private readonly IProvinciaServicio _provinciaServicio;
-        
+
 
         public override void FormularioBaseABM_Load(object sender, EventArgs e)
         {
@@ -41,6 +41,8 @@
             {
                 DesactivarControles(this);
             }
+            AgregarControlesObligatorios(txtProvincia, "Provincia");
+
 
         }
 
@@ -52,6 +54,7 @@
             txtProvincia.KeyPress += Validacion.NoNumeros;
         }
 
+
         public override void DesactivarControles(object obj)
         {
             base.DesactivarControles(obj);
@@ -59,6 +62,7 @@
             btnLimpiar.Enabled = false;
             btnLimpiar.Visible = false;
         }
+
 
         public override void CargarDatos(long? entidadId)
         {
@@ -76,7 +80,7 @@
 
             var provincia = _provinciaServicio.ObtenerPorId(entidadId.Value);
 
-            if(provincia != null)
+            if (provincia != null)
             {
                 txtProvincia.Text = provincia.Descripcion;
             }
@@ -88,6 +92,13 @@
         }
         public override bool EjecutarComandoNuevo()
         {
+            if (!VerificarDatosObligatorios())
+            {
+                MessageBox.Show(@"Por favor ingrese los campos Obligatorios.", @"Atención", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
+
             var provinciaNueva = new ProvinciaDTO
             {
                 Descripcion = txtProvincia.Text,
@@ -100,6 +111,7 @@
         }
         public override bool EjecutarComandoEliminar()
         {
+
             if (EntidadId == null) return false;
 
             _provinciaServicio.Eliminar(EntidadId.Value);
@@ -109,6 +121,13 @@
         }
         public override bool EjecutarComandoModificar()
         {
+            if (!VerificarDatosObligatorios())
+            {
+                MessageBox.Show(@"Por favor ingrese los campos Obligatorios.", @"Atención", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
+
             var provinciaModificar = new ProvinciaDTO
             {
                 Id = EntidadId.Value,

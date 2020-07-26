@@ -4,8 +4,10 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using XCommerce.AccesoDatos;
 using XCommerce.Servicios.Core.Cliente.DTO;
+using static Presentacion.Helpers.ImagenDb;
 
 namespace XCommerce.Servicios.Core.Cliente
 {
@@ -294,6 +296,52 @@ namespace XCommerce.Servicios.Core.Cliente
 
                 baseDatos.SaveChanges();
                 
+            }
+        }
+
+        public void InsertarConsumidorFinal()
+        {
+            using (var baseDatos = new ModeloXCommerceContainer())
+            {
+
+                var ConsumidorFinal = ObtenerClientePorDni("99999999");
+
+                if (ConsumidorFinal == null)
+                {
+
+                    var nuevoCliente = new AccesoDatos.Cliente
+                    {
+                        MontoMaximoCtaCte = 0m,
+                        Apellido = "Consumidor",
+                        Nombre = "Final",
+                        Dni = "99999999",
+                        Telefono = "999999",
+                        Celular = "999999",
+                        Email = "ConsumidorFinalisimo@gmail.com",
+                        Cuil = "99999999999",
+                        Foto = Convertir_Imagen_Bytes(Presentacion.Constantes.Imagenes.ImagenUsuario),
+                        FechaNacimiento = DateTime.Now,
+                        Direccion = new Direccion
+                        {
+                            Calle = "c",
+                            Numero = 999,
+                            Piso = "c",
+                            Dpto = "c",
+                            Casa = "c",
+                            Lote = "c",
+                            Barrio = "Del Consumidor",
+                            Mza = "c",
+                            LocalidadId = 1
+                        }
+                    };
+
+                    baseDatos.Personas.Add(nuevoCliente);
+
+                    baseDatos.SaveChanges();
+                    MessageBox.Show("se le agrego Consumidor Final correctamente");
+
+                }
+
             }
         }
     }
