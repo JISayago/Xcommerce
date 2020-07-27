@@ -62,7 +62,7 @@ namespace XCommerce.Servicios.Core.Producto
                         : -1,
                     }).FirstOrDefault(x => x.Codigo == codigo || x.CodigoBarra == codigo);
 
-                if (producto == null)
+                if (producto != null)
                 {
                     if (producto.Precio == -1) return null;
                 }

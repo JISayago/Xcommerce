@@ -13,6 +13,7 @@ namespace XCommerce.Servicios.Core.ListaPrecio
         IEnumerable<ListaPrecioDTO> Obtener(string cadenaBuscar, bool obtenerEliminadas = false);
 
         ListaPrecioDTO ObtenerPorId(long ListaPrecioId);
+        bool Existe(string Descripcion);
 
         long Insertar(ListaPrecioDTO ListaPrecioDTO);
 

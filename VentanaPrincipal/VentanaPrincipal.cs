@@ -130,7 +130,7 @@ namespace VentanaPrincipal
 
         private void btnKiosco_Click(object sender, EventArgs e)
         {
-            var fKiosco = new FormularioKiosco();
+            var fKiosco = new FormularioKiosco(false);
             fKiosco.Show();
         }
 
