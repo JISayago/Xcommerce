@@ -36,7 +36,7 @@ namespace Presentacion.Core.Tarjeta
             {
                 DesactivarControles(this);
             }
-
+            AgregarControlesObligatorios(txtDescripcion, "Tarjeta");
         }
 
         public override void Inicializador(long? entidadId)
@@ -52,11 +52,24 @@ namespace Presentacion.Core.Tarjeta
 
         public override bool EjecutarComandoModificar()
         {
+            if (!VerificarDatosObligatorios())
+            {
+                MessageBox.Show(@"Por favor ingrese los campos Obligatorios.", @"Atención", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
             return base.EjecutarComandoModificar();
         }
 
         public override bool EjecutarComandoNuevo()
         {
+            if (!VerificarDatosObligatorios())
+            {
+                MessageBox.Show(@"Por favor ingrese los campos Obligatorios.", @"Atención", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
+
             var nuevaTarjeta = new TarjetaDTO
             {
                 Descripcion = txtDescripcion.Text,

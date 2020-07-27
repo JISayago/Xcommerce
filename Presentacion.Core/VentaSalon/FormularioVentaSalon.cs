@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using XCommerce.AccesoDatos;
+using XCommerce.Servicios.Core.Cliente;
 using XCommerce.Servicios.Core.Comprobante;
 using XCommerce.Servicios.Core.Salon;
 using XCommerce.Servicios.Core.Salon.Mesa;
@@ -22,6 +23,7 @@ namespace Presentacion.Core.VentaSalon
         private readonly ISalonServicio _salonServicio;
         private readonly IMesaServicio _mesaServicio;
         private readonly IComprobanteSalonServicio _comprobanteServicio;
+        private readonly IClienteServicio _clienteServicio;
 
         public FormularioVentaSalon()
         {
@@ -29,12 +31,17 @@ namespace Presentacion.Core.VentaSalon
 
             _salonServicio = new SalonServicio();
             _mesaServicio = new MesaServicio();
-            _comprobanteServicio = new ComprobanteSalonServicio();        
-            
+            _comprobanteServicio = new ComprobanteSalonServicio();
+            _clienteServicio = new ClienteServicio();
 
+            ConstatarConsumidorFinal();
         }
-       
 
+
+        private void ConstatarConsumidorFinal()
+        {
+            _clienteServicio.InsertarConsumidorFinal();
+        }
 
         private void CrearControles()
         {          

@@ -17,14 +17,32 @@ namespace Presentacion.Core.Articulo
     public partial class FormularioArticuloConsulta : FormularioBaseConsulta
     {
         private IArticuloServicio _articuloServicio;
+        private bool vieneDeMesaKiosco = false;
+        public long articuloSeleccionado = 0;
+
         public FormularioArticuloConsulta() : this(new ArticuloServicio())
         {
             InitializeComponent();
+        }
+        public FormularioArticuloConsulta(bool vieneDeMesaKiosco) : this(new ArticuloServicio())
+        {
+            InitializeComponent();
+            this.vieneDeMesaKiosco = vieneDeMesaKiosco;
         }
         public FormularioArticuloConsulta(IArticuloServicio articuloServicio)
         {
             _articuloServicio = articuloServicio;
             ActualizarDatos(dgvGrilla, string.Empty, cbxEstaEliminado, BarraLateralBotones);
+        }
+
+        public override void EjecutarDobleClickFila()
+        {
+            if (vieneDeMesaKiosco)
+            {
+                Console.WriteLine("In ClienteCons");
+                articuloSeleccionado = (long)entidadId;
+                Close();
+            }
         }
 
         public override void ResetearGrilla(DataGridView grilla)

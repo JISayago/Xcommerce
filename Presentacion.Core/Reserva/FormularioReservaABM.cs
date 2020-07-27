@@ -61,6 +61,13 @@ namespace Presentacion.Core.Reserva
             {
                 DesactivarControles(this);
             }
+
+            AgregarControlesObligatorios(txtApynomb, "Apynom");
+            AgregarControlesObligatorios(txtCelular, "Celular");
+            AgregarControlesObligatorios(txtDNI, "DNI");
+            AgregarControlesObligatorios(cmbMesa, "Mesa");
+            AgregarControlesObligatorios(cmbSalon, "Salon");
+            AgregarControlesObligatorios(nudSenia, "Senia");
         }
 
        
@@ -160,6 +167,12 @@ namespace Presentacion.Core.Reserva
 
         public override bool EjecutarComandoNuevo()
         {
+            if (!VerificarDatosObligatorios())
+            {
+                MessageBox.Show(@"Por favor ingrese los campos Obligatorios.", @"Atención", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
             string fechaReserva = dtpFecha.Value.ToString("yyyy-MM-dd");
             string horaReserva = dtpHora.Value.ToString("hh:mm:ss");
             
@@ -189,6 +202,12 @@ namespace Presentacion.Core.Reserva
 
         public override bool EjecutarComandoModificar()
         {
+            if (!VerificarDatosObligatorios())
+            {
+                MessageBox.Show(@"Por favor ingrese los campos Obligatorios.", @"Atención", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
             string fechaReserva = dtpFecha.Value.ToString("yyyy-MM-dd");
             string horaReserva = dtpHora.Value.ToString("hh:mm:ss");
 

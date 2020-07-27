@@ -21,6 +21,8 @@ namespace XCommerce.Servicios.Core.Cliente
 
         long Insertar(ClienteDTO clienteDto);
 
+        void InsertarConsumidorFinal();
+
         void Modificar(ClienteDTO clienteDto);
 
         void Eliminar(long clienteId);

@@ -42,6 +42,8 @@ namespace Presentacion.Core.Articulo.Marca
             {
                 DesactivarControles(this);
             }
+
+            AgregarControlesObligatorios(txtMarca, "Marca");
         }
 
         public override void Inicializador(long? entidadId)
@@ -89,6 +91,12 @@ namespace Presentacion.Core.Articulo.Marca
 
         public override bool EjecutarComandoNuevo()
         {
+            if (!VerificarDatosObligatorios())
+            {
+                MessageBox.Show(@"Por favor ingrese los campos Obligatorios.", @"Atención", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
             var marcaNueva = new MarcaDTO
             {
                 Descripcion = txtMarca.Text,
@@ -112,6 +120,12 @@ namespace Presentacion.Core.Articulo.Marca
 
         public override bool EjecutarComandoModificar()
         {
+            if (!VerificarDatosObligatorios())
+            {
+                MessageBox.Show(@"Por favor ingrese los campos Obligatorios.", @"Atención", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
             var marcaModificar = new MarcaDTO
             {
                 Id = EntidadId.Value,

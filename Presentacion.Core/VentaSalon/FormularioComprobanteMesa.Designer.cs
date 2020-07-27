@@ -71,6 +71,7 @@
             this.txtClienteApyNom = new System.Windows.Forms.TextBox();
             this.btnBuscarCliente = new System.Windows.Forms.Button();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.btnBuscarArticulo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrilla)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudComensales)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidadArticulo)).BeginInit();
@@ -216,7 +217,7 @@
             // 
             this.nudCantidadArticulo.AllowDrop = true;
             this.nudCantidadArticulo.DecimalPlaces = 2;
-            this.nudCantidadArticulo.Location = new System.Drawing.Point(594, 131);
+            this.nudCantidadArticulo.Location = new System.Drawing.Point(579, 129);
             this.nudCantidadArticulo.Maximum = new decimal(new int[] {
             9999999,
             0,
@@ -241,7 +242,7 @@
             // 
             this.lblCantidad.AutoSize = true;
             this.lblCantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCantidad.Location = new System.Drawing.Point(591, 106);
+            this.lblCantidad.Location = new System.Drawing.Point(576, 104);
             this.lblCantidad.Name = "lblCantidad";
             this.lblCantidad.Size = new System.Drawing.Size(74, 18);
             this.lblCantidad.TabIndex = 15;
@@ -249,9 +250,9 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(697, 132);
+            this.btnAgregar.Location = new System.Drawing.Point(656, 129);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(75, 20);
+            this.btnAgregar.Size = new System.Drawing.Size(63, 20);
             this.btnAgregar.TabIndex = 17;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
@@ -482,6 +483,7 @@
             this.txtClienteDni.ReadOnly = true;
             this.txtClienteDni.Size = new System.Drawing.Size(106, 20);
             this.txtClienteDni.TabIndex = 47;
+            
             // 
             // lblClienteDniu
             // 
@@ -533,12 +535,23 @@
             this.toolStrip2.TabIndex = 54;
             this.toolStrip2.Text = "toolStrip2";
             // 
+            // btnBuscarArticulo
+            // 
+            this.btnBuscarArticulo.Location = new System.Drawing.Point(720, 129);
+            this.btnBuscarArticulo.Name = "btnBuscarArticulo";
+            this.btnBuscarArticulo.Size = new System.Drawing.Size(63, 20);
+            this.btnBuscarArticulo.TabIndex = 55;
+            this.btnBuscarArticulo.Text = "Buscar";
+            this.btnBuscarArticulo.UseVisualStyleBackColor = true;
+            this.btnBuscarArticulo.Click += new System.EventHandler(this.btnBuscarArticulo_Click_1);
+            // 
             // FormularioComprobanteMesa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.btnBuscarArticulo);
             this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.btnBuscarCliente);
             this.Controls.Add(this.lblClienteApynom);
@@ -634,5 +647,6 @@
         private System.Windows.Forms.TextBox txtClienteApyNom;
         private System.Windows.Forms.Button btnBuscarCliente;
         private System.Windows.Forms.ToolStrip toolStrip2;
+        private System.Windows.Forms.Button btnBuscarArticulo;
     }
 }

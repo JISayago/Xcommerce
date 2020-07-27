@@ -48,6 +48,10 @@ namespace Presentacion.Core.Salon.Mesa
                 DesactivarControles(this);
             }
 
+            AgregarControlesObligatorios(txtDescripcion, "Descripcion");
+            AgregarControlesObligatorios(txtNumeroMesa, "Numero");
+            AgregarControlesObligatorios(cmbSalon, "Salon");
+
         }
 
         public override void Inicializador(long? entidadId)
@@ -106,28 +110,14 @@ namespace Presentacion.Core.Salon.Mesa
 
         public override bool EjecutarComandoNuevo()
         {
-            if (string.IsNullOrEmpty(txtNumeroMesa.Text))
+            if (!VerificarDatosObligatorios())
             {
-                txtNumeroMesa.Clear();
-                
-                txtNumeroMesa.Focus();
-                MessageBox.Show($"Este campo es obligarorio", @"Error Mesa", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show(@"Por favor ingrese los campos Obligatorios.", @"Atención", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return false;
-            }
-            if (string.IsNullOrEmpty(txtDescripcion.Text))
-            {
-                txtDescripcion.Clear();
-
-                txtDescripcion.Focus();
-                MessageBox.Show($"Este campo es obligarorio", @"Error Mesa", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                return false;
-            }
-            if (cmbSalon.SelectedValue == null)
-            {
-                txtDescripcion.Focus();
-                MessageBox.Show($"Asignar la Mesa al Salon es obligarorio", @"Error Mesa", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                return false;
-            }
+            }          
+           
+           
             if (_mesaServicio.ExisteNumeroMesa(Convert.ToInt32(txtNumeroMesa.Text)))
                 {                
                 var mesas = _mesaServicio.ObtenerMesa(string.Empty);
@@ -175,6 +165,12 @@ namespace Presentacion.Core.Salon.Mesa
         }
         public override bool EjecutarComandoModificar()
         {
+            if (!VerificarDatosObligatorios())
+            {
+                MessageBox.Show(@"Por favor ingrese los campos Obligatorios.", @"Atención", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
             var mesaModificar = new MesaDTO
             {
                 SalonId = (long)cmbSalon.SelectedValue,

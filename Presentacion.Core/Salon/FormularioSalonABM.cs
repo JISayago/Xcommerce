@@ -47,6 +47,9 @@ namespace Presentacion.Core.Salon
                 DesactivarControles(this);
             }
 
+            AgregarControlesObligatorios(txtSalon, "Salon");
+            AgregarControlesObligatorios(cmbListaPrecio, "ListaPrecio");
+
         }
 
         public override void Inicializador(long? entidadId)
@@ -99,6 +102,12 @@ namespace Presentacion.Core.Salon
         }
         public override bool EjecutarComandoNuevo()
         {
+            if (!VerificarDatosObligatorios())
+            {
+                MessageBox.Show(@"Por favor ingrese los campos Obligatorios.", @"Atención", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
             var salonNuevo = new SalonDTO
             {
                 Descripcion = txtSalon.Text,
@@ -121,6 +130,12 @@ namespace Presentacion.Core.Salon
         }
         public override bool EjecutarComandoModificar()
         {
+            if (!VerificarDatosObligatorios())
+            {
+                MessageBox.Show(@"Por favor ingrese los campos Obligatorios.", @"Atención", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
             var salonModificar = new SalonDTO
             {
                 Id = EntidadId.Value,

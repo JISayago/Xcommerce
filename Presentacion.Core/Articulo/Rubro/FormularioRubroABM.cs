@@ -42,6 +42,7 @@ namespace Presentacion.Core.Articulo.Rubro
             {
                 DesactivarControles(this);
             }
+            AgregarControlesObligatorios(txtRubro, "Rubro");
         }
 
         public override void Inicializador(long? entidadId)
@@ -89,6 +90,12 @@ namespace Presentacion.Core.Articulo.Rubro
 
         public override bool EjecutarComandoNuevo()
         {
+            if (!VerificarDatosObligatorios())
+            {
+                MessageBox.Show(@"Por favor ingrese los campos Obligatorios.", @"Atención", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
             var rubroNuevo = new RubroDTO
             {
                 Descripcion = txtRubro.Text,
@@ -112,6 +119,12 @@ namespace Presentacion.Core.Articulo.Rubro
 
         public override bool EjecutarComandoModificar()
         {
+            if (!VerificarDatosObligatorios())
+            {
+                MessageBox.Show(@"Por favor ingrese los campos Obligatorios.", @"Atención", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
             var rubroModificar = new RubroDTO
             {
                 Id = EntidadId.Value,

@@ -4,8 +4,10 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using XCommerce.AccesoDatos;
 using XCommerce.Servicios.Core.Cliente.DTO;
+using static Presentacion.Helpers.ImagenDb;
 
 namespace XCommerce.Servicios.Core.Cliente
 {
@@ -31,38 +33,47 @@ namespace XCommerce.Servicios.Core.Cliente
         {
             using (var baseDatos = new ModeloXCommerceContainer())
             {
-                var nuevoCliente = new AccesoDatos.Cliente
+                if (!ExisteCliente(clienteDto.Email, clienteDto.Dni))
                 {
-                    MontoMaximoCtaCte = clienteDto.MontoMaximoCtaCte,
-                    Apellido = clienteDto.Apellido,
-                    Nombre = clienteDto.Nombre,
-                    Dni = clienteDto.Dni,
-                    Telefono = clienteDto.Telefono,
-                    Celular = clienteDto.Celular,
-                    Email = clienteDto.Email,
-                    Cuil = clienteDto.Cuil,
-                    FechaNacimiento = clienteDto.FechaNacimiento,
-                    Foto = clienteDto.Foto,
-                    Direccion = new Direccion
+
+                    var nuevoCliente = new AccesoDatos.Cliente
                     {
-                        Calle = clienteDto.Calle,
-                        Numero = clienteDto.Numero,
-                        Piso = clienteDto.Piso,
-                        Dpto = clienteDto.Dpto,
-                        Casa = clienteDto.Casa,
-                        Lote = clienteDto.Lote,
-                        Barrio = clienteDto.Barrio,
-                        Mza = clienteDto.Mza,
-                        LocalidadId = clienteDto.LocalidadId
-                    }
-                };
+                        MontoMaximoCtaCte = clienteDto.MontoMaximoCtaCte,
+                        Apellido = clienteDto.Apellido,
+                        Nombre = clienteDto.Nombre,
+                        Dni = clienteDto.Dni,
+                        Telefono = clienteDto.Telefono,
+                        Celular = clienteDto.Celular,
+                        Email = clienteDto.Email,
+                        Cuil = clienteDto.Cuil,
+                        FechaNacimiento = clienteDto.FechaNacimiento,
+                        Foto = clienteDto.Foto,
+                        Direccion = new Direccion
+                        {
+                            Calle = clienteDto.Calle,
+                            Numero = clienteDto.Numero,
+                            Piso = clienteDto.Piso,
+                            Dpto = clienteDto.Dpto,
+                            Casa = clienteDto.Casa,
+                            Lote = clienteDto.Lote,
+                            Barrio = clienteDto.Barrio,
+                            Mza = clienteDto.Mza,
+                            LocalidadId = clienteDto.LocalidadId
+                        }
+                    };
 
 
-                baseDatos.Personas.Add(nuevoCliente);
+                    baseDatos.Personas.Add(nuevoCliente);
 
-                baseDatos.SaveChanges();
+                    baseDatos.SaveChanges();
 
-                return nuevoCliente.Id;
+                    return nuevoCliente.Id;
+                }
+                else
+                {
+                    MessageBox.Show("Ya existe un cliente con ese DNI y/o Email.");
+                    return -1;
+                }
             }
         }
 
@@ -241,6 +252,53 @@ namespace XCommerce.Servicios.Core.Cliente
             }
         }
 
+        public bool ExisteCliente(string email,string dni)
+        {
+            using (var baseDatos = new ModeloXCommerceContainer())
+            {
+                var cliente = baseDatos.Personas.OfType<AccesoDatos.Cliente>()
+                      .AsNoTracking()
+                      .Where(x => !x.EstaEliminado)
+                      .Include(x => x.Direccion)
+                      .Include(x => x.Direccion.Localidad)
+                      .Select(x => new ClienteDTO
+                      {
+                          Id = x.Id,
+                          MontoMaximoCtaCte = x.MontoMaximoCtaCte,
+                          Apellido = x.Apellido,
+                          Nombre = x.Nombre,
+                          Dni = x.Dni,
+                          Telefono = x.Telefono,
+                          Celular = x.Celular,
+                          Email = x.Email,
+                          Cuil = x.Cuil,
+                          FechaNacimiento = x.FechaNacimiento,
+                          Foto = x.Foto,
+                          EstaEliminado = x.EstaEliminado,
+                          Calle = x.Direccion.Calle,
+                          Numero = x.Direccion.Numero,
+                          Piso = x.Direccion.Piso,
+                          Dpto = x.Direccion.Dpto,
+                          Casa = x.Direccion.Casa,
+                          Lote = x.Direccion.Lote,
+                          Barrio = x.Direccion.Barrio,
+                          Mza = x.Direccion.Mza,
+                          LocalidadId = x.Direccion.LocalidadId,
+                          ProvinciaId = x.Direccion.Localidad.ProvinciaId
+                      }
+                      ).FirstOrDefault(x => x.Email == email || x.Dni == dni);
+
+                if(cliente != null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
         public ClienteDTO ObtenerClientePorDni(string dni)
         {
             using (var baseDatos = new ModeloXCommerceContainer())
@@ -294,6 +352,52 @@ namespace XCommerce.Servicios.Core.Cliente
 
                 baseDatos.SaveChanges();
                 
+            }
+        }
+
+        public void InsertarConsumidorFinal()
+        {
+            using (var baseDatos = new ModeloXCommerceContainer())
+            {
+
+                var ConsumidorFinal = ObtenerClientePorDni("99999999");
+
+                if (ConsumidorFinal == null)
+                {
+
+                    var nuevoCliente = new AccesoDatos.Cliente
+                    {
+                        MontoMaximoCtaCte = 0m,
+                        Apellido = "Consumidor",
+                        Nombre = "Final",
+                        Dni = "99999999",
+                        Telefono = "999999",
+                        Celular = "999999",
+                        Email = "ConsumidorFinalisimo@gmail.com",
+                        Cuil = "99999999999",
+                        Foto = Convertir_Imagen_Bytes(Presentacion.Constantes.Imagenes.ImagenUsuario),
+                        FechaNacimiento = DateTime.Now,
+                        Direccion = new Direccion
+                        {
+                            Calle = "c",
+                            Numero = 999,
+                            Piso = "c",
+                            Dpto = "c",
+                            Casa = "c",
+                            Lote = "c",
+                            Barrio = "Del Consumidor",
+                            Mza = "c",
+                            LocalidadId = 1
+                        }
+                    };
+
+                    baseDatos.Personas.Add(nuevoCliente);
+
+                    baseDatos.SaveChanges();
+                    MessageBox.Show("se le agrego Consumidor Final correctamente");
+
+                }
+
             }
         }
     }

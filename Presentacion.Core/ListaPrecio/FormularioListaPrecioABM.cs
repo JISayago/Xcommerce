@@ -44,10 +44,18 @@ namespace Presentacion.Core.ListaPrecio
             {
                 DesactivarControles(this);
             }
+            
+            AgregarControlesObligatorios(txtDescripcion, "ListaPrecio");
         }
 
         public override bool EjecutarComandoNuevo()
         {
+            if (!VerificarDatosObligatorios())
+            {
+                MessageBox.Show(@"Por favor ingrese los campos Obligatorios.", @"Atención", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
             var listaPrecioNueva = new ListaPrecioDTO
             {
                 Descripcion = txtDescripcion.Text,
@@ -62,7 +70,12 @@ namespace Presentacion.Core.ListaPrecio
 
         public override bool EjecutarComandoModificar()
         {
-
+            if (!VerificarDatosObligatorios())
+            {
+                MessageBox.Show(@"Por favor ingrese los campos Obligatorios.", @"Atención", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
             var listaPrecioModificar = new ListaPrecioDTO
             {
                 Id = EntidadId.Value,
