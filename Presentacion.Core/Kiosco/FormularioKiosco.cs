@@ -15,6 +15,7 @@ using XCommerce.Servicios.Core.Comprobante.DTO;
 using XCommerce.Servicios.Core.DetalleCaja;
 using XCommerce.Servicios.Core.DetalleCaja.DTO;
 using XCommerce.Servicios.Core.Empleado;
+using XCommerce.Servicios.Core.ListaPrecio;
 using XCommerce.Servicios.Core.Movimiento;
 using XCommerce.Servicios.Core.Movimiento.DTO;
 using XCommerce.Servicios.Core.Producto;
@@ -36,12 +37,15 @@ namespace Presentacion.Core.Kiosco
         private readonly ITarjetaServicio _tarjetaServicio;
         private readonly IPlanTarjetaServicio _planTarjetaServicio;
         private readonly IEmpleadoServicio _empleadoServicio;
+        private readonly IListaPrecioServicio _listaPrecioServicio;
 
         private Dictionary<string, DetalleComprobanteDTO> detalles;
         private long idCliente;
         private long idArticulo;
 
         public bool delivery = false;
+
+        private string listaPrecio;
 
         public FormularioKiosco()
         {
@@ -56,6 +60,7 @@ namespace Presentacion.Core.Kiosco
             _tarjetaServicio = new TarjetaServicio();
             _planTarjetaServicio = new PlanTarjetaServicio();
             _empleadoServicio = new EmpleadoServicio();
+            _listaPrecioServicio = new ListaPrecioServicio();
 
             detalles = new Dictionary<string, DetalleComprobanteDTO>();
             txtUsuarioEmpleado.Text = DatosSistema.NombreUsuario;
@@ -76,6 +81,12 @@ namespace Presentacion.Core.Kiosco
                 groupBoxEmpleado.Text = "Cadete";
                 this.Text = "Formulario Delivery";
                 btnBuscarEmpleado.Enabled = true;
+            }
+
+            listaPrecio = delivery ? "Delivery" : "Kiosco";
+            if (!_listaPrecioServicio.Existe(listaPrecio))
+            {
+                MessageBox.Show(string.Format("Lista precio {0} no existe, imposible operar. Creala o kcyo", listaPrecio));
             }
         }
 
@@ -212,7 +223,7 @@ namespace Presentacion.Core.Kiosco
             else
             {
                 //ProductoMesaDTO producto = _productoServicio.ObtenerPorCodigoKiosco(txtCodigoBarras.Text);
-                ProductoMesaDTO producto = _productoServicio.ObtenerPorCodigoSalon(delivery ? "Delivery" : "Kiosco", txtCodigoBarras.Text);  ;
+                ProductoMesaDTO producto = _productoServicio.ObtenerPorCodigoListaPrecio(listaPrecio, txtCodigoBarras.Text);
 
                 if (producto != null)
                 {
@@ -229,7 +240,7 @@ namespace Presentacion.Core.Kiosco
                 }
                 else
                 {
-                    MessageBox.Show(string.Format("Articulo no existe o no esta en lista precio {0}", delivery ? "delivery" : "kiosco")) ;
+                    MessageBox.Show(string.Format("Articulo no existe o no esta en lista precio {0}", listaPrecio)) ;
                 }
             }
 
@@ -525,7 +536,7 @@ namespace Presentacion.Core.Kiosco
                 }
                 else
                 {                    
-                    var producto = _productoServicio.ObtenerPorCodigoSalon("Kiosco", articulo.Codigo);
+                    var producto = _productoServicio.ObtenerPorCodigoListaPrecio(listaPrecio, articulo.Codigo);
                     if (producto != null)
                     {
                         txtCodigoBarras.Text = producto.CodigoBarra;

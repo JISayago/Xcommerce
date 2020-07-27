@@ -93,5 +93,17 @@ namespace XCommerce.Servicios.Core.ListaPrecio
                     }).ToList();
             }
         }
+
+        public bool Existe(string descripcion)
+        {
+            using (var context = new ModeloXCommerceContainer())
+            {
+
+                return context.ListaPrecios
+                    .AsNoTracking()
+                    .Where(x => !x.EstaEliminado && x.Descripcion == descripcion).Any();
+
+            }
+        }
     }
 }
