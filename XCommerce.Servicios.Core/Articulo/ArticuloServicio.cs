@@ -263,7 +263,6 @@ namespace XCommerce.Servicios.Core.Articulo
                     .Include(x => x.Rubro)
                     .Include(x => x.Marca)
                     .FirstOrDefault(x => x.Id == articuloId);
-
                 articuloAModificar.Stock += cantidad;
 
 

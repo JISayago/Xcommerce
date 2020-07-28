@@ -14,14 +14,16 @@ namespace Presentacion.Core.Articulo
 {
     public partial class FormularioAgregarStock : Form
     {
-        private readonly long entidadId;
+        private readonly long Id;
         private IArticuloServicio _articuloServicio;
 
-        public FormularioAgregarStock(long entidadId)
+        public FormularioAgregarStock(long entidadId, decimal articuloStock)
         {
             InitializeComponent();
-            this.entidadId = entidadId;
 
+            this.Id = entidadId;
+
+            lblStock.Text = "Stock Actual: " + articuloStock;
         }
 
         private void ArticuloAgregarStock(long entidadId)
@@ -36,7 +38,7 @@ namespace Presentacion.Core.Articulo
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            ArticuloAgregarStock(entidadId);
+            ArticuloAgregarStock(Id);
 
             this.Close();
         }

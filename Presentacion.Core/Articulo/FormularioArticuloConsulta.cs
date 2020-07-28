@@ -139,7 +139,9 @@ namespace Presentacion.Core.Articulo
         {
             long stockId = (long)entidadId;
 
-            var altaArticulo = new FormularioAgregarStock(stockId);
+            var articulo = _articuloServicio.ObtenerPorId(stockId);
+
+            var altaArticulo = new FormularioAgregarStock(stockId, articulo.Stock);
 
             //agregar mensajito de que todo esta bien
 
