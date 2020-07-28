@@ -140,6 +140,7 @@ namespace Presentacion.Core.Articulo
             long stockId = (long)entidadId;
 
             var altaArticulo = new FormularioAgregarStock(stockId);
+
             //agregar mensajito de que todo esta bien
 
             altaArticulo.ShowDialog();
