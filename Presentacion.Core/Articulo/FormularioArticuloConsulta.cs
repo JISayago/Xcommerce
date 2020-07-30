@@ -141,11 +141,13 @@ namespace Presentacion.Core.Articulo
 
             var articulo = _articuloServicio.ObtenerPorId(stockId);
 
-            var altaArticulo = new FormularioAgregarStock(stockId, articulo.Stock);
+            var altaStockArticulo = new FormularioAgregarStock(stockId, articulo.Stock);
 
             //agregar mensajito de que todo esta bien
 
-            altaArticulo.ShowDialog();
+            altaStockArticulo.ShowDialog();
+
+            ActualizarDatos(dgvGrilla, string.Empty, cbxEstaEliminado, BarraLateralBotones);
         }
     }
 }

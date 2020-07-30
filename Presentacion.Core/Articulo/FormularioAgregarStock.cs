@@ -18,6 +18,7 @@ namespace Presentacion.Core.Articulo
         private IArticuloServicio _articuloServicio;
 
         public FormularioAgregarStock(long entidadId, decimal articuloStock)
+            : this(new ArticuloServicio())
         {
             InitializeComponent();
 
@@ -26,9 +27,13 @@ namespace Presentacion.Core.Articulo
             lblStock.Text = "Stock Actual: " + articuloStock;
         }
 
+        public FormularioAgregarStock(IArticuloServicio articuloServicio)
+        {
+            _articuloServicio = articuloServicio;
+        }
+
         private void ArticuloAgregarStock(long entidadId)
         {
-            _articuloServicio = new ArticuloServicio();
 
             decimal stockAgregar = nudCantidad.Value;
 
