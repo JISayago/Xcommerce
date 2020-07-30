@@ -37,6 +37,8 @@
             this.lblMontoSistema = new System.Windows.Forms.Label();
             this.btnMovimientos = new System.Windows.Forms.Button();
             this.btnDetalles = new System.Windows.Forms.Button();
+            this.btnVentas = new System.Windows.Forms.Button();
+            this.btnComprobantes = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnAbrir
@@ -81,7 +83,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(134, 244);
+            this.label1.Location = new System.Drawing.Point(134, 255);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(85, 13);
             this.label1.TabIndex = 4;
@@ -90,7 +92,7 @@
             // lblMontoSistema
             // 
             this.lblMontoSistema.AutoSize = true;
-            this.lblMontoSistema.Location = new System.Drawing.Point(225, 244);
+            this.lblMontoSistema.Location = new System.Drawing.Point(225, 255);
             this.lblMontoSistema.Name = "lblMontoSistema";
             this.lblMontoSistema.Size = new System.Drawing.Size(13, 13);
             this.lblMontoSistema.TabIndex = 5;
@@ -98,7 +100,7 @@
             // 
             // btnMovimientos
             // 
-            this.btnMovimientos.Location = new System.Drawing.Point(84, 204);
+            this.btnMovimientos.Location = new System.Drawing.Point(84, 188);
             this.btnMovimientos.Name = "btnMovimientos";
             this.btnMovimientos.Size = new System.Drawing.Size(97, 23);
             this.btnMovimientos.TabIndex = 6;
@@ -108,7 +110,7 @@
             // 
             // btnDetalles
             // 
-            this.btnDetalles.Location = new System.Drawing.Point(187, 204);
+            this.btnDetalles.Location = new System.Drawing.Point(187, 188);
             this.btnDetalles.Name = "btnDetalles";
             this.btnDetalles.Size = new System.Drawing.Size(97, 23);
             this.btnDetalles.TabIndex = 7;
@@ -116,11 +118,33 @@
             this.btnDetalles.UseVisualStyleBackColor = true;
             this.btnDetalles.Click += new System.EventHandler(this.btnDetalles_Click);
             // 
+            // btnVentas
+            // 
+            this.btnVentas.Location = new System.Drawing.Point(187, 217);
+            this.btnVentas.Name = "btnVentas";
+            this.btnVentas.Size = new System.Drawing.Size(97, 23);
+            this.btnVentas.TabIndex = 9;
+            this.btnVentas.Text = "Ventas";
+            this.btnVentas.UseVisualStyleBackColor = true;
+            this.btnVentas.Click += new System.EventHandler(this.btnVentas_Click);
+            // 
+            // btnComprobantes
+            // 
+            this.btnComprobantes.Location = new System.Drawing.Point(84, 217);
+            this.btnComprobantes.Name = "btnComprobantes";
+            this.btnComprobantes.Size = new System.Drawing.Size(97, 23);
+            this.btnComprobantes.TabIndex = 8;
+            this.btnComprobantes.Text = "Comprobantes";
+            this.btnComprobantes.UseVisualStyleBackColor = true;
+            this.btnComprobantes.Click += new System.EventHandler(this.btnComprobantes_Click);
+            // 
             // FormularioCaja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(398, 276);
+            this.ClientSize = new System.Drawing.Size(398, 282);
+            this.Controls.Add(this.btnVentas);
+            this.Controls.Add(this.btnComprobantes);
             this.Controls.Add(this.btnDetalles);
             this.Controls.Add(this.btnMovimientos);
             this.Controls.Add(this.lblMontoSistema);
@@ -146,5 +170,7 @@
         private System.Windows.Forms.Label lblMontoSistema;
         private System.Windows.Forms.Button btnMovimientos;
         private System.Windows.Forms.Button btnDetalles;
+        private System.Windows.Forms.Button btnVentas;
+        private System.Windows.Forms.Button btnComprobantes;
     }
 }

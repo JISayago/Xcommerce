@@ -31,12 +31,12 @@ namespace Presentacion.Login
         public bool IniciarConCajaAbierta { get; private set; }
         public long CajaId { get; private set; }
 
-    public Login():this(new AccesoSistema(), new UsuarioServicio(), new CajaServicio())
+        public Login() : this(new AccesoSistema(), new UsuarioServicio(), new CajaServicio())
         {
             InitializeComponent();
 
-           
-         
+            txtUsuario.Text = "jsayago";
+            txtContraseña.Text = "Pa$$word";
         }
         public Login(IAccesoSistema accesoSistema, IUsuarioServicio usuarioServicio, ICajaServicio cajaServicio)
         {
