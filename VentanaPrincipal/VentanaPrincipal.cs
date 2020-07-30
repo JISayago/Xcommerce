@@ -8,10 +8,12 @@ namespace VentanaPrincipal
     using Presentacion.Core.Articulo.Rubro;
     using Presentacion.Core.Caja;
     using Presentacion.Core.Cliente;
+    using Presentacion.Core.CondicionIva;
     using Presentacion.Core.Empleado;
     using Presentacion.Core.Kiosco;
     using Presentacion.Core.ListaPrecio;
     using Presentacion.Core.Precio;
+    using Presentacion.Core.Proveedor;
     using Presentacion.Core.Provincia;
     using Presentacion.Core.Provincia.Localidad;
     using Presentacion.Core.Salon;
@@ -170,6 +172,27 @@ namespace VentanaPrincipal
 
             var ft = new FormularioPlanTarjetaConsulta();
             ft.Show();
+        }
+
+        private void consultaToolStripMenuItem9_Click(object sender, EventArgs e)
+        {
+
+            var fCIva= new FormularioCondicionIvaConsulta();
+            fCIva.Show();
+        }
+
+        private void consultaToolStripMenuItem10_Click(object sender, EventArgs e)
+        {
+
+            var fProveedor = new FormularioProveedorConsulta();
+            fProveedor.Show();
+
+        }
+
+        private void comprobanteCompraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var fCompra = new FormularioIngresoArticulos();
+            fCompra.Show();
         }
     }
 }

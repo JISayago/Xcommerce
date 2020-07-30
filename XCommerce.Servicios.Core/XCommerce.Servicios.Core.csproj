@@ -86,6 +86,9 @@
     <Compile Include="Comprobante\DTO\DetalleComprobanteSalonDTO.cs" />
     <Compile Include="Comprobante\IComprobanteSalonServicio.cs" />
     <Compile Include="Comprobante\IComprobanteServicio.cs" />
+    <Compile Include="CondicionIva\CondicionIvaServicio.cs" />
+    <Compile Include="CondicionIva\DTO\CondicionIvaDTO.cs" />
+    <Compile Include="CondicionIva\ICondicionIvaServicio.cs" />
     <Compile Include="DetalleCaja\DetalleCajaServicio.cs" />
     <Compile Include="DetalleCaja\DTO\DetalleCajaDTO.cs" />
     <Compile Include="DetalleCaja\IDetalleCajaServicio.cs" />
@@ -119,6 +122,9 @@
     <Compile Include="Precio\DTO\PrecioDTO.cs" />
     <Compile Include="Precio\IPrecioServicio.cs" />
     <Compile Include="Precio\PrecioServicio.cs" />
+    <Compile Include="Proveedor\DTO\ProveedorDTO.cs" />
+    <Compile Include="Proveedor\IProveedorServicio.cs" />
+    <Compile Include="Proveedor\ProveedorServicio.cs" />
     <Compile Include="Provincia\Localidad\ILocalidadServicio.cs" />
     <Compile Include="Provincia\Localidad\DTO\LocalidadDTO.cs" />
     <Compile Include="Provincia\Localidad\LocalidadServicio.cs" />

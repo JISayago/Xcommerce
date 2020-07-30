@@ -157,6 +157,15 @@
     <Compile Include="Cliente\FormularioClienteConsulta.designer.cs">
       <DependentUpon>FormularioClienteConsulta.cs</DependentUpon>
     </Compile>
+    <Compile Include="CondicionIva\FormularioCondicionIvaABM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CondicionIva\FormularioCondicionIvaABM.Designer.cs">
+      <DependentUpon>FormularioCondicionIvaABM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CondicionIva\FormularioCondicionIvaConsulta.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="DetalleCaja\FormularioDetalleCaja.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -224,6 +233,24 @@
       <DependentUpon>HistorialPrecio.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proveedor\FormularioIngresoArticulos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Proveedor\FormularioIngresoArticulos.Designer.cs">
+      <DependentUpon>FormularioIngresoArticulos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Proveedor\FormularioProveedorABM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Proveedor\FormularioProveedorABM.Designer.cs">
+      <DependentUpon>FormularioProveedorABM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Proveedor\FormularioProveedorConsulta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Proveedor\FormularioProveedorConsulta.Designer.cs">
+      <DependentUpon>FormularioProveedorConsulta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Provincia\FormularioProvinciaABM.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -399,6 +426,9 @@
     <EmbeddedResource Include="Cliente\FormularioClienteConsulta.resx">
       <DependentUpon>FormularioClienteConsulta.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CondicionIva\FormularioCondicionIvaABM.resx">
+      <DependentUpon>FormularioCondicionIvaABM.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DetalleCaja\FormularioDetalleCaja.resx">
       <DependentUpon>FormularioDetalleCaja.cs</DependentUpon>
     </EmbeddedResource>
@@ -428,6 +458,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Precio\HistorialPrecio.resx">
       <DependentUpon>HistorialPrecio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Proveedor\FormularioIngresoArticulos.resx">
+      <DependentUpon>FormularioIngresoArticulos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Proveedor\FormularioProveedorABM.resx">
+      <DependentUpon>FormularioProveedorABM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Provincia\FormularioProvinciaABM.resx">
       <DependentUpon>FormularioProvinciaABM.cs</DependentUpon>
@@ -466,8 +502,6 @@
       <DependentUpon>FormularioVentaSalon.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Comprobante\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
