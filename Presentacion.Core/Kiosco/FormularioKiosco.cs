@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using XCommerce.AccesoDatos;
+using XCommerce.Servicio.Core.Banco;
+using XCommerce.Servicio.Core.Banco.DTO;
 using XCommerce.Servicios.Core.Articulo;
 using XCommerce.Servicios.Core.Cliente;
 using XCommerce.Servicios.Core.Comprobante;
@@ -15,6 +17,8 @@ using XCommerce.Servicios.Core.Comprobante.DTO;
 using XCommerce.Servicios.Core.DetalleCaja;
 using XCommerce.Servicios.Core.DetalleCaja.DTO;
 using XCommerce.Servicios.Core.Empleado;
+using XCommerce.Servicios.Core.FormaPago;
+using XCommerce.Servicios.Core.FormaPago.DTO;
 using XCommerce.Servicios.Core.ListaPrecio;
 using XCommerce.Servicios.Core.Movimiento;
 using XCommerce.Servicios.Core.Movimiento.DTO;
@@ -23,6 +27,7 @@ using XCommerce.Servicios.Core.Producto.DTO;
 using XCommerce.Servicios.Core.Tarjeta;
 using XCommerce.Servicios.Core.Tarjeta.DTO;
 using XCommerce.Servicios.Core.Tarjeta.PlanTarjeta;
+using XCommerce.Servicios.Core.Tarjeta.PlanTarjeta.DTO;
 
 namespace Presentacion.Core.Kiosco
 {
@@ -38,6 +43,8 @@ namespace Presentacion.Core.Kiosco
         private readonly IPlanTarjetaServicio _planTarjetaServicio;
         private readonly IEmpleadoServicio _empleadoServicio;
         private readonly IListaPrecioServicio _listaPrecioServicio;
+        private readonly IFormaPagoServicio _formaPagoServicio;
+        private readonly IBancoServicio _bancoServicio;
 
         private Dictionary<string, DetalleComprobanteDTO> detalles;
         private long idCliente;
@@ -61,6 +68,8 @@ namespace Presentacion.Core.Kiosco
             _planTarjetaServicio = new PlanTarjetaServicio();
             _empleadoServicio = new EmpleadoServicio();
             _listaPrecioServicio = new ListaPrecioServicio();
+            _formaPagoServicio = new FormaPagoServicio();
+            _bancoServicio = new BancoServicio();
 
             detalles = new Dictionary<string, DetalleComprobanteDTO>();
             txtUsuarioEmpleado.Text = DatosSistema.NombreUsuario;
@@ -88,6 +97,9 @@ namespace Presentacion.Core.Kiosco
             {
                 MessageBox.Show(string.Format("Lista precio {0} no existe, imposible operar. Creala o kcyo", listaPrecio));
             }
+
+            CargarComboBox(cbBanco, _bancoServicio.Obtener(""), "Descripcion", "Id");
+            Set_Rbs();
         }
 
         private void cargarCbTarjetaPlan()
@@ -108,27 +120,16 @@ namespace Presentacion.Core.Kiosco
             if (rbCtaCte.Checked)
             {
                 txtDniCliente.Text = "";
-                txtDniCliente.Enabled = true;
                 txtNombreCliente.Text = "";
-                txtNombreCliente.Enabled = true;
                 txtApellidoCliente.Text = "";
-                txtApellidoCliente.Enabled = true;
-                btnBuscarCliente.Enabled = false;
-                btnBuscarCliente.Enabled = true;
-
             }
-            else //if (rbEfectivo.Checked)
+            else 
             {
                 txtDniCliente.Text = "99999999";
-                txtDniCliente.Enabled = false;
                 txtNombreCliente.Text = "Consumidor";
-                txtNombreCliente.Enabled = false;
                 txtApellidoCliente.Text = "Final";
-                txtApellidoCliente.Enabled = false;
-                btnBuscarCliente.Enabled = false;
             }
         }
-
 
         public void ResetearGrilla(DataGridView grilla)
         {
@@ -162,8 +163,6 @@ namespace Presentacion.Core.Kiosco
             //grilla.Columns["SubtotalLinea"].Visible = true;
             //grilla.Columns["SubtotalLinea"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             //grilla.Columns["SubtotalLinea"].HeaderText = "Sub-Total";
-
-
         }
 
         private bool ChequearDisponibilidadArticulo(string codigo, decimal cantidad)
@@ -259,9 +258,7 @@ namespace Presentacion.Core.Kiosco
                 throw new Exception("Error al obtener el detalle desde el diccionario");
             }
 
-
             //ActualizarNudsGrid();
-
         }
 
         private void ActualizarNudsGrid()
@@ -280,10 +277,35 @@ namespace Presentacion.Core.Kiosco
         private long consumidorFinalId = 2; // temporal, para no perder la referencia
         private void Facturar()
         {
+            //TODO importante
+            //faltan bocha de chequeos* SI o SI aca no al final ni en el medio porque si no se
+            //puede cerrar el programa sin generar una de todas las huevadas que generamos acá
+            //o generando un par y las otras no
 
-            ////////////////
-            //Comprobante//
-            ////////////////
+            //*bocha de chequeos: txtclave y nombre tarjeta, cliente no en blanco, tarjeta con plan (o sin?)
+            //y bueno asi, tambien dependiendo si estan checked o no los checkbox
+            //me pa que deberia ir en otro metodo este ya ta full
+
+            //atte: Juan
+           
+            //esto en un metodo aparte
+            if (rbCtaCte.Checked)
+            {
+            }
+            if (rbCheque.Checked)
+            {
+            }
+            if (rbEfectivo.Checked)
+            {
+            }
+            if (rbTarjeta.Checked)
+            {
+            }
+
+
+            /////////////////
+            ///COMPROBANTE///
+            /////////////////
             ComprobanteDTO comprobante = new ComprobanteDTO
             {
                 Fecha = DateTime.Now,
@@ -293,7 +315,20 @@ namespace Presentacion.Core.Kiosco
                 Items = detalles.Values.ToList()
             };
 
-            //Forma Pago
+            long comprobante_id;
+            if (delivery)
+            {
+                comprobante_id = _comprobanteServicio.GenerarComprobanteDelivery(comprobante);
+            }
+            else
+            {
+                comprobante_id = _comprobanteServicio.Generar(comprobante);
+            }
+
+            ////////////////
+            //Detalle Caja//
+            ////////////////
+            //tipo pago
             var formaDePago = TipoPago.Efectivo;
             if (rbCtaCte.Checked)
             {
@@ -303,12 +338,6 @@ namespace Presentacion.Core.Kiosco
             {
                 formaDePago = TipoPago.Tarjeta;
             }
-
-            //formadepago.generar()
-
-            ////////////////
-            //Detalle Caja//
-            ////////////////
             DetalleCajaDTO detalleCaja = new DetalleCajaDTO
             {
                 CajaId = DatosSistema.CajaId,
@@ -316,6 +345,21 @@ namespace Presentacion.Core.Kiosco
                 TipoPago = formaDePago
             };
             _detalleCajaServicio.Generar(detalleCaja);
+
+            ////////////////
+            ///FORMA PAGO///
+            ////////////////
+
+            if (rbEfectivo.Checked)
+            {
+                FormaPagoEfectivoDTO fp = new FormaPagoEfectivoDTO
+                {
+                    TipoFormaPago = TipoFormaPago.Efectivo,
+                    Monto = nudTotal.Value,
+                    ComprobanteId = comprobante_id,
+                };
+                _formaPagoServicio.Generar(fp);
+            }
 
             if (rbCtaCte.Checked)
             {
@@ -327,21 +371,48 @@ namespace Presentacion.Core.Kiosco
                 {
                     throw new Exception("Si tiene menos de 0 deberia un cartel que no deje que siga el tema ya vemos yadayadayada");
                 }
+
+                FormaPagoCtaCteDTO fp = new FormaPagoCtaCteDTO
+                {
+                    TipoFormaPago = TipoFormaPago.CuentaCorriente,
+                    Monto = nudTotal.Value,
+                    ComprobanteId = comprobante_id,
+                    ClienteId = idCliente,
+                };
+                _formaPagoServicio.Generar(fp);
+            }
+
+            if (rbCheque.Checked)
+            {
+                FormaPagoChequeDTO fp = new FormaPagoChequeDTO
+                {
+                    TipoFormaPago = TipoFormaPago.Cheque,
+                    Monto = nudTotal.Value,
+                    ComprobanteId = comprobante_id,
+                    BancoId = ((BancoDTO)cbBanco.SelectedItem).Id,
+                    Dias = (int)nudDiasCheque.Value,
+                    EnteEmisor = txtEnteCheque.Text,
+                    FechaEmision = dtFechaCheque.Value,
+                    Numero = txtNumeroCheque.Text,
+                };
+
+                _formaPagoServicio.Generar(fp);
             }
 
             if (rbTarjeta.Checked)
             {
-                //todo: generar comprobante tarjeta?
-            }
+                FormaPagoTarjetaDTO fp = new FormaPagoTarjetaDTO
+                {
+                    TipoFormaPago = TipoFormaPago.Tarjeta,
+                    Monto = nudTotal.Value,
+                    ComprobanteId = comprobante_id,
+                    Numero = txtNumeroTarjeta.Text, 
+                    Cupon = "", //TODO ????
+                    PlanTarjetaId = ((PlanTarjetaDTO)cbPlan.SelectedItem).Id,
+                    NumeroTarjeta = txtClaveTarjeta.Text
+                };
 
-            long comprobante_id;
-            if (delivery)
-            {
-                comprobante_id = _comprobanteServicio.GenerarComprobanteDelivery(comprobante);
-            }
-            else
-            {
-                comprobante_id = _comprobanteServicio.Generar(comprobante);
+                _formaPagoServicio.Generar(fp);
             }
 
             //////////////
@@ -425,36 +496,49 @@ namespace Presentacion.Core.Kiosco
         }
 
 
-        private void DgvGrilla_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        //pasarle el parametro e que viene del evento de la grilla
+        private void EliminarProducto(DataGridViewCellEventArgs e)
         {
             string codigo = dgvGrilla.Rows[e.RowIndex].Cells["CodigoProducto"].Value.ToString();
             detalles.Remove(codigo);
             ActualizarNudsGrid();
         }
+        private void DgvGrilla_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            EliminarProducto(e);
+        }
+
+        //rbs == los checkbox no se xq
+        private void Set_Rbs()
+        {
+            SetConsumidorFinal();
+
+            if (rbCtaCte.Checked) CambiarEnableControlsGb(gbCliente, true); else CambiarEnableControlsGb(gbCliente, false);
+            if (rbTarjeta.Checked) CambiarEnableControlsGb(gbTarjeta, true); else CambiarEnableControlsGb(gbTarjeta, false);
+            if (rbCheque.Checked) CambiarEnableControlsGb(gbCheque, true); else CambiarEnableControlsGb(gbCheque, false);
+        }
 
         private void RbCtaCte_CheckedChanged(object sender, EventArgs e)
         {
-            SetConsumidorFinal();
-            actualizarCbTarjeta();
+            Set_Rbs();
         }
 
         private void RbEfectivo_CheckedChanged(object sender, EventArgs e)
         {
-            SetConsumidorFinal();
-            actualizarCbTarjeta();
+            Set_Rbs();
         }
 
-        private void actualizarCbTarjeta()
+        private void rbCheque_CheckedChanged(object sender, EventArgs e)
         {
-            if (rbTarjeta.Checked)
+            Set_Rbs();
+        }
+
+        private void CambiarEnableControlsGb(GroupBox gb, bool enable)
+        {
+            foreach (Control c in gb.Controls)
             {
-                cbTarjeta.Enabled = true;
-                cbPlan.Enabled = true;
-            }
-            else
-            {
-                cbTarjeta.Enabled = false;
-                cbPlan.Enabled = false;
+                c.Enabled = enable;
+                Console.WriteLine(c.Name);
             }
         }
         
@@ -550,8 +634,7 @@ namespace Presentacion.Core.Kiosco
 
                     }
                 }
-            }
-                 
+            }        
         }
 
         private void txtCodigoBarras_KeyPress(object sender, KeyPressEventArgs e)

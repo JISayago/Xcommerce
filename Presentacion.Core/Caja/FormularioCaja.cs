@@ -67,5 +67,15 @@ namespace Presentacion.Core.Caja
             var f = new FormularioDetalleCaja();
             f.Show();
         }
-    }
+
+        private void btnVentas_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnComprobantes_Click(object sender, EventArgs e)
+        {
+
+        }
+    } 
 }
