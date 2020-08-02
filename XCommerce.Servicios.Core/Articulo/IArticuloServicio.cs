@@ -27,6 +27,8 @@ namespace XCommerce.Servicios.Core.Articulo
 
         ArticuloDTO ObtenerArticuloPorBaja(long bajaArticuloId);
 
-        void AgregarStock(long articuloId, decimal cantidad);
+        //void AgregarStock(long articuloId, decimal cantidad);
+
+        void AgregarStock(string codigo, decimal cantidad);
     }
 }

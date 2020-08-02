@@ -29,7 +29,7 @@ namespace Presentacion.Core.Articulo
             //sumar el stock a articulo
             decimal stockAgregar = nudCantidad.Value;
 
-            _articuloServicio.AgregarStock(entidadId, stockAgregar);
+            //_articuloServicio.AgregarStock(entidadId, stockAgregar);
 
             this.Close();
         }
