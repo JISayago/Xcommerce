@@ -218,6 +218,7 @@ namespace Presentacion.Core.Kiosco
                     return;
 
                 det.CantidadProducto += nudCantidadArticulo.Value;
+  
             }
             else
             {
@@ -538,7 +539,6 @@ namespace Presentacion.Core.Kiosco
             foreach (Control c in gb.Controls)
             {
                 c.Enabled = enable;
-                Console.WriteLine(c.Name);
             }
         }
         
@@ -574,7 +574,7 @@ namespace Presentacion.Core.Kiosco
 
         private void btnBuscarEmpleado_Click(object sender, EventArgs e)
         {
-            long? idEmpleado = ((Func<long>)(() => { 
+            long? idEmpleado = ((Func<long?>)(() => { 
                 var f_ = new FormularioEmpleadoConsulta(true); 
                 f_.ShowDialog();
                 return f_.empleadoSeleccionado; 
@@ -631,7 +631,6 @@ namespace Presentacion.Core.Kiosco
                     else
                     {
                         MessageBox.Show("Articulo no existe o no se encuentra en lista precio de este Salon.");
-
                     }
                 }
             }        

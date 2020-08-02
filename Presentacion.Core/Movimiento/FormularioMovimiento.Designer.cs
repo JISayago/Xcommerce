@@ -41,6 +41,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.txtNombreUsuario = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnComprobante = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrilla)).BeginInit();
             this.pnlControles.SuspendLayout();
             this.SuspendLayout();
@@ -81,8 +82,9 @@
             this.dgvGrilla.Name = "dgvGrilla";
             this.dgvGrilla.ReadOnly = true;
             this.dgvGrilla.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvGrilla.Size = new System.Drawing.Size(752, 222);
+            this.dgvGrilla.Size = new System.Drawing.Size(752, 211);
             this.dgvGrilla.TabIndex = 5;
+            this.dgvGrilla.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGrilla_RowEnter);
             // 
             // pnlControles
             // 
@@ -104,9 +106,9 @@
             // 
             // btnFiltrar
             // 
-            this.btnFiltrar.Location = new System.Drawing.Point(642, 75);
+            this.btnFiltrar.Location = new System.Drawing.Point(644, 75);
             this.btnFiltrar.Name = "btnFiltrar";
-            this.btnFiltrar.Size = new System.Drawing.Size(96, 23);
+            this.btnFiltrar.Size = new System.Drawing.Size(94, 23);
             this.btnFiltrar.TabIndex = 7;
             this.btnFiltrar.Text = "Filtrar";
             this.btnFiltrar.UseVisualStyleBackColor = true;
@@ -154,9 +156,9 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(613, 48);
+            this.button3.Location = new System.Drawing.Point(613, 46);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(25, 20);
+            this.button3.Size = new System.Drawing.Size(25, 22);
             this.button3.TabIndex = 7;
             this.button3.Text = "X";
             this.button3.UseVisualStyleBackColor = true;
@@ -179,11 +181,22 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // btnComprobante
+            // 
+            this.btnComprobante.Location = new System.Drawing.Point(586, 339);
+            this.btnComprobante.Name = "btnComprobante";
+            this.btnComprobante.Size = new System.Drawing.Size(174, 38);
+            this.btnComprobante.TabIndex = 12;
+            this.btnComprobante.Text = "Ver Comprobante";
+            this.btnComprobante.UseVisualStyleBackColor = true;
+            this.btnComprobante.Click += new System.EventHandler(this.btnComprobante_Click);
+            // 
             // FormularioMovimiento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(776, 356);
+            this.ClientSize = new System.Drawing.Size(776, 382);
+            this.Controls.Add(this.btnComprobante);
             this.Controls.Add(this.pnlControles);
             this.Controls.Add(this.dgvGrilla);
             this.Name = "FormularioMovimiento";
@@ -210,5 +223,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnComprobante;
     }
 }

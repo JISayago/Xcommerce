@@ -16,7 +16,7 @@
     public partial class FormularioEmpleadoConsulta : FormularioBaseConsulta
     {
         private readonly IEmpleadoServicio _empleadoServicio;
-        public long empleadoSeleccionado = 0;
+        public long? empleadoSeleccionado = null;
         public bool soloSeleccion;
         public FormularioEmpleadoConsulta():this(new EmpleadoServicio())
         {
@@ -34,6 +34,7 @@
         {
             InitializeComponent();
             this.soloSeleccion = soloSeleccion;
+            if(soloSeleccion) MessageBox.Show("Seleccione el empleado con doble clock");
             _empleadoServicio = new EmpleadoServicio();
         }
         
