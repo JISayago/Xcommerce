@@ -128,6 +128,7 @@ namespace Presentacion.Core.Articulo
         {
             var bajaArticulo = new FormularioBajaArticuloABM(TipoOperacion.Nuevo, entidadId);
             bajaArticulo.ShowDialog();
+            ActualizarDatos(dgvGrilla, string.Empty, cbxEstaEliminado, BarraLateralBotones);
         }
 
         private void btnStock_Click(object sender, EventArgs e)
