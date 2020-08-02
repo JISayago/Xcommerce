@@ -15,9 +15,11 @@ using XCommerce.AccesoDatos;
 using XCommerce.Servicios.Core.Articulo;
 using XCommerce.Servicios.Core.Articulo.DTO;
 
+using XCommerce.Servicios.Core.Cliente;
 using XCommerce.Servicios.Core.Comprobante;
 using XCommerce.Servicios.Core.Comprobante.DTO;
 using XCommerce.Servicios.Core.CondicionIva;
+using XCommerce.Servicios.Core.DetalleCaja;
 using XCommerce.Servicios.Core.DetalleCaja.DTO;
 using XCommerce.Servicios.Core.Movimiento;
 using XCommerce.Servicios.Core.Movimiento.DTO;
@@ -32,6 +34,8 @@ namespace Presentacion.Core.Proveedor
         private readonly IArticuloServicio _articuloServicio;
         private readonly IMovimientoServicio _movimientoServicio;
         private readonly IComprobanteServicio _comprobanteServicio;
+        private readonly IClienteServicio _clienteServicio;
+        private readonly IDetalleCajaServicio _detalleCajaServicio;
         private Dictionary<string, DetalleComprobanteDTO> detalles;
         private long idArticulo;
         private long idProveedor;
@@ -45,7 +49,16 @@ namespace Presentacion.Core.Proveedor
             _articuloServicio = new ArticuloServicio();
             _movimientoServicio = new MovimientoServicio();
             _comprobanteServicio = new ComprobanteServicio();
+            _clienteServicio = new ClienteServicio();
+            _detalleCajaServicio = new DetalleCajaServicio();
             detalles = new Dictionary<string, DetalleComprobanteDTO>();
+
+
+            AgregarControlesObligatorios(txtContacto, "Contacto");
+            AgregarControlesObligatorios(txtEmail, "Email");
+            AgregarControlesObligatorios(txtRazonSocial, "RazonSocial");
+            AgregarControlesObligatorios(txtTelefono, "Telefono");
+            AgregarControlesObligatorios(txtCondicionIva, "CondicionIva");
         }
 
         public void ResetearGrilla(DataGridView grilla)
@@ -101,9 +114,10 @@ namespace Presentacion.Core.Proveedor
 
            
             var proveedor = _proveedorServicio.ObtenerPorId(idProveedor);
-            var condicionIva = _condicionIvaServicio.ObtenerPorId(proveedor.CondicionIvaId);
+           
             if (proveedor != null)
             {
+                var condicionIva = _condicionIvaServicio.ObtenerPorId(proveedor.CondicionIvaId);
                 txtCondicionIva.Text = condicionIva.Descripcion;
                 txtContacto.Text = proveedor.Contacto;
                 txtEmail.Text = proveedor.Email;
@@ -129,26 +143,32 @@ namespace Presentacion.Core.Proveedor
 
             idArticulo = formArticulo.articuloSeleccionado;
 
-            var formularioModificar = new FormularioArticuloABM(TipoOperacion.Modificar, idArticulo);
-            formularioModificar.ShowDialog();
-
-            var articulo = _articuloServicio.ObtenerPorId(idArticulo);
-            if (articulo != null)
+            if(idArticulo != 0)
             {
-                detalles[$"{articulo.Codigo}"] =
-                            new DetalleComprobanteDTO
-                            {
-                                ProductoId = articulo.Id,
-                                CodigoProducto = articulo.Codigo,
-                                DescripcionProducto = articulo.Descripcion,
-                                PrecioUnitario = articulo.PrecioCosto,
-                                CantidadProducto = 0m,
 
-                            };
+                var formularioModificar = new FormularioArticuloABM(TipoOperacion.Modificar, idArticulo);
+                formularioModificar.ShowDialog();
+
+                var articulo = _articuloServicio.ObtenerPorId(idArticulo);
+                if (articulo != null)
+                {
+                    detalles[$"{articulo.Codigo}"] =
+                                new DetalleComprobanteDTO
+                                {
+                                    ProductoId = articulo.Id,
+                                    CodigoProducto = articulo.Codigo,
+                                    DescripcionProducto = articulo.Descripcion,
+                                    PrecioUnitario = articulo.PrecioCosto,
+                                    CantidadProducto = 0m,
+
+                                };
 
 
+                }
+               
             }
             ActualizarNudsGrid();
+
         }
 
         private void btnAgragarAlInventario_Click(object sender, EventArgs e)
@@ -171,7 +191,6 @@ namespace Presentacion.Core.Proveedor
                                DescripcionProducto = articulo.Descripcion,
                                PrecioUnitario = articulo.PrecioCosto,
                                CantidadProducto = 0m,
-
                            };
 
             }
@@ -182,9 +201,9 @@ namespace Presentacion.Core.Proveedor
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
+        
 
-           
-                foreach (var item in detalles)
+            foreach (var item in detalles)
                 {
                 int i = 0;
                     MessageBox.Show($"{item}");
@@ -199,32 +218,36 @@ namespace Presentacion.Core.Proveedor
 
         }
 
-        private void RegistrarListadoArticulos()
+        private bool RegistrarListadoArticulos()
         {
-
+            if (!VerificarDatosObligatorios())
+            {
+                MessageBox.Show(@"Por favor ingrese los campos Obligatorios.", @"Atención", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
             /////////////////
             ///COMPROBANTE///
             /////////////////
+            ///
+            long clienteId = _clienteServicio.ObtenerClientePorDni("99999999").Id;
             long proveedorId = _proveedorServicio.ObtenerRazonSocial(txtRazonSocial.Text).Id;
+            
             ComprobanteCompraDTO comprobante = new ComprobanteCompraDTO
             {
                  
                 Fecha = DateTime.Now,
                 ProveedorId = proveedorId,
-                UsuarioId = DatosSistema.UsuarioId,
-                ClienteId = 0,
-                Descuento = nudDescuento.Value,
-                Total = 0,
+                UsuarioId = DatosSistema.UsuarioId,                
+                ClienteId = clienteId,
+                Descuento = nudDescuento.Value,         
+               
                 Items = detalles.Values.ToList()
             };
 
             long comprobante_id;
          
             comprobante_id = _comprobanteServicio.GenerarComprobanteCompra(comprobante);
-            
-         
-            
-            
 
             ////////////////
             //Detalle Caja//
@@ -238,14 +261,20 @@ namespace Presentacion.Core.Proveedor
             //if (rbTarjeta.Checked)
             //{
             //    formaDePago = TipoPago.Tarjeta;
-            //}
-            //DetalleCajaDTO detalleCaja = new DetalleCajaDTO
-            //{
-            //    CajaId = DatosSistema.CajaId,
-            //    Monto = comprobante.Total,
-            //    TipoPago = formaDePago
-            //};
-            //_detalleCajaServicio.Generar(detalleCaja);
+            ////}
+            ///
+
+            if (cbxDescuentaCaja.Checked)
+            {
+                DetalleCajaDTO detalleCaja = new DetalleCajaDTO
+                {
+                    CajaId = DatosSistema.CajaId,
+                    Monto = comprobante.Total,
+                    TipoPago = TipoPago.Efectivo
+                };
+                _detalleCajaServicio.Generar(detalleCaja);
+            }
+
 
             //////////////////
             /////FORMA PAGO///
@@ -327,16 +356,17 @@ namespace Presentacion.Core.Proveedor
                 UsuarioID = DatosSistema.UsuarioId,
                 Monto = comprobante.Total,
                 Fecha = DateTime.Now,
-                Descripcion = "_____",
+                Descripcion = "Ingreso Articulos",
             };
 
             _movimientoServicio.GenerarMovimiento(movimiento);
 
 
-         
+          
+            
             Close();
 
-
+            return true;
 
         }
     }
