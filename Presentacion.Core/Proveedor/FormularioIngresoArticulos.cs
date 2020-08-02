@@ -201,21 +201,23 @@ namespace Presentacion.Core.Proveedor
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-        
 
-            foreach (var item in detalles)
+            if (detalles != null)
+            {
+                foreach (var item in detalles)
                 {
-                int i = 0;
+                    int i = 0;
                     MessageBox.Show($"{item}");
                     if (decimal.TryParse(dgvGrilla.Rows[i].Cells["CantidadProducto"].Value.ToString(), out decimal cantidad))
                     {
                         _articuloServicio.AgregarStock(item.Key, cantidad);
                         i++;
                     }
-                   
-                }
-            RegistrarListadoArticulos();
 
+                }
+                RegistrarListadoArticulos();
+            }
+            MessageBox.Show("No se puede Registrar una lista de articulos vacáa.");
         }
 
         private bool RegistrarListadoArticulos()
