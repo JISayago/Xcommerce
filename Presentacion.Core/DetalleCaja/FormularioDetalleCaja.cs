@@ -25,6 +25,8 @@ namespace Presentacion.Core.DetalleCaja
             {
                 dgvGrilla.DataSource = detalles;
             }
+
+            dgvGrilla.Columns["Monto"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
     }
 }

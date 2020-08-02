@@ -41,10 +41,9 @@
             // 
             // btnNuevoMotivoBaja
             // 
-            this.btnNuevoMotivoBaja.Location = new System.Drawing.Point(407, 117);
-            this.btnNuevoMotivoBaja.Margin = new System.Windows.Forms.Padding(4);
+            this.btnNuevoMotivoBaja.Location = new System.Drawing.Point(265, 95);
             this.btnNuevoMotivoBaja.Name = "btnNuevoMotivoBaja";
-            this.btnNuevoMotivoBaja.Size = new System.Drawing.Size(55, 24);
+            this.btnNuevoMotivoBaja.Size = new System.Drawing.Size(41, 21);
             this.btnNuevoMotivoBaja.TabIndex = 1;
             this.btnNuevoMotivoBaja.Text = "...";
             this.btnNuevoMotivoBaja.UseVisualStyleBackColor = true;
@@ -53,43 +52,46 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(13, 120);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Location = new System.Drawing.Point(10, 98);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(81, 17);
+            this.label9.Size = new System.Drawing.Size(63, 13);
             this.label9.TabIndex = 161;
             this.label9.Text = "Motivo Baja";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(486, 119);
+            this.label1.Location = new System.Drawing.Point(320, 98);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 17);
+            this.label1.Size = new System.Drawing.Size(49, 13);
             this.label1.TabIndex = 162;
             this.label1.Text = "Cantidad";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 154);
+            this.label2.Location = new System.Drawing.Point(11, 125);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(88, 17);
+            this.label2.Size = new System.Drawing.Size(67, 13);
             this.label2.TabIndex = 163;
             this.label2.Text = "Observacion";
             // 
             // nudCantidad
             // 
-            this.nudCantidad.Location = new System.Drawing.Point(556, 117);
+            this.nudCantidad.Location = new System.Drawing.Point(373, 96);
+            this.nudCantidad.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.nudCantidad.Name = "nudCantidad";
-            this.nudCantidad.Size = new System.Drawing.Size(53, 22);
+            this.nudCantidad.Size = new System.Drawing.Size(40, 20);
             this.nudCantidad.TabIndex = 2;
             // 
             // richBajaArticulo
             // 
-            this.richBajaArticulo.Location = new System.Drawing.Point(109, 154);
+            this.richBajaArticulo.Location = new System.Drawing.Point(82, 125);
+            this.richBajaArticulo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.richBajaArticulo.Name = "richBajaArticulo";
-            this.richBajaArticulo.Size = new System.Drawing.Size(500, 72);
+            this.richBajaArticulo.Size = new System.Drawing.Size(331, 59);
             this.richBajaArticulo.TabIndex = 3;
             this.richBajaArticulo.Text = "";
             // 
@@ -97,27 +99,27 @@
             // 
             this.cmbMotivo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMotivo.FormattingEnabled = true;
-            this.cmbMotivo.Location = new System.Drawing.Point(110, 117);
+            this.cmbMotivo.Location = new System.Drawing.Point(82, 95);
+            this.cmbMotivo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbMotivo.Name = "cmbMotivo";
-            this.cmbMotivo.Size = new System.Drawing.Size(290, 24);
+            this.cmbMotivo.Size = new System.Drawing.Size(178, 21);
             this.cmbMotivo.TabIndex = 0;
             // 
             // lblArticulo
             // 
             this.lblArticulo.AutoSize = true;
             this.lblArticulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblArticulo.Location = new System.Drawing.Point(12, 71);
-            this.lblArticulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblArticulo.Location = new System.Drawing.Point(9, 58);
             this.lblArticulo.Name = "lblArticulo";
-            this.lblArticulo.Size = new System.Drawing.Size(147, 31);
+            this.lblArticulo.Size = new System.Drawing.Size(117, 25);
             this.lblArticulo.TabIndex = 168;
             this.lblArticulo.Text = "No Articulo";
             // 
             // FormularioBajaArticuloABM
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(631, 245);
+            this.ClientSize = new System.Drawing.Size(473, 199);
             this.Controls.Add(this.lblArticulo);
             this.Controls.Add(this.cmbMotivo);
             this.Controls.Add(this.richBajaArticulo);
@@ -126,6 +128,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnNuevoMotivoBaja);
             this.Controls.Add(this.label9);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MaximumSize = new System.Drawing.Size(604, 495);
             this.Name = "FormularioBajaArticuloABM";
             this.Text = "FormularioBajaArticuloABM";
             this.Activated += new System.EventHandler(this.FormularioBajaArticuloABM_Activated);

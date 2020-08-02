@@ -283,6 +283,7 @@ namespace XCommerce.Servicios.Core.Articulo
 
                 if (articuloAModificar == null) throw new Exception("No se encontro el artículo");
 
+
                 articuloAModificar.Stock += cantidad;
 
                 context.SaveChanges();

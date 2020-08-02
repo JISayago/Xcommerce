@@ -1,4 +1,5 @@
 ﻿using Presentacion.Core.DetalleCaja;
+using Presentacion.Core.FormaPago;
 using Presentacion.Core.Movimiento;
 using Presentacion.Helpers;
 using System;
@@ -70,6 +71,8 @@ namespace Presentacion.Core.Caja
 
         private void btnVentas_Click(object sender, EventArgs e)
         {
+            var f = new FormularioFormaPago();
+            f.Show();
 
         }
 

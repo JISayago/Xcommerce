@@ -128,6 +128,7 @@ namespace Presentacion.Core.Articulo
         {
             var bajaArticulo = new FormularioBajaArticuloABM(TipoOperacion.Nuevo, entidadId);
             bajaArticulo.ShowDialog();
+            ActualizarDatos(dgvGrilla, string.Empty, cbxEstaEliminado, BarraLateralBotones);
         }
 
         private void btnStock_Click(object sender, EventArgs e)
@@ -139,10 +140,15 @@ namespace Presentacion.Core.Articulo
         {
             long stockId = (long)entidadId;
 
-            var altaArticulo = new FormularioAgregarStock(stockId);
+            var articulo = _articuloServicio.ObtenerPorId(stockId);
+
+            var altaStockArticulo = new FormularioAgregarStock(stockId, articulo.Stock);
+
             //agregar mensajito de que todo esta bien
 
-            altaArticulo.ShowDialog();
+            altaStockArticulo.ShowDialog();
+
+            ActualizarDatos(dgvGrilla, string.Empty, cbxEstaEliminado, BarraLateralBotones);
         }
     }
 }
