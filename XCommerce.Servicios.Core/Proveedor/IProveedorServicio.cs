@@ -11,6 +11,8 @@ namespace XCommerce.Servicios.Core.Proveedor
     {
         IEnumerable<ProveedorDTO> Obtener(string cadenaBuscar);
 
+        ProveedorDTO ObtenerRazonSocial(string razonSocial);
+
         ProveedorDTO ObtenerPorId(long ProveedorId);       
 
         long Insertar(ProveedorDTO Proveedordto);

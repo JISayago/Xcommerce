@@ -37,7 +37,7 @@ namespace Presentacion.Core.Articulo
 
             decimal stockAgregar = nudCantidad.Value;
 
-            _articuloServicio.AgregarStock(entidadId, stockAgregar);
+            //_articuloServicio.AgregarStock(entidadId, stockAgregar);
 
         }
 

@@ -77,13 +77,16 @@
     <Compile Include="Cliente\ClienteServicio.cs" />
     <Compile Include="Cliente\DTO\ClienteDTO.cs" />
     <Compile Include="Cliente\IClienteServicio.cs" />
+    <Compile Include="Comprobante\ComprobanteCompraServicio.cs" />
     <Compile Include="Comprobante\ComprobanteSalonServicio.cs" />
     <Compile Include="Comprobante\ComprobanteServicio.cs" />
     <Compile Include="Comprobante\Descuento.cs" />
+    <Compile Include="Comprobante\DTO\ComprobanteCompraDTO.cs" />
     <Compile Include="Comprobante\DTO\ComprobanteDTO.cs" />
     <Compile Include="Comprobante\DTO\ComprobanteMesaDTO.cs" />
     <Compile Include="Comprobante\DTO\DetalleComprobanteDTO.cs" />
     <Compile Include="Comprobante\DTO\DetalleComprobanteSalonDTO.cs" />
+    <Compile Include="Comprobante\IComprobanteCompraServicio.cs" />
     <Compile Include="Comprobante\DTO\T_ComprobanteDTO.cs" />
     <Compile Include="Comprobante\IComprobanteSalonServicio.cs" />
     <Compile Include="Comprobante\IComprobanteServicio.cs" />
