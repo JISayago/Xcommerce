@@ -74,11 +74,11 @@
             // 
             this.lblCaja.AutoSize = true;
             this.lblCaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCaja.Location = new System.Drawing.Point(133, 12);
+            this.lblCaja.Location = new System.Drawing.Point(152, 9);
             this.lblCaja.Name = "lblCaja";
-            this.lblCaja.Size = new System.Drawing.Size(86, 25);
+            this.lblCaja.Size = new System.Drawing.Size(56, 25);
             this.lblCaja.TabIndex = 3;
-            this.lblCaja.Text = "La Caja";
+            this.lblCaja.Text = "Caja";
             // 
             // label1
             // 

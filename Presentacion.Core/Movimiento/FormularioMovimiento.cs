@@ -1,4 +1,5 @@
-﻿using Presentacion.Core.Empleado;
+﻿using Presentacion.Core.Comprobante;
+using Presentacion.Core.Empleado;
 using System;
 using System.Windows.Forms;
 using XCommerce.AccesoDatos;
@@ -47,8 +48,14 @@ namespace Presentacion.Core.Movimiento
 
         private void button1_Click(object sender, EventArgs e)
         {
-            idEmpleado = ((Func<long>)(() => {var f_ = new FormularioEmpleadoConsulta(true);f_.ShowDialog();return f_.empleadoSeleccionado;}))();
+            idEmpleado = ((Func<long?>)(() => 
+            {
+                var f_ = new FormularioEmpleadoConsulta(true);
+                f_.ShowDialog();
+                return f_.empleadoSeleccionado;
+            }))();
 
+            Console.WriteLine(idEmpleado);
             if(idEmpleado != null) txtNombreUsuario.Text = _empleadoServicio.ObtenerEmpleadoPorId((long)idEmpleado).ApyNom;
             
         }
@@ -57,6 +64,27 @@ namespace Presentacion.Core.Movimiento
         {
             idEmpleado = null;
             txtNombreUsuario.Text = "";
+        }
+
+        long? comprobanteSeleccionadoId = null;
+        private void btnComprobante_Click(object sender, EventArgs e)
+        {
+           
+            if (comprobanteSeleccionadoId != null)
+            {
+                var f_ = new FormularioComprobante((long)comprobanteSeleccionadoId);
+                f_.Show();
+            }
+
+        }
+
+        private void dgvGrilla_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvGrilla.RowCount > 0)
+            {
+                comprobanteSeleccionadoId = (long?)dgvGrilla["Id", e.RowIndex].Value;
+            }
+
         }
     }
 }

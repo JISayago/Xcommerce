@@ -93,6 +93,54 @@ namespace XCommerce.Servicios.Core.Comprobante
                 return nuevoComprobante.Id;
             }
         }
+        public T_ComprobanteDTO ObtenerPorId(long comprobanteId)
+        {
+
+            using (var context = new ModeloXCommerceContainer())
+            {
+                var comp = context.Comprobantes
+               .AsNoTracking()
+               .Select(x => new T_ComprobanteDTO
+               {
+                   Id = x.Id,
+                   ClienteId = x.ClienteId,
+                   Descuento = x.Descuento,
+                   Fecha = x.Fecha,
+                   UsuarioId = x.UsuarioId,
+                   Numero = x.Numero,
+                   Tipo = x.TipoComprobante,
+               }).FirstOrDefault(y => y.Id == comprobanteId);
+
+                var items = context.Comprobantes
+                .AsNoTracking().FirstOrDefault(x => x.Id == comprobanteId).DetalleComprobantes;
+
+                Func<List<DetalleComprobante>, List<DetalleComprobanteDTO>>
+                    convertirADaDTO = (List<AccesoDatos.DetalleComprobante> detalles) => {
+                        List<DetalleComprobanteDTO> lista_detalles = new List<DetalleComprobanteDTO>();
+                        foreach (var it in detalles)
+                        {
+                            var detalle = new DetalleComprobanteDTO
+                            {
+                                ComprobanteId = it.ComprobanteId,
+                                CodigoProducto = it.Codigo,
+                                CantidadProducto = it.Cantidad,
+                                PrecioUnitario = it.PrecioUnitario,
+                                DescripcionProducto = it.Descripcion,
+                                ProductoId = it.Id
+                            };
+                            lista_detalles.Add(detalle);
+                        }
+                        return lista_detalles;
+                    };
+
+                    comp.Items = convertirADaDTO(items.ToList());
+
+                    return comp;
+
+            }
+        }
+
     }
 }
+
 
