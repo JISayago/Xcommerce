@@ -590,5 +590,17 @@ namespace Presentacion.Core.VentaSalon
                 CargarComboBox(cbPlan, _planTarjetaServicio.ObtenerPorIdTarjeta(((TarjetaDTO)cbTarjeta.Items[0]).Id), "Descripcion", "Id");
             }
         }
+
+        private void rdbCtaCte_Click(object sender, EventArgs e)
+        {
+            gbTarjeta.Visible = false;
+            gbCheqe.Visible = false;
+        }
+
+        private void rdbEfectivo_Click(object sender, EventArgs e)
+        {
+            gbTarjeta.Visible = false;
+            gbCheqe.Visible = false;
+        }
     }
 }

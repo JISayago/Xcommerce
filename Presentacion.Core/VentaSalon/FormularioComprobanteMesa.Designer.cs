@@ -409,6 +409,7 @@
             this.rdbCtaCte.TabIndex = 2;
             this.rdbCtaCte.Text = "Cta.Cte";
             this.rdbCtaCte.UseVisualStyleBackColor = true;
+            this.rdbCtaCte.Click += new System.EventHandler(this.rdbCtaCte_Click);
             // 
             // gbCheque
             // 
@@ -492,6 +493,7 @@
             this.rdbEfectivo.TabStop = true;
             this.rdbEfectivo.Text = "Efectivo";
             this.rdbEfectivo.UseVisualStyleBackColor = true;
+            this.rdbEfectivo.Click += new System.EventHandler(this.rdbEfectivo_Click);
             // 
             // btnCerrarMesa
             // 
