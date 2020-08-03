@@ -72,6 +72,26 @@ namespace Presentacion.Core.Articulo
             {
                 DesactivarControles(this);
             }
+            if (tipoOperacion == TipoOperacion.Modificar)
+            {
+                nudStock.ReadOnly = true;
+            }
+            if(tipoOperacion == TipoOperacion.Nuevo)
+            {
+                nudStock.Enabled = false;
+            }
+
+
+            AgregarControlesObligatorios(txtBoxCodigo, "Codigo");
+            AgregarControlesObligatorios(txtBoxCodigoBarra, "Codigo Barra");
+            AgregarControlesObligatorios(txtBoxDescripcion, "Descripcion");
+            AgregarControlesObligatorios(txtBoxDetalle, "Detalle");
+            AgregarControlesObligatorios(txtBoxAbreviatura, "Abreviatura");
+            AgregarControlesObligatorios(cmbMarca, "Marca");
+            AgregarControlesObligatorios(cmbRubro, "Rubro");
+            AgregarControlesObligatorios(cmbListaPrecio, "Lista");
+          
+
 
         }
 
@@ -133,6 +153,12 @@ namespace Presentacion.Core.Articulo
 
         public override bool EjecutarComandoModificar()
         {
+            if (!VerificarDatosObligatorios())
+            {
+                MessageBox.Show(@"Por favor ingrese los campos Obligatorios.", @"Atención", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
             var articuloAModificar = new ArticuloDTO
             {
                 Id = EntidadId.Value,
@@ -161,16 +187,12 @@ namespace Presentacion.Core.Articulo
 
         public override bool EjecutarComandoNuevo()
         {
-            //TODO
-            /*
             if (!VerificarDatosObligatorios())
             {
                 MessageBox.Show(@"Por favor ingrese los campos Obligatorios.", @"Atención", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return false;
             }
-            /
-            */
 
 
             var articuloNuevo = new ArticuloDTO
