@@ -162,10 +162,7 @@ namespace Presentacion.Core.Proveedor
                                     CantidadProducto = 0m,
 
                                 };
-
-
-                }
-               
+                }               
             }
             ActualizarNudsGrid();
 
@@ -370,6 +367,11 @@ namespace Presentacion.Core.Proveedor
 
             return true;
 
+        }
+
+        private void dgvGrilla_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            ActualizarNudsGrid();
         }
     }
 

@@ -194,12 +194,15 @@ namespace XCommerce.Servicios.Core.Articulo
             {
                 return context.Articulos
                     .AsNoTracking()
+                    .Include("Precio")
                     .Select(x => new ArticuloDTO
                     {
                         Descripcion = x.Descripcion,
                         Abreviatura = x.Abreviatura,
                         Codigo = x.Codigo,
                         CodigoBarra = x.CodigoBarra,
+                        PrecioCosto = x.Precios.FirstOrDefault(y => y.ArticuloId == x.Id
+                        && y.FechaActualizacion == context.Precios.Where(z => z.ArticuloId == x.Id).Max(m => m.FechaActualizacion)).PrecioCosto,
                         ActivarLimiteVenta = x.ActivarLimiteVenta,
                         DescuentaStock = x.DescuentaStock,
                         Detalle = x.Detalle,

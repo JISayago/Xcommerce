@@ -158,6 +158,7 @@
             this.dgvGrilla.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvGrilla.Size = new System.Drawing.Size(760, 301);
             this.dgvGrilla.TabIndex = 216;
+            this.dgvGrilla.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGrilla_CellValueChanged);
             // 
             // txtCondicionIva
             // 
