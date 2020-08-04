@@ -42,6 +42,7 @@
             // 
             this.txtSalon.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSalon.Location = new System.Drawing.Point(132, 65);
+            this.txtSalon.MaxLength = 250;
             this.txtSalon.Name = "txtSalon";
             this.txtSalon.Size = new System.Drawing.Size(260, 26);
             this.txtSalon.TabIndex = 5;

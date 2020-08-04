@@ -34,6 +34,7 @@
             // 
             // cbxEstaEliminado
             // 
+
             this.cbxEstaEliminado.Location = new System.Drawing.Point(81, 12);
             // 
             // btnBajaArticulo
@@ -53,6 +54,7 @@
             this.btnStock.Margin = new System.Windows.Forms.Padding(2);
             this.btnStock.Name = "btnStock";
             this.btnStock.Size = new System.Drawing.Size(67, 28);
+
             this.btnStock.TabIndex = 129;
             this.btnStock.Text = "Alta Stock";
             this.btnStock.UseVisualStyleBackColor = true;
@@ -67,6 +69,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             //this.MaximumSize = new System.Drawing.Size(604, 495);
             //this.MinimumSize = new System.Drawing.Size(604, 495);
+
             this.Name = "FormularioArticuloConsulta";
             this.Text = "FormularioArticuloConsulta";
             this.Controls.SetChildIndex(this.cbxEstaEliminado, 0);

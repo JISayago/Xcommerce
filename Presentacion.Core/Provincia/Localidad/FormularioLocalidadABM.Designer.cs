@@ -42,6 +42,7 @@
             // 
             this.txtLocalidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLocalidad.Location = new System.Drawing.Point(83, 112);
+            this.txtLocalidad.MaxLength = 250;
             this.txtLocalidad.Name = "txtLocalidad";
             this.txtLocalidad.Size = new System.Drawing.Size(293, 22);
             this.txtLocalidad.TabIndex = 5;

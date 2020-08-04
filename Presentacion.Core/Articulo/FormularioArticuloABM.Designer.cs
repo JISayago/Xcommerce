@@ -358,6 +358,7 @@
             // txtBoxCodigo
             // 
             this.txtBoxCodigo.Location = new System.Drawing.Point(86, 68);
+
             this.txtBoxCodigo.Name = "txtBoxCodigo";
             this.txtBoxCodigo.Size = new System.Drawing.Size(104, 20);
             this.txtBoxCodigo.TabIndex = 0;
