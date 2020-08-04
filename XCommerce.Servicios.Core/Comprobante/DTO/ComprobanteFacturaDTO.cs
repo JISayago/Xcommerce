@@ -7,9 +7,9 @@ using XCommerce.AccesoDatos;
 
 namespace XCommerce.Servicios.Core.Comprobante.DTO
 {
-    public class T_ComprobanteDTO
+    public class ComprobanteFacturaDTO
     {
-        public T_ComprobanteDTO()
+        public ComprobanteFacturaDTO()
         {
             if (Items == null)
             {
@@ -33,9 +33,15 @@ namespace XCommerce.Servicios.Core.Comprobante.DTO
        
         public List<DetalleComprobanteDTO> Items { get; set; }
 
-        public int Numero { get; set; }
+        public int Numero => 100_000_000 + (int)Id;
 
         public TipoComprobante Tipo { get; set; }
+
+        public string NombreCliente { get; set; }
+        public string ApellidoCliente { get; set; }
+        public string NombreEmpleado { get; set; }
+        public string ApellidoEmpleado { get; set; }
+        public string FormaPagoStr { get; set; }
     }
 }
 

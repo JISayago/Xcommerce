@@ -1,6 +1,6 @@
-﻿namespace Presentacion.Core.DetalleCaja
+﻿namespace Presentacion.Core.Caja
 {
-    partial class FormularioDetalleCaja
+    partial class FormularioArqueos
     {
         /// <summary>
         /// Required designer variable.
@@ -33,7 +33,7 @@
             this.dtDesde = new System.Windows.Forms.DateTimePicker();
             this.dtHasta = new System.Windows.Forms.DateTimePicker();
             this.dgvGrilla = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnFiltrar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrilla)).BeginInit();
             this.SuspendLayout();
             // 
@@ -41,35 +41,35 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Liberation Sans", 9.75F);
-            this.label2.Location = new System.Drawing.Point(316, 16);
+            this.label2.Location = new System.Drawing.Point(316, 18);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 15);
-            this.label2.TabIndex = 13;
+            this.label2.TabIndex = 18;
             this.label2.Text = "Hasta";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Liberation Sans", 9.75F);
-            this.label1.Location = new System.Drawing.Point(12, 17);
+            this.label1.Location = new System.Drawing.Point(12, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 15);
-            this.label1.TabIndex = 12;
+            this.label1.TabIndex = 17;
             this.label1.Text = "Desde";
             // 
             // dtDesde
             // 
-            this.dtDesde.Location = new System.Drawing.Point(62, 14);
+            this.dtDesde.Location = new System.Drawing.Point(62, 16);
             this.dtDesde.Name = "dtDesde";
             this.dtDesde.Size = new System.Drawing.Size(230, 20);
-            this.dtDesde.TabIndex = 10;
+            this.dtDesde.TabIndex = 15;
             // 
             // dtHasta
             // 
-            this.dtHasta.Location = new System.Drawing.Point(368, 14);
+            this.dtHasta.Location = new System.Drawing.Point(368, 16);
             this.dtHasta.Name = "dtHasta";
             this.dtHasta.Size = new System.Drawing.Size(230, 20);
-            this.dtHasta.TabIndex = 11;
+            this.dtHasta.TabIndex = 16;
             // 
             // dgvGrilla
             // 
@@ -80,37 +80,37 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvGrilla.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dgvGrilla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvGrilla.Location = new System.Drawing.Point(12, 104);
+            this.dgvGrilla.Location = new System.Drawing.Point(12, 91);
             this.dgvGrilla.MultiSelect = false;
             this.dgvGrilla.Name = "dgvGrilla";
             this.dgvGrilla.ReadOnly = true;
             this.dgvGrilla.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvGrilla.Size = new System.Drawing.Size(586, 197);
-            this.dgvGrilla.TabIndex = 6;
+            this.dgvGrilla.Size = new System.Drawing.Size(586, 171);
+            this.dgvGrilla.TabIndex = 14;
             // 
-            // button1
+            // btnFiltrar
             // 
-            this.button1.Location = new System.Drawing.Point(520, 41);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "Filtrar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnFiltrar.Location = new System.Drawing.Point(492, 53);
+            this.btnFiltrar.Name = "btnFiltrar";
+            this.btnFiltrar.Size = new System.Drawing.Size(106, 23);
+            this.btnFiltrar.TabIndex = 19;
+            this.btnFiltrar.Text = "Filtrar";
+            this.btnFiltrar.UseVisualStyleBackColor = true;
+            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
             // 
-            // FormularioDetalleCaja
+            // FormularioArqueos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(610, 313);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(614, 286);
+            this.Controls.Add(this.btnFiltrar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dtDesde);
             this.Controls.Add(this.dtHasta);
             this.Controls.Add(this.dgvGrilla);
-            this.Name = "FormularioDetalleCaja";
-            this.Text = "FormularioDetalleCaja";
+            this.Name = "FormularioArqueos";
+            this.Text = "FormularioArqueos";
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrilla)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -118,11 +118,12 @@
         }
 
         #endregion
+
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dtDesde;
         private System.Windows.Forms.DateTimePicker dtHasta;
         protected System.Windows.Forms.DataGridView dgvGrilla;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnFiltrar;
     }
 }

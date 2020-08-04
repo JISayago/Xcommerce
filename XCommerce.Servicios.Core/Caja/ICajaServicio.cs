@@ -12,6 +12,7 @@ namespace XCommerce.Servicios.Core.Caja
         long Abrir(CajaDTO dto);
         void Cerrar(CajaDTO dto);
         CajaDTO Obtener(long id);
+        IEnumerable<CajaDTO> ObtenerTodas();
         bool HayCajaAbierta();
         long ObtenerCajaAbierta();
         decimal ObtenerMontoSistema(long cajaId);

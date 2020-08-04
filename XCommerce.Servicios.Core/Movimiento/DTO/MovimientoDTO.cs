@@ -13,10 +13,11 @@ namespace XCommerce.Servicios.Core.Movimiento.DTO
         public long Id { get; set; }
         public long CajaID { get; set; }
         public long ComprobanteID { get; set; }
-        public TipoMovimiento TipoMovimiento { get; set; }
+        public TipoMovimiento Tipo { get; set; }
         public long UsuarioID { get; set; }
         public decimal Monto { get; set; }
         public DateTime Fecha { get; set; }
-        public string Descripcion { get; set; }
+        private string TipoString => Tipo == TipoMovimiento.Egreso ? "E" : "I";
+        public string Descripcion => $"MOV_{Tipo}_F{Id}_CID{ComprobanteID}_F{Fecha.Year}-{Fecha.Month}-{Fecha.Day}-{Fecha.Hour}";
     }
 }

@@ -44,6 +44,9 @@ namespace Presentacion.Core.Caja
                 FormularioAbrirCaja fAbrirCaja = new FormularioAbrirCaja();
                 fAbrirCaja.ShowDialog();
                 ActualizarMontoSistemalbl();
+            } else
+            {
+                MessageBox.Show("La caja no está cerrada. Imposible abrir.", "Advertencia");
             }
         }
 
@@ -54,6 +57,9 @@ namespace Presentacion.Core.Caja
                 FormularioCerrarCaja fCerrarCaja = new FormularioCerrarCaja();
                 fCerrarCaja.ShowDialog();
                 ActualizarMontoSistemalbl();
+            } else
+            {
+                MessageBox.Show("La caja no está abierta. Imposible cerrar.","Advertencia");
             }
         }
 
@@ -78,7 +84,8 @@ namespace Presentacion.Core.Caja
 
         private void btnComprobantes_Click(object sender, EventArgs e)
         {
-
+            var f = new FormularioArqueos();
+            f.Show();
         }
     } 
 }

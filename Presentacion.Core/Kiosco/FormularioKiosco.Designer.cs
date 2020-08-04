@@ -105,7 +105,7 @@
             this.nudTotal.DecimalPlaces = 2;
             this.nudTotal.Enabled = false;
             this.nudTotal.InterceptArrowKeys = false;
-            this.nudTotal.Location = new System.Drawing.Point(722, 618);
+            this.nudTotal.Location = new System.Drawing.Point(798, 626);
             this.nudTotal.Maximum = new decimal(new int[] {
             9999999,
             0,
@@ -121,7 +121,7 @@
             // 
             this.lblTotal.AutoSize = true;
             this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(620, 613);
+            this.lblTotal.Location = new System.Drawing.Point(696, 621);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(85, 25);
             this.lblTotal.TabIndex = 38;
@@ -129,7 +129,7 @@
             // 
             // nudDescuento
             // 
-            this.nudDescuento.Location = new System.Drawing.Point(723, 580);
+            this.nudDescuento.Location = new System.Drawing.Point(799, 588);
             this.nudDescuento.Name = "nudDescuento";
             this.nudDescuento.Size = new System.Drawing.Size(70, 20);
             this.nudDescuento.TabIndex = 37;
@@ -139,7 +139,7 @@
             // 
             this.lblDescuento.AutoSize = true;
             this.lblDescuento.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescuento.Location = new System.Drawing.Point(541, 575);
+            this.lblDescuento.Location = new System.Drawing.Point(617, 583);
             this.lblDescuento.Name = "lblDescuento";
             this.lblDescuento.Size = new System.Drawing.Size(165, 25);
             this.lblDescuento.TabIndex = 36;
@@ -150,7 +150,7 @@
             this.nudSubTotal.DecimalPlaces = 2;
             this.nudSubTotal.Enabled = false;
             this.nudSubTotal.InterceptArrowKeys = false;
-            this.nudSubTotal.Location = new System.Drawing.Point(722, 546);
+            this.nudSubTotal.Location = new System.Drawing.Point(798, 554);
             this.nudSubTotal.Maximum = new decimal(new int[] {
             9999999,
             0,
@@ -166,7 +166,7 @@
             // 
             this.lblSubTotal.AutoSize = true;
             this.lblSubTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSubTotal.Location = new System.Drawing.Point(591, 541);
+            this.lblSubTotal.Location = new System.Drawing.Point(667, 549);
             this.lblSubTotal.Name = "lblSubTotal";
             this.lblSubTotal.Size = new System.Drawing.Size(114, 25);
             this.lblSubTotal.TabIndex = 34;
@@ -183,7 +183,7 @@
             this.dgvGrilla.Name = "dgvGrilla";
             this.dgvGrilla.ReadOnly = true;
             this.dgvGrilla.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvGrilla.Size = new System.Drawing.Size(781, 252);
+            this.dgvGrilla.Size = new System.Drawing.Size(845, 253);
             this.dgvGrilla.TabIndex = 24;
             this.dgvGrilla.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvGrilla_CellDoubleClick);
             this.dgvGrilla.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvGrilla_CellValueChanged);
@@ -195,7 +195,7 @@
             this.groupBox1.Controls.Add(this.rbCtaCte);
             this.groupBox1.Controls.Add(this.rbEfectivo);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.groupBox1.Location = new System.Drawing.Point(545, 328);
+            this.groupBox1.Location = new System.Drawing.Point(619, 328);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
@@ -262,22 +262,22 @@
             this.gbCliente.Controls.Add(this.label3);
             this.gbCliente.Controls.Add(this.txtDniCliente);
             this.gbCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.gbCliente.Location = new System.Drawing.Point(261, 325);
+            this.gbCliente.Location = new System.Drawing.Point(319, 328);
             this.gbCliente.Margin = new System.Windows.Forms.Padding(2);
             this.gbCliente.Name = "gbCliente";
             this.gbCliente.Padding = new System.Windows.Forms.Padding(2);
-            this.gbCliente.Size = new System.Drawing.Size(251, 172);
+            this.gbCliente.Size = new System.Drawing.Size(289, 172);
             this.gbCliente.TabIndex = 41;
             this.gbCliente.TabStop = false;
             this.gbCliente.Text = "CLIENTE";
             // 
             // txtNombreCliente
             // 
-            this.txtNombreCliente.Location = new System.Drawing.Point(130, 97);
+            this.txtNombreCliente.Location = new System.Drawing.Point(104, 95);
             this.txtNombreCliente.Margin = new System.Windows.Forms.Padding(2);
             this.txtNombreCliente.Name = "txtNombreCliente";
             this.txtNombreCliente.ReadOnly = true;
-            this.txtNombreCliente.Size = new System.Drawing.Size(117, 26);
+            this.txtNombreCliente.Size = new System.Drawing.Size(181, 26);
             this.txtNombreCliente.TabIndex = 9;
             // 
             // label5
@@ -292,20 +292,20 @@
             // 
             // txtApellidoCliente
             // 
-            this.txtApellidoCliente.Location = new System.Drawing.Point(130, 62);
+            this.txtApellidoCliente.Location = new System.Drawing.Point(104, 63);
             this.txtApellidoCliente.Margin = new System.Windows.Forms.Padding(2);
             this.txtApellidoCliente.Name = "txtApellidoCliente";
             this.txtApellidoCliente.ReadOnly = true;
-            this.txtApellidoCliente.Size = new System.Drawing.Size(117, 26);
+            this.txtApellidoCliente.Size = new System.Drawing.Size(181, 26);
             this.txtApellidoCliente.TabIndex = 7;
             // 
             // btnBuscarCliente
             // 
             this.btnBuscarCliente.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnBuscarCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.btnBuscarCliente.Location = new System.Drawing.Point(129, 135);
+            this.btnBuscarCliente.Location = new System.Drawing.Point(104, 132);
             this.btnBuscarCliente.Name = "btnBuscarCliente";
-            this.btnBuscarCliente.Size = new System.Drawing.Size(117, 23);
+            this.btnBuscarCliente.Size = new System.Drawing.Size(180, 23);
             this.btnBuscarCliente.TabIndex = 45;
             this.btnBuscarCliente.Text = "Buscar Cliente";
             this.btnBuscarCliente.UseVisualStyleBackColor = true;
@@ -333,11 +333,11 @@
             // 
             // txtDniCliente
             // 
-            this.txtDniCliente.Location = new System.Drawing.Point(130, 28);
+            this.txtDniCliente.Location = new System.Drawing.Point(104, 29);
             this.txtDniCliente.Margin = new System.Windows.Forms.Padding(2);
             this.txtDniCliente.Name = "txtDniCliente";
             this.txtDniCliente.ReadOnly = true;
-            this.txtDniCliente.Size = new System.Drawing.Size(117, 26);
+            this.txtDniCliente.Size = new System.Drawing.Size(181, 26);
             this.txtDniCliente.TabIndex = 5;
             // 
             // groupBoxEmpleado
@@ -354,7 +354,7 @@
             this.groupBoxEmpleado.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxEmpleado.Name = "groupBoxEmpleado";
             this.groupBoxEmpleado.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxEmpleado.Size = new System.Drawing.Size(229, 172);
+            this.groupBoxEmpleado.Size = new System.Drawing.Size(278, 172);
             this.groupBoxEmpleado.TabIndex = 40;
             this.groupBoxEmpleado.TabStop = false;
             this.groupBoxEmpleado.Text = "VENDEDOR";
@@ -366,16 +366,16 @@
             this.txtApellidoEmpleado.Margin = new System.Windows.Forms.Padding(2);
             this.txtApellidoEmpleado.Name = "txtApellidoEmpleado";
             this.txtApellidoEmpleado.ReadOnly = true;
-            this.txtApellidoEmpleado.Size = new System.Drawing.Size(117, 26);
+            this.txtApellidoEmpleado.Size = new System.Drawing.Size(189, 26);
             this.txtApellidoEmpleado.TabIndex = 11;
             // 
             // btnBuscarEmpleado
             // 
             this.btnBuscarEmpleado.Enabled = false;
             this.btnBuscarEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.btnBuscarEmpleado.Location = new System.Drawing.Point(83, 144);
+            this.btnBuscarEmpleado.Location = new System.Drawing.Point(84, 144);
             this.btnBuscarEmpleado.Name = "btnBuscarEmpleado";
-            this.btnBuscarEmpleado.Size = new System.Drawing.Size(117, 23);
+            this.btnBuscarEmpleado.Size = new System.Drawing.Size(189, 23);
             this.btnBuscarEmpleado.TabIndex = 46;
             this.btnBuscarEmpleado.Text = "Buscar Empleado";
             this.btnBuscarEmpleado.UseVisualStyleBackColor = true;
@@ -398,7 +398,7 @@
             this.txtUsuarioEmpleado.Margin = new System.Windows.Forms.Padding(2);
             this.txtUsuarioEmpleado.Name = "txtUsuarioEmpleado";
             this.txtUsuarioEmpleado.ReadOnly = true;
-            this.txtUsuarioEmpleado.Size = new System.Drawing.Size(117, 26);
+            this.txtUsuarioEmpleado.Size = new System.Drawing.Size(189, 26);
             this.txtUsuarioEmpleado.TabIndex = 3;
             // 
             // label2
@@ -418,7 +418,7 @@
             this.txtNombreEmpleado.Margin = new System.Windows.Forms.Padding(2);
             this.txtNombreEmpleado.Name = "txtNombreEmpleado";
             this.txtNombreEmpleado.ReadOnly = true;
-            this.txtNombreEmpleado.Size = new System.Drawing.Size(117, 26);
+            this.txtNombreEmpleado.Size = new System.Drawing.Size(189, 26);
             this.txtNombreEmpleado.TabIndex = 1;
             // 
             // label6
@@ -435,7 +435,7 @@
             // btnFacturar
             // 
             this.btnFacturar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.btnFacturar.Location = new System.Drawing.Point(553, 647);
+            this.btnFacturar.Location = new System.Drawing.Point(629, 655);
             this.btnFacturar.Name = "btnFacturar";
             this.btnFacturar.Size = new System.Drawing.Size(244, 36);
             this.btnFacturar.TabIndex = 43;
@@ -458,7 +458,7 @@
             this.gbTarjeta.Margin = new System.Windows.Forms.Padding(2);
             this.gbTarjeta.Name = "gbTarjeta";
             this.gbTarjeta.Padding = new System.Windows.Forms.Padding(2);
-            this.gbTarjeta.Size = new System.Drawing.Size(228, 187);
+            this.gbTarjeta.Size = new System.Drawing.Size(277, 187);
             this.gbTarjeta.TabIndex = 41;
             this.gbTarjeta.TabStop = false;
             this.gbTarjeta.Text = "TARJETA";
@@ -478,7 +478,7 @@
             this.txtNumeroTarjeta.Location = new System.Drawing.Point(74, 157);
             this.txtNumeroTarjeta.Margin = new System.Windows.Forms.Padding(2);
             this.txtNumeroTarjeta.Name = "txtNumeroTarjeta";
-            this.txtNumeroTarjeta.Size = new System.Drawing.Size(147, 26);
+            this.txtNumeroTarjeta.Size = new System.Drawing.Size(198, 26);
             this.txtNumeroTarjeta.TabIndex = 49;
             // 
             // label10
@@ -496,7 +496,7 @@
             this.txtClaveTarjeta.Location = new System.Drawing.Point(74, 121);
             this.txtClaveTarjeta.Margin = new System.Windows.Forms.Padding(2);
             this.txtClaveTarjeta.Name = "txtClaveTarjeta";
-            this.txtClaveTarjeta.Size = new System.Drawing.Size(147, 26);
+            this.txtClaveTarjeta.Size = new System.Drawing.Size(198, 26);
             this.txtClaveTarjeta.TabIndex = 47;
             // 
             // cbPlan
@@ -505,7 +505,7 @@
             this.cbPlan.FormattingEnabled = true;
             this.cbPlan.Location = new System.Drawing.Point(74, 73);
             this.cbPlan.Name = "cbPlan";
-            this.cbPlan.Size = new System.Drawing.Size(147, 28);
+            this.cbPlan.Size = new System.Drawing.Size(198, 28);
             this.cbPlan.TabIndex = 4;
             // 
             // cbTarjeta
@@ -514,7 +514,7 @@
             this.cbTarjeta.FormattingEnabled = true;
             this.cbTarjeta.Location = new System.Drawing.Point(74, 26);
             this.cbTarjeta.Name = "cbTarjeta";
-            this.cbTarjeta.Size = new System.Drawing.Size(147, 28);
+            this.cbTarjeta.Size = new System.Drawing.Size(198, 28);
             this.cbTarjeta.TabIndex = 3;
             this.cbTarjeta.SelectedIndexChanged += new System.EventHandler(this.cbTarjeta_SelectedIndexChanged);
             // 
@@ -542,7 +542,7 @@
             // 
             this.lblPrecioUnitario.AutoSize = true;
             this.lblPrecioUnitario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecioUnitario.Location = new System.Drawing.Point(491, 10);
+            this.lblPrecioUnitario.Location = new System.Drawing.Point(513, 7);
             this.lblPrecioUnitario.Name = "lblPrecioUnitario";
             this.lblPrecioUnitario.Size = new System.Drawing.Size(59, 20);
             this.lblPrecioUnitario.TabIndex = 58;
@@ -551,16 +551,16 @@
             // txtPrecio
             // 
             this.txtPrecio.Enabled = false;
-            this.txtPrecio.Location = new System.Drawing.Point(484, 35);
+            this.txtPrecio.Location = new System.Drawing.Point(517, 34);
             this.txtPrecio.Name = "txtPrecio";
-            this.txtPrecio.Size = new System.Drawing.Size(75, 20);
+            this.txtPrecio.Size = new System.Drawing.Size(96, 20);
             this.txtPrecio.TabIndex = 57;
             // 
             // btnBuscarArticulo
             // 
-            this.btnBuscarArticulo.Location = new System.Drawing.Point(735, 36);
+            this.btnBuscarArticulo.Location = new System.Drawing.Point(798, 28);
             this.btnBuscarArticulo.Name = "btnBuscarArticulo";
-            this.btnBuscarArticulo.Size = new System.Drawing.Size(74, 20);
+            this.btnBuscarArticulo.Size = new System.Drawing.Size(74, 25);
             this.btnBuscarArticulo.TabIndex = 56;
             this.btnBuscarArticulo.Text = "Buscar";
             this.btnBuscarArticulo.UseVisualStyleBackColor = true;
@@ -568,9 +568,9 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(655, 36);
+            this.btnAgregar.Location = new System.Drawing.Point(718, 28);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(74, 20);
+            this.btnAgregar.Size = new System.Drawing.Size(74, 27);
             this.btnAgregar.TabIndex = 55;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
@@ -580,7 +580,7 @@
             // 
             this.nudCantidadArticulo.AllowDrop = true;
             this.nudCantidadArticulo.DecimalPlaces = 2;
-            this.nudCantidadArticulo.Location = new System.Drawing.Point(570, 35);
+            this.nudCantidadArticulo.Location = new System.Drawing.Point(619, 34);
             this.nudCantidadArticulo.Maximum = new decimal(new int[] {
             9999999,
             0,
@@ -592,7 +592,7 @@
             0,
             0});
             this.nudCantidadArticulo.Name = "nudCantidadArticulo";
-            this.nudCantidadArticulo.Size = new System.Drawing.Size(71, 20);
+            this.nudCantidadArticulo.Size = new System.Drawing.Size(92, 20);
             this.nudCantidadArticulo.TabIndex = 54;
             this.nudCantidadArticulo.Value = new decimal(new int[] {
             1,
@@ -604,7 +604,7 @@
             // 
             this.lblCantidad.AutoSize = true;
             this.lblCantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCantidad.Location = new System.Drawing.Point(567, 10);
+            this.lblCantidad.Location = new System.Drawing.Point(616, 9);
             this.lblCantidad.Name = "lblCantidad";
             this.lblCantidad.Size = new System.Drawing.Size(74, 18);
             this.lblCantidad.TabIndex = 53;
@@ -625,7 +625,7 @@
             this.txtDescripcion.Enabled = false;
             this.txtDescripcion.Location = new System.Drawing.Point(156, 35);
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(322, 20);
+            this.txtDescripcion.Size = new System.Drawing.Size(346, 20);
             this.txtDescripcion.TabIndex = 51;
             // 
             // label1
@@ -659,11 +659,11 @@
             this.gbCheque.Controls.Add(this.cbBanco);
             this.gbCheque.Controls.Add(this.label15);
             this.gbCheque.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.gbCheque.Location = new System.Drawing.Point(261, 501);
+            this.gbCheque.Location = new System.Drawing.Point(319, 504);
             this.gbCheque.Margin = new System.Windows.Forms.Padding(2);
             this.gbCheque.Name = "gbCheque";
             this.gbCheque.Padding = new System.Windows.Forms.Padding(2);
-            this.gbCheque.Size = new System.Drawing.Size(246, 196);
+            this.gbCheque.Size = new System.Drawing.Size(289, 196);
             this.gbCheque.TabIndex = 50;
             this.gbCheque.TabStop = false;
             this.gbCheque.Text = "CHEQUE";
@@ -671,7 +671,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(4, 65);
+            this.label16.Location = new System.Drawing.Point(7, 65);
             this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(59, 20);
@@ -684,14 +684,14 @@
             this.dtFechaCheque.Location = new System.Drawing.Point(82, 60);
             this.dtFechaCheque.MaxDate = new System.DateTime(2020, 7, 30, 0, 0, 0, 0);
             this.dtFechaCheque.Name = "dtFechaCheque";
-            this.dtFechaCheque.Size = new System.Drawing.Size(159, 26);
+            this.dtFechaCheque.Size = new System.Drawing.Size(202, 26);
             this.dtFechaCheque.TabIndex = 61;
             this.dtFechaCheque.Value = new System.DateTime(2020, 7, 30, 0, 0, 0, 0);
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(4, 163);
+            this.label14.Location = new System.Drawing.Point(18, 171);
             this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(45, 20);
@@ -708,13 +708,13 @@
             0,
             0});
             this.nudDiasCheque.Name = "nudDiasCheque";
-            this.nudDiasCheque.Size = new System.Drawing.Size(159, 26);
+            this.nudDiasCheque.Size = new System.Drawing.Size(202, 26);
             this.nudDiasCheque.TabIndex = 59;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(4, 137);
+            this.label12.Location = new System.Drawing.Point(7, 137);
             this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(71, 20);
@@ -727,13 +727,13 @@
             this.txtNumeroCheque.Location = new System.Drawing.Point(82, 134);
             this.txtNumeroCheque.Margin = new System.Windows.Forms.Padding(2);
             this.txtNumeroCheque.Name = "txtNumeroCheque";
-            this.txtNumeroCheque.Size = new System.Drawing.Size(159, 26);
+            this.txtNumeroCheque.Size = new System.Drawing.Size(202, 26);
             this.txtNumeroCheque.TabIndex = 49;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(4, 104);
+            this.label13.Location = new System.Drawing.Point(0, 99);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(78, 20);
@@ -746,7 +746,7 @@
             this.txtEnteCheque.Location = new System.Drawing.Point(82, 98);
             this.txtEnteCheque.Margin = new System.Windows.Forms.Padding(2);
             this.txtEnteCheque.Name = "txtEnteCheque";
-            this.txtEnteCheque.Size = new System.Drawing.Size(159, 26);
+            this.txtEnteCheque.Size = new System.Drawing.Size(202, 26);
             this.txtEnteCheque.TabIndex = 47;
             // 
             // cbBanco
@@ -755,7 +755,7 @@
             this.cbBanco.FormattingEnabled = true;
             this.cbBanco.Location = new System.Drawing.Point(82, 26);
             this.cbBanco.Name = "cbBanco";
-            this.cbBanco.Size = new System.Drawing.Size(159, 28);
+            this.cbBanco.Size = new System.Drawing.Size(202, 28);
             this.cbBanco.TabIndex = 3;
             // 
             // label15
@@ -772,7 +772,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(836, 699);
+            this.ClientSize = new System.Drawing.Size(884, 699);
             this.Controls.Add(this.gbCheque);
             this.Controls.Add(this.lblPrecioUnitario);
             this.Controls.Add(this.gbTarjeta);

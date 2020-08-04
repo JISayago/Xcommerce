@@ -38,50 +38,65 @@
             // 
             // btnAbrir
             // 
-            this.btnAbrir.Location = new System.Drawing.Point(158, 102);
+            this.btnAbrir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(165)))), ((int)(((byte)(0)))));
+            this.btnAbrir.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F, System.Drawing.FontStyle.Bold);
+            this.btnAbrir.Location = new System.Drawing.Point(62, 90);
             this.btnAbrir.Name = "btnAbrir";
-            this.btnAbrir.Size = new System.Drawing.Size(120, 23);
+            this.btnAbrir.Size = new System.Drawing.Size(201, 37);
             this.btnAbrir.TabIndex = 0;
             this.btnAbrir.Text = "Abrir";
-            this.btnAbrir.UseVisualStyleBackColor = true;
+            this.btnAbrir.UseVisualStyleBackColor = false;
             this.btnAbrir.Click += new System.EventHandler(this.BtnAbrir_Click);
             // 
             // nudMontoApertura
             // 
-            this.nudMontoApertura.Location = new System.Drawing.Point(158, 54);
+            this.nudMontoApertura.Location = new System.Drawing.Point(143, 45);
             this.nudMontoApertura.Maximum = new decimal(new int[] {
             9999999,
+            0,
+            0,
+            0});
+            this.nudMontoApertura.Minimum = new decimal(new int[] {
+            1,
             0,
             0,
             0});
             this.nudMontoApertura.Name = "nudMontoApertura";
             this.nudMontoApertura.Size = new System.Drawing.Size(120, 20);
             this.nudMontoApertura.TabIndex = 1;
+            this.nudMontoApertura.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // montoLbl
             // 
             this.montoLbl.AutoSize = true;
-            this.montoLbl.Location = new System.Drawing.Point(67, 56);
+            this.montoLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.75F);
+            this.montoLbl.Location = new System.Drawing.Point(59, 44);
             this.montoLbl.Name = "montoLbl";
-            this.montoLbl.Size = new System.Drawing.Size(37, 13);
+            this.montoLbl.Size = new System.Drawing.Size(55, 18);
             this.montoLbl.TabIndex = 2;
-            this.montoLbl.Text = "Monto";
+            this.montoLbl.Text = "Monto:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(106, 164);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.75F);
+            this.label2.Location = new System.Drawing.Point(101, 159);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 13);
+            this.label2.Size = new System.Drawing.Size(64, 18);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Usuario";
+            this.label2.Text = "Usuario:";
             // 
             // nombreUsuarioLbl
             // 
             this.nombreUsuarioLbl.AutoSize = true;
-            this.nombreUsuarioLbl.Location = new System.Drawing.Point(155, 164);
+            this.nombreUsuarioLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.75F);
+            this.nombreUsuarioLbl.Location = new System.Drawing.Point(171, 159);
             this.nombreUsuarioLbl.Name = "nombreUsuarioLbl";
-            this.nombreUsuarioLbl.Size = new System.Drawing.Size(35, 13);
+            this.nombreUsuarioLbl.Size = new System.Drawing.Size(46, 18);
             this.nombreUsuarioLbl.TabIndex = 5;
             this.nombreUsuarioLbl.Text = "label3";
             // 
@@ -89,7 +104,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(507, 240);
+            this.ClientSize = new System.Drawing.Size(350, 213);
             this.Controls.Add(this.nombreUsuarioLbl);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.montoLbl);

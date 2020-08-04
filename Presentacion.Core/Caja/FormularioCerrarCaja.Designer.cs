@@ -39,33 +39,36 @@
             // nombreUsuarioLbl
             // 
             this.nombreUsuarioLbl.AutoSize = true;
-            this.nombreUsuarioLbl.Location = new System.Drawing.Point(184, 174);
+            this.nombreUsuarioLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.75F);
+            this.nombreUsuarioLbl.Location = new System.Drawing.Point(174, 154);
             this.nombreUsuarioLbl.Name = "nombreUsuarioLbl";
-            this.nombreUsuarioLbl.Size = new System.Drawing.Size(35, 13);
+            this.nombreUsuarioLbl.Size = new System.Drawing.Size(46, 18);
             this.nombreUsuarioLbl.TabIndex = 10;
             this.nombreUsuarioLbl.Text = "label3";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(135, 174);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.75F);
+            this.label2.Location = new System.Drawing.Point(104, 154);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 13);
+            this.label2.Size = new System.Drawing.Size(64, 18);
             this.label2.TabIndex = 9;
-            this.label2.Text = "Usuario";
+            this.label2.Text = "Usuario:";
             // 
             // montoLbl
             // 
             this.montoLbl.AutoSize = true;
-            this.montoLbl.Location = new System.Drawing.Point(96, 66);
+            this.montoLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.75F);
+            this.montoLbl.Location = new System.Drawing.Point(62, 39);
             this.montoLbl.Name = "montoLbl";
-            this.montoLbl.Size = new System.Drawing.Size(37, 13);
+            this.montoLbl.Size = new System.Drawing.Size(55, 18);
             this.montoLbl.TabIndex = 8;
-            this.montoLbl.Text = "Monto";
+            this.montoLbl.Text = "Monto:";
             // 
             // nudMonto
             // 
-            this.nudMonto.Location = new System.Drawing.Point(187, 64);
+            this.nudMonto.Location = new System.Drawing.Point(146, 40);
             this.nudMonto.Maximum = new decimal(new int[] {
             9999999,
             0,
@@ -77,19 +80,20 @@
             // 
             // btnCerrar
             // 
-            this.btnCerrar.Location = new System.Drawing.Point(187, 108);
+            this.btnCerrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(165)))), ((int)(((byte)(0)))));
+            this.btnCerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F, System.Drawing.FontStyle.Bold);
+            this.btnCerrar.Location = new System.Drawing.Point(65, 87);
             this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(120, 23);
+            this.btnCerrar.Size = new System.Drawing.Size(201, 37);
             this.btnCerrar.TabIndex = 6;
             this.btnCerrar.Text = "Cerrar";
-            this.btnCerrar.UseVisualStyleBackColor = true;
-            this.btnCerrar.Click += new System.EventHandler(this.BtnCerrar_Click);
+            this.btnCerrar.UseVisualStyleBackColor = false;
             // 
             // FormularioCerrarCaja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(490, 257);
+            this.ClientSize = new System.Drawing.Size(350, 213);
             this.Controls.Add(this.nombreUsuarioLbl);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.montoLbl);

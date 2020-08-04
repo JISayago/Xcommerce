@@ -127,6 +127,12 @@
     <Compile Include="Caja\FormularioAbrirCaja.Designer.cs">
       <DependentUpon>FormularioAbrirCaja.cs</DependentUpon>
     </Compile>
+    <Compile Include="Caja\FormularioArqueos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Caja\FormularioArqueos.Designer.cs">
+      <DependentUpon>FormularioArqueos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Caja\FormularioCaja.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -427,6 +433,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Caja\FormularioAbrirCaja.resx">
       <DependentUpon>FormularioAbrirCaja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Caja\FormularioArqueos.resx">
+      <DependentUpon>FormularioArqueos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Caja\FormularioCaja.resx">
       <DependentUpon>FormularioCaja.cs</DependentUpon>

@@ -17,7 +17,7 @@ namespace Presentacion.Core.Comprobante
     public partial class FormularioComprobante : Form
     {
         private readonly IComprobanteServicio _compobanteServicio;
-        T_ComprobanteDTO comprobante;
+        ComprobanteFacturaDTO comprobante;
 
         private string Tipo_Astring()
         {
@@ -39,12 +39,17 @@ namespace Presentacion.Core.Comprobante
             comprobante = _compobanteServicio.ObtenerPorId(comprobanteId);
 
             dataGridView1.DataSource = comprobante.Items;
-            lblFecha.Text = comprobante.Fecha.ToString();
+            lblFecha.Text = comprobante.Fecha.ToString("dd/MM/yyyy");
+            lblHora.Text = comprobante.Fecha.ToString("hh:mm");
             lblDescuento.Text = comprobante.Descuento.ToString();
             lblSubTotal.Text = comprobante.Total.ToString();
             lblTotal.Text = comprobante.SubTotal.ToString();
             lblNumero.Text = comprobante.Numero.ToString();
             lblFacturaTipo.Text = Tipo_Astring();
+
+            lblCliente.Text = $"{comprobante.NombreCliente} {comprobante.ApellidoCliente}";
+            lblEmpleado.Text = $"{comprobante.NombreEmpleado} {comprobante.ApellidoEmpleado}";
+            lblForma.Text = $"{comprobante.FormaPagoStr}";
 
             for (int i = 0; i < dataGridView1.ColumnCount; i++)
             {
@@ -70,10 +75,13 @@ namespace Presentacion.Core.Comprobante
 
         private void btn_print_Click(object sender, EventArgs e)
         {
+            btn_print.Visible = false;
             CaptureScreen();
             printDocument1.DocumentName = string.Format("Comprobante{0}", comprobante.Id);
             printDocument1.Print();
             printDocument1.PrintPage += new PrintPageEventHandler(printDocument1_PrintPage);
+
+            btn_print.Visible = true;
         }
 
         Bitmap memoryImage;

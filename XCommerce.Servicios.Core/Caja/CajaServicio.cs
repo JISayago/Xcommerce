@@ -115,5 +115,25 @@ namespace XCommerce.Servicios.Core.Caja
                 return total;
             }
         }
+
+        public IEnumerable<CajaDTO> ObtenerTodas()
+        {
+            using (var context = new ModeloXCommerceContainer())
+            {
+                return context.Cajas
+                    .AsNoTracking()
+                    .Select(x => new CajaDTO
+                    {
+                        Id = x.Id,
+                        FechaApertura = x.FechaApertura,
+                        FechaCierre = x.FechaCierre,
+                        MontoApertura = x.MontoApertura,
+                        MontoCierre = x.MontoCierre,
+                        MontoSistema = x.MontoSistema,
+                        UsuarioAperturaId = x.UsuarioAperturaId
+                    }).ToList();
+
+            }
+        }
     }
 }
