@@ -39,6 +39,7 @@
             this.txtRubro.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRubro.Location = new System.Drawing.Point(88, 63);
             this.txtRubro.MaximumSize = new System.Drawing.Size(340, 154);
+            this.txtRubro.MaxLength = 250;
             this.txtRubro.Name = "txtRubro";
             this.txtRubro.Size = new System.Drawing.Size(213, 26);
             this.txtRubro.TabIndex = 7;
@@ -84,7 +85,7 @@
             this.Controls.Add(this.label20);
             this.Controls.Add(this.txtRubro);
             this.Controls.Add(this.lblRubro);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximumSize = new System.Drawing.Size(342, 154);
             this.MinimumSize = new System.Drawing.Size(342, 154);
             this.Name = "FormularioRubroABM";

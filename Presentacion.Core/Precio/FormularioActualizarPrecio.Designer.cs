@@ -55,7 +55,7 @@
             // 
             // nudPrecioPublico
             // 
-            this.nudPrecioPublico.Location = new System.Drawing.Point(110, 204);
+            this.nudPrecioPublico.Location = new System.Drawing.Point(98, 202);
             this.nudPrecioPublico.Maximum = new decimal(new int[] {
             999999,
             0,
@@ -76,7 +76,7 @@
             // 
             // nudPrecioCosto
             // 
-            this.nudPrecioCosto.Location = new System.Drawing.Point(110, 178);
+            this.nudPrecioCosto.Location = new System.Drawing.Point(98, 176);
             this.nudPrecioCosto.Maximum = new decimal(new int[] {
             999999,
             0,
@@ -89,7 +89,7 @@
             // artLbl
             // 
             this.artLbl.AutoSize = true;
-            this.artLbl.Location = new System.Drawing.Point(24, 75);
+            this.artLbl.Location = new System.Drawing.Point(11, 75);
             this.artLbl.Name = "artLbl";
             this.artLbl.Size = new System.Drawing.Size(42, 13);
             this.artLbl.TabIndex = 165;
@@ -106,7 +106,7 @@
             // 
             // btnHistorial
             // 
-            this.btnHistorial.Location = new System.Drawing.Point(39, 241);
+            this.btnHistorial.Location = new System.Drawing.Point(74, 244);
             this.btnHistorial.Name = "btnHistorial";
             this.btnHistorial.Size = new System.Drawing.Size(350, 23);
             this.btnHistorial.TabIndex = 167;
@@ -118,9 +118,9 @@
             // 
             this.cmbListaPrecio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbListaPrecio.FormattingEnabled = true;
-            this.cmbListaPrecio.Location = new System.Drawing.Point(74, 135);
+            this.cmbListaPrecio.Location = new System.Drawing.Point(80, 140);
             this.cmbListaPrecio.Name = "cmbListaPrecio";
-            this.cmbListaPrecio.Size = new System.Drawing.Size(397, 21);
+            this.cmbListaPrecio.Size = new System.Drawing.Size(374, 21);
             this.cmbListaPrecio.TabIndex = 170;
             this.cmbListaPrecio.SelectionChangeCommitted += new System.EventHandler(this.CmbListaPrecio_SelectionChangeCommitted);
             // 
@@ -128,9 +128,9 @@
             // 
             this.cmbArticulo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbArticulo.FormattingEnabled = true;
-            this.cmbArticulo.Location = new System.Drawing.Point(74, 108);
+            this.cmbArticulo.Location = new System.Drawing.Point(80, 109);
             this.cmbArticulo.Name = "cmbArticulo";
-            this.cmbArticulo.Size = new System.Drawing.Size(397, 21);
+            this.cmbArticulo.Size = new System.Drawing.Size(374, 21);
             this.cmbArticulo.TabIndex = 168;
             this.cmbArticulo.SelectionChangeCommitted += new System.EventHandler(this.CmbArticulo_SelectionChangeCommitted);
             // 
@@ -146,7 +146,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 143);
+            this.label2.Location = new System.Drawing.Point(12, 143);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 13);
             this.label2.TabIndex = 173;
@@ -154,9 +154,9 @@
             // 
             // btn_aplicarRentabilidad
             // 
-            this.btn_aplicarRentabilidad.Location = new System.Drawing.Point(381, 199);
+            this.btn_aplicarRentabilidad.Location = new System.Drawing.Point(369, 178);
             this.btn_aplicarRentabilidad.Name = "btn_aplicarRentabilidad";
-            this.btn_aplicarRentabilidad.Size = new System.Drawing.Size(90, 36);
+            this.btn_aplicarRentabilidad.Size = new System.Drawing.Size(85, 39);
             this.btn_aplicarRentabilidad.TabIndex = 174;
             this.btn_aplicarRentabilidad.Text = "Aplicar Rentabilidad";
             this.btn_aplicarRentabilidad.UseVisualStyleBackColor = true;
@@ -166,7 +166,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(483, 302);
+            this.ClientSize = new System.Drawing.Size(471, 284);
             this.Controls.Add(this.btn_aplicarRentabilidad);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);

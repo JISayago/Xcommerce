@@ -38,6 +38,7 @@
             // 
             this.txtMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMarca.Location = new System.Drawing.Point(90, 68);
+            this.txtMarca.MaxLength = 250;
             this.txtMarca.Name = "txtMarca";
             this.txtMarca.Size = new System.Drawing.Size(213, 26);
             this.txtMarca.TabIndex = 5;
@@ -83,7 +84,7 @@
             this.Controls.Add(this.label20);
             this.Controls.Add(this.txtMarca);
             this.Controls.Add(this.lblMarca);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximumSize = new System.Drawing.Size(340, 154);
             this.MinimumSize = new System.Drawing.Size(340, 154);
             this.Name = "FormularioMarcaABM";

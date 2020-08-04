@@ -32,11 +32,16 @@
             this.btnStock = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
+            // cbxEstaEliminado
+            // 
+            this.cbxEstaEliminado.Location = new System.Drawing.Point(81, 13);
+            // 
             // btnBajaArticulo
             // 
-            this.btnBajaArticulo.Location = new System.Drawing.Point(416, 6);
+            this.btnBajaArticulo.Location = new System.Drawing.Point(308, 7);
+            this.btnBajaArticulo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnBajaArticulo.Name = "btnBajaArticulo";
-            this.btnBajaArticulo.Size = new System.Drawing.Size(88, 36);
+            this.btnBajaArticulo.Size = new System.Drawing.Size(70, 27);
             this.btnBajaArticulo.TabIndex = 128;
             this.btnBajaArticulo.Text = "Baja Stock";
             this.btnBajaArticulo.UseVisualStyleBackColor = true;
@@ -44,9 +49,10 @@
             // 
             // btnStock
             // 
-            this.btnStock.Location = new System.Drawing.Point(327, 6);
+            this.btnStock.Location = new System.Drawing.Point(237, 7);
+            this.btnStock.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnStock.Name = "btnStock";
-            this.btnStock.Size = new System.Drawing.Size(83, 36);
+            this.btnStock.Size = new System.Drawing.Size(70, 27);
             this.btnStock.TabIndex = 129;
             this.btnStock.Text = "Alta Stock";
             this.btnStock.UseVisualStyleBackColor = true;
@@ -54,10 +60,13 @@
             // 
             // FormularioArticuloConsulta
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            //this.ClientSize = new System.Drawing.Size(1391, 838);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.ClientSize = new System.Drawing.Size(588, 456);
             this.Controls.Add(this.btnStock);
             this.Controls.Add(this.btnBajaArticulo);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MaximumSize = new System.Drawing.Size(604, 495);
+            this.MinimumSize = new System.Drawing.Size(604, 495);
             this.Name = "FormularioArticuloConsulta";
             this.Text = "FormularioArticuloConsulta";
             this.Controls.SetChildIndex(this.cbxEstaEliminado, 0);

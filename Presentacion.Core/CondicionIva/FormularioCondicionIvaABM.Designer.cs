@@ -60,6 +60,7 @@
             // 
             this.txtCondicionIva.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCondicionIva.Location = new System.Drawing.Point(154, 67);
+            this.txtCondicionIva.MaxLength = 250;
             this.txtCondicionIva.Name = "txtCondicionIva";
             this.txtCondicionIva.Size = new System.Drawing.Size(213, 26);
             this.txtCondicionIva.TabIndex = 187;
