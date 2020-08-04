@@ -40,7 +40,7 @@ namespace XCommerce.Servicios.Core.Movimiento
                 {
                     CajaId = dto.CajaID,
                     ComprobanteId = dto.ComprobanteID,
-                    TipoMovimento = dto.TipoMovimiento,
+                    TipoMovimento = dto.Tipo,
                     UsuarioId = dto.UsuarioID,
                     Monto = dto.Monto,
                     Fecha = dto.Fecha,
@@ -69,11 +69,10 @@ namespace XCommerce.Servicios.Core.Movimiento
                     Id = x.Id,
                     CajaID = x.CajaId,
                     ComprobanteID = x.ComprobanteId,
-                    TipoMovimiento = x.TipoMovimento,
+                    Tipo = x.TipoMovimento,
                     UsuarioID = x.UsuarioId,
                     Monto = x.Monto,
                     Fecha = x.Fecha,
-                    Descripcion = x.Descripcion
                 }).ToList();
 
             }

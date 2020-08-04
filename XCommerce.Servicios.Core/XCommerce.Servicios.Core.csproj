@@ -87,7 +87,7 @@
     <Compile Include="Comprobante\DTO\DetalleComprobanteDTO.cs" />
     <Compile Include="Comprobante\DTO\DetalleComprobanteSalonDTO.cs" />
     <Compile Include="Comprobante\IComprobanteCompraServicio.cs" />
-    <Compile Include="Comprobante\DTO\T_ComprobanteDTO.cs" />
+    <Compile Include="Comprobante\DTO\ComprobanteFacturaDTO.cs" />
     <Compile Include="Comprobante\IComprobanteSalonServicio.cs" />
     <Compile Include="Comprobante\IComprobanteServicio.cs" />
     <Compile Include="CondicionIva\CondicionIvaServicio.cs" />

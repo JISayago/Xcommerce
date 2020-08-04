@@ -48,22 +48,25 @@
             // 
             // dtDesde
             // 
-            this.dtDesde.Location = new System.Drawing.Point(65, 10);
+            this.dtDesde.Location = new System.Drawing.Point(497, 8);
             this.dtDesde.Name = "dtDesde";
             this.dtDesde.Size = new System.Drawing.Size(230, 20);
             this.dtDesde.TabIndex = 0;
             // 
             // dtHasta
             // 
-            this.dtHasta.Location = new System.Drawing.Point(65, 49);
+            this.dtHasta.Location = new System.Drawing.Point(497, 47);
+            this.dtHasta.MaxDate = new System.DateTime(2020, 8, 3, 0, 0, 0, 0);
             this.dtHasta.Name = "dtHasta";
             this.dtHasta.Size = new System.Drawing.Size(230, 20);
             this.dtHasta.TabIndex = 1;
+            this.dtHasta.Value = new System.DateTime(2020, 8, 3, 0, 0, 0, 0);
+            this.dtHasta.ValueChanged += new System.EventHandler(this.dtHasta_ValueChanged);
             // 
             // cmbTipo
             // 
             this.cmbTipo.FormattingEnabled = true;
-            this.cmbTipo.Location = new System.Drawing.Point(396, 13);
+            this.cmbTipo.Location = new System.Drawing.Point(84, 11);
             this.cmbTipo.Name = "cmbTipo";
             this.cmbTipo.Size = new System.Drawing.Size(342, 21);
             this.cmbTipo.TabIndex = 2;
@@ -77,7 +80,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvGrilla.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dgvGrilla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvGrilla.Location = new System.Drawing.Point(12, 122);
+            this.dgvGrilla.Location = new System.Drawing.Point(12, 141);
             this.dgvGrilla.MultiSelect = false;
             this.dgvGrilla.Name = "dgvGrilla";
             this.dgvGrilla.ReadOnly = true;
@@ -101,14 +104,14 @@
             this.pnlControles.Controls.Add(this.cmbTipo);
             this.pnlControles.Location = new System.Drawing.Point(12, 13);
             this.pnlControles.Name = "pnlControles";
-            this.pnlControles.Size = new System.Drawing.Size(752, 103);
+            this.pnlControles.Size = new System.Drawing.Size(752, 122);
             this.pnlControles.TabIndex = 6;
             // 
             // btnFiltrar
             // 
-            this.btnFiltrar.Location = new System.Drawing.Point(644, 75);
+            this.btnFiltrar.Location = new System.Drawing.Point(568, 84);
             this.btnFiltrar.Name = "btnFiltrar";
-            this.btnFiltrar.Size = new System.Drawing.Size(94, 23);
+            this.btnFiltrar.Size = new System.Drawing.Size(159, 35);
             this.btnFiltrar.TabIndex = 7;
             this.btnFiltrar.Text = "Filtrar";
             this.btnFiltrar.UseVisualStyleBackColor = true;
@@ -118,7 +121,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Liberation Sans", 9.75F);
-            this.label4.Location = new System.Drawing.Point(339, 15);
+            this.label4.Location = new System.Drawing.Point(27, 13);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(31, 15);
             this.label4.TabIndex = 11;
@@ -128,7 +131,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Liberation Sans", 9.75F);
-            this.label3.Location = new System.Drawing.Point(315, 52);
+            this.label3.Location = new System.Drawing.Point(3, 50);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 15);
             this.label3.TabIndex = 10;
@@ -138,7 +141,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Liberation Sans", 9.75F);
-            this.label2.Location = new System.Drawing.Point(13, 51);
+            this.label2.Location = new System.Drawing.Point(445, 52);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 15);
             this.label2.TabIndex = 9;
@@ -148,7 +151,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Liberation Sans", 9.75F);
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Location = new System.Drawing.Point(445, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 15);
             this.label1.TabIndex = 8;
@@ -156,7 +159,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(613, 46);
+            this.button3.Location = new System.Drawing.Point(301, 44);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(25, 22);
             this.button3.TabIndex = 7;
@@ -166,14 +169,14 @@
             // 
             // txtNombreUsuario
             // 
-            this.txtNombreUsuario.Location = new System.Drawing.Point(396, 48);
+            this.txtNombreUsuario.Location = new System.Drawing.Point(84, 46);
             this.txtNombreUsuario.Name = "txtNombreUsuario";
             this.txtNombreUsuario.Size = new System.Drawing.Size(211, 20);
             this.txtNombreUsuario.TabIndex = 5;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(644, 46);
+            this.button1.Location = new System.Drawing.Point(332, 44);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(94, 23);
             this.button1.TabIndex = 4;
@@ -183,7 +186,7 @@
             // 
             // btnComprobante
             // 
-            this.btnComprobante.Location = new System.Drawing.Point(586, 339);
+            this.btnComprobante.Location = new System.Drawing.Point(590, 358);
             this.btnComprobante.Name = "btnComprobante";
             this.btnComprobante.Size = new System.Drawing.Size(174, 38);
             this.btnComprobante.TabIndex = 12;
@@ -195,7 +198,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(776, 382);
+            this.ClientSize = new System.Drawing.Size(776, 401);
             this.Controls.Add(this.btnComprobante);
             this.Controls.Add(this.pnlControles);
             this.Controls.Add(this.dgvGrilla);

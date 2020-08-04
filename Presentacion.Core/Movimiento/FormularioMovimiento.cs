@@ -86,5 +86,10 @@ namespace Presentacion.Core.Movimiento
             }
 
         }
+
+        private void dtHasta_ValueChanged(object sender, EventArgs e)
+        {
+            dtDesde.MaxDate = dtHasta.Value;
+        }
     }
 }

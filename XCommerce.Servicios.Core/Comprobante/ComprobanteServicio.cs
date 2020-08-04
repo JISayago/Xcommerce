@@ -136,22 +136,27 @@ namespace XCommerce.Servicios.Core.Comprobante
                 return nuevoComprobante.Id;
             }
         }
-        public T_ComprobanteDTO ObtenerPorId(long comprobanteId)
+        public ComprobanteFacturaDTO ObtenerPorId(long comprobanteId)
         {
 
             using (var context = new ModeloXCommerceContainer())
             {
                 var comp = context.Comprobantes
                .AsNoTracking()
-               .Select(x => new T_ComprobanteDTO
+               .Include("Cliente").Include("Cliente.Persona")
+               .Include("Empleado").Include("Empleado.Persona")
+               .Include("Movimientos")
+               .Include("FormaPagos")
+               .Select(x => new ComprobanteFacturaDTO
                {
                    Id = x.Id,
                    ClienteId = x.ClienteId,
                    Descuento = x.Descuento,
                    Fecha = x.Fecha,
                    UsuarioId = x.UsuarioId,
-                   Numero = x.Numero,
                    Tipo = x.TipoComprobante,
+                   NombreCliente = x.Cliente.Nombre,
+                   ApellidoCliente = x.Cliente.Apellido,
                }).FirstOrDefault(y => y.Id == comprobanteId);
 
                 var items = context.Comprobantes

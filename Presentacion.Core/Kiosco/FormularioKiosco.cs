@@ -181,13 +181,6 @@ namespace Presentacion.Core.Kiosco
                 if (articulo.Stock - cantidad < articulo.StockMinimo) { MessageBox.Show("Stock minimo superado"); return false; }
             }
 
-            //if(check_showm(articulo.EstaDiscontinuado, "Articulo descontinuado") ||
-            //check_showm(articulo.EstaEliminado, "Articulo eliminado")) return false;
-
-            //if (articulo.DescuentaStock)
-            //    if(check_showm(!articulo.PermiteStockNegativo && articulo.Stock - cantidad < 0, "Stock insuficiente") ||
-            //    check_showm(articulo.Stock - cantidad < articulo.StockMinimo, "Stock minimo superado")) return false;
-
             return true;
         }
         private void AgregarArticulo()
@@ -202,14 +195,6 @@ namespace Presentacion.Core.Kiosco
             {
                 MessageBox.Show("Advertencia: No se podrá facturar sin la caja abierta.");
             }
-
-            //if (productos.TryGetValue(txtCodigoBarras.Text, out decimal cantidad))
-            //{
-            //    productos[txtCodigoBarras.Text] = cantidad + nudCantidadArticulo.Value;
-            //}
-            //if(detalles.FirstOrDefault(x => x.CodigoProducto == txtCodigoBarras.Text))
-            //else list_detalles.add)= new detalle_comprobante y cuando aprieto facturar, new comprobante y listo?
-
 
             if (detalles.TryGetValue(txtCodigoBarras.Text, out DetalleComprobanteDTO det))
             {
@@ -275,34 +260,52 @@ namespace Presentacion.Core.Kiosco
             AgregarArticulo();
         }
 
-        private long consumidorFinalId = 2; // temporal, para no perder la referencia
-        private void Facturar()
+        private void set_datos_obligatorios()
         {
-            //TODO importante
-            //faltan bocha de chequeos* SI o SI aca no al final ni en el medio porque si no se
-            //puede cerrar el programa sin generar una de todas las huevadas que generamos acá
-            //o generando un par y las otras no
-
-            //*bocha de chequeos: txtclave y nombre tarjeta, cliente no en blanco, tarjeta con plan (o sin?)
-            //y bueno asi, tambien dependiendo si estan checked o no los checkbox
-            //me pa que deberia ir en otro metodo este ya ta full
-
-            //atte: Juan
-           
-            //esto en un metodo aparte
+            LimpiarControlesObligatorios();
             if (rbCtaCte.Checked)
             {
+                AgregarControlesObligatorios(txtApellidoCliente, "apellidocliente");
+                AgregarControlesObligatorios(txtDniCliente, "dnicliente");
+                AgregarControlesObligatorios(txtNombreCliente, "nombrecliente");
             }
             if (rbCheque.Checked)
             {
+                AgregarControlesObligatorios(cbBanco, "cbBanco");
+                AgregarControlesObligatorios(dtFechaCheque, "fechacheque");
+                AgregarControlesObligatorios(txtEnteCheque, "entecheque");
+                AgregarControlesObligatorios(txtNumeroCheque, "numerocheque");
+                AgregarControlesObligatorios(nudDiasCheque, "diascheque");
             }
             if (rbEfectivo.Checked)
             {
             }
             if (rbTarjeta.Checked)
             {
+                AgregarControlesObligatorios(cbTarjeta, "tarjeta");
+                AgregarControlesObligatorios(cbPlan, "plan");
+                AgregarControlesObligatorios(txtClaveTarjeta, "clave");
+                AgregarControlesObligatorios(txtNumeroTarjeta, "numeroTarjeta");
+            }
+        }
+
+        private long consumidorFinalId = 2; // temporal, para no perder la referencia
+        private void Facturar()
+        {
+            if (!VerificarDatosObligatorios())
+            {
+                MessageBox.Show("error complete los datos");
+                return;
             }
 
+            if (rbCtaCte.Checked)
+            {
+               bool puede_continuar = _clienteServicio.DescontarDeCuenta(idCliente, nudTotal.Value);
+               if (!puede_continuar) {      
+                    MessageBox.Show("La cuenta del cliente no tiene suficiente saldo");
+                    return;
+                }
+            }
 
             /////////////////
             ///COMPROBANTE///
@@ -329,7 +332,6 @@ namespace Presentacion.Core.Kiosco
             ////////////////
             //Detalle Caja//
             ////////////////
-            //tipo pago
             var formaDePago = TipoPago.Efectivo;
             if (rbCtaCte.Checked)
             {
@@ -364,15 +366,7 @@ namespace Presentacion.Core.Kiosco
 
             if (rbCtaCte.Checked)
             {
-                if (_clienteServicio.DescontarDeCuenta(idCliente, comprobante.Total))
-                {
-                    //nada?
-                }
-                else
-                {
-                    throw new Exception("Si tiene menos de 0 deberia un cartel que no deje que siga el tema ya vemos yadayadayada");
-                }
-
+                //parte descontar cuenta ya está al principio
                 FormaPagoCtaCteDTO fp = new FormaPagoCtaCteDTO
                 {
                     TipoFormaPago = TipoFormaPago.CuentaCorriente,
@@ -423,11 +417,10 @@ namespace Presentacion.Core.Kiosco
             {
                 CajaID = DatosSistema.CajaId,
                 ComprobanteID = comprobante_id,
-                TipoMovimiento = TipoMovimiento.Ingreso,
+                Tipo = TipoMovimiento.Ingreso,
                 UsuarioID = DatosSistema.UsuarioId,
                 Monto = comprobante.Total,
                 Fecha = DateTime.Now,
-                Descripcion = "_____",
             };
 
             _movimientoServicio.GenerarMovimiento(movimiento);
@@ -465,14 +458,11 @@ namespace Presentacion.Core.Kiosco
         private void CbConsumidorFinal_CheckedChanged(object sender, EventArgs e)
         {
             SetConsumidorFinal();
-            
         }
 
         private void NudDescuento_ValueChanged(object sender, EventArgs e)
         {
             nudTotal.Value = nudSubTotal.Value - (nudSubTotal.Value * nudDescuento.Value) / 100;
-
-            Console.WriteLine("Test debug");
         }
 
         private void DgvGrilla_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -496,7 +486,6 @@ namespace Presentacion.Core.Kiosco
             ActualizarNudsGrid();
         }
 
-
         //pasarle el parametro e que viene del evento de la grilla
         private void EliminarProducto(DataGridViewCellEventArgs e)
         {
@@ -509,7 +498,7 @@ namespace Presentacion.Core.Kiosco
             EliminarProducto(e);
         }
 
-        //rbs == los checkbox no se xq
+        //rbs == los radiobutton
         private void Set_Rbs()
         {
             SetConsumidorFinal();
@@ -522,16 +511,19 @@ namespace Presentacion.Core.Kiosco
         private void RbCtaCte_CheckedChanged(object sender, EventArgs e)
         {
             Set_Rbs();
+            set_datos_obligatorios();
         }
 
         private void RbEfectivo_CheckedChanged(object sender, EventArgs e)
         {
             Set_Rbs();
+            set_datos_obligatorios();
         }
 
         private void rbCheque_CheckedChanged(object sender, EventArgs e)
         {
             Set_Rbs();
+            set_datos_obligatorios();
         }
 
         private void CambiarEnableControlsGb(GroupBox gb, bool enable)
@@ -574,12 +566,10 @@ namespace Presentacion.Core.Kiosco
 
         private void btnBuscarEmpleado_Click(object sender, EventArgs e)
         {
-            long? idEmpleado = ((Func<long?>)(() => { 
-                var f_ = new FormularioEmpleadoConsulta(true); 
-                f_.ShowDialog();
-                return f_.empleadoSeleccionado; 
-            }))();
-
+            var f_ = new FormularioEmpleadoConsulta(true); 
+            f_.ShowDialog();
+            long? idEmpleado = f_.empleadoSeleccionado; 
+            
             if (idEmpleado != null)
             {
                 var empleado = _empleadoServicio.ObtenerEmpleadoPorId((long)idEmpleado);
@@ -626,7 +616,6 @@ namespace Presentacion.Core.Kiosco
                         txtCodigoBarras.Text = producto.CodigoBarra;
                         txtDescripcion.Text = producto.Descripcion;
                         txtPrecio.Text = Convert.ToString(producto.Precio);
-
                     }
                     else
                     {
@@ -635,7 +624,6 @@ namespace Presentacion.Core.Kiosco
                 }
             }        
         }
-
         private void txtCodigoBarras_KeyPress(object sender, KeyPressEventArgs e)
         {
             if ((char)Keys.Enter == e.KeyChar)

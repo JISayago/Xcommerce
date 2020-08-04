@@ -27,7 +27,7 @@ namespace XCommerce.Servicios.Core.Caja.DetalleCaja
         {
             using (var context = new ModeloXCommerceContainer())
             {
-                IQueryable<AccesoDatos.DetalleCaja> q = context.DetalleCajas;
+                IQueryable<AccesoDatos.DetalleCaja> q = context.DetalleCajas.Include("Cajas");
 
                 if (cajaId != null) q = q.Where(x => x.CajaId == cajaId);
                 if (tipo != null) q = q.Where(x => x.TipoPago == tipo);
@@ -37,7 +37,8 @@ namespace XCommerce.Servicios.Core.Caja.DetalleCaja
                     Id = x.Id,
                     cajaId = x.CajaId,
                     monto = x.Monto,
-                    tipoPago = x.TipoPago
+                    tipoPago = x.TipoPago,
+                    caja = x.Caja
                 }).ToList();
             }
         }

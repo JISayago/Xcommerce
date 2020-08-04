@@ -3,6 +3,7 @@
     using Presentacion.FormulariosBase.DTO;
     using System;
     using System.Collections.Generic;
+    using System.Security.Cryptography;
     using System.Windows.Forms;
 
     public partial class FormularioBase : Form
@@ -177,6 +178,12 @@
             });
 
             AsignarErrorProvider(control);
+        }
+
+        public virtual void LimpiarControlesObligatorios()
+        {
+            _listaControlesObligatorios.Clear();
+            error.Clear();
         }
         public virtual bool VerificarDatosObligatorios()
         {
