@@ -14,22 +14,36 @@ namespace Presentacion.Core.Articulo
 {
     public partial class FormularioAgregarStock : Form
     {
+        private readonly long Id;
         private IArticuloServicio _articuloServicio;
 
-        public FormularioAgregarStock(long entidadId)
+        public FormularioAgregarStock(long entidadId, decimal articuloStock)
+            : this(new ArticuloServicio())
         {
             InitializeComponent();
+
+            this.Id = entidadId;
+
+            lblStock.Text = "Stock Actual: " + articuloStock;
         }
 
-        private void btnOk_Click(object sender, EventArgs e, long entidadId)
+        public FormularioAgregarStock(IArticuloServicio articuloServicio)
+        {
+            _articuloServicio = articuloServicio;
+        }
+
+        private void ArticuloAgregarStock(long entidadId)
         {
 
-            _articuloServicio = new ArticuloServicio();
-
-            //sumar el stock a articulo
             decimal stockAgregar = nudCantidad.Value;
 
-            _articuloServicio.AgregarStock(entidadId, stockAgregar);
+            //_articuloServicio.AgregarStock(entidadId, stockAgregar);
+
+        }
+
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            ArticuloAgregarStock(Id);
 
             this.Close();
         }

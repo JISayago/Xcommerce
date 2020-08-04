@@ -57,6 +57,8 @@ namespace Presentacion.Core.Articulo
             CargarComboBox(cmbMarca, _marcaServicio.ObtenerMarca(string.Empty), "Descripcion", "Id");
             CargarComboBox(cmbRubro, _rubroServicio.ObtenerRubro(string.Empty), "Descripcion", "Id");
 
+            imgFotoArticulo.Image = Constantes.Imagenes.ImagenUsuario;
+
             if (tipoOperacion == TipoOperacion.Eliminar || tipoOperacion == TipoOperacion.Modificar)
             {
                 CargarDatos(entidadId);
@@ -235,12 +237,12 @@ namespace Presentacion.Core.Articulo
                 }
                 else
                 {
-                    imgFotoArticulo.Image = Presentacion.Constantes.Imagenes.ImagenBotonBuscar;
+                    imgFotoArticulo.Image = Constantes.Imagenes.ImagenBotonBuscar;
                 }
             }
             else
             {
-                imgFotoArticulo.Image = Presentacion.Constantes.Imagenes.ImagenBotonBuscar;
+                imgFotoArticulo.Image = Constantes.Imagenes.ImagenBotonBuscar;
             }
         }
 

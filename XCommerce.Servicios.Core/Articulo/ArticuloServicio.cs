@@ -255,22 +255,40 @@ namespace XCommerce.Servicios.Core.Articulo
             }
         }
 
-        public void AgregarStock(long articuloId, decimal cantidad)
+        //public void AgregarStock(long articuloId, decimal cantidad)
+        //{
+        //    using (var context = new ModeloXCommerceContainer())
+        //    {
+        //        var articuloAModificar = context.Articulos
+        //            .Include(x => x.Rubro)
+        //            .Include(x => x.Marca)
+        //            .FirstOrDefault(x => x.Id == articuloId);
+
+        //        if (articuloAModificar == null) throw new Exception("No se encontro el artículo");
+
+        //        articuloAModificar.Stock += cantidad;
+
+
+        //        context.SaveChanges();
+        //    }
+        //}
+        public void AgregarStock(string codigo, decimal cantidad)
         {
             using (var context = new ModeloXCommerceContainer())
             {
                 var articuloAModificar = context.Articulos
                     .Include(x => x.Rubro)
                     .Include(x => x.Marca)
-                    .FirstOrDefault(x => x.Id == articuloId);
+                    .FirstOrDefault(x => x.Codigo == codigo || x.CodigoBarra == codigo) ;
 
                 if (articuloAModificar == null) throw new Exception("No se encontro el artículo");
 
-                articuloAModificar.Stock += cantidad;
 
+                articuloAModificar.Stock += cantidad;
 
                 context.SaveChanges();
             }
         }
+
     }
 }

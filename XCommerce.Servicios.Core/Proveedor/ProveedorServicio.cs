@@ -101,5 +101,24 @@ namespace XCommerce.Servicios.Core.Proveedor
                     }).FirstOrDefault(x =>  x.Id == ProveedorId);
             }
         }
+
+        public ProveedorDTO ObtenerRazonSocial(string razonSocial)
+        {
+            using (var context = new ModeloXCommerceContainer())
+            {
+                return context.Proveedores
+                    .AsNoTracking()
+                    .Select(x => new ProveedorDTO
+                    {
+                        Id = x.Id,
+                        RazonSocial = x.RazonSocial,
+                        Telefono = x.Telefono,
+                        Email = x.Email,
+                        CondicionIvaId = x.CondicionIvaId,
+                        Contacto = x.Contacto
+
+                    }).FirstOrDefault(x => x.RazonSocial == razonSocial);
+            }
+        }
     }
 }

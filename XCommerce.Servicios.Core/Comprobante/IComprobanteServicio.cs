@@ -11,5 +11,8 @@ namespace XCommerce.Servicios.Core.Comprobante
     {
         long Generar(ComprobanteDTO dto);
         long GenerarComprobanteDelivery(ComprobanteDTO dto);
+        long GenerarComprobanteCompra(ComprobanteCompraDTO dto);
+        T_ComprobanteDTO ObtenerPorId(long comprobanteId);
+
     }
 }

@@ -51,6 +51,8 @@
             this.nudSubTotal = new System.Windows.Forms.NumericUpDown();
             this.lblSubTotal = new System.Windows.Forms.Label();
             this.cbxDescuentaCaja = new System.Windows.Forms.CheckBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnAgragarAlInventario = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrilla)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTotal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDescuento)).BeginInit();
@@ -127,9 +129,9 @@
             // 
             // btnBuscarProveedor
             // 
-            this.btnBuscarProveedor.Location = new System.Drawing.Point(655, 11);
+            this.btnBuscarProveedor.Location = new System.Drawing.Point(656, 12);
             this.btnBuscarProveedor.Name = "btnBuscarProveedor";
-            this.btnBuscarProveedor.Size = new System.Drawing.Size(116, 42);
+            this.btnBuscarProveedor.Size = new System.Drawing.Size(116, 27);
             this.btnBuscarProveedor.TabIndex = 214;
             this.btnBuscarProveedor.Text = "Buscar Proveedor";
             this.btnBuscarProveedor.UseVisualStyleBackColor = true;
@@ -137,9 +139,9 @@
             // 
             // btnAgregarProveedor
             // 
-            this.btnAgregarProveedor.Location = new System.Drawing.Point(533, 11);
+            this.btnAgregarProveedor.Location = new System.Drawing.Point(533, 12);
             this.btnAgregarProveedor.Name = "btnAgregarProveedor";
-            this.btnAgregarProveedor.Size = new System.Drawing.Size(116, 42);
+            this.btnAgregarProveedor.Size = new System.Drawing.Size(116, 27);
             this.btnAgregarProveedor.TabIndex = 215;
             this.btnAgregarProveedor.Text = "Agregar Proveedor";
             this.btnAgregarProveedor.UseVisualStyleBackColor = true;
@@ -150,12 +152,11 @@
             this.dgvGrilla.AllowUserToAddRows = false;
             this.dgvGrilla.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dgvGrilla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvGrilla.Location = new System.Drawing.Point(12, 127);
+            this.dgvGrilla.Location = new System.Drawing.Point(12, 142);
             this.dgvGrilla.MultiSelect = false;
             this.dgvGrilla.Name = "dgvGrilla";
-            this.dgvGrilla.ReadOnly = true;
             this.dgvGrilla.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvGrilla.Size = new System.Drawing.Size(760, 316);
+            this.dgvGrilla.Size = new System.Drawing.Size(760, 301);
             this.dgvGrilla.TabIndex = 216;
             // 
             // txtCondicionIva
@@ -177,9 +178,9 @@
             // 
             // btnArticuloNuevo
             // 
-            this.btnArticuloNuevo.Location = new System.Drawing.Point(533, 70);
+            this.btnArticuloNuevo.Location = new System.Drawing.Point(533, 52);
             this.btnArticuloNuevo.Name = "btnArticuloNuevo";
-            this.btnArticuloNuevo.Size = new System.Drawing.Size(116, 42);
+            this.btnArticuloNuevo.Size = new System.Drawing.Size(116, 27);
             this.btnArticuloNuevo.TabIndex = 219;
             this.btnArticuloNuevo.Text = "Articulo Nuevo";
             this.btnArticuloNuevo.UseVisualStyleBackColor = true;
@@ -187,11 +188,11 @@
             // 
             // btnArticuloExistente
             // 
-            this.btnArticuloExistente.Location = new System.Drawing.Point(655, 70);
+            this.btnArticuloExistente.Location = new System.Drawing.Point(656, 52);
             this.btnArticuloExistente.Name = "btnArticuloExistente";
-            this.btnArticuloExistente.Size = new System.Drawing.Size(116, 42);
+            this.btnArticuloExistente.Size = new System.Drawing.Size(116, 27);
             this.btnArticuloExistente.TabIndex = 220;
-            this.btnArticuloExistente.Text = "Añadir al Inventario";
+            this.btnArticuloExistente.Text = "Articulo Existente";
             this.btnArticuloExistente.UseVisualStyleBackColor = true;
             this.btnArticuloExistente.Click += new System.EventHandler(this.btnArticuloExistente_Click);
             // 
@@ -288,11 +289,33 @@
             this.cbxDescuentaCaja.Text = "Descuenta de Caja";
             this.cbxDescuentaCaja.UseVisualStyleBackColor = true;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(314, 115);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(167, 24);
+            this.label3.TabIndex = 229;
+            this.label3.Text = "Ingreso Artículos";
+            // 
+            // btnAgragarAlInventario
+            // 
+            this.btnAgragarAlInventario.Location = new System.Drawing.Point(533, 92);
+            this.btnAgragarAlInventario.Name = "btnAgragarAlInventario";
+            this.btnAgragarAlInventario.Size = new System.Drawing.Size(239, 41);
+            this.btnAgragarAlInventario.TabIndex = 230;
+            this.btnAgragarAlInventario.Text = "Agregar al Inventario";
+            this.btnAgragarAlInventario.UseVisualStyleBackColor = true;
+            this.btnAgragarAlInventario.Click += new System.EventHandler(this.btnAgragarAlInventario_Click);
+            // 
             // FormularioIngresoArticulos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.btnAgragarAlInventario);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.cbxDescuentaCaja);
             this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.nudTotal);
@@ -352,5 +375,7 @@
         private System.Windows.Forms.NumericUpDown nudSubTotal;
         private System.Windows.Forms.Label lblSubTotal;
         private System.Windows.Forms.CheckBox cbxDescuentaCaja;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnAgragarAlInventario;
     }
 }

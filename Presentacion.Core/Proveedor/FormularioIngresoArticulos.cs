@@ -1,6 +1,7 @@
 ﻿using Presentacion.Core.Articulo;
 using Presentacion.FormulariosBase;
 using Presentacion.FormulariosBase.Helpers;
+using Presentacion.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,9 +11,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using XCommerce.AccesoDatos;
 using XCommerce.Servicios.Core.Articulo;
 using XCommerce.Servicios.Core.Articulo.DTO;
+
+using XCommerce.Servicios.Core.Cliente;
+using XCommerce.Servicios.Core.Comprobante;
+using XCommerce.Servicios.Core.Comprobante.DTO;
 using XCommerce.Servicios.Core.CondicionIva;
+using XCommerce.Servicios.Core.DetalleCaja;
+using XCommerce.Servicios.Core.DetalleCaja.DTO;
+using XCommerce.Servicios.Core.Movimiento;
+using XCommerce.Servicios.Core.Movimiento.DTO;
 using XCommerce.Servicios.Core.Proveedor;
 
 namespace Presentacion.Core.Proveedor
@@ -22,9 +32,14 @@ namespace Presentacion.Core.Proveedor
         private readonly IProveedorServicio _proveedorServicio;
         private readonly ICondicionIvaServicio _condicionIvaServicio;
         private readonly IArticuloServicio _articuloServicio;
-        public List<ArticuloDTO> listaIngresos;
+        private readonly IMovimientoServicio _movimientoServicio;
+        private readonly IComprobanteServicio _comprobanteServicio;
+        private readonly IClienteServicio _clienteServicio;
+        private readonly IDetalleCajaServicio _detalleCajaServicio;
+        private Dictionary<string, DetalleComprobanteDTO> detalles;
         private long idArticulo;
         private long idProveedor;
+
         public FormularioIngresoArticulos()
         {
             InitializeComponent();
@@ -32,7 +47,18 @@ namespace Presentacion.Core.Proveedor
             _proveedorServicio = new ProveedorServicio();
             _condicionIvaServicio = new CondicionIvaServicio();
             _articuloServicio = new ArticuloServicio();
-            listaIngresos = new List<ArticuloDTO>();
+            _movimientoServicio = new MovimientoServicio();
+            _comprobanteServicio = new ComprobanteServicio();
+            _clienteServicio = new ClienteServicio();
+            _detalleCajaServicio = new DetalleCajaServicio();
+            detalles = new Dictionary<string, DetalleComprobanteDTO>();
+
+
+            AgregarControlesObligatorios(txtContacto, "Contacto");
+            AgregarControlesObligatorios(txtEmail, "Email");
+            AgregarControlesObligatorios(txtRazonSocial, "RazonSocial");
+            AgregarControlesObligatorios(txtTelefono, "Telefono");
+            AgregarControlesObligatorios(txtCondicionIva, "CondicionIva");
         }
 
         public void ResetearGrilla(DataGridView grilla)
@@ -42,22 +68,22 @@ namespace Presentacion.Core.Proveedor
                 grilla.Columns[i].Visible = false;
             }
 
-            grilla.Columns["Codigo"].Visible = true;
-            grilla.Columns["Codigo"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            grilla.Columns["Codigo"].HeaderText = "Codigo";
+            grilla.Columns["CodigoProducto"].Visible = true;
+            grilla.Columns["CodigoProducto"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            grilla.Columns["CodigoProducto"].HeaderText = "Codigo";
 
-            grilla.Columns["Descripcion"].Visible = true;
-            grilla.Columns["Descripcion"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            grilla.Columns["Descripcion"].HeaderText = "Descripcion";
+            grilla.Columns["DescripcionProducto"].Visible = true;
+            grilla.Columns["DescripcionProducto"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            grilla.Columns["DescripcionProducto"].HeaderText = "Descripcion";
 
-            grilla.Columns["PrecioCosto"].Visible = true;
-            grilla.Columns["PrecioCosto"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            grilla.Columns["PrecioCosto"].HeaderText = "Precio Costo";
+            grilla.Columns["PrecioUnitario"].Visible = true;
+            grilla.Columns["PrecioUnitario"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            grilla.Columns["PrecioUnitario"].HeaderText = "Precio Costo";
 
-            grilla.Columns["Stock"].Visible = true;
-            grilla.Columns["Stock"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            grilla.Columns["Stock"].HeaderText = "Stock";
-            grilla.Columns["Stock"].DefaultCellStyle.Format = "N2";
+            grilla.Columns["CantidadProducto"].Visible = true;
+            grilla.Columns["CantidadProducto"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            grilla.Columns["CantidadProducto"].HeaderText = "Stock";
+            grilla.Columns["CantidadProducto"].DefaultCellStyle.Format = "N2";
 
         }
 
@@ -70,11 +96,11 @@ namespace Presentacion.Core.Proveedor
 
         private void ActualizarNudsGrid()
         {
-            dgvGrilla.DataSource = listaIngresos;
+            dgvGrilla.DataSource = detalles.Values.ToList();
             ResetearGrilla(dgvGrilla);
 
-            //nudSubTotal.Value = detalles.Values.Sum(x => x.SubtotalLinea);
-            //nudTotal.Value = nudSubTotal.Value;
+            nudSubTotal.Value = detalles.Values.Sum(x => x.SubtotalLinea);
+            nudTotal.Value = nudSubTotal.Value;
         }
 
         private void btnBuscarProveedor_Click(object sender, EventArgs e)
@@ -88,9 +114,10 @@ namespace Presentacion.Core.Proveedor
 
            
             var proveedor = _proveedorServicio.ObtenerPorId(idProveedor);
-            var condicionIva = _condicionIvaServicio.ObtenerPorId(proveedor.CondicionIvaId);
+           
             if (proveedor != null)
             {
+                var condicionIva = _condicionIvaServicio.ObtenerPorId(proveedor.CondicionIvaId);
                 txtCondicionIva.Text = condicionIva.Descripcion;
                 txtContacto.Text = proveedor.Contacto;
                 txtEmail.Text = proveedor.Email;
@@ -108,6 +135,7 @@ namespace Presentacion.Core.Proveedor
 
         private void btnArticuloExistente_Click(object sender, EventArgs e)
         {
+
             bool vieneDeSelecArticulo = true;
             FormularioArticuloConsulta formArticulo = new FormularioArticuloConsulta(vieneDeSelecArticulo);
 
@@ -115,45 +143,234 @@ namespace Presentacion.Core.Proveedor
 
             idArticulo = formArticulo.articuloSeleccionado;
 
-            
+            if(idArticulo != 0)
+            {
+
+                var formularioModificar = new FormularioArticuloABM(TipoOperacion.Modificar, idArticulo);
+                formularioModificar.ShowDialog();
+
+                var articulo = _articuloServicio.ObtenerPorId(idArticulo);
+                if (articulo != null)
+                {
+                    detalles[$"{articulo.Codigo}"] =
+                                new DetalleComprobanteDTO
+                                {
+                                    ProductoId = articulo.Id,
+                                    CodigoProducto = articulo.Codigo,
+                                    DescripcionProducto = articulo.Descripcion,
+                                    PrecioUnitario = articulo.PrecioCosto,
+                                    CantidadProducto = 0m,
+
+                                };
+
+
+                }
+               
+            }
+            ActualizarNudsGrid();
+
+        }
+
+        private void btnAgragarAlInventario_Click(object sender, EventArgs e)
+        {
+            bool vieneDeSelecArticulo = true;
+            FormularioArticuloConsulta formArticulo = new FormularioArticuloConsulta(vieneDeSelecArticulo);
+
+            formArticulo.ShowDialog();
+
+            idArticulo = formArticulo.articuloSeleccionado;
 
             var articulo = _articuloServicio.ObtenerPorId(idArticulo);
             if (articulo != null)
             {
-                var dto = new ArticuloDTO()
-                {
-                    Descripcion = articulo.Descripcion,
-                    Abreviatura = articulo.Abreviatura,
-                    Codigo = articulo.Codigo,
-                    CodigoBarra = articulo.CodigoBarra,
-                    ActivarLimiteVenta = articulo.ActivarLimiteVenta,
-                    DescuentaStock = articulo.DescuentaStock,
-                    Detalle = articulo.Detalle,
-                    EstaDiscontinuado = articulo.EstaDiscontinuado,
-                    EstaEliminado = articulo.EstaEliminado,
-                    Foto = articulo.Foto,
-                    Id = articulo.Id,
-                    LimiteVenta = articulo.LimiteVenta,
-                    MarcaId = articulo.MarcaId,
-                    PermiteStockNegativo = articulo.PermiteStockNegativo,
-                    RubroId = articulo.RubroId,
-                    Stock = articulo.Stock,
-                    StockMaximo = articulo.StockMaximo,
-                    StockMinimo = articulo.StockMinimo
+                detalles[$"{articulo.Codigo}"] =
+                           new DetalleComprobanteDTO
+                           {
+                               ProductoId = articulo.Id,
+                               CodigoProducto = articulo.Codigo,
+                               DescripcionProducto = articulo.Descripcion,
+                               PrecioUnitario = articulo.PrecioCosto,
+                               CantidadProducto = 0m,
+                           };
 
-                };
-                listaIngresos.Add(dto);
-
-                ActualizarNudsGrid();
             }
 
+            ActualizarNudsGrid();
         }
+
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
 
+            if (detalles != null)
+            {
+                foreach (var item in detalles)
+                {
+                    int i = 0;
+                    MessageBox.Show($"{item}");
+                    if (decimal.TryParse(dgvGrilla.Rows[i].Cells["CantidadProducto"].Value.ToString(), out decimal cantidad))
+                    {
+                        _articuloServicio.AgregarStock(item.Key, cantidad);
+                        i++;
+                    }
+
+                }
+                RegistrarListadoArticulos();
+            }
+            MessageBox.Show("No se puede Registrar una lista de articulos vacáa.");
         }
 
-     
+        private bool RegistrarListadoArticulos()
+        {
+            if (!VerificarDatosObligatorios())
+            {
+                MessageBox.Show(@"Por favor ingrese los campos Obligatorios.", @"Atención", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
+            /////////////////
+            ///COMPROBANTE///
+            /////////////////
+            ///
+            long clienteId = _clienteServicio.ObtenerClientePorDni("99999999").Id;
+            long proveedorId = _proveedorServicio.ObtenerRazonSocial(txtRazonSocial.Text).Id;
+            
+            ComprobanteCompraDTO comprobante = new ComprobanteCompraDTO
+            {
+                 
+                Fecha = DateTime.Now,
+                ProveedorId = proveedorId,
+                UsuarioId = DatosSistema.UsuarioId,                
+                ClienteId = clienteId,
+                Descuento = nudDescuento.Value,         
+               
+                Items = detalles.Values.ToList()
+            };
+
+            long comprobante_id;
+         
+            comprobante_id = _comprobanteServicio.GenerarComprobanteCompra(comprobante);
+
+            ////////////////
+            //Detalle Caja//
+            ////////////////
+            ////tipo pago
+            //var formaDePago = TipoPago.Efectivo;
+            //if (rbCtaCte.Checked)
+            //{
+            //    formaDePago = TipoPago.CtaCte;
+            //}
+            //if (rbTarjeta.Checked)
+            //{
+            //    formaDePago = TipoPago.Tarjeta;
+            ////}
+            ///
+
+            if (cbxDescuentaCaja.Checked)
+            {
+                DetalleCajaDTO detalleCaja = new DetalleCajaDTO
+                {
+                    CajaId = DatosSistema.CajaId,
+                    Monto = comprobante.Total,
+                    TipoPago = TipoPago.Efectivo
+                };
+                _detalleCajaServicio.Generar(detalleCaja);
+            }
+
+
+            //////////////////
+            /////FORMA PAGO///
+            //////////////////
+
+            //if (rbEfectivo.Checked)
+            //{
+            //    FormaPagoEfectivoDTO fp = new FormaPagoEfectivoDTO
+            //    {
+            //        TipoFormaPago = TipoFormaPago.Efectivo,
+            //        Monto = nudTotal.Value,
+            //        ComprobanteId = comprobante_id,
+            //    };
+            //    _formaPagoServicio.Generar(fp);
+            //}
+
+            //if (rbCtaCte.Checked)
+            //{
+            //    if (_clienteServicio.DescontarDeCuenta(idCliente, comprobante.Total))
+            //    {
+            //        //nada?
+            //    }
+            //    else
+            //    {
+            //        throw new Exception("Si tiene menos de 0 deberia un cartel que no deje que siga el tema ya vemos yadayadayada");
+            //    }
+
+            //    FormaPagoCtaCteDTO fp = new FormaPagoCtaCteDTO
+            //    {
+            //        TipoFormaPago = TipoFormaPago.CuentaCorriente,
+            //        Monto = nudTotal.Value,
+            //        ComprobanteId = comprobante_id,
+            //        ClienteId = idCliente,
+            //    };
+            //    _formaPagoServicio.Generar(fp);
+            //}
+
+            //if (rbCheque.Checked)
+            //{
+            //    FormaPagoChequeDTO fp = new FormaPagoChequeDTO
+            //    {
+            //        TipoFormaPago = TipoFormaPago.Cheque,
+            //        Monto = nudTotal.Value,
+            //        ComprobanteId = comprobante_id,
+            //        BancoId = ((BancoDTO)cbBanco.SelectedItem).Id,
+            //        Dias = (int)nudDiasCheque.Value,
+            //        EnteEmisor = txtEnteCheque.Text,
+            //        FechaEmision = dtFechaCheque.Value,
+            //        Numero = txtNumeroCheque.Text,
+            //    };
+
+            //    _formaPagoServicio.Generar(fp);
+            //}
+
+            //if (rbTarjeta.Checked)
+            //{
+            //    FormaPagoTarjetaDTO fp = new FormaPagoTarjetaDTO
+            //    {
+            //        TipoFormaPago = TipoFormaPago.Tarjeta,
+            //        Monto = nudTotal.Value,
+            //        ComprobanteId = comprobante_id,
+            //        Numero = txtNumeroTarjeta.Text,
+            //        Cupon = "", //TODO ????
+            //        PlanTarjetaId = ((PlanTarjetaDTO)cbPlan.SelectedItem).Id,
+            //        NumeroTarjeta = txtClaveTarjeta.Text
+            //    };
+
+            //    _formaPagoServicio.Generar(fp);
+            //}
+
+            //////////////
+            //Movimiento//
+            //////////////
+            MovimientoDTO movimiento = new MovimientoDTO
+            {
+                CajaID = DatosSistema.CajaId,
+                ComprobanteID = comprobante_id,
+                TipoMovimiento = TipoMovimiento.Egreso,
+                UsuarioID = DatosSistema.UsuarioId,
+                Monto = comprobante.Total,
+                Fecha = DateTime.Now,
+                Descripcion = "Ingreso Articulos",
+            };
+
+            _movimientoServicio.GenerarMovimiento(movimiento);
+
+
+          
+            
+            Close();
+
+            return true;
+
+        }
     }
+
 }

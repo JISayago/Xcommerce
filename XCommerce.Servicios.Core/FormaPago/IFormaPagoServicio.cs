@@ -11,5 +11,6 @@ namespace XCommerce.Servicios.Core.FormaPago
     public interface IFormaPagoServicio
     {
         void Generar(FormaPagoDTO dto);
+        IEnumerable<FormaPagoDTO> Obtener(TipoFormaPago tipo);
     }
 }

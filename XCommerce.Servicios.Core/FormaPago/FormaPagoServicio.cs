@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using XCommerce.AccesoDatos;
 using XCommerce.Servicios.Core.FormaPago.DTO;
 
@@ -60,7 +63,7 @@ namespace XCommerce.Servicios.Core.FormaPago
                         context.SaveChanges();
                         break;
                     case TipoFormaPago.CuentaCorriente:
-                        var dto_ctacte  = dto as FormaPagoCtaCteDTO;
+                        var dto_ctacte = dto as FormaPagoCtaCteDTO;
                         var nfpg_ctacte = new FormaPagoCtaCte
                         {
                             TipoFormaPago = dto_ctacte.TipoFormaPago,
@@ -68,7 +71,7 @@ namespace XCommerce.Servicios.Core.FormaPago
                             ComprobanteId = dto_ctacte.ComprobanteId,
                             ClienteId = dto_ctacte.ClienteId
                         };
-                        
+
                         context.FormasPagos.Add(nfpg_ctacte);
 
                         context.SaveChanges();
@@ -78,5 +81,66 @@ namespace XCommerce.Servicios.Core.FormaPago
                 }
             }
         }
+        public IEnumerable<FormaPagoDTO> Obtener(TipoFormaPago tipo)
+        {
+            using (var context = new ModeloXCommerceContainer())
+            {
+                switch (tipo)
+                {
+                    case TipoFormaPago.Efectivo:
+                        return context.FormasPagos.OfType<FormaPagoEfectivo>()
+                    .Where(x => x.TipoFormaPago == tipo).Select(x => new FormaPagoEfectivoDTO
+                        {
+                            Id = x.Id,
+                            ComprobanteId = x.ComprobanteId,
+                            Monto = x.Monto,
+                            TipoFormaPago = x.TipoFormaPago
+                        }).ToList();
+                    case TipoFormaPago.Cheque:
+                        return context.FormasPagos.OfType<FormaPagoCheque>()
+                    .Where(x => x.TipoFormaPago == tipo).Select(x => new FormaPagoChequeDTO
+                        {
+                            Id = x.Id,
+                            ComprobanteId = x.ComprobanteId,
+                            Monto = x.Monto,
+                            TipoFormaPago = x.TipoFormaPago,
+                            BancoId = x.BancoId,
+                            Dias = x.Dias,
+                            EnteEmisor = x.EnteEmisor,
+                            FechaEmision = x.FechaEmision,
+                            Numero = x.Numero,
+                    }).ToList();
+                    case TipoFormaPago.CuentaCorriente:
+                        return context.FormasPagos.OfType<FormaPagoCtaCte>()
+                    .Where(x => x.TipoFormaPago == tipo).Select(x => new FormaPagoCtaCteDTO
+                        {
+                            Id = x.Id,
+                            ComprobanteId = x.ComprobanteId,
+                            Monto = x.Monto,
+                            TipoFormaPago = x.TipoFormaPago,
+                            ClienteId = x.ClienteId
+                        }).ToList();
+
+                    case TipoFormaPago.Tarjeta:
+                        return context.FormasPagos.OfType<FormaPagoTarjeta>()
+                    .Where(x => x.TipoFormaPago == tipo).Select(x => new FormaPagoTarjetaDTO
+                        {
+                            Id = x.Id,
+                            ComprobanteId = x.ComprobanteId,
+                            Monto = x.Monto,
+                            TipoFormaPago = x.TipoFormaPago,
+                            Numero = x.Numero,
+                            Cupon = x.Cupon,
+                            PlanTarjetaId = x.PlanTarjetaId,
+                            NumeroTarjeta = x.NumeroTarjeta
+
+                    }).ToList();
+                    
+                    default: 
+                        throw new Exception("error grave");
+                }
+            }
+        }
     }
+
 }

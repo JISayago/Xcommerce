@@ -139,7 +139,6 @@
             // txtBoxAbreviatura
             // 
             this.txtBoxAbreviatura.Location = new System.Drawing.Point(88, 158);
-            this.txtBoxAbreviatura.MaxLength = 20;
             this.txtBoxAbreviatura.Name = "txtBoxAbreviatura";
             this.txtBoxAbreviatura.Size = new System.Drawing.Size(485, 20);
             this.txtBoxAbreviatura.TabIndex = 4;
@@ -156,7 +155,6 @@
             // txtBoxDescripcion
             // 
             this.txtBoxDescripcion.Location = new System.Drawing.Point(86, 102);
-            this.txtBoxDescripcion.MaxLength = 400;
             this.txtBoxDescripcion.Name = "txtBoxDescripcion";
             this.txtBoxDescripcion.Size = new System.Drawing.Size(487, 20);
             this.txtBoxDescripcion.TabIndex = 2;
@@ -360,7 +358,7 @@
             // txtBoxCodigo
             // 
             this.txtBoxCodigo.Location = new System.Drawing.Point(86, 68);
-            this.txtBoxCodigo.MaxLength = 100;
+
             this.txtBoxCodigo.Name = "txtBoxCodigo";
             this.txtBoxCodigo.Size = new System.Drawing.Size(104, 20);
             this.txtBoxCodigo.TabIndex = 0;
@@ -368,7 +366,6 @@
             // txtBoxCodigoBarra
             // 
             this.txtBoxCodigoBarra.Location = new System.Drawing.Point(323, 69);
-            this.txtBoxCodigoBarra.MaxLength = 100;
             this.txtBoxCodigoBarra.Name = "txtBoxCodigoBarra";
             this.txtBoxCodigoBarra.Size = new System.Drawing.Size(104, 20);
             this.txtBoxCodigoBarra.TabIndex = 1;
@@ -484,7 +481,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 445);
+            this.ClientSize = new System.Drawing.Size(784, 437);
             this.Controls.Add(this.btnNuevaListaPrecio);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.cmbListaPrecio);
