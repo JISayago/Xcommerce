@@ -341,13 +341,18 @@ namespace Presentacion.Core.Kiosco
             {
                 formaDePago = TipoPago.Tarjeta;
             }
-            DetalleCajaDTO detalleCaja = new DetalleCajaDTO
+            //Tipo pago propiedad de detalle caja no tiene cheque
+            //asi que si es cheque no generamos detalle caja
+            if (!rbCheque.Checked)
             {
-                CajaId = DatosSistema.CajaId,
-                Monto = comprobante.Total,
-                TipoPago = formaDePago
-            };
-            _detalleCajaServicio.Generar(detalleCaja);
+                DetalleCajaDTO detalleCaja = new DetalleCajaDTO
+                {
+                    CajaId = DatosSistema.CajaId,
+                    Monto = comprobante.Total,
+                    TipoPago = formaDePago
+                };
+                _detalleCajaServicio.Generar(detalleCaja);
+            }
 
             ////////////////
             ///FORMA PAGO///
