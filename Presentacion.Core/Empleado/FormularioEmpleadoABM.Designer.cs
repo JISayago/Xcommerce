@@ -84,6 +84,10 @@
             this.lblApellido = new System.Windows.Forms.Label();
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.Archivo = new System.Windows.Forms.OpenFileDialog();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
             this.pnlFoto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgFotoEmpleado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLegajo)).BeginInit();
@@ -246,6 +250,7 @@
             // txtCasa
             // 
             this.txtCasa.Location = new System.Drawing.Point(405, 301);
+            this.txtCasa.MaxLength = 5;
             this.txtCasa.Name = "txtCasa";
             this.txtCasa.Size = new System.Drawing.Size(65, 20);
             this.txtCasa.TabIndex = 17;
@@ -262,6 +267,7 @@
             // txtCelular
             // 
             this.txtCelular.Location = new System.Drawing.Point(342, 161);
+            this.txtCelular.MaxLength = 25;
             this.txtCelular.Name = "txtCelular";
             this.txtCelular.Size = new System.Drawing.Size(128, 20);
             this.txtCelular.TabIndex = 8;
@@ -278,6 +284,7 @@
             // txtTelefono
             // 
             this.txtTelefono.Location = new System.Drawing.Point(108, 161);
+            this.txtTelefono.MaxLength = 25;
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(128, 20);
             this.txtTelefono.TabIndex = 6;
@@ -294,6 +301,7 @@
             // txtEmail
             // 
             this.txtEmail.Location = new System.Drawing.Point(108, 211);
+            this.txtEmail.MaxLength = 250;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(362, 20);
             this.txtEmail.TabIndex = 10;
@@ -341,7 +349,6 @@
             this.nudLegajo.Name = "nudLegajo";
             this.nudLegajo.Size = new System.Drawing.Size(128, 20);
             this.nudLegajo.TabIndex = 1;
-           
             // 
             // label12
             // 
@@ -372,6 +379,7 @@
             // txtCuil
             // 
             this.txtCuil.Location = new System.Drawing.Point(342, 135);
+            this.txtCuil.MaxLength = 11;
             this.txtCuil.Name = "txtCuil";
             this.txtCuil.Size = new System.Drawing.Size(128, 20);
             this.txtCuil.TabIndex = 7;
@@ -425,6 +433,7 @@
             // txtBarrio
             // 
             this.txtBarrio.Location = new System.Drawing.Point(108, 327);
+            this.txtBarrio.MaxLength = 250;
             this.txtBarrio.Name = "txtBarrio";
             this.txtBarrio.Size = new System.Drawing.Size(362, 20);
             this.txtBarrio.TabIndex = 18;
@@ -441,6 +450,7 @@
             // txtLote
             // 
             this.txtLote.Location = new System.Drawing.Point(251, 301);
+            this.txtLote.MaxLength = 5;
             this.txtLote.Name = "txtLote";
             this.txtLote.Size = new System.Drawing.Size(65, 20);
             this.txtLote.TabIndex = 15;
@@ -457,6 +467,7 @@
             // txtManzana
             // 
             this.txtManzana.Location = new System.Drawing.Point(108, 301);
+            this.txtManzana.MaxLength = 5;
             this.txtManzana.Name = "txtManzana";
             this.txtManzana.Size = new System.Drawing.Size(65, 20);
             this.txtManzana.TabIndex = 13;
@@ -473,6 +484,7 @@
             // txtDepartamento
             // 
             this.txtDepartamento.Location = new System.Drawing.Point(405, 275);
+            this.txtDepartamento.MaxLength = 2;
             this.txtDepartamento.Name = "txtDepartamento";
             this.txtDepartamento.Size = new System.Drawing.Size(65, 20);
             this.txtDepartamento.TabIndex = 16;
@@ -489,6 +501,7 @@
             // txtPiso
             // 
             this.txtPiso.Location = new System.Drawing.Point(251, 275);
+            this.txtPiso.MaxLength = 2;
             this.txtPiso.Name = "txtPiso";
             this.txtPiso.Size = new System.Drawing.Size(65, 20);
             this.txtPiso.TabIndex = 14;
@@ -521,6 +534,7 @@
             // txtCalle
             // 
             this.txtCalle.Location = new System.Drawing.Point(108, 249);
+            this.txtCalle.MaxLength = 400;
             this.txtCalle.Name = "txtCalle";
             this.txtCalle.Size = new System.Drawing.Size(362, 20);
             this.txtCalle.TabIndex = 11;
@@ -537,6 +551,7 @@
             // txtDni
             // 
             this.txtDni.Location = new System.Drawing.Point(108, 135);
+            this.txtDni.MaxLength = 9;
             this.txtDni.Name = "txtDni";
             this.txtDni.Size = new System.Drawing.Size(128, 20);
             this.txtDni.TabIndex = 5;
@@ -553,6 +568,7 @@
             // txtNombre
             // 
             this.txtNombre.Location = new System.Drawing.Point(108, 109);
+            this.txtNombre.MaxLength = 250;
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(362, 20);
             this.txtNombre.TabIndex = 4;
@@ -578,6 +594,7 @@
             // txtApellido
             // 
             this.txtApellido.Location = new System.Drawing.Point(108, 83);
+            this.txtApellido.MaxLength = 250;
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(362, 20);
             this.txtApellido.TabIndex = 3;
@@ -586,11 +603,59 @@
             // 
             this.Archivo.FileName = "Archivo";
             // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.ForeColor = System.Drawing.Color.Red;
+            this.label26.Location = new System.Drawing.Point(239, 162);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(15, 20);
+            this.label26.TabIndex = 132;
+            this.label26.Text = "*";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.ForeColor = System.Drawing.Color.Red;
+            this.label27.Location = new System.Drawing.Point(179, 275);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(15, 20);
+            this.label27.TabIndex = 133;
+            this.label27.Text = "*";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.ForeColor = System.Drawing.Color.Red;
+            this.label28.Location = new System.Drawing.Point(473, 379);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(15, 20);
+            this.label28.TabIndex = 134;
+            this.label28.Text = "*";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.ForeColor = System.Drawing.Color.Red;
+            this.label29.Location = new System.Drawing.Point(473, 352);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(15, 20);
+            this.label29.TabIndex = 135;
+            this.label29.Text = "*";
+            // 
             // FormularioEmpleadoABM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(719, 416);
+            this.Controls.Add(this.label29);
+            this.Controls.Add(this.label28);
+            this.Controls.Add(this.label27);
+            this.Controls.Add(this.label26);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.label23);
@@ -643,6 +708,8 @@
             this.Controls.Add(this.lblLegajo);
             this.Controls.Add(this.lblApellido);
             this.Controls.Add(this.txtApellido);
+            this.MaximumSize = new System.Drawing.Size(735, 455);
+            this.MinimumSize = new System.Drawing.Size(735, 455);
             this.Name = "FormularioEmpleadoABM";
             this.Text = "FormularioEmpleadoABM";
             this.Controls.SetChildIndex(this.txtApellido, 0);
@@ -697,6 +764,10 @@
             this.Controls.SetChildIndex(this.label23, 0);
             this.Controls.SetChildIndex(this.label24, 0);
             this.Controls.SetChildIndex(this.label25, 0);
+            this.Controls.SetChildIndex(this.label26, 0);
+            this.Controls.SetChildIndex(this.label27, 0);
+            this.Controls.SetChildIndex(this.label28, 0);
+            this.Controls.SetChildIndex(this.label29, 0);
             this.pnlFoto.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgFotoEmpleado)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLegajo)).EndInit();
@@ -763,5 +834,9 @@
         private System.Windows.Forms.Label lblApellido;
         private System.Windows.Forms.TextBox txtApellido;
         private System.Windows.Forms.OpenFileDialog Archivo;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label29;
     }
 }

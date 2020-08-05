@@ -3,6 +3,7 @@
     using Presentacion.FormulariosBase.DTO;
     using System;
     using System.Collections.Generic;
+    using System.Security.Cryptography;
     using System.Windows.Forms;
 
     public partial class FormularioBase : Form
@@ -12,6 +13,7 @@
         public FormularioBase()
         {
             InitializeComponent();
+            _listaControlesObligatorios = new List<ControlDTO>();
         }
 
         public virtual void DesactivarControles(object obj)
@@ -177,6 +179,12 @@
 
             AsignarErrorProvider(control);
         }
+
+        public virtual void LimpiarControlesObligatorios()
+        {
+            _listaControlesObligatorios.Clear();
+            error.Clear();
+        }
         public virtual bool VerificarDatosObligatorios()
         {
             foreach (var objeto in _listaControlesObligatorios)
@@ -222,7 +230,6 @@
         {
             if (sender is TextBox)
             {
-              
                 error.SetError(((TextBox)sender),
                     !string.IsNullOrEmpty(((TextBox)sender).Text)
                         ? string.Empty

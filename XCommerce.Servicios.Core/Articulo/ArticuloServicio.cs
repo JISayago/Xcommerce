@@ -194,12 +194,15 @@ namespace XCommerce.Servicios.Core.Articulo
             {
                 return context.Articulos
                     .AsNoTracking()
+                    .Include("Precio")
                     .Select(x => new ArticuloDTO
                     {
                         Descripcion = x.Descripcion,
                         Abreviatura = x.Abreviatura,
                         Codigo = x.Codigo,
                         CodigoBarra = x.CodigoBarra,
+                        PrecioCosto = x.Precios.FirstOrDefault(y => y.ArticuloId == x.Id
+                        && y.FechaActualizacion == context.Precios.Where(z => z.ArticuloId == x.Id).Max(m => m.FechaActualizacion)).PrecioCosto,
                         ActivarLimiteVenta = x.ActivarLimiteVenta,
                         DescuentaStock = x.DescuentaStock,
                         Detalle = x.Detalle,
@@ -215,6 +218,8 @@ namespace XCommerce.Servicios.Core.Articulo
                         StockMaximo = x.StockMaximo,
                         StockMinimo = x.StockMinimo
                     }).FirstOrDefault(x => !x.EstaEliminado && x.Id == articuloId);
+
+                
             }
         }
 
@@ -252,5 +257,41 @@ namespace XCommerce.Servicios.Core.Articulo
                     }).FirstOrDefault(x => x.Id == BajaArticulo.ArticuloId);
             }
         }
+
+        //public void AgregarStock(long articuloId, decimal cantidad)
+        //{
+        //    using (var context = new ModeloXCommerceContainer())
+        //    {
+        //        var articuloAModificar = context.Articulos
+        //            .Include(x => x.Rubro)
+        //            .Include(x => x.Marca)
+        //            .FirstOrDefault(x => x.Id == articuloId);
+
+        //        if (articuloAModificar == null) throw new Exception("No se encontro el artículo");
+
+        //        articuloAModificar.Stock += cantidad;
+
+
+        //        context.SaveChanges();
+        //    }
+        //}
+        public void AgregarStock(string codigo, decimal cantidad)
+        {
+            using (var context = new ModeloXCommerceContainer())
+            {
+                var articuloAModificar = context.Articulos
+                    .Include(x => x.Rubro)
+                    .Include(x => x.Marca)
+                    .FirstOrDefault(x => x.Codigo == codigo || x.CodigoBarra == codigo) ;
+
+                if (articuloAModificar == null) throw new Exception("No se encontro el artículo");
+
+
+                articuloAModificar.Stock += cantidad;
+
+                context.SaveChanges();
+            }
+        }
+
     }
 }

@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using XCommerce.AccesoDatos;
 using XCommerce.Servicios.Core.Empleado.DTO;
 
@@ -31,39 +32,96 @@ namespace XCommerce.Servicios.Core.Empleado
         {
             using (var baseDatos = new ModeloXCommerceContainer())
             {
-                var nuevoEmpleado = new AccesoDatos.Empleado
+                if (!ExisteEmpleado(empleadoDto.Email, empleadoDto.Dni))
                 {
-                    Legajo = empleadoDto.Legajo,
-                    Apellido = empleadoDto.Apellido,
-                    Nombre = empleadoDto.Nombre,
-                    Dni = empleadoDto.Dni,
-                    Telefono = empleadoDto.Telefono,
-                    Celular = empleadoDto.Celular,
-                    Email = empleadoDto.Email,
-                    Cuil = empleadoDto.Cuil,
-                    FechaNacimiento = empleadoDto.FechaNacimiento,
-                    Foto = empleadoDto.Foto,
-                    FechaIngreso = empleadoDto.FechaIngreso,
-                    Direccion = new Direccion
+                    var nuevoEmpleado = new AccesoDatos.Empleado
                     {
-                        Calle = empleadoDto.Calle,
-                        Numero = empleadoDto.Numero,
-                        Piso = empleadoDto.Piso,
-                        Dpto = empleadoDto.Dpto,
-                        Casa = empleadoDto.Casa,
-                        Lote = empleadoDto.Lote,
-                        Barrio = empleadoDto.Barrio,
-                        Mza = empleadoDto.Mza,
-                        LocalidadId = empleadoDto.LocalidadId
-                    }
-                };
+                        Legajo = empleadoDto.Legajo,
+                        Apellido = empleadoDto.Apellido,
+                        Nombre = empleadoDto.Nombre,
+                        Dni = empleadoDto.Dni,
+                        Telefono = empleadoDto.Telefono,
+                        Celular = empleadoDto.Celular,
+                        Email = empleadoDto.Email,
+                        Cuil = empleadoDto.Cuil,
+                        FechaNacimiento = empleadoDto.FechaNacimiento,
+                        Foto = empleadoDto.Foto,
+                        FechaIngreso = empleadoDto.FechaIngreso,
+                        Direccion = new Direccion
+                        {
+                            Calle = empleadoDto.Calle,
+                            Numero = empleadoDto.Numero,
+                            Piso = empleadoDto.Piso,
+                            Dpto = empleadoDto.Dpto,
+                            Casa = empleadoDto.Casa,
+                            Lote = empleadoDto.Lote,
+                            Barrio = empleadoDto.Barrio,
+                            Mza = empleadoDto.Mza,
+                            LocalidadId = empleadoDto.LocalidadId
+                        }
+                    };
 
 
-                baseDatos.Personas.Add(nuevoEmpleado);
+                    baseDatos.Personas.Add(nuevoEmpleado);
 
-                baseDatos.SaveChanges();
+                    baseDatos.SaveChanges();
 
-                return nuevoEmpleado.Id;
+                    return nuevoEmpleado.Id;
+
+                }
+                else
+                {
+                    MessageBox.Show("Ya existe un empleado con ese DNI y/o Email.");
+                    return -1;
+                }
+            }
+        }
+
+        public bool ExisteEmpleado(string email, string dni)
+        {
+            using (var baseDatos = new ModeloXCommerceContainer())
+            {
+                var empleado = baseDatos.Personas.OfType<AccesoDatos.Empleado>()
+                      .AsNoTracking()
+                      .Where(x => !x.EstaEliminado)
+                      .Include(x => x.Direccion)
+                      .Include(x => x.Direccion.Localidad)
+                      .Select(x => new EmpleadoDTO
+                      {
+                          Id = x.Id,
+                          Apellido = x.Apellido,
+                          Nombre = x.Nombre,
+                          Dni = x.Dni,
+                          Legajo = x.Legajo,
+                          FechaIngreso = x.FechaIngreso,
+                          Telefono = x.Telefono,
+                          Celular = x.Celular,
+                          Email = x.Email,
+                          Cuil = x.Cuil,
+                          FechaNacimiento = x.FechaNacimiento,
+                          Foto = x.Foto,
+                          EstaEliminado = x.EstaEliminado,
+                          Calle = x.Direccion.Calle,
+                          Numero = x.Direccion.Numero,
+                          Piso = x.Direccion.Piso,
+                          Dpto = x.Direccion.Dpto,
+                          Casa = x.Direccion.Casa,
+                          Lote = x.Direccion.Lote,
+                          Barrio = x.Direccion.Barrio,
+                          Mza = x.Direccion.Mza,
+                          LocalidadId = x.Direccion.LocalidadId,
+                          ProvinciaId = x.Direccion.Localidad.ProvinciaId
+                      }
+                      ).FirstOrDefault(x => x.Email == email || x.Dni == dni);
+
+                if (empleado != null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
 

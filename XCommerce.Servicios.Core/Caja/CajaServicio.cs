@@ -106,11 +106,35 @@ namespace XCommerce.Servicios.Core.Caja
                         case TipoPago.Tarjeta:
                             break;
                         default:
-                            throw new Exception("Error tipo pago no existe");
+                            //throw new Exception("Error tipo pago no existe");
+                            Console.WriteLine("Error");
+                            break;
                     }
                 }
 
+                //todo: ni idea si va esto
+                total += context.Cajas.Where(x => x.Id == cajaId).FirstOrDefault().MontoApertura;
                 return total;
+            }
+        }
+
+        public IEnumerable<CajaDTO> ObtenerTodas()
+        {
+            using (var context = new ModeloXCommerceContainer())
+            {
+                return context.Cajas
+                    .AsNoTracking()
+                    .Select(x => new CajaDTO
+                    {
+                        Id = x.Id,
+                        FechaApertura = x.FechaApertura,
+                        FechaCierre = x.FechaCierre,
+                        MontoApertura = x.MontoApertura,
+                        MontoCierre = x.MontoCierre,
+                        MontoSistema = x.MontoSistema,
+                        UsuarioAperturaId = x.UsuarioAperturaId
+                    }).ToList();
+
             }
         }
     }

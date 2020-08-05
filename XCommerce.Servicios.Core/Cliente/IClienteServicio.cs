@@ -13,11 +13,15 @@ namespace XCommerce.Servicios.Core.Cliente
 
         IEnumerable<ClienteDTO> ObtenerClienteEliminado(string cadenaBuscar);
 
+        void AgregarSaldoCtaCte(long clienteId, decimal monto);
+
         ClienteDTO ObtenerClientePorId(long clienteId);
 
         ClienteDTO ObtenerClientePorDni(string dni);
 
         long Insertar(ClienteDTO clienteDto);
+
+        void InsertarConsumidorFinal();
 
         void Modificar(ClienteDTO clienteDto);
 

@@ -35,30 +35,31 @@
             // txtMotivoBaja
             // 
             this.txtMotivoBaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMotivoBaja.Location = new System.Drawing.Point(135, 123);
-            this.txtMotivoBaja.Margin = new System.Windows.Forms.Padding(4);
+            this.txtMotivoBaja.Location = new System.Drawing.Point(101, 100);
+            this.txtMotivoBaja.MaxLength = 250;
             this.txtMotivoBaja.Name = "txtMotivoBaja";
-            this.txtMotivoBaja.Size = new System.Drawing.Size(389, 26);
+            this.txtMotivoBaja.Size = new System.Drawing.Size(293, 22);
             this.txtMotivoBaja.TabIndex = 6;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(13, 122);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(10, 99);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(114, 25);
+            this.label1.Size = new System.Drawing.Size(91, 20);
             this.label1.TabIndex = 7;
             this.label1.Text = "Motivo Baja";
             // 
             // FormularioMotivoBajaABM
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(552, 210);
+            this.ClientSize = new System.Drawing.Size(414, 171);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtMotivoBaja);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MaximumSize = new System.Drawing.Size(604, 495);
             this.Name = "FormularioMotivoBajaABM";
             this.Text = "FormularioMotivoBajaABM";
             this.Controls.SetChildIndex(this.txtMotivoBaja, 0);

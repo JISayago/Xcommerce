@@ -55,6 +55,12 @@
             this.gbxFormaPago = new System.Windows.Forms.GroupBox();
             this.rdbCheque = new System.Windows.Forms.RadioButton();
             this.rdbCtaCte = new System.Windows.Forms.RadioButton();
+            this.gbCheque = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.rdbTarjeta = new System.Windows.Forms.RadioButton();
             this.rdbEfectivo = new System.Windows.Forms.RadioButton();
             this.btnCerrarMesa = new System.Windows.Forms.Button();
@@ -71,6 +77,27 @@
             this.txtClienteApyNom = new System.Windows.Forms.TextBox();
             this.btnBuscarCliente = new System.Windows.Forms.Button();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.btnBuscarArticulo = new System.Windows.Forms.Button();
+            this.gbTarjeta = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtNumeroTarjeta = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtClaveTarjeta = new System.Windows.Forms.TextBox();
+            this.cbPlan = new System.Windows.Forms.ComboBox();
+            this.cbTarjeta = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.gbCheqe = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dtFechaCheque = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.nudDiasCheque = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtNumeroCheque = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtEnteCheque = new System.Windows.Forms.TextBox();
+            this.cbBanco = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrilla)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudComensales)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidadArticulo)).BeginInit();
@@ -78,7 +105,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudDescuento)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTotal)).BeginInit();
             this.gbxFormaPago.SuspendLayout();
+            this.gbCheque.SuspendLayout();
             this.menu.SuspendLayout();
+            this.gbTarjeta.SuspendLayout();
+            this.gbCheqe.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDiasCheque)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvGrilla
@@ -91,7 +122,7 @@
             this.dgvGrilla.Name = "dgvGrilla";
             this.dgvGrilla.ReadOnly = true;
             this.dgvGrilla.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvGrilla.Size = new System.Drawing.Size(781, 288);
+            this.dgvGrilla.Size = new System.Drawing.Size(781, 221);
             this.dgvGrilla.TabIndex = 2;
             this.dgvGrilla.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvGrilla_CellMouseClick_1);
             // 
@@ -216,7 +247,7 @@
             // 
             this.nudCantidadArticulo.AllowDrop = true;
             this.nudCantidadArticulo.DecimalPlaces = 2;
-            this.nudCantidadArticulo.Location = new System.Drawing.Point(594, 131);
+            this.nudCantidadArticulo.Location = new System.Drawing.Point(579, 129);
             this.nudCantidadArticulo.Maximum = new decimal(new int[] {
             9999999,
             0,
@@ -241,7 +272,7 @@
             // 
             this.lblCantidad.AutoSize = true;
             this.lblCantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCantidad.Location = new System.Drawing.Point(591, 106);
+            this.lblCantidad.Location = new System.Drawing.Point(576, 104);
             this.lblCantidad.Name = "lblCantidad";
             this.lblCantidad.Size = new System.Drawing.Size(74, 18);
             this.lblCantidad.TabIndex = 15;
@@ -249,9 +280,9 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(697, 132);
+            this.btnAgregar.Location = new System.Drawing.Point(656, 129);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(75, 20);
+            this.btnAgregar.Size = new System.Drawing.Size(63, 20);
             this.btnAgregar.TabIndex = 17;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
@@ -262,7 +293,7 @@
             this.nudSubTotal.DecimalPlaces = 2;
             this.nudSubTotal.Enabled = false;
             this.nudSubTotal.InterceptArrowKeys = false;
-            this.nudSubTotal.Location = new System.Drawing.Point(705, 462);
+            this.nudSubTotal.Location = new System.Drawing.Point(705, 387);
             this.nudSubTotal.Maximum = new decimal(new int[] {
             9999999,
             0,
@@ -278,7 +309,7 @@
             // 
             this.lblSubTotal.AutoSize = true;
             this.lblSubTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSubTotal.Location = new System.Drawing.Point(574, 457);
+            this.lblSubTotal.Location = new System.Drawing.Point(574, 382);
             this.lblSubTotal.Name = "lblSubTotal";
             this.lblSubTotal.Size = new System.Drawing.Size(114, 25);
             this.lblSubTotal.TabIndex = 18;
@@ -286,7 +317,7 @@
             // 
             // nudDescuento
             // 
-            this.nudDescuento.Location = new System.Drawing.Point(706, 496);
+            this.nudDescuento.Location = new System.Drawing.Point(706, 421);
             this.nudDescuento.Name = "nudDescuento";
             this.nudDescuento.Size = new System.Drawing.Size(70, 20);
             this.nudDescuento.TabIndex = 21;
@@ -296,7 +327,7 @@
             // 
             this.lblDescuento.AutoSize = true;
             this.lblDescuento.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescuento.Location = new System.Drawing.Point(524, 491);
+            this.lblDescuento.Location = new System.Drawing.Point(524, 416);
             this.lblDescuento.Name = "lblDescuento";
             this.lblDescuento.Size = new System.Drawing.Size(165, 25);
             this.lblDescuento.TabIndex = 20;
@@ -307,7 +338,7 @@
             this.nudTotal.DecimalPlaces = 2;
             this.nudTotal.Enabled = false;
             this.nudTotal.InterceptArrowKeys = false;
-            this.nudTotal.Location = new System.Drawing.Point(705, 534);
+            this.nudTotal.Location = new System.Drawing.Point(705, 459);
             this.nudTotal.Maximum = new decimal(new int[] {
             9999999,
             0,
@@ -323,7 +354,7 @@
             // 
             this.lblTotal.AutoSize = true;
             this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(603, 529);
+            this.lblTotal.Location = new System.Drawing.Point(603, 454);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(85, 25);
             this.lblTotal.TabIndex = 22;
@@ -335,7 +366,7 @@
             this.toolStrip1.AutoSize = false;
             this.toolStrip1.BackColor = System.Drawing.Color.LightSteelBlue;
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip1.Location = new System.Drawing.Point(77, 95);
+            this.toolStrip1.Location = new System.Drawing.Point(-491, -110);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(706, 5);
             this.toolStrip1.TabIndex = 24;
@@ -345,12 +376,13 @@
             // 
             this.gbxFormaPago.Controls.Add(this.rdbCheque);
             this.gbxFormaPago.Controls.Add(this.rdbCtaCte);
+            this.gbxFormaPago.Controls.Add(this.gbCheque);
             this.gbxFormaPago.Controls.Add(this.rdbTarjeta);
             this.gbxFormaPago.Controls.Add(this.rdbEfectivo);
             this.gbxFormaPago.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbxFormaPago.Location = new System.Drawing.Point(21, 457);
+            this.gbxFormaPago.Location = new System.Drawing.Point(3, 382);
             this.gbxFormaPago.Name = "gbxFormaPago";
-            this.gbxFormaPago.Size = new System.Drawing.Size(239, 100);
+            this.gbxFormaPago.Size = new System.Drawing.Size(348, 59);
             this.gbxFormaPago.TabIndex = 25;
             this.gbxFormaPago.TabStop = false;
             this.gbxFormaPago.Text = "Formas de Pago";
@@ -358,37 +390,96 @@
             // rdbCheque
             // 
             this.rdbCheque.AutoSize = true;
-            this.rdbCheque.Enabled = false;
             this.rdbCheque.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbCheque.Location = new System.Drawing.Point(151, 62);
+            this.rdbCheque.Location = new System.Drawing.Point(184, 28);
             this.rdbCheque.Name = "rdbCheque";
             this.rdbCheque.Size = new System.Drawing.Size(83, 24);
             this.rdbCheque.TabIndex = 3;
             this.rdbCheque.Text = "Cheque";
             this.rdbCheque.UseVisualStyleBackColor = true;
+            this.rdbCheque.Click += new System.EventHandler(this.rdbCheque_Click);
             // 
             // rdbCtaCte
             // 
             this.rdbCtaCte.AutoSize = true;
             this.rdbCtaCte.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbCtaCte.Location = new System.Drawing.Point(151, 28);
+            this.rdbCtaCte.Location = new System.Drawing.Point(97, 29);
             this.rdbCtaCte.Name = "rdbCtaCte";
             this.rdbCtaCte.Size = new System.Drawing.Size(81, 24);
             this.rdbCtaCte.TabIndex = 2;
             this.rdbCtaCte.Text = "Cta.Cte";
             this.rdbCtaCte.UseVisualStyleBackColor = true;
+            this.rdbCtaCte.Click += new System.EventHandler(this.rdbCtaCte_Click);
+            // 
+            // gbCheque
+            // 
+            this.gbCheque.Controls.Add(this.label16);
+            this.gbCheque.Controls.Add(this.label14);
+            this.gbCheque.Controls.Add(this.label12);
+            this.gbCheque.Controls.Add(this.label13);
+            this.gbCheque.Controls.Add(this.label15);
+            this.gbCheque.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.gbCheque.Location = new System.Drawing.Point(1, 57);
+            this.gbCheque.Margin = new System.Windows.Forms.Padding(2);
+            this.gbCheque.Name = "gbCheque";
+            this.gbCheque.Padding = new System.Windows.Forms.Padding(2);
+            this.gbCheque.Size = new System.Drawing.Size(504, 139);
+            this.gbCheque.TabIndex = 56;
+            this.gbCheque.TabStop = false;
+            this.gbCheque.Text = "CHEQUE";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(17, 66);
+            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(59, 20);
+            this.label16.TabIndex = 62;
+            this.label16.Text = "Fecha";
+            // 
+            // label14
+            // 
+            this.label14.Location = new System.Drawing.Point(0, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(100, 23);
+            this.label14.TabIndex = 63;
+            // 
+            // label12
+            // 
+            this.label12.Location = new System.Drawing.Point(0, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(100, 23);
+            this.label12.TabIndex = 64;
+            // 
+            // label13
+            // 
+            this.label13.Location = new System.Drawing.Point(0, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(100, 23);
+            this.label13.TabIndex = 65;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(16, 34);
+            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(60, 20);
+            this.label15.TabIndex = 0;
+            this.label15.Text = "Banco";
             // 
             // rdbTarjeta
             // 
             this.rdbTarjeta.AutoSize = true;
-            this.rdbTarjeta.Enabled = false;
             this.rdbTarjeta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbTarjeta.Location = new System.Drawing.Point(7, 63);
+            this.rdbTarjeta.Location = new System.Drawing.Point(273, 28);
             this.rdbTarjeta.Name = "rdbTarjeta";
             this.rdbTarjeta.Size = new System.Drawing.Size(76, 24);
             this.rdbTarjeta.TabIndex = 1;
             this.rdbTarjeta.Text = "Tarjeta";
             this.rdbTarjeta.UseVisualStyleBackColor = true;
+            this.rdbTarjeta.Click += new System.EventHandler(this.rdbTarjeta_Click);
             // 
             // rdbEfectivo
             // 
@@ -402,10 +493,11 @@
             this.rdbEfectivo.TabStop = true;
             this.rdbEfectivo.Text = "Efectivo";
             this.rdbEfectivo.UseVisualStyleBackColor = true;
+            this.rdbEfectivo.Click += new System.EventHandler(this.rdbEfectivo_Click);
             // 
             // btnCerrarMesa
             // 
-            this.btnCerrarMesa.Location = new System.Drawing.Point(325, 471);
+            this.btnCerrarMesa.Location = new System.Drawing.Point(625, 485);
             this.btnCerrarMesa.Name = "btnCerrarMesa";
             this.btnCerrarMesa.Size = new System.Drawing.Size(150, 38);
             this.btnCerrarMesa.TabIndex = 26;
@@ -415,7 +507,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(325, 517);
+            this.btnCancelar.Location = new System.Drawing.Point(625, 528);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(150, 37);
             this.btnCancelar.TabIndex = 27;
@@ -527,18 +619,240 @@
             this.toolStrip2.AutoSize = false;
             this.toolStrip2.BackColor = System.Drawing.Color.LightSteelBlue;
             this.toolStrip2.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip2.Location = new System.Drawing.Point(76, 53);
+            this.toolStrip2.Location = new System.Drawing.Point(-492, -152);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.Size = new System.Drawing.Size(706, 5);
             this.toolStrip2.TabIndex = 54;
             this.toolStrip2.Text = "toolStrip2";
+            // 
+            // btnBuscarArticulo
+            // 
+            this.btnBuscarArticulo.Location = new System.Drawing.Point(720, 129);
+            this.btnBuscarArticulo.Name = "btnBuscarArticulo";
+            this.btnBuscarArticulo.Size = new System.Drawing.Size(63, 20);
+            this.btnBuscarArticulo.TabIndex = 55;
+            this.btnBuscarArticulo.Text = "Buscar";
+            this.btnBuscarArticulo.UseVisualStyleBackColor = true;
+            this.btnBuscarArticulo.Click += new System.EventHandler(this.btnBuscarArticulo_Click_1);
+            // 
+            // gbTarjeta
+            // 
+            this.gbTarjeta.Controls.Add(this.label11);
+            this.gbTarjeta.Controls.Add(this.txtNumeroTarjeta);
+            this.gbTarjeta.Controls.Add(this.label10);
+            this.gbTarjeta.Controls.Add(this.txtClaveTarjeta);
+            this.gbTarjeta.Controls.Add(this.cbPlan);
+            this.gbTarjeta.Controls.Add(this.cbTarjeta);
+            this.gbTarjeta.Controls.Add(this.label7);
+            this.gbTarjeta.Controls.Add(this.label8);
+            this.gbTarjeta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.gbTarjeta.Location = new System.Drawing.Point(10, 446);
+            this.gbTarjeta.Margin = new System.Windows.Forms.Padding(2);
+            this.gbTarjeta.Name = "gbTarjeta";
+            this.gbTarjeta.Padding = new System.Windows.Forms.Padding(2);
+            this.gbTarjeta.Size = new System.Drawing.Size(458, 107);
+            this.gbTarjeta.TabIndex = 63;
+            this.gbTarjeta.TabStop = false;
+            this.gbTarjeta.Text = "TARJETA";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(230, 73);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(71, 20);
+            this.label11.TabIndex = 48;
+            this.label11.Text = "Número";
+            // 
+            // txtNumeroTarjeta
+            // 
+            this.txtNumeroTarjeta.Location = new System.Drawing.Point(304, 73);
+            this.txtNumeroTarjeta.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNumeroTarjeta.Name = "txtNumeroTarjeta";
+            this.txtNumeroTarjeta.Size = new System.Drawing.Size(147, 26);
+            this.txtNumeroTarjeta.TabIndex = 49;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(247, 29);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(53, 20);
+            this.label10.TabIndex = 46;
+            this.label10.Text = "Clave";
+            // 
+            // txtClaveTarjeta
+            // 
+            this.txtClaveTarjeta.Location = new System.Drawing.Point(304, 29);
+            this.txtClaveTarjeta.Margin = new System.Windows.Forms.Padding(2);
+            this.txtClaveTarjeta.Name = "txtClaveTarjeta";
+            this.txtClaveTarjeta.Size = new System.Drawing.Size(147, 26);
+            this.txtClaveTarjeta.TabIndex = 47;
+            // 
+            // cbPlan
+            // 
+            this.cbPlan.FormattingEnabled = true;
+            this.cbPlan.Location = new System.Drawing.Point(74, 73);
+            this.cbPlan.Name = "cbPlan";
+            this.cbPlan.Size = new System.Drawing.Size(147, 28);
+            this.cbPlan.TabIndex = 4;
+            // 
+            // cbTarjeta
+            // 
+            this.cbTarjeta.FormattingEnabled = true;
+            this.cbTarjeta.Location = new System.Drawing.Point(74, 26);
+            this.cbTarjeta.Name = "cbTarjeta";
+            this.cbTarjeta.Size = new System.Drawing.Size(147, 28);
+            this.cbTarjeta.TabIndex = 3;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(25, 73);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(44, 20);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Plan";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(4, 29);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(65, 20);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Tarjeta";
+            // 
+            // gbCheqe
+            // 
+            this.gbCheqe.Controls.Add(this.label2);
+            this.gbCheqe.Controls.Add(this.dtFechaCheque);
+            this.gbCheqe.Controls.Add(this.label3);
+            this.gbCheqe.Controls.Add(this.nudDiasCheque);
+            this.gbCheqe.Controls.Add(this.label4);
+            this.gbCheqe.Controls.Add(this.txtNumeroCheque);
+            this.gbCheqe.Controls.Add(this.label5);
+            this.gbCheqe.Controls.Add(this.txtEnteCheque);
+            this.gbCheqe.Controls.Add(this.cbBanco);
+            this.gbCheqe.Controls.Add(this.label6);
+            this.gbCheqe.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.gbCheqe.Location = new System.Drawing.Point(8, 446);
+            this.gbCheqe.Margin = new System.Windows.Forms.Padding(2);
+            this.gbCheqe.Name = "gbCheqe";
+            this.gbCheqe.Padding = new System.Windows.Forms.Padding(2);
+            this.gbCheqe.Size = new System.Drawing.Size(491, 137);
+            this.gbCheqe.TabIndex = 64;
+            this.gbCheqe.TabStop = false;
+            this.gbCheqe.Text = "CHEQUE";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(4, 65);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(59, 20);
+            this.label2.TabIndex = 62;
+            this.label2.Text = "Fecha";
+            // 
+            // dtFechaCheque
+            // 
+            this.dtFechaCheque.Location = new System.Drawing.Point(82, 60);
+            this.dtFechaCheque.MaxDate = new System.DateTime(2020, 7, 30, 0, 0, 0, 0);
+            this.dtFechaCheque.Name = "dtFechaCheque";
+            this.dtFechaCheque.Size = new System.Drawing.Size(159, 26);
+            this.dtFechaCheque.TabIndex = 61;
+            this.dtFechaCheque.Value = new System.DateTime(2020, 7, 30, 0, 0, 0, 0);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(10, 99);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(45, 20);
+            this.label3.TabIndex = 60;
+            this.label3.Text = "Días";
+            // 
+            // nudDiasCheque
+            // 
+            this.nudDiasCheque.Location = new System.Drawing.Point(82, 96);
+            this.nudDiasCheque.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nudDiasCheque.Name = "nudDiasCheque";
+            this.nudDiasCheque.Size = new System.Drawing.Size(159, 26);
+            this.nudDiasCheque.TabIndex = 59;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(247, 66);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(71, 20);
+            this.label4.TabIndex = 48;
+            this.label4.Text = "Número";
+            // 
+            // txtNumeroCheque
+            // 
+            this.txtNumeroCheque.Location = new System.Drawing.Point(325, 63);
+            this.txtNumeroCheque.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNumeroCheque.Name = "txtNumeroCheque";
+            this.txtNumeroCheque.Size = new System.Drawing.Size(159, 26);
+            this.txtNumeroCheque.TabIndex = 49;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(246, 34);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(78, 20);
+            this.label5.TabIndex = 46;
+            this.label5.Text = "Ente Em";
+            // 
+            // txtEnteCheque
+            // 
+            this.txtEnteCheque.Location = new System.Drawing.Point(324, 28);
+            this.txtEnteCheque.Margin = new System.Windows.Forms.Padding(2);
+            this.txtEnteCheque.Name = "txtEnteCheque";
+            this.txtEnteCheque.Size = new System.Drawing.Size(159, 26);
+            this.txtEnteCheque.TabIndex = 47;
+            // 
+            // cbBanco
+            // 
+            this.cbBanco.FormattingEnabled = true;
+            this.cbBanco.Location = new System.Drawing.Point(82, 26);
+            this.cbBanco.Name = "cbBanco";
+            this.cbBanco.Size = new System.Drawing.Size(159, 28);
+            this.cbBanco.TabIndex = 3;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(3, 34);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(60, 20);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Banco";
             // 
             // FormularioComprobanteMesa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
-            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.ClientSize = new System.Drawing.Size(791, 579);
+            this.Controls.Add(this.gbCheqe);
+            this.Controls.Add(this.gbTarjeta);
+            this.Controls.Add(this.btnBuscarArticulo);
             this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.btnBuscarCliente);
             this.Controls.Add(this.lblClienteApynom);
@@ -574,8 +888,11 @@
             this.Controls.Add(this.nudComensales);
             this.Controls.Add(this.lblComensales);
             this.Controls.Add(this.dgvGrilla);
+            this.MaximumSize = new System.Drawing.Size(807, 618);
+            this.MinimumSize = new System.Drawing.Size(807, 618);
             this.Name = "FormularioComprobanteMesa";
             this.Text = "Agregar";
+            this.Load += new System.EventHandler(this.FormularioComprobanteMesa_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrilla)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudComensales)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidadArticulo)).EndInit();
@@ -584,7 +901,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudTotal)).EndInit();
             this.gbxFormaPago.ResumeLayout(false);
             this.gbxFormaPago.PerformLayout();
+            this.gbCheque.ResumeLayout(false);
+            this.gbCheque.PerformLayout();
             this.menu.ResumeLayout(false);
+            this.gbTarjeta.ResumeLayout(false);
+            this.gbTarjeta.PerformLayout();
+            this.gbCheqe.ResumeLayout(false);
+            this.gbCheqe.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDiasCheque)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -634,5 +958,32 @@
         private System.Windows.Forms.TextBox txtClienteApyNom;
         private System.Windows.Forms.Button btnBuscarCliente;
         private System.Windows.Forms.ToolStrip toolStrip2;
+        private System.Windows.Forms.Button btnBuscarArticulo;
+        private System.Windows.Forms.GroupBox gbCheque;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.GroupBox gbTarjeta;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtNumeroTarjeta;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtClaveTarjeta;
+        private System.Windows.Forms.ComboBox cbPlan;
+        private System.Windows.Forms.ComboBox cbTarjeta;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.GroupBox gbCheqe;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DateTimePicker dtFechaCheque;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.NumericUpDown nudDiasCheque;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtNumeroCheque;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtEnteCheque;
+        private System.Windows.Forms.ComboBox cbBanco;
+        private System.Windows.Forms.Label label6;
     }
 }

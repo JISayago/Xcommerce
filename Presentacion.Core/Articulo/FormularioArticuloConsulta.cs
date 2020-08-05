@@ -17,14 +17,32 @@ namespace Presentacion.Core.Articulo
     public partial class FormularioArticuloConsulta : FormularioBaseConsulta
     {
         private IArticuloServicio _articuloServicio;
+        private bool vieneDeMesaKiosco = false;
+        public long articuloSeleccionado = 0;
+
         public FormularioArticuloConsulta() : this(new ArticuloServicio())
         {
             InitializeComponent();
+        }
+        public FormularioArticuloConsulta(bool vieneDeMesaKiosco) : this(new ArticuloServicio())
+        {
+            InitializeComponent();
+            this.vieneDeMesaKiosco = vieneDeMesaKiosco;
         }
         public FormularioArticuloConsulta(IArticuloServicio articuloServicio)
         {
             _articuloServicio = articuloServicio;
             ActualizarDatos(dgvGrilla, string.Empty, cbxEstaEliminado, BarraLateralBotones);
+        }
+
+        public override void EjecutarDobleClickFila()
+        {
+            if (vieneDeMesaKiosco)
+            {
+                Console.WriteLine("In ClienteCons");
+                articuloSeleccionado = (long)entidadId;
+                Close();
+            }
         }
 
         public override void ResetearGrilla(DataGridView grilla)
@@ -109,7 +127,28 @@ namespace Presentacion.Core.Articulo
         private void btnBajaArticulo_Click(object sender, EventArgs e)
         {
             var bajaArticulo = new FormularioBajaArticuloABM(TipoOperacion.Nuevo, entidadId);
-            bajaArticulo.ShowDialog();    
+            bajaArticulo.ShowDialog();
+            ActualizarDatos(dgvGrilla, string.Empty, cbxEstaEliminado, BarraLateralBotones);
+        }
+
+        private void btnStock_Click(object sender, EventArgs e)
+        {
+            AgregarStock(entidadId);     
+        }
+
+        private void AgregarStock(long? entidadId)
+        {
+            long stockId = (long)entidadId;
+
+            var articulo = _articuloServicio.ObtenerPorId(stockId);
+
+            var altaStockArticulo = new FormularioAgregarStock(stockId, articulo.Stock);
+
+            //agregar mensajito de que todo esta bien
+
+            altaStockArticulo.ShowDialog();
+
+            ActualizarDatos(dgvGrilla, string.Empty, cbxEstaEliminado, BarraLateralBotones);
         }
     }
 }

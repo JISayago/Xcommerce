@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using XCommerce.AccesoDatos;
 using XCommerce.Servicios.Core.DetalleCaja.DTO;
 
@@ -25,6 +22,26 @@ namespace XCommerce.Servicios.Core.DetalleCaja
 
                 context.SaveChanges();
 
+            }
+        }
+
+        public IEnumerable<DetalleCajaDTO> Obtener(long? cajaId, TipoPago? tipo)
+        {
+            using (var context = new ModeloXCommerceContainer())
+            {
+                IQueryable<AccesoDatos.DetalleCaja> q = context.DetalleCajas;
+
+                if (cajaId != null) q = q.Where(x => x.CajaId == cajaId);
+                if (tipo != null) q = q.Where(x => x.TipoPago == tipo);
+
+                return q.Select(x => new DetalleCajaDTO
+                    {
+                        Id = x.Id,
+                        CajaId = x.CajaId,
+                        Monto  = x.Monto,
+                        TipoPago = x.TipoPago,
+                        Caja = x.Caja
+                    }).ToList();
             }
         }
     }

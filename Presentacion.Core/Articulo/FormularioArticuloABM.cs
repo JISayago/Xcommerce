@@ -57,6 +57,8 @@ namespace Presentacion.Core.Articulo
             CargarComboBox(cmbMarca, _marcaServicio.ObtenerMarca(string.Empty), "Descripcion", "Id");
             CargarComboBox(cmbRubro, _rubroServicio.ObtenerRubro(string.Empty), "Descripcion", "Id");
 
+            imgFotoArticulo.Image = Constantes.Imagenes.ImagenUsuario;
+
             if (tipoOperacion == TipoOperacion.Eliminar || tipoOperacion == TipoOperacion.Modificar)
             {
                 CargarDatos(entidadId);
@@ -70,6 +72,33 @@ namespace Presentacion.Core.Articulo
             {
                 DesactivarControles(this);
             }
+            if (tipoOperacion == TipoOperacion.Modificar)
+            {
+                nudStock.ReadOnly = true;
+            }
+            if(tipoOperacion == TipoOperacion.Nuevo)
+            {
+                nudStock.Enabled = false;
+            }
+
+
+            AgregarControlesObligatorios(txtBoxCodigo, "Codigo");
+            AgregarControlesObligatorios(txtBoxCodigoBarra, "Codigo Barra");
+            AgregarControlesObligatorios(txtBoxDescripcion, "Descripcion");
+            AgregarControlesObligatorios(txtBoxDetalle, "Detalle");
+            AgregarControlesObligatorios(txtBoxAbreviatura, "Abreviatura");
+            AgregarControlesObligatorios(cmbMarca, "Marca");
+            AgregarControlesObligatorios(cmbRubro, "Rubro");
+            AgregarControlesObligatorios(cmbListaPrecio, "Lista");
+
+
+
+            //nudStock.Enabled = true;
+            nudStockMin.Enabled = true;
+            nudStockMax.Enabled = true;
+            cbxPermiteStockNegativo.Enabled = true;
+
+            cbxDescuentaStock.CheckState = CheckState.Checked;
 
         }
 
@@ -131,6 +160,12 @@ namespace Presentacion.Core.Articulo
 
         public override bool EjecutarComandoModificar()
         {
+            if (!VerificarDatosObligatorios())
+            {
+                MessageBox.Show(@"Por favor ingrese los campos Obligatorios.", @"Atención", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
             var articuloAModificar = new ArticuloDTO
             {
                 Id = EntidadId.Value,
@@ -159,16 +194,12 @@ namespace Presentacion.Core.Articulo
 
         public override bool EjecutarComandoNuevo()
         {
-            //TODO
-            /*
             if (!VerificarDatosObligatorios())
             {
                 MessageBox.Show(@"Por favor ingrese los campos Obligatorios.", @"Atención", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return false;
             }
-            /
-            */
 
 
             var articuloNuevo = new ArticuloDTO
@@ -235,12 +266,12 @@ namespace Presentacion.Core.Articulo
                 }
                 else
                 {
-                    imgFotoArticulo.Image = Presentacion.Constantes.Imagenes.ImagenBotonBuscar;
+                    imgFotoArticulo.Image = Constantes.Imagenes.ImagenBotonBuscar;
                 }
             }
             else
             {
-                imgFotoArticulo.Image = Presentacion.Constantes.Imagenes.ImagenBotonBuscar;
+                imgFotoArticulo.Image = Constantes.Imagenes.ImagenBotonBuscar;
             }
         }
 
@@ -262,6 +293,29 @@ namespace Presentacion.Core.Articulo
             CargarComboBox(cmbRubro, _rubroServicio.ObtenerRubro(string.Empty), "Descripcion", "Id");
             CargarComboBox(cmbMarca, _marcaServicio.ObtenerMarca(string.Empty), "Descripcion", "Id");
 
+        }
+
+        private void btnBuscarEmpleado_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbxDescuentaStock_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbxDescuentaStock.Checked)
+            {
+            //    nudStock.Enabled = true;
+                nudStockMin.Enabled = true;
+                nudStockMax.Enabled = true;
+                cbxPermiteStockNegativo.Enabled = true;
+            } else
+            {
+                nudStock.Enabled = false;
+                nudStockMin.Enabled = false;
+                nudStockMax.Enabled = false;
+                cbxPermiteStockNegativo.Enabled = false;
+
+            }
         }
     }
 }

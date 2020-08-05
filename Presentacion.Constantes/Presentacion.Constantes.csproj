@@ -52,13 +52,23 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Imagenes\Actualizar.png" />
+    <Content Include="Imagenes\add-to-cart.png" />
     <Content Include="Imagenes\Buscar.png" />
     <Content Include="Imagenes\Caja.jpg" />
+    <Content Include="Imagenes\calculator.png" />
+    <Content Include="Imagenes\cash.png" />
+    <Content Include="Imagenes\cash_register.png" />
     <Content Include="Imagenes\Cerrar.png" />
     <Content Include="Imagenes\Check.png" />
+    <Content Include="Imagenes\checkout.png" />
+    <Content Include="Imagenes\delivery.png" />
+    <Content Include="Imagenes\dish.png" />
     <Content Include="Imagenes\Eliminar.png" />
+    <Content Include="Imagenes\eye.png" />
+    <Content Include="Imagenes\filter.png" />
     <Content Include="Imagenes\Guardar.png" />
     <Content Include="Imagenes\Imprimir.png" />
+    <Content Include="Imagenes\kiosco.png" />
     <Content Include="Imagenes\limpiar 3.png" />
     <Content Include="Imagenes\Limpiar 4.png" />
     <Content Include="Imagenes\Limpiar.png" />
@@ -67,14 +77,22 @@
     <Content Include="Imagenes\logout.png" />
     <Content Include="Imagenes\Modificar.png" />
     <Content Include="Imagenes\Nuevo.png" />
+    <Content Include="Imagenes\recipt.png" />
     <Content Include="Imagenes\usuari.png" />
     <Content Include="Imagenes\Volver.png" />
+    <Content Include="Imagenes\wallet.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Presentacion.Helpers\Presentacion.Helpers.csproj">
+      <Project>{c88922a0-334b-4764-8152-bc862ba8a084}</Project>
+      <Name>Presentacion.Helpers</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

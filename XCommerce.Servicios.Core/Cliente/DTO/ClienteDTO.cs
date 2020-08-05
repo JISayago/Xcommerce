@@ -10,7 +10,7 @@ namespace XCommerce.Servicios.Core.Cliente.DTO
     {
         public long Id { get; set; }
 
-        public decimal MontoMaximoCtaCte { get; set; }
+        
 
         // =================Persona================= //
 
@@ -21,6 +21,8 @@ namespace XCommerce.Servicios.Core.Cliente.DTO
         public string ApyNom => $"{Apellido} {Nombre}";
 
         public string Dni { get; set; }
+
+        public decimal MontoMaximoCtaCte { get; set; }
 
         public string Telefono { get; set; }
 

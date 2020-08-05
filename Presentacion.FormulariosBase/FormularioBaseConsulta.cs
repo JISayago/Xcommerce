@@ -9,6 +9,7 @@
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows.Forms;
+    using System.Xml.Serialization;
 
     public partial class FormularioBaseConsulta : FormularioBase
     {
@@ -188,6 +189,12 @@
         private void DgvGrilla_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             EjecutarDobleClickFila();
+        }
+
+        public void DescativarEliminar()
+        {
+            this.btnEliminar.Enabled = false;
+            this.btnNuevo.Enabled = false;
         }
     }
 }

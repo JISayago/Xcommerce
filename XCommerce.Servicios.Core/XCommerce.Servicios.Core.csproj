@@ -40,6 +40,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,10 +59,10 @@
     <Compile Include="Articulo\MotivoBaja\MotivoBajaServicio.cs" />
     <Compile Include="Articulo\DTO\ArticuloDTO.cs" />
     <Compile Include="Articulo\IArticuloServicio.cs" />
+    <Compile Include="Banco\BancoServicio.cs" />
+    <Compile Include="Banco\DTO\BancoDTO.cs" />
+    <Compile Include="Banco\IBancoServicio.cs" />
     <Compile Include="Caja\CajaServicio.cs" />
-    <Compile Include="Caja\DetalleCaja\DetalleCajaServicio.cs" />
-    <Compile Include="Caja\DetalleCaja\DTO\DetalleCajaDTO.cs" />
-    <Compile Include="Caja\DetalleCaja\IDetalleCajaServicio.cs" />
     <Compile Include="Caja\DTO\CajaDTO.cs" />
     <Compile Include="Caja\ICajaServicio.cs" />
     <Compile Include="Articulo\Marca\DTO\MarcaDTO.cs" />
@@ -72,15 +74,22 @@
     <Compile Include="Cliente\ClienteServicio.cs" />
     <Compile Include="Cliente\DTO\ClienteDTO.cs" />
     <Compile Include="Cliente\IClienteServicio.cs" />
+    <Compile Include="Comprobante\ComprobanteCompraServicio.cs" />
     <Compile Include="Comprobante\ComprobanteSalonServicio.cs" />
     <Compile Include="Comprobante\ComprobanteServicio.cs" />
     <Compile Include="Comprobante\Descuento.cs" />
+    <Compile Include="Comprobante\DTO\ComprobanteCompraDTO.cs" />
     <Compile Include="Comprobante\DTO\ComprobanteDTO.cs" />
     <Compile Include="Comprobante\DTO\ComprobanteMesaDTO.cs" />
     <Compile Include="Comprobante\DTO\DetalleComprobanteDTO.cs" />
     <Compile Include="Comprobante\DTO\DetalleComprobanteSalonDTO.cs" />
+    <Compile Include="Comprobante\IComprobanteCompraServicio.cs" />
+    <Compile Include="Comprobante\DTO\ComprobanteFacturaDTO.cs" />
     <Compile Include="Comprobante\IComprobanteSalonServicio.cs" />
     <Compile Include="Comprobante\IComprobanteServicio.cs" />
+    <Compile Include="CondicionIva\CondicionIvaServicio.cs" />
+    <Compile Include="CondicionIva\DTO\CondicionIvaDTO.cs" />
+    <Compile Include="CondicionIva\ICondicionIvaServicio.cs" />
     <Compile Include="DetalleCaja\DetalleCajaServicio.cs" />
     <Compile Include="DetalleCaja\DTO\DetalleCajaDTO.cs" />
     <Compile Include="DetalleCaja\IDetalleCajaServicio.cs" />
@@ -93,6 +102,13 @@
     <Compile Include="Empleado\Usuario\DTO\UsuarioDTO.cs" />
     <Compile Include="Empleado\Usuario\IUsuarioServicio.cs" />
     <Compile Include="Empleado\Usuario\UsuarioServicio.cs" />
+    <Compile Include="FormaPago\DTO\FormaPagoChequeDTO.cs" />
+    <Compile Include="FormaPago\DTO\FormaPagoCtaCteDTO.cs" />
+    <Compile Include="FormaPago\DTO\FormaPagoDTO.cs" />
+    <Compile Include="FormaPago\DTO\FormaPagoEfectivoDTO.cs" />
+    <Compile Include="FormaPago\DTO\FormaPagoTarjetaDTO.cs" />
+    <Compile Include="FormaPago\FormaPagoServicio.cs" />
+    <Compile Include="FormaPago\IFormaPagoServicio.cs" />
     <Compile Include="Kiosco\ComprobanteKioscoServicio.cs" />
     <Compile Include="Movimiento\IMovimientoServicio.cs" />
     <Compile Include="Movimiento\MovimientoServicio.cs" />
@@ -107,6 +123,9 @@
     <Compile Include="Precio\DTO\PrecioDTO.cs" />
     <Compile Include="Precio\IPrecioServicio.cs" />
     <Compile Include="Precio\PrecioServicio.cs" />
+    <Compile Include="Proveedor\DTO\ProveedorDTO.cs" />
+    <Compile Include="Proveedor\IProveedorServicio.cs" />
+    <Compile Include="Proveedor\ProveedorServicio.cs" />
     <Compile Include="Provincia\Localidad\ILocalidadServicio.cs" />
     <Compile Include="Provincia\Localidad\DTO\LocalidadDTO.cs" />
     <Compile Include="Provincia\Localidad\LocalidadServicio.cs" />
@@ -123,8 +142,18 @@
     <Compile Include="Salon\Mesa\IMesaServicio.cs" />
     <Compile Include="Salon\Mesa\MesaServicio.cs" />
     <Compile Include="Salon\SalonServicio.cs" />
+    <Compile Include="Tarjeta\DTO\TarjetaDTO.cs" />
+    <Compile Include="Tarjeta\ITarjetaServicio.cs" />
+    <Compile Include="Tarjeta\PlanTarjeta\DTO\PlanTarjetaDTO.cs" />
+    <Compile Include="Tarjeta\PlanTarjeta\IPlanTarjetaServicio.cs" />
+    <Compile Include="Tarjeta\PlanTarjeta\PlanTarjetaServicio.cs" />
+    <Compile Include="Tarjeta\TarjetaServicio.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Presentacion.Constantes\Presentacion.Constantes.csproj">
+      <Project>{4f44a178-3658-482f-b40b-6ec813483349}</Project>
+      <Name>Presentacion.Constantes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Presentacion.Helpers\Presentacion.Helpers.csproj">
       <Project>{c88922a0-334b-4764-8152-bc862ba8a084}</Project>
       <Name>Presentacion.Helpers</Name>

@@ -23,6 +23,8 @@ namespace XCommerce.Servicios.Core.Articulo.BajaArticulo.DTO
         public long ArticuloId { get; set; }
 
         public string MotivoDescrip { get; set; }
+
+        public decimal? StockModificado { get; set; }
         
     }
 }

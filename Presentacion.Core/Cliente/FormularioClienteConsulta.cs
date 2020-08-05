@@ -53,6 +53,10 @@ namespace Presentacion.Core.Cliente
             grilla.Columns["DNI"].Visible = true;
             grilla.Columns["DNI"].Width = 100;
 
+            grilla.Columns["MontoMaximoCtaCte"].Visible = true;
+            grilla.Columns["MontoMaximoCtaCte"].Width = 130;
+            grilla.Columns["MontoMaximoCtaCte"].HeaderText = "Saldo Cta.Cte.";
+
             grilla.Columns["Email"].Visible = true;
             grilla.Columns["Email"].Width = 130;
 
@@ -119,5 +123,19 @@ namespace Presentacion.Core.Cliente
         {
 
         }
+
+        private void brnAgregarSaldo_Click(object sender, EventArgs e)
+        {
+            AgregarSaldoCtaCte(entidadId);
+        }
+
+        private void AgregarSaldoCtaCte(long? clienteId)
+        {
+            if (clienteId == null) throw new Exception("Error al Seleccionar el Cliente");
+            var Fctacte = new FormularioAgregarCtaCte((long)clienteId);
+            Fctacte.ShowDialog();
+        }
+
+      
     }
 }

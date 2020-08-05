@@ -10,5 +10,9 @@ namespace XCommerce.Servicios.Core.Comprobante
     public interface IComprobanteServicio
     {
         long Generar(ComprobanteDTO dto);
+        long GenerarComprobanteDelivery(ComprobanteDTO dto);
+        long GenerarComprobanteCompra(ComprobanteCompraDTO dto);
+        ComprobanteFacturaDTO ObtenerPorId(long comprobanteId);
+
     }
 }
