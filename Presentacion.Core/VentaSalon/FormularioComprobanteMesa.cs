@@ -15,10 +15,11 @@ using XCommerce.AccesoDatos;
 using XCommerce.Servicio.Core.Banco;
 using XCommerce.Servicio.Core.Banco.DTO;
 using XCommerce.Servicios.Core.Articulo;
-using XCommerce.Servicios.Core.Caja.DetalleCaja;
 using XCommerce.Servicios.Core.Cliente;
 using XCommerce.Servicios.Core.Comprobante;
 using XCommerce.Servicios.Core.Comprobante.DTO;
+using XCommerce.Servicios.Core.DetalleCaja;
+using XCommerce.Servicios.Core.DetalleCaja.DTO;
 using XCommerce.Servicios.Core.Empleado.Mozo;
 using XCommerce.Servicios.Core.FormaPago;
 using XCommerce.Servicios.Core.FormaPago.DTO;
@@ -376,8 +377,13 @@ namespace Presentacion.Core.VentaSalon
 
                 _movimientoServicio.GenerarMovimiento(movimiento);
 
-                _detalleCajaServicio.GenerarDetalleCaja(DatosSistema.CajaId, nudTotal.Value, _tPago);
-
+                DetalleCajaDTO detalleCaja = new DetalleCajaDTO
+                {
+                    CajaId = DatosSistema.CajaId,
+                    Monto = nudTotal.Value,
+                    TipoPago = _tPago
+                };
+                _detalleCajaServicio.Generar(detalleCaja);
             }
             else
             {

@@ -13,5 +13,7 @@ namespace XCommerce.Servicios.Core.DetalleCaja.DTO
         public long CajaId { get; set; }
         public decimal Monto { get; set; }
         public TipoPago TipoPago { get; set; }
+
+        public AccesoDatos.Caja Caja { get; set; }
     }
 }

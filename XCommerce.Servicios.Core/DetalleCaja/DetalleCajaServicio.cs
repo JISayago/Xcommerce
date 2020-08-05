@@ -39,7 +39,8 @@ namespace XCommerce.Servicios.Core.DetalleCaja
                         Id = x.Id,
                         CajaId = x.CajaId,
                         Monto  = x.Monto,
-                        TipoPago = x.TipoPago
+                        TipoPago = x.TipoPago,
+                        Caja = x.Caja
                     }).ToList();
             }
         }
