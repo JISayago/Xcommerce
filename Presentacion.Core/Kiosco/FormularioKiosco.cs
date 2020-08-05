@@ -1,37 +1,36 @@
-﻿using Presentacion.Core.Articulo;
-using Presentacion.Core.Cliente;
-using Presentacion.Core.Comprobante;
-using Presentacion.Core.Empleado;
-using Presentacion.FormulariosBase;
-using Presentacion.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
-using XCommerce.AccesoDatos;
-using XCommerce.Servicio.Core.Banco;
-using XCommerce.Servicio.Core.Banco.DTO;
-using XCommerce.Servicios.Core.Articulo;
-using XCommerce.Servicios.Core.Cliente;
-using XCommerce.Servicios.Core.Comprobante;
-using XCommerce.Servicios.Core.Comprobante.DTO;
-using XCommerce.Servicios.Core.DetalleCaja;
-using XCommerce.Servicios.Core.DetalleCaja.DTO;
-using XCommerce.Servicios.Core.Empleado;
-using XCommerce.Servicios.Core.FormaPago;
-using XCommerce.Servicios.Core.FormaPago.DTO;
-using XCommerce.Servicios.Core.ListaPrecio;
-using XCommerce.Servicios.Core.Movimiento;
-using XCommerce.Servicios.Core.Movimiento.DTO;
-using XCommerce.Servicios.Core.Producto;
-using XCommerce.Servicios.Core.Producto.DTO;
-using XCommerce.Servicios.Core.Tarjeta;
-using XCommerce.Servicios.Core.Tarjeta.DTO;
-using XCommerce.Servicios.Core.Tarjeta.PlanTarjeta;
-using XCommerce.Servicios.Core.Tarjeta.PlanTarjeta.DTO;
-
-namespace Presentacion.Core.Kiosco
+﻿namespace Presentacion.Core.Kiosco
 {
+    using Presentacion.Core.Articulo;
+    using Presentacion.Core.Cliente;
+    using Presentacion.Core.Comprobante;
+    using Presentacion.Core.Empleado;
+    using Presentacion.FormulariosBase;
+    using Presentacion.Helpers;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Windows.Forms;
+    using XCommerce.AccesoDatos;
+    using XCommerce.Servicio.Core.Banco;
+    using XCommerce.Servicio.Core.Banco.DTO;
+    using XCommerce.Servicios.Core.Articulo;
+    using XCommerce.Servicios.Core.Cliente;
+    using XCommerce.Servicios.Core.Comprobante;
+    using XCommerce.Servicios.Core.Comprobante.DTO;
+    using XCommerce.Servicios.Core.DetalleCaja;
+    using XCommerce.Servicios.Core.DetalleCaja.DTO;
+    using XCommerce.Servicios.Core.Empleado;
+    using XCommerce.Servicios.Core.FormaPago;
+    using XCommerce.Servicios.Core.FormaPago.DTO;
+    using XCommerce.Servicios.Core.ListaPrecio;
+    using XCommerce.Servicios.Core.Movimiento;
+    using XCommerce.Servicios.Core.Movimiento.DTO;
+    using XCommerce.Servicios.Core.Producto;
+    using XCommerce.Servicios.Core.Producto.DTO;
+    using XCommerce.Servicios.Core.Tarjeta;
+    using XCommerce.Servicios.Core.Tarjeta.DTO;
+    using XCommerce.Servicios.Core.Tarjeta.PlanTarjeta;
+    using XCommerce.Servicios.Core.Tarjeta.PlanTarjeta.DTO;
     public partial class FormularioKiosco : FormularioBase
     {
         private readonly IArticuloServicio _articuloServicio;
@@ -54,11 +53,12 @@ namespace Presentacion.Core.Kiosco
         public bool delivery = false;
 
         private string listaPrecio;
+        private long consumidorFinalId; // temporal, para no perder la referencia
 
         public FormularioKiosco()
         {
             InitializeComponent();
-            //ResetearGrilla(dgvGrilla);
+
             _articuloServicio = new ArticuloServicio();
             _productoServicio = new ProductoServicio();
             _comprobanteServicio = new ComprobanteServicio();
@@ -93,14 +93,25 @@ namespace Presentacion.Core.Kiosco
                 btnBuscarEmpleado.Enabled = true;
             }
 
+            CargarComboBox(cbBanco, _bancoServicio.Obtener(string.Empty), "Descripcion", "Id");
+            Set_Rbs();
+
             listaPrecio = delivery ? "Delivery" : "Kiosco";
+            //chequeo existencia lista precio
             if (!_listaPrecioServicio.Existe(listaPrecio))
             {
                 MessageBox.Show(string.Format("Lista precio {0} no existe, imposible operar. Creala o kcyo", listaPrecio));
             }
 
-            CargarComboBox(cbBanco, _bancoServicio.Obtener(""), "Descripcion", "Id");
-            Set_Rbs();
+            //chequeo existencia consumidor final
+            long? cons_final = _clienteServicio.ObtenerCliente("Consumidor Final").First().Id;
+            if(cons_final == null)
+            {
+                MessageBox.Show("Error, consumidor final inexistente");
+                Close();
+            }
+
+            consumidorFinalId = (long)cons_final;
         }
 
         private void cargarCbTarjetaPlan()
@@ -208,7 +219,6 @@ namespace Presentacion.Core.Kiosco
             }
             else
             {
-                //ProductoMesaDTO producto = _productoServicio.ObtenerPorCodigoKiosco(txtCodigoBarras.Text);
                 ProductoMesaDTO producto = _productoServicio.ObtenerPorCodigoListaPrecio(listaPrecio, txtCodigoBarras.Text);
 
                 if (producto != null)
@@ -295,7 +305,6 @@ namespace Presentacion.Core.Kiosco
             }
         }
 
-        private long consumidorFinalId = 2; // temporal, para no perder la referencia
         private long? Facturar()
         {
             if (!VerificarDatosObligatorios())

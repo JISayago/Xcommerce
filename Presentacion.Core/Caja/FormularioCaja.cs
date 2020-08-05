@@ -1,20 +1,13 @@
-﻿using Presentacion.Core.DetalleCaja;
-using Presentacion.Core.FormaPago;
-using Presentacion.Core.Movimiento;
-using Presentacion.Helpers;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using XCommerce.Servicios.Core.Caja;
-
-namespace Presentacion.Core.Caja
+﻿namespace Presentacion.Core.Caja
 {
+    using Presentacion.Core.DetalleCaja;
+    using Presentacion.Core.FormaPago;
+    using Presentacion.Core.Movimiento;
+    using Presentacion.Helpers;
+    using System;
+    using System.Windows.Forms;
+    using XCommerce.Servicios.Core.Caja;
+
     public partial class FormularioCaja : Form
     {
         private readonly ICajaServicio _cajaServicio;

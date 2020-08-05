@@ -1,39 +1,34 @@
-﻿using Presentacion.Core.Articulo;
-using Presentacion.Core.Cliente;
-using Presentacion.FormulariosBase;
-using Presentacion.Helpers;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using XCommerce.AccesoDatos;
-using XCommerce.Servicio.Core.Banco;
-using XCommerce.Servicio.Core.Banco.DTO;
-using XCommerce.Servicios.Core.Articulo;
-using XCommerce.Servicios.Core.Cliente;
-using XCommerce.Servicios.Core.Comprobante;
-using XCommerce.Servicios.Core.Comprobante.DTO;
-using XCommerce.Servicios.Core.DetalleCaja;
-using XCommerce.Servicios.Core.DetalleCaja.DTO;
-using XCommerce.Servicios.Core.Empleado.Mozo;
-using XCommerce.Servicios.Core.FormaPago;
-using XCommerce.Servicios.Core.FormaPago.DTO;
-using XCommerce.Servicios.Core.Movimiento;
-using XCommerce.Servicios.Core.Movimiento.DTO;
-using XCommerce.Servicios.Core.Producto;
-using XCommerce.Servicios.Core.Salon.Mesa;
-using XCommerce.Servicios.Core.Tarjeta;
-using XCommerce.Servicios.Core.Tarjeta.DTO;
-using XCommerce.Servicios.Core.Tarjeta.PlanTarjeta;
-using XCommerce.Servicios.Core.Tarjeta.PlanTarjeta.DTO;
-
-namespace Presentacion.Core.VentaSalon
+﻿namespace Presentacion.Core.VentaSalon
 {
+    using Presentacion.Core.Articulo;
+    using Presentacion.Core.Cliente;
+    using Presentacion.FormulariosBase;
+    using Presentacion.Helpers;
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Linq;
+    using System.Windows.Forms;
+    using XCommerce.AccesoDatos;
+    using XCommerce.Servicio.Core.Banco;
+    using XCommerce.Servicio.Core.Banco.DTO;
+    using XCommerce.Servicios.Core.Articulo;
+    using XCommerce.Servicios.Core.Cliente;
+    using XCommerce.Servicios.Core.Comprobante;
+    using XCommerce.Servicios.Core.Comprobante.DTO;
+    using XCommerce.Servicios.Core.DetalleCaja;
+    using XCommerce.Servicios.Core.DetalleCaja.DTO;
+    using XCommerce.Servicios.Core.Empleado.Mozo;
+    using XCommerce.Servicios.Core.FormaPago;
+    using XCommerce.Servicios.Core.FormaPago.DTO;
+    using XCommerce.Servicios.Core.Movimiento;
+    using XCommerce.Servicios.Core.Movimiento.DTO;
+    using XCommerce.Servicios.Core.Producto;
+    using XCommerce.Servicios.Core.Salon.Mesa;
+    using XCommerce.Servicios.Core.Tarjeta;
+    using XCommerce.Servicios.Core.Tarjeta.DTO;
+    using XCommerce.Servicios.Core.Tarjeta.PlanTarjeta;
+    using XCommerce.Servicios.Core.Tarjeta.PlanTarjeta.DTO;
     public partial class FormularioComprobanteMesa : FormularioBase
     {
         private readonly string _listaPrecio;
@@ -119,10 +114,6 @@ namespace Presentacion.Core.VentaSalon
             _bancoServicio = bancoServicio;
             _tarjetaServicio = tarjetaServicio;
             _planTarjetaServicio = planTarjetaServicio;
-
-
-
-
         }
 
 
@@ -153,8 +144,6 @@ namespace Presentacion.Core.VentaSalon
             grilla.Columns["SubtotalLinea"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             grilla.Columns["SubtotalLinea"].HeaderText = "Sub-Total";
             grilla.Columns["SubtotalLinea"].DefaultCellStyle.Format = "N2";
-
-
 
         }
         public FormularioComprobanteMesa(long mesaId, int _numeroMesa, bool cerrarMesa) : this()
@@ -187,10 +176,7 @@ namespace Presentacion.Core.VentaSalon
         {
             var comprobanteMesaDTO = new ComprobanteMesaDTO();
 
-
             comprobanteMesaDTO = _comprobanteSalonServicio.Obtener(mesaId);
-
-
 
             if (comprobanteMesaDTO == null)
             {
@@ -323,22 +309,22 @@ namespace Presentacion.Core.VentaSalon
         private void cerrarLaMesa(long mesaId, int numeroMesa)
         {
 
-            if (rdbCheque.Checked == true)
+            if (rdbCheque.Checked)
             {
                 _tfPAgo = TipoFormaPago.Cheque;
 
             }
-            if (rdbEfectivo.Checked == true)
+            if (rdbEfectivo.Checked)
             {
                 _tfPAgo = TipoFormaPago.Efectivo;
                 _tPago = TipoPago.Efectivo;
             }
-            if (rdbTarjeta.Checked == true)
+            if (rdbTarjeta.Checked)
             {
                 _tfPAgo = TipoFormaPago.Tarjeta;
                 _tPago = TipoPago.Tarjeta;
             }
-            if (rdbCtaCte.Checked == true)
+            if (rdbCtaCte.Checked)
             {
                 _tfPAgo = TipoFormaPago.CuentaCorriente;
                 _tPago = TipoPago.CtaCte;
@@ -387,7 +373,7 @@ namespace Presentacion.Core.VentaSalon
                                 Monto = nudTotal.Value,
                                 ComprobanteId = idComprobante,
                                 Numero = txtNumeroTarjeta.Text,
-                                Cupon = "", //TODO ????
+                                Cupon = "", //
                                 PlanTarjetaId = ((PlanTarjetaDTO)cbPlan.SelectedItem).Id,
                                 NumeroTarjeta = txtClaveTarjeta.Text
                             };
