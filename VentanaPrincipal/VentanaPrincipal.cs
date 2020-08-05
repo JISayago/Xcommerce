@@ -1,6 +1,4 @@
-﻿
-
-namespace VentanaPrincipal
+﻿namespace VentanaPrincipal
 {
     using Presentacion.Core.Articulo;
     using Presentacion.Core.Articulo.BajaArticulo;
@@ -42,6 +40,17 @@ namespace VentanaPrincipal
             SetImagenesBotonesPrincipales(Presentacion.Constantes.Imagenes.ImagenDelivery, btnDelivery);
             SetImagenesBotonesPrincipales(Presentacion.Constantes.Imagenes.ImagenKiosco, btnKiosco);
             SetImagenesBotonesPrincipales(Presentacion.Constantes.Imagenes.ImagenCaja, btnCaja);
+
+            if(DatosSistema.NombreUsuario == "Admin"|| DatosSistema.NombreUsuario == "admin")
+            {
+                MessageBox.Show("Administrador solo tiene acceso al panel administración.","Advertencia");
+
+                btnCaja.Enabled = false;
+                btnVentaSalon.Enabled = false;
+                btnDelivery.Enabled = false;
+                btnKiosco.Enabled = false;
+                
+            }
         }
 
         private void SetImagenesBotonesPrincipales(Image imagen, Button btn)
@@ -55,9 +64,6 @@ namespace VentanaPrincipal
             var FormularioConsultaProvincia = new FormularioProvinciaConsulta();
             FormularioConsultaProvincia.Show();
         }
-
-
-
         private void consultaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var FormularioConsultaEmpleado = new FormularioEmpleadoConsulta();
@@ -132,7 +138,6 @@ namespace VentanaPrincipal
         {
             var FormularioActualizarPrecio = new FormularioPrecio();
             FormularioActualizarPrecio.Show();
-
         }
 
         private void bajasArticulosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -162,7 +167,6 @@ namespace VentanaPrincipal
 
         private void VentanaPrincipal_Activated(object sender, EventArgs e)
         {
-
             lblEstadoCaja.Text = DatosSistema.EstaCajaAbierta ? "Abierta" : "Cerrada";
         }
 
@@ -181,14 +185,12 @@ namespace VentanaPrincipal
 
         private void consultaToolStripMenuItem8_Click(object sender, EventArgs e)
         {
-
             var ft = new FormularioPlanTarjetaConsulta();
             ft.Show();
         }
 
         private void consultaToolStripMenuItem9_Click(object sender, EventArgs e)
         {
-
             var fCIva= new FormularioCondicionIvaConsulta();
             fCIva.Show();
         }

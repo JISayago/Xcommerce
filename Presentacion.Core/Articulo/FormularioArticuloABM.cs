@@ -90,8 +90,15 @@ namespace Presentacion.Core.Articulo
             AgregarControlesObligatorios(cmbMarca, "Marca");
             AgregarControlesObligatorios(cmbRubro, "Rubro");
             AgregarControlesObligatorios(cmbListaPrecio, "Lista");
-          
 
+
+
+            //nudStock.Enabled = true;
+            nudStockMin.Enabled = true;
+            nudStockMax.Enabled = true;
+            cbxPermiteStockNegativo.Enabled = true;
+
+            cbxDescuentaStock.CheckState = CheckState.Checked;
 
         }
 
@@ -286,6 +293,29 @@ namespace Presentacion.Core.Articulo
             CargarComboBox(cmbRubro, _rubroServicio.ObtenerRubro(string.Empty), "Descripcion", "Id");
             CargarComboBox(cmbMarca, _marcaServicio.ObtenerMarca(string.Empty), "Descripcion", "Id");
 
+        }
+
+        private void btnBuscarEmpleado_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbxDescuentaStock_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbxDescuentaStock.Checked)
+            {
+            //    nudStock.Enabled = true;
+                nudStockMin.Enabled = true;
+                nudStockMax.Enabled = true;
+                cbxPermiteStockNegativo.Enabled = true;
+            } else
+            {
+                nudStock.Enabled = false;
+                nudStockMin.Enabled = false;
+                nudStockMax.Enabled = false;
+                cbxPermiteStockNegativo.Enabled = false;
+
+            }
         }
     }
 }
