@@ -63,9 +63,6 @@
     <Compile Include="Banco\DTO\BancoDTO.cs" />
     <Compile Include="Banco\IBancoServicio.cs" />
     <Compile Include="Caja\CajaServicio.cs" />
-    <Compile Include="Caja\DetalleCaja\DetalleCajaServicio.cs" />
-    <Compile Include="Caja\DetalleCaja\DTO\DetalleCajaDTO.cs" />
-    <Compile Include="Caja\DetalleCaja\IDetalleCajaServicio.cs" />
     <Compile Include="Caja\DTO\CajaDTO.cs" />
     <Compile Include="Caja\ICajaServicio.cs" />
     <Compile Include="Articulo\Marca\DTO\MarcaDTO.cs" />

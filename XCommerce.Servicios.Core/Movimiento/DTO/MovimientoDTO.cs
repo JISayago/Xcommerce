@@ -18,6 +18,6 @@ namespace XCommerce.Servicios.Core.Movimiento.DTO
         public decimal Monto { get; set; }
         public DateTime Fecha { get; set; }
         private string TipoString => Tipo == TipoMovimiento.Egreso ? "E" : "I";
-        public string Descripcion => $"MOV_{Tipo}_F{Id}_CID{ComprobanteID}_F{Fecha.Year}-{Fecha.Month}-{Fecha.Day}-{Fecha.Hour}";
+        public string Descripcion => $"MOV_{TipoString}_F{Id}_CID{ComprobanteID}_F{Fecha.Year}-{Fecha.Month}-{Fecha.Day}-{Fecha.Hour}";
     }
 }
