@@ -85,14 +85,14 @@
             this.dgvGrilla.Name = "dgvGrilla";
             this.dgvGrilla.ReadOnly = true;
             this.dgvGrilla.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvGrilla.Size = new System.Drawing.Size(586, 171);
+            this.dgvGrilla.Size = new System.Drawing.Size(586, 198);
             this.dgvGrilla.TabIndex = 14;
             // 
             // btnFiltrar
             // 
-            this.btnFiltrar.Location = new System.Drawing.Point(492, 53);
+            this.btnFiltrar.Location = new System.Drawing.Point(368, 53);
             this.btnFiltrar.Name = "btnFiltrar";
-            this.btnFiltrar.Size = new System.Drawing.Size(106, 23);
+            this.btnFiltrar.Size = new System.Drawing.Size(230, 23);
             this.btnFiltrar.TabIndex = 19;
             this.btnFiltrar.Text = "Filtrar";
             this.btnFiltrar.UseVisualStyleBackColor = true;
@@ -102,7 +102,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(614, 286);
+            this.ClientSize = new System.Drawing.Size(614, 313);
             this.Controls.Add(this.btnFiltrar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);

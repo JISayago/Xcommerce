@@ -106,6 +106,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Presentacion.Constantes\Presentacion.Constantes.csproj">
+      <Project>{4f44a178-3658-482f-b40b-6ec813483349}</Project>
+      <Name>Presentacion.Constantes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Presentacion.Core\Presentacion.Core.csproj">
       <Project>{4173616C-83FA-4739-BB15-B9D2E00622AD}</Project>
       <Name>Presentacion.Core</Name>

@@ -106,7 +106,9 @@ namespace XCommerce.Servicios.Core.Caja
                         case TipoPago.Tarjeta:
                             break;
                         default:
-                            throw new Exception("Error tipo pago no existe");
+                            //throw new Exception("Error tipo pago no existe");
+                            Console.WriteLine("Error");
+                            break;
                     }
                 }
 

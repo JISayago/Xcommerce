@@ -53,6 +53,10 @@
     <Compile Include="XCommerce.Servicios.Seguridad\Seguridad\IAccesoSistema.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Presentacion.Constantes\Presentacion.Constantes.csproj">
+      <Project>{4f44a178-3658-482f-b40b-6ec813483349}</Project>
+      <Name>Presentacion.Constantes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Presentacion.Helpers\Presentacion.Helpers.csproj">
       <Project>{c88922a0-334b-4764-8152-bc862ba8a084}</Project>
       <Name>Presentacion.Helpers</Name>

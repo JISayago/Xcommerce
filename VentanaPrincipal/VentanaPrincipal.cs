@@ -1,11 +1,10 @@
-﻿
-
-namespace VentanaPrincipal
+﻿namespace VentanaPrincipal
 {
     using Presentacion.Core.Articulo;
     using Presentacion.Core.Articulo.BajaArticulo;
     using Presentacion.Core.Articulo.Marca;
     using Presentacion.Core.Articulo.Rubro;
+    using Presentacion.Core.Banco;
     using Presentacion.Core.Caja;
     using Presentacion.Core.Cliente;
     using Presentacion.Core.CondicionIva;
@@ -24,6 +23,7 @@ namespace VentanaPrincipal
     using Presentacion.Helpers;
     using Presentacion.Login.Usuario;
     using System;
+    using System.Drawing;
     using System.Windows.Forms;
 
     public partial class VentanaPrincipal : Form
@@ -34,18 +34,36 @@ namespace VentanaPrincipal
 
             lblNombreUsuario.Text = DatosSistema.NombreUsuario;
             lblEstadoCaja.Text = DatosSistema.EstaCajaAbierta ? "Abierta" : "Cerrada";
+
+
+            SetImagenesBotonesPrincipales(Presentacion.Constantes.Imagenes.ImageVentaSalon, btnVentaSalon);
+            SetImagenesBotonesPrincipales(Presentacion.Constantes.Imagenes.ImagenDelivery, btnDelivery);
+            SetImagenesBotonesPrincipales(Presentacion.Constantes.Imagenes.ImagenKiosco, btnKiosco);
+            SetImagenesBotonesPrincipales(Presentacion.Constantes.Imagenes.ImagenCaja, btnCaja);
+
+            if(DatosSistema.NombreUsuario == "Admin"|| DatosSistema.NombreUsuario == "admin")
+            {
+                MessageBox.Show("Administrador solo tiene acceso al panel administración.","Advertencia");
+
+                btnCaja.Enabled = false;
+                btnVentaSalon.Enabled = false;
+                btnDelivery.Enabled = false;
+                btnKiosco.Enabled = false;
+                
+            }
         }
 
-
+        private void SetImagenesBotonesPrincipales(Image imagen, Button btn)
+        {
+            var img = (Image)(new Bitmap(imagen, new Size(48, 48)));
+            btn.Image = img;
+        }
 
         private void consultaToolStripMenuItem1_Click_1(object sender, EventArgs e)
         {
             var FormularioConsultaProvincia = new FormularioProvinciaConsulta();
             FormularioConsultaProvincia.Show();
         }
-
-
-
         private void consultaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var FormularioConsultaEmpleado = new FormularioEmpleadoConsulta();
@@ -120,7 +138,6 @@ namespace VentanaPrincipal
         {
             var FormularioActualizarPrecio = new FormularioPrecio();
             FormularioActualizarPrecio.Show();
-
         }
 
         private void bajasArticulosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -150,7 +167,6 @@ namespace VentanaPrincipal
 
         private void VentanaPrincipal_Activated(object sender, EventArgs e)
         {
-
             lblEstadoCaja.Text = DatosSistema.EstaCajaAbierta ? "Abierta" : "Cerrada";
         }
 
@@ -169,14 +185,12 @@ namespace VentanaPrincipal
 
         private void consultaToolStripMenuItem8_Click(object sender, EventArgs e)
         {
-
             var ft = new FormularioPlanTarjetaConsulta();
             ft.Show();
         }
 
         private void consultaToolStripMenuItem9_Click(object sender, EventArgs e)
         {
-
             var fCIva= new FormularioCondicionIvaConsulta();
             fCIva.Show();
         }
@@ -193,6 +207,12 @@ namespace VentanaPrincipal
         {
             var fCompra = new FormularioIngresoArticulos();
             fCompra.Show();
+        }
+
+        private void consultaToolStripMenuItem11_Click(object sender, EventArgs e)
+        {
+            var f = new FormularioBancoConsulta();
+            f.Show();
         }
     }
 }

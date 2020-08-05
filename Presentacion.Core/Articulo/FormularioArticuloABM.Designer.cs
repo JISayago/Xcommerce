@@ -48,14 +48,11 @@
             this.label9 = new System.Windows.Forms.Label();
             this.cmbRubro = new System.Windows.Forms.ComboBox();
             this.cmbMarca = new System.Windows.Forms.ComboBox();
-            this.cbxActivarLimiteVenta = new System.Windows.Forms.CheckBox();
             this.cbxDescuentaStock = new System.Windows.Forms.CheckBox();
-            this.cbxPermiteStockNegativo = new System.Windows.Forms.CheckBox();
             this.nudStockMax = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.nudLimiteVenta = new System.Windows.Forms.NumericUpDown();
             this.txtBoxCodigo = new System.Windows.Forms.TextBox();
             this.txtBoxCodigoBarra = new System.Windows.Forms.TextBox();
             this.nudPrecioCosto = new System.Windows.Forms.NumericUpDown();
@@ -75,14 +72,20 @@
             this.nudStock = new System.Windows.Forms.NumericUpDown();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
+            this.cbxPermiteStockNegativo = new System.Windows.Forms.CheckBox();
+            this.gbStock = new System.Windows.Forms.GroupBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.cbxActivarLimiteVenta = new System.Windows.Forms.CheckBox();
+            this.nudLimiteVenta = new System.Windows.Forms.NumericUpDown();
             this.pnlFoto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgFotoArticulo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStockMax)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudLimiteVenta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrecioCosto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrecioPublico)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStockMin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStock)).BeginInit();
+            this.gbStock.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudLimiteVenta)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlFoto
@@ -144,9 +147,9 @@
             // 
             // txtBoxAbreviatura
             // 
-            this.txtBoxAbreviatura.Location = new System.Drawing.Point(88, 158);
+            this.txtBoxAbreviatura.Location = new System.Drawing.Point(86, 158);
             this.txtBoxAbreviatura.Name = "txtBoxAbreviatura";
-            this.txtBoxAbreviatura.Size = new System.Drawing.Size(464, 20);
+            this.txtBoxAbreviatura.Size = new System.Drawing.Size(466, 20);
             this.txtBoxAbreviatura.TabIndex = 4;
             // 
             // lblApellido
@@ -176,9 +179,9 @@
             // 
             // txtBoxDetalle
             // 
-            this.txtBoxDetalle.Location = new System.Drawing.Point(88, 132);
+            this.txtBoxDetalle.Location = new System.Drawing.Point(86, 132);
             this.txtBoxDetalle.Name = "txtBoxDetalle";
-            this.txtBoxDetalle.Size = new System.Drawing.Size(464, 20);
+            this.txtBoxDetalle.Size = new System.Drawing.Size(466, 20);
             this.txtBoxDetalle.TabIndex = 3;
             // 
             // label19
@@ -186,7 +189,7 @@
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.Red;
-            this.label19.Location = new System.Drawing.Point(455, 69);
+            this.label19.Location = new System.Drawing.Point(558, 72);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(15, 20);
             this.label19.TabIndex = 128;
@@ -206,7 +209,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(204, 68);
+            this.label2.Location = new System.Drawing.Point(263, 71);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(15, 20);
             this.label2.TabIndex = 131;
@@ -215,7 +218,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(249, 71);
+            this.label3.Location = new System.Drawing.Point(284, 72);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(68, 13);
             this.label3.TabIndex = 130;
@@ -223,7 +226,7 @@
             // 
             // btnLocalidad
             // 
-            this.btnLocalidad.Location = new System.Drawing.Point(511, 287);
+            this.btnLocalidad.Location = new System.Drawing.Point(511, 306);
             this.btnLocalidad.Name = "btnLocalidad";
             this.btnLocalidad.Size = new System.Drawing.Size(41, 21);
             this.btnLocalidad.TabIndex = 17;
@@ -233,7 +236,7 @@
             // 
             // btnNuevaProvincia
             // 
-            this.btnNuevaProvincia.Location = new System.Drawing.Point(511, 260);
+            this.btnNuevaProvincia.Location = new System.Drawing.Point(511, 279);
             this.btnNuevaProvincia.Name = "btnNuevaProvincia";
             this.btnNuevaProvincia.Size = new System.Drawing.Size(41, 21);
             this.btnNuevaProvincia.TabIndex = 16;
@@ -244,7 +247,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(19, 294);
+            this.label10.Location = new System.Drawing.Point(19, 313);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(36, 13);
             this.label10.TabIndex = 35;
@@ -253,7 +256,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(18, 260);
+            this.label9.Location = new System.Drawing.Point(18, 279);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(37, 13);
             this.label9.TabIndex = 34;
@@ -263,7 +266,7 @@
             // 
             this.cmbRubro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRubro.FormattingEnabled = true;
-            this.cmbRubro.Location = new System.Drawing.Point(61, 291);
+            this.cmbRubro.Location = new System.Drawing.Point(61, 310);
             this.cmbRubro.Name = "cmbRubro";
             this.cmbRubro.Size = new System.Drawing.Size(435, 21);
             this.cmbRubro.TabIndex = 15;
@@ -272,47 +275,25 @@
             // 
             this.cmbMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMarca.FormattingEnabled = true;
-            this.cmbMarca.Location = new System.Drawing.Point(61, 257);
+            this.cmbMarca.Location = new System.Drawing.Point(61, 276);
             this.cmbMarca.Name = "cmbMarca";
             this.cmbMarca.Size = new System.Drawing.Size(435, 21);
             this.cmbMarca.TabIndex = 14;
             // 
-            // cbxActivarLimiteVenta
-            // 
-            this.cbxActivarLimiteVenta.AutoSize = true;
-            this.cbxActivarLimiteVenta.Location = new System.Drawing.Point(23, 194);
-            this.cbxActivarLimiteVenta.Name = "cbxActivarLimiteVenta";
-            this.cbxActivarLimiteVenta.Size = new System.Drawing.Size(135, 17);
-            this.cbxActivarLimiteVenta.TabIndex = 5;
-            this.cbxActivarLimiteVenta.Text = "Activar Limite de Venta";
-            this.cbxActivarLimiteVenta.ThreeState = true;
-            this.cbxActivarLimiteVenta.UseVisualStyleBackColor = true;
-            // 
             // cbxDescuentaStock
             // 
             this.cbxDescuentaStock.AutoSize = true;
-            this.cbxDescuentaStock.Location = new System.Drawing.Point(23, 220);
+            this.cbxDescuentaStock.Location = new System.Drawing.Point(98, 0);
             this.cbxDescuentaStock.Name = "cbxDescuentaStock";
-            this.cbxDescuentaStock.Size = new System.Drawing.Size(109, 17);
+            this.cbxDescuentaStock.Size = new System.Drawing.Size(15, 14);
             this.cbxDescuentaStock.TabIndex = 6;
-            this.cbxDescuentaStock.Text = "Descuenta Stock";
             this.cbxDescuentaStock.ThreeState = true;
             this.cbxDescuentaStock.UseVisualStyleBackColor = true;
-            // 
-            // cbxPermiteStockNegativo
-            // 
-            this.cbxPermiteStockNegativo.AutoSize = true;
-            this.cbxPermiteStockNegativo.Location = new System.Drawing.Point(289, 214);
-            this.cbxPermiteStockNegativo.Name = "cbxPermiteStockNegativo";
-            this.cbxPermiteStockNegativo.Size = new System.Drawing.Size(138, 17);
-            this.cbxPermiteStockNegativo.TabIndex = 9;
-            this.cbxPermiteStockNegativo.Text = "Permite Stock Negativo";
-            this.cbxPermiteStockNegativo.ThreeState = true;
-            this.cbxPermiteStockNegativo.UseVisualStyleBackColor = true;
+            this.cbxDescuentaStock.CheckedChanged += new System.EventHandler(this.cbxDescuentaStock_CheckedChanged);
             // 
             // nudStockMax
             // 
-            this.nudStockMax.Location = new System.Drawing.Point(512, 194);
+            this.nudStockMax.Location = new System.Drawing.Point(282, 48);
             this.nudStockMax.Maximum = new decimal(new int[] {
             999999,
             0,
@@ -325,7 +306,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(432, 199);
+            this.label4.Location = new System.Drawing.Point(202, 50);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(74, 13);
             this.label4.TabIndex = 10;
@@ -334,7 +315,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(433, 225);
+            this.label5.Location = new System.Drawing.Point(12, 54);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(73, 13);
             this.label5.TabIndex = 11;
@@ -343,37 +324,24 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(194, 195);
+            this.label6.Location = new System.Drawing.Point(402, 49);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(36, 13);
             this.label6.TabIndex = 22;
             this.label6.Text = "Límite";
             // 
-            // nudLimiteVenta
-            // 
-            this.nudLimiteVenta.Location = new System.Drawing.Point(236, 188);
-            this.nudLimiteVenta.Maximum = new decimal(new int[] {
-            999999,
-            0,
-            0,
-            0});
-            this.nudLimiteVenta.Name = "nudLimiteVenta";
-            this.nudLimiteVenta.Size = new System.Drawing.Size(40, 20);
-            this.nudLimiteVenta.TabIndex = 7;
-            // 
             // txtBoxCodigo
             // 
-            this.txtBoxCodigo.Location = new System.Drawing.Point(86, 68);
-
+            this.txtBoxCodigo.Location = new System.Drawing.Point(86, 69);
             this.txtBoxCodigo.Name = "txtBoxCodigo";
-            this.txtBoxCodigo.Size = new System.Drawing.Size(104, 20);
+            this.txtBoxCodigo.Size = new System.Drawing.Size(171, 20);
             this.txtBoxCodigo.TabIndex = 0;
             // 
             // txtBoxCodigoBarra
             // 
-            this.txtBoxCodigoBarra.Location = new System.Drawing.Point(323, 69);
+            this.txtBoxCodigoBarra.Location = new System.Drawing.Point(358, 70);
             this.txtBoxCodigoBarra.Name = "txtBoxCodigoBarra";
-            this.txtBoxCodigoBarra.Size = new System.Drawing.Size(104, 20);
+            this.txtBoxCodigoBarra.Size = new System.Drawing.Size(194, 20);
             this.txtBoxCodigoBarra.TabIndex = 1;
             // 
             // nudPrecioCosto
@@ -448,7 +416,7 @@
             // 
             // nudStockMin
             // 
-            this.nudStockMin.Location = new System.Drawing.Point(512, 220);
+            this.nudStockMin.Location = new System.Drawing.Point(91, 49);
             this.nudStockMin.Maximum = new decimal(new int[] {
             999999,
             0,
@@ -489,7 +457,7 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.Red;
-            this.label14.Location = new System.Drawing.Point(558, 261);
+            this.label14.Location = new System.Drawing.Point(558, 280);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(15, 20);
             this.label14.TabIndex = 163;
@@ -500,7 +468,7 @@
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.Red;
-            this.label15.Location = new System.Drawing.Point(558, 288);
+            this.label15.Location = new System.Drawing.Point(558, 307);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(15, 20);
             this.label15.TabIndex = 164;
@@ -519,7 +487,7 @@
             // 
             // nudStock
             // 
-            this.nudStock.Location = new System.Drawing.Point(236, 214);
+            this.nudStock.Location = new System.Drawing.Point(91, 19);
             this.nudStock.Maximum = new decimal(new int[] {
             999999,
             0,
@@ -532,7 +500,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(194, 221);
+            this.label17.Location = new System.Drawing.Point(12, 26);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(35, 13);
             this.label17.TabIndex = 167;
@@ -549,14 +517,80 @@
             this.label18.TabIndex = 168;
             this.label18.Text = "*";
             // 
+            // cbxPermiteStockNegativo
+            // 
+            this.cbxPermiteStockNegativo.AutoSize = true;
+            this.cbxPermiteStockNegativo.Location = new System.Drawing.Point(202, 19);
+            this.cbxPermiteStockNegativo.Name = "cbxPermiteStockNegativo";
+            this.cbxPermiteStockNegativo.Size = new System.Drawing.Size(138, 17);
+            this.cbxPermiteStockNegativo.TabIndex = 9;
+            this.cbxPermiteStockNegativo.Text = "Permite Stock Negativo";
+            this.cbxPermiteStockNegativo.ThreeState = true;
+            this.cbxPermiteStockNegativo.UseVisualStyleBackColor = true;
+            // 
+            // gbStock
+            // 
+            this.gbStock.Controls.Add(this.cbxPermiteStockNegativo);
+            this.gbStock.Controls.Add(this.cbxDescuentaStock);
+            this.gbStock.Controls.Add(this.nudStock);
+            this.gbStock.Controls.Add(this.label17);
+            this.gbStock.Controls.Add(this.label4);
+            this.gbStock.Controls.Add(this.nudStockMax);
+            this.gbStock.Controls.Add(this.nudStockMin);
+            this.gbStock.Controls.Add(this.label5);
+            this.gbStock.Controls.Add(this.nudLimiteVenta);
+            this.gbStock.Controls.Add(this.cbxActivarLimiteVenta);
+            this.gbStock.Controls.Add(this.label20);
+            this.gbStock.Controls.Add(this.label6);
+            this.gbStock.Location = new System.Drawing.Point(12, 184);
+            this.gbStock.Name = "gbStock";
+            this.gbStock.Size = new System.Drawing.Size(540, 80);
+            this.gbStock.TabIndex = 169;
+            this.gbStock.TabStop = false;
+            this.gbStock.Text = "Descuenta stock";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(402, 49);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(36, 13);
+            this.label20.TabIndex = 22;
+            this.label20.Text = "Límite";
+            // 
+            // cbxActivarLimiteVenta
+            // 
+            this.cbxActivarLimiteVenta.AutoSize = true;
+            this.cbxActivarLimiteVenta.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cbxActivarLimiteVenta.Enabled = false;
+            this.cbxActivarLimiteVenta.Location = new System.Drawing.Point(388, 19);
+            this.cbxActivarLimiteVenta.Name = "cbxActivarLimiteVenta";
+            this.cbxActivarLimiteVenta.Size = new System.Drawing.Size(135, 17);
+            this.cbxActivarLimiteVenta.TabIndex = 5;
+            this.cbxActivarLimiteVenta.Text = "Activar Limite de Venta";
+            this.cbxActivarLimiteVenta.ThreeState = true;
+            this.cbxActivarLimiteVenta.UseVisualStyleBackColor = true;
+            // 
+            // nudLimiteVenta
+            // 
+            this.nudLimiteVenta.Enabled = false;
+            this.nudLimiteVenta.Location = new System.Drawing.Point(444, 47);
+            this.nudLimiteVenta.Maximum = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            0});
+            this.nudLimiteVenta.Name = "nudLimiteVenta";
+            this.nudLimiteVenta.Size = new System.Drawing.Size(40, 20);
+            this.nudLimiteVenta.TabIndex = 7;
+            // 
             // FormularioArticuloABM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 437);
+            this.Controls.Add(this.gbStock);
             this.Controls.Add(this.label18);
-            this.Controls.Add(this.label17);
-            this.Controls.Add(this.nudStock);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
@@ -571,15 +605,6 @@
             this.Controls.Add(this.nudPrecioCosto);
             this.Controls.Add(this.txtBoxCodigoBarra);
             this.Controls.Add(this.txtBoxCodigo);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.nudLimiteVenta);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.nudStockMin);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.nudStockMax);
-            this.Controls.Add(this.cbxPermiteStockNegativo);
-            this.Controls.Add(this.cbxDescuentaStock);
-            this.Controls.Add(this.cbxActivarLimiteVenta);
             this.Controls.Add(this.btnLocalidad);
             this.Controls.Add(this.btnNuevaProvincia);
             this.Controls.Add(this.label10);
@@ -620,15 +645,6 @@
             this.Controls.SetChildIndex(this.label10, 0);
             this.Controls.SetChildIndex(this.btnNuevaProvincia, 0);
             this.Controls.SetChildIndex(this.btnLocalidad, 0);
-            this.Controls.SetChildIndex(this.cbxActivarLimiteVenta, 0);
-            this.Controls.SetChildIndex(this.cbxDescuentaStock, 0);
-            this.Controls.SetChildIndex(this.cbxPermiteStockNegativo, 0);
-            this.Controls.SetChildIndex(this.nudStockMax, 0);
-            this.Controls.SetChildIndex(this.label4, 0);
-            this.Controls.SetChildIndex(this.nudStockMin, 0);
-            this.Controls.SetChildIndex(this.label5, 0);
-            this.Controls.SetChildIndex(this.nudLimiteVenta, 0);
-            this.Controls.SetChildIndex(this.label6, 0);
             this.Controls.SetChildIndex(this.txtBoxCodigo, 0);
             this.Controls.SetChildIndex(this.txtBoxCodigoBarra, 0);
             this.Controls.SetChildIndex(this.nudPrecioCosto, 0);
@@ -643,17 +659,18 @@
             this.Controls.SetChildIndex(this.label14, 0);
             this.Controls.SetChildIndex(this.label15, 0);
             this.Controls.SetChildIndex(this.label16, 0);
-            this.Controls.SetChildIndex(this.nudStock, 0);
-            this.Controls.SetChildIndex(this.label17, 0);
             this.Controls.SetChildIndex(this.label18, 0);
+            this.Controls.SetChildIndex(this.gbStock, 0);
             this.pnlFoto.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgFotoArticulo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStockMax)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudLimiteVenta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrecioCosto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrecioPublico)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStockMin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStock)).EndInit();
+            this.gbStock.ResumeLayout(false);
+            this.gbStock.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudLimiteVenta)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -681,14 +698,11 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cmbRubro;
         private System.Windows.Forms.ComboBox cmbMarca;
-        protected System.Windows.Forms.CheckBox cbxActivarLimiteVenta;
         protected System.Windows.Forms.CheckBox cbxDescuentaStock;
-        protected System.Windows.Forms.CheckBox cbxPermiteStockNegativo;
         private System.Windows.Forms.NumericUpDown nudStockMax;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.NumericUpDown nudLimiteVenta;
         private System.Windows.Forms.TextBox txtBoxCodigo;
         private System.Windows.Forms.TextBox txtBoxCodigoBarra;
         private System.Windows.Forms.NumericUpDown nudPrecioCosto;
@@ -708,5 +722,10 @@
         private System.Windows.Forms.NumericUpDown nudStock;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
+        protected System.Windows.Forms.CheckBox cbxPermiteStockNegativo;
+        private System.Windows.Forms.GroupBox gbStock;
+        private System.Windows.Forms.NumericUpDown nudLimiteVenta;
+        protected System.Windows.Forms.CheckBox cbxActivarLimiteVenta;
+        private System.Windows.Forms.Label label20;
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Windows.Forms;
-using XCommerce.Servicios.Core.Caja.DetalleCaja;
+using XCommerce.Servicios.Core.DetalleCaja;
 
 namespace Presentacion.Core.DetalleCaja
 {
@@ -22,7 +22,7 @@ namespace Presentacion.Core.DetalleCaja
         {
             var detalles = _detalleCajaServicio.Obtener(null, null);
 
-            if (!todas_fechas) detalles = detalles.Where(x => x.caja.FechaCierre >= dtDesde.Value && x.caja.FechaCierre <= dtHasta.Value).ToList();
+            if (!todas_fechas) detalles = detalles.Where(x => x.Caja.FechaCierre >= dtDesde.Value && x.Caja.FechaCierre <= dtHasta.Value).ToList();
             if (detalles != null)
             {
                 dgvGrilla.DataSource = detalles;

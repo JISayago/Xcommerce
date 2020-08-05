@@ -35,8 +35,12 @@ namespace Presentacion.Login
         {
             InitializeComponent();
 
+            txtContraseña.UseSystemPasswordChar = true;
+
             txtUsuario.Text = "jsayago";
             txtContraseña.Text = "Pa$$word";
+            btnVerPass.BackgroundImage = Presentacion.Constantes.Imagenes.ImagenOjo;
+
         }
         public Login(IAccesoSistema accesoSistema, IUsuarioServicio usuarioServicio, ICajaServicio cajaServicio)
         {
@@ -146,6 +150,24 @@ namespace Presentacion.Login
         private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
         {
             //IngresoAlSistema();
+        }
+
+        private void MostrarCaracteresPassTxt()
+        {
+            if (txtContraseña.UseSystemPasswordChar)
+            {
+                txtContraseña.UseSystemPasswordChar = false;
+                txtContraseña.PasswordChar = '\u0000';
+            }
+            else
+            {
+                txtContraseña.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MostrarCaracteresPassTxt();
         }
     }
 }

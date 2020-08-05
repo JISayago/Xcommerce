@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Presentacion.Helpers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,14 +8,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using XCommerce.AccesoDatos;
 using XCommerce.Servicios.Core.Cliente;
 using XCommerce.Servicios.Core.Cliente.DTO;
+using XCommerce.Servicios.Core.DetalleCaja;
+using XCommerce.Servicios.Core.DetalleCaja.DTO;
 
 namespace Presentacion.Core.Cliente
 {
     public partial class FormularioAgregarCtaCte : Form
     {
         private readonly IClienteServicio _clienteServicio;
+        private readonly IDetalleCajaServicio _detalleCajaServicio;
         private ClienteDTO cliente;
         private bool Bandera;
         private int Contador;
@@ -27,6 +32,7 @@ namespace Presentacion.Core.Cliente
             InitializeComponent();
 
             _clienteServicio = new ClienteServicio();
+            _detalleCajaServicio = new DetalleCajaServicio();
             cliente = new ClienteDTO();
             Bandera = false;
             
@@ -69,7 +75,16 @@ namespace Presentacion.Core.Cliente
             _clienteServicio.AgregarSaldoCtaCte(cliente.Id, Diferencia);
             Contador = 1;
             obtenerCliente(cliente.Id);
-            
+
+
+            DetalleCajaDTO detalleCaja = new DetalleCajaDTO
+            {
+                CajaId = DatosSistema.CajaId,
+                Monto = Diferencia,
+                TipoPago = TipoPago.Efectivo
+            };
+            _detalleCajaServicio.Generar(detalleCaja);
+
 
         }
 

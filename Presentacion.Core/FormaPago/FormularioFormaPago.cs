@@ -21,7 +21,7 @@ namespace Presentacion.Core.FormaPago
             _formaPagoServicio = new FormaPagoServicio();
 
             dgvGrilla.DataSource = _formaPagoServicio.Obtener(TipoFormaPago.Efectivo);
-            resetear_grilla();
+            //resetear_grilla();
         }
 
         private void resetear_grilla()
@@ -93,6 +93,12 @@ namespace Presentacion.Core.FormaPago
 
             }
 
+        }
+
+        void filtrar(TipoFormaPago tipofp, TipoComprobante tipocomp)
+        {
+            var data = _formaPagoServicio.Obtener(TipoFormaPago.Efectivo);
+            //data = data.Where(x => x.)
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)

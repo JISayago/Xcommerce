@@ -94,16 +94,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.toolStrip1);
+            this.KeyPreview = true;
             this.MinimumSize = new System.Drawing.Size(0, 0);
             this.Name = "FormularioBaseABM";
             this.Text = "FormularioBaseABM";
             this.Load += new System.EventHandler(this.FormularioBaseABM_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormularioBaseABM_KeyDown);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormularioBaseABM_KeyDown);
-            this.KeyPreview = true;
 
         }
 
