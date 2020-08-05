@@ -60,6 +60,8 @@
             this.proveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consultaToolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
             this.comprobanteCompraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bancoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.consultaToolStripMenuItem11 = new System.Windows.Forms.ToolStripMenuItem();
             this.btnVentaSalon = new System.Windows.Forms.Button();
             this.btnKiosco = new System.Windows.Forms.Button();
             this.btnDelivery = new System.Windows.Forms.Button();
@@ -68,8 +70,6 @@
             this.lblNombreUsuario = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblEstadoCaja = new System.Windows.Forms.Label();
-            this.bancoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.consultaToolStripMenuItem11 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -108,7 +108,7 @@
             this.consultaToolStripMenuItem1,
             this.localidadToolStripMenuItem});
             this.provinciaToolStripMenuItem.Name = "provinciaToolStripMenuItem";
-            this.provinciaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.provinciaToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.provinciaToolStripMenuItem.Text = "Provincia";
             // 
             // consultaToolStripMenuItem1
@@ -131,7 +131,7 @@
             this.consultaToolStripMenuItem,
             this.usuariosToolStripMenuItem});
             this.empleadosToolStripMenuItem1.Name = "empleadosToolStripMenuItem1";
-            this.empleadosToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.empleadosToolStripMenuItem1.Size = new System.Drawing.Size(147, 22);
             this.empleadosToolStripMenuItem1.Text = "Empleados";
             // 
             // consultaToolStripMenuItem
@@ -154,7 +154,7 @@
             this.consultaToolStripMenuItem2,
             this.mesaToolStripMenuItem});
             this.salonToolStripMenuItem.Name = "salonToolStripMenuItem";
-            this.salonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.salonToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.salonToolStripMenuItem.Text = "Salon";
             // 
             // consultaToolStripMenuItem2
@@ -187,7 +187,7 @@
             this.rubroToolStripMenuItem,
             this.bajasArticulosToolStripMenuItem});
             this.articuloToolStripMenuItem1.Name = "articuloToolStripMenuItem1";
-            this.articuloToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.articuloToolStripMenuItem1.Size = new System.Drawing.Size(147, 22);
             this.articuloToolStripMenuItem1.Text = "Articulo";
             // 
             // consultaToolStripMenuItem4
@@ -223,7 +223,7 @@
             this.clienteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.consultaToolStripMenuItem6});
             this.clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
-            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.clienteToolStripMenuItem.Text = "Cliente";
             // 
             // consultaToolStripMenuItem6
@@ -238,7 +238,7 @@
             this.listaPrecioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.consultaToolStripMenuItem7});
             this.listaPrecioToolStripMenuItem.Name = "listaPrecioToolStripMenuItem";
-            this.listaPrecioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.listaPrecioToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.listaPrecioToolStripMenuItem.Text = "ListaPrecio";
             // 
             // consultaToolStripMenuItem7
@@ -253,7 +253,7 @@
             this.precioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.agregarActualizarToolStripMenuItem});
             this.precioToolStripMenuItem.Name = "precioToolStripMenuItem";
-            this.precioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.precioToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.precioToolStripMenuItem.Text = "Precio";
             // 
             // agregarActualizarToolStripMenuItem
@@ -269,7 +269,7 @@
             this.consultaToolStripMenuItem5,
             this.planToolStripMenuItem});
             this.tarjetaToolStripMenuItem.Name = "tarjetaToolStripMenuItem";
-            this.tarjetaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.tarjetaToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.tarjetaToolStripMenuItem.Text = "Tarjeta";
             // 
             // consultaToolStripMenuItem5
@@ -299,13 +299,13 @@
             this.condicionIvaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.consultaToolStripMenuItem9});
             this.condicionIvaToolStripMenuItem.Name = "condicionIvaToolStripMenuItem";
-            this.condicionIvaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.condicionIvaToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.condicionIvaToolStripMenuItem.Text = "Condicion Iva";
             // 
             // consultaToolStripMenuItem9
             // 
             this.consultaToolStripMenuItem9.Name = "consultaToolStripMenuItem9";
-            this.consultaToolStripMenuItem9.Size = new System.Drawing.Size(180, 22);
+            this.consultaToolStripMenuItem9.Size = new System.Drawing.Size(121, 22);
             this.consultaToolStripMenuItem9.Text = "Consulta";
             this.consultaToolStripMenuItem9.Click += new System.EventHandler(this.consultaToolStripMenuItem9_Click);
             // 
@@ -315,7 +315,7 @@
             this.consultaToolStripMenuItem10,
             this.comprobanteCompraToolStripMenuItem});
             this.proveedoresToolStripMenuItem.Name = "proveedoresToolStripMenuItem";
-            this.proveedoresToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.proveedoresToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.proveedoresToolStripMenuItem.Text = "Proveedores";
             // 
             // consultaToolStripMenuItem10
@@ -332,15 +332,32 @@
             this.comprobanteCompraToolStripMenuItem.Text = "ComprobanteCompra";
             this.comprobanteCompraToolStripMenuItem.Click += new System.EventHandler(this.comprobanteCompraToolStripMenuItem_Click);
             // 
+            // bancoToolStripMenuItem
+            // 
+            this.bancoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.consultaToolStripMenuItem11});
+            this.bancoToolStripMenuItem.Name = "bancoToolStripMenuItem";
+            this.bancoToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.bancoToolStripMenuItem.Text = "Banco";
+            // 
+            // consultaToolStripMenuItem11
+            // 
+            this.consultaToolStripMenuItem11.Name = "consultaToolStripMenuItem11";
+            this.consultaToolStripMenuItem11.Size = new System.Drawing.Size(121, 22);
+            this.consultaToolStripMenuItem11.Text = "Consulta";
+            this.consultaToolStripMenuItem11.Click += new System.EventHandler(this.consultaToolStripMenuItem11_Click);
+            // 
             // btnVentaSalon
             // 
             this.btnVentaSalon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(165)))), ((int)(((byte)(0)))));
+            this.btnVentaSalon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnVentaSalon.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVentaSalon.Location = new System.Drawing.Point(59, 36);
             this.btnVentaSalon.Name = "btnVentaSalon";
             this.btnVentaSalon.Size = new System.Drawing.Size(276, 118);
             this.btnVentaSalon.TabIndex = 2;
             this.btnVentaSalon.Text = "VENTA SALON";
+            this.btnVentaSalon.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnVentaSalon.UseVisualStyleBackColor = false;
             this.btnVentaSalon.Click += new System.EventHandler(this.btnVentaSalon_Click);
             // 
@@ -353,6 +370,7 @@
             this.btnKiosco.Size = new System.Drawing.Size(276, 118);
             this.btnKiosco.TabIndex = 3;
             this.btnKiosco.Text = "KIOSCO";
+            this.btnKiosco.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnKiosco.UseVisualStyleBackColor = false;
             this.btnKiosco.Click += new System.EventHandler(this.btnKiosco_Click);
             // 
@@ -365,6 +383,7 @@
             this.btnDelivery.Size = new System.Drawing.Size(276, 118);
             this.btnDelivery.TabIndex = 4;
             this.btnDelivery.Text = "DELIVERY";
+            this.btnDelivery.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnDelivery.UseVisualStyleBackColor = false;
             this.btnDelivery.Click += new System.EventHandler(this.btnDelivery_Click);
             // 
@@ -377,6 +396,7 @@
             this.btnCaja.Size = new System.Drawing.Size(276, 118);
             this.btnCaja.TabIndex = 5;
             this.btnCaja.Text = "CAJA";
+            this.btnCaja.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCaja.UseVisualStyleBackColor = false;
             this.btnCaja.Click += new System.EventHandler(this.btnCaja_Click);
             // 
@@ -420,21 +440,6 @@
             this.lblEstadoCaja.Size = new System.Drawing.Size(50, 16);
             this.lblEstadoCaja.TabIndex = 9;
             this.lblEstadoCaja.Text = "estado";
-            // 
-            // bancoToolStripMenuItem
-            // 
-            this.bancoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.consultaToolStripMenuItem11});
-            this.bancoToolStripMenuItem.Name = "bancoToolStripMenuItem";
-            this.bancoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.bancoToolStripMenuItem.Text = "Banco";
-            // 
-            // consultaToolStripMenuItem11
-            // 
-            this.consultaToolStripMenuItem11.Name = "consultaToolStripMenuItem11";
-            this.consultaToolStripMenuItem11.Size = new System.Drawing.Size(180, 22);
-            this.consultaToolStripMenuItem11.Text = "Consulta";
-            this.consultaToolStripMenuItem11.Click += new System.EventHandler(this.consultaToolStripMenuItem11_Click);
             // 
             // VentanaPrincipal
             // 

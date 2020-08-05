@@ -25,6 +25,7 @@ namespace VentanaPrincipal
     using Presentacion.Helpers;
     using Presentacion.Login.Usuario;
     using System;
+    using System.Drawing;
     using System.Windows.Forms;
 
     public partial class VentanaPrincipal : Form
@@ -35,9 +36,19 @@ namespace VentanaPrincipal
 
             lblNombreUsuario.Text = DatosSistema.NombreUsuario;
             lblEstadoCaja.Text = DatosSistema.EstaCajaAbierta ? "Abierta" : "Cerrada";
+
+
+            SetImagenesBotonesPrincipales(Presentacion.Constantes.Imagenes.ImageVentaSalon, btnVentaSalon);
+            SetImagenesBotonesPrincipales(Presentacion.Constantes.Imagenes.ImagenDelivery, btnDelivery);
+            SetImagenesBotonesPrincipales(Presentacion.Constantes.Imagenes.ImagenKiosco, btnKiosco);
+            SetImagenesBotonesPrincipales(Presentacion.Constantes.Imagenes.ImagenCaja, btnCaja);
         }
 
-
+        private void SetImagenesBotonesPrincipales(Image imagen, Button btn)
+        {
+            var img = (Image)(new Bitmap(imagen, new Size(48, 48)));
+            btn.Image = img;
+        }
 
         private void consultaToolStripMenuItem1_Click_1(object sender, EventArgs e)
         {

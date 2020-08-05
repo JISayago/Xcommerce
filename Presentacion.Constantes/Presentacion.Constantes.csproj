@@ -61,11 +61,14 @@
     <Content Include="Imagenes\Cerrar.png" />
     <Content Include="Imagenes\Check.png" />
     <Content Include="Imagenes\checkout.png" />
+    <Content Include="Imagenes\delivery.png" />
+    <Content Include="Imagenes\dish.png" />
     <Content Include="Imagenes\Eliminar.png" />
     <Content Include="Imagenes\eye.png" />
     <Content Include="Imagenes\filter.png" />
     <Content Include="Imagenes\Guardar.png" />
     <Content Include="Imagenes\Imprimir.png" />
+    <Content Include="Imagenes\kiosco.png" />
     <Content Include="Imagenes\limpiar 3.png" />
     <Content Include="Imagenes\Limpiar 4.png" />
     <Content Include="Imagenes\Limpiar.png" />

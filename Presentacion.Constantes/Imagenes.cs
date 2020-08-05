@@ -20,6 +20,17 @@ namespace Presentacion.Constantes
         public static Image ImagenBotonLimpiar = Properties.Resource.limpiar2;
         public static Image ImagenUsuario = Properties.Resource.usuari;
         public static Image ImagenOjo = Properties.Resource.eye;
+        public static Image ImagenCaja = Properties.Resource.cash_register;
+        public static Image ImagenPlata = Properties.Resource.cash;
+        public static Image ImagenCheck = Properties.Resource.checkout;
+        public static Image ImagenFiltro = Properties.Resource.filter;
+        public static Image ImagenCalculadora = Properties.Resource.calculator;
+        public static Image ImagenRecibo = Properties.Resource.recipt;
+        public static Image ImagenBilletera = Properties.Resource.wallet;
+
+        public static Image ImageVentaSalon = Properties.Resource.dish;
+        public static Image ImagenKiosco = Properties.Resource.kiosco;
+        public static Image ImagenDelivery = Properties.Resource.delivery;
 
 
 
