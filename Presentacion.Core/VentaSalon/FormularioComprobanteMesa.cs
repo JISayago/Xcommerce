@@ -23,6 +23,7 @@ using XCommerce.Servicios.Core.Empleado.Mozo;
 using XCommerce.Servicios.Core.FormaPago;
 using XCommerce.Servicios.Core.FormaPago.DTO;
 using XCommerce.Servicios.Core.Movimiento;
+using XCommerce.Servicios.Core.Movimiento.DTO;
 using XCommerce.Servicios.Core.Producto;
 using XCommerce.Servicios.Core.Salon.Mesa;
 using XCommerce.Servicios.Core.Tarjeta;
@@ -311,19 +312,17 @@ namespace Presentacion.Core.VentaSalon
 
             var comprobanteMesaDto = _comprobanteSalonServicio.Obtener(mesaId);
 
+
             if (nudTotal.Value > 0)
             {
 
                 if (_tfPAgo == TipoFormaPago.CuentaCorriente)
                 {
-
-                    if (_clienteServicio.DescontarDeCuenta(idCliente, comprobanteMesaDto.Total))
+                    bool puede_continuar = _clienteServicio.DescontarDeCuenta(idCliente, comprobanteMesaDto.Total);
+                    if (!puede_continuar)
                     {
-                        //nada?
-                    }
-                    else
-                    {
-                        throw new Exception("Si tiene menos de 0 deberia un cartel que no deje que siga el tema ya vemos yadayadayada");
+                        MessageBox.Show("La cuenta del cliente no tiene suficiente saldo");
+                        return;
                     }
                 }
                 else
@@ -365,7 +364,18 @@ namespace Presentacion.Core.VentaSalon
                 }
                 _comprobanteSalonServicio.FacturarComprobanteSalon(mesaId, comprobanteMesaDto);
 
-                _movimientoServicio.GenerarMovimiento(DatosSistema.CajaId, comprobanteMesaDto.ComprobanteId, TipoMovimiento.Ingreso, DatosSistema.UsuarioId, nudTotal.Value, $" Ingreso de Mesa n°:{numeroMesa}");
+                MovimientoDTO movimiento = new MovimientoDTO
+                {
+                    CajaID = DatosSistema.CajaId,
+                    ComprobanteID = comprobanteMesaDto.ComprobanteId,
+                    Tipo = TipoMovimiento.Ingreso,
+                    UsuarioID = DatosSistema.UsuarioId,
+                    Monto = nudTotal.Value,
+                    Fecha = DateTime.Now,
+                };
+
+                _movimientoServicio.GenerarMovimiento(movimiento);
+
                 _detalleCajaServicio.GenerarDetalleCaja(DatosSistema.CajaId, nudTotal.Value, _tPago);
 
             }
