@@ -351,12 +351,11 @@ namespace Presentacion.Core.Proveedor
             {
                 CajaID = DatosSistema.CajaId,
                 ComprobanteID = comprobante_id,
-                TipoMovimiento = TipoMovimiento.Egreso,
+                Tipo = TipoMovimiento.Egreso,
                 UsuarioID = DatosSistema.UsuarioId,
                 Monto = comprobante.Total,
                 Fecha = DateTime.Now,
-                Descripcion = "Ingreso Articulos",
-            };
+             };
 
             _movimientoServicio.GenerarMovimiento(movimiento);
 

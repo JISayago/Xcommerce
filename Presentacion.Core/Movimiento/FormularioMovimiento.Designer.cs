@@ -56,11 +56,11 @@
             // dtHasta
             // 
             this.dtHasta.Location = new System.Drawing.Point(497, 47);
-            this.dtHasta.MaxDate = new System.DateTime(2020, 8, 3, 0, 0, 0, 0);
+            this.dtHasta.MaxDate = new System.DateTime(2020, 8, 5, 0, 0, 0, 0);
             this.dtHasta.Name = "dtHasta";
             this.dtHasta.Size = new System.Drawing.Size(230, 20);
             this.dtHasta.TabIndex = 1;
-            this.dtHasta.Value = new System.DateTime(2020, 8, 3, 0, 0, 0, 0);
+            this.dtHasta.Value = new System.DateTime(2020, 8, 5, 0, 0, 0, 0);
             this.dtHasta.ValueChanged += new System.EventHandler(this.dtHasta_ValueChanged);
             // 
             // cmbTipo
