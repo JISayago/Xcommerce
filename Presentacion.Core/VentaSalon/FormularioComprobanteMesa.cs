@@ -279,8 +279,41 @@ namespace Presentacion.Core.VentaSalon
             }
         }
 
+        private void set_datos_obligatorios()
+        {
+            LimpiarControlesObligatorios();
+            if (rdbCtaCte.Checked)
+            {
+                AgregarControlesObligatorios(txtClienteApyNom, "apellidocliente");
+                AgregarControlesObligatorios(txtClienteDni, "dnicliente");
+            }
+            if (rdbCheque.Checked)
+            {
+                AgregarControlesObligatorios(cbBanco, "cbBanco");
+                AgregarControlesObligatorios(dtFechaCheque, "fechacheque");
+                AgregarControlesObligatorios(txtEnteCheque, "entecheque");
+                AgregarControlesObligatorios(txtNumeroCheque, "numerocheque");
+                AgregarControlesObligatorios(nudDiasCheque, "diascheque");
+            }
+            if (rdbEfectivo.Checked)
+            {
+            }
+            if (rdbTarjeta.Checked)
+            {
+                AgregarControlesObligatorios(cbTarjeta, "tarjeta");
+                AgregarControlesObligatorios(cbPlan, "plan");
+                AgregarControlesObligatorios(txtClaveTarjeta, "clave");
+                AgregarControlesObligatorios(txtNumeroTarjeta, "numeroTarjeta");
+            }
+        }
+
         private void btnCerrarMesa_Click(object sender, EventArgs e)
         {
+            if (!VerificarDatosObligatorios())
+            {
+                MessageBox.Show("error complete los datos");
+                return;
+            }
             var mesaNumero = _mesaServicio.ObtenerPorId(_mesaId).Numero;
             cerrarLaMesa(_mesaId, mesaNumero);
 
@@ -592,6 +625,7 @@ namespace Presentacion.Core.VentaSalon
             gbCheqe.Visible = true;
 
             CargarComboBox(cbBanco, _bancoServicio.Obtener(string.Empty), "Descripcion", "Id");
+            set_datos_obligatorios();
         }
 
         private void rdbTarjeta_Click(object sender, EventArgs e)
@@ -605,18 +639,22 @@ namespace Presentacion.Core.VentaSalon
             {
                 CargarComboBox(cbPlan, _planTarjetaServicio.ObtenerPorIdTarjeta(((TarjetaDTO)cbTarjeta.Items[0]).Id), "Descripcion", "Id");
             }
+
+            set_datos_obligatorios();
         }
 
         private void rdbCtaCte_Click(object sender, EventArgs e)
         {
             gbTarjeta.Visible = false;
             gbCheqe.Visible = false;
+            set_datos_obligatorios();
         }
 
         private void rdbEfectivo_Click(object sender, EventArgs e)
         {
             gbTarjeta.Visible = false;
             gbCheqe.Visible = false;
+            set_datos_obligatorios();
         }
     }
 }
