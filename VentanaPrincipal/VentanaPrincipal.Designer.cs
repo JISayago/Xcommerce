@@ -59,6 +59,7 @@
             this.consultaToolStripMenuItem9 = new System.Windows.Forms.ToolStripMenuItem();
             this.proveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consultaToolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
+            this.comprobanteCompraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnVentaSalon = new System.Windows.Forms.Button();
             this.btnKiosco = new System.Windows.Forms.Button();
             this.btnDelivery = new System.Windows.Forms.Button();
@@ -67,7 +68,8 @@
             this.lblNombreUsuario = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblEstadoCaja = new System.Windows.Forms.Label();
-            this.comprobanteCompraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bancoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.consultaToolStripMenuItem11 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -94,7 +96,8 @@
             this.precioToolStripMenuItem,
             this.tarjetaToolStripMenuItem,
             this.condicionIvaToolStripMenuItem,
-            this.proveedoresToolStripMenuItem});
+            this.proveedoresToolStripMenuItem,
+            this.bancoToolStripMenuItem});
             this.administraciónToolStripMenuItem.Name = "administraciónToolStripMenuItem";
             this.administraciónToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
             this.administraciónToolStripMenuItem.Text = "Administración";
@@ -111,14 +114,14 @@
             // consultaToolStripMenuItem1
             // 
             this.consultaToolStripMenuItem1.Name = "consultaToolStripMenuItem1";
-            this.consultaToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.consultaToolStripMenuItem1.Size = new System.Drawing.Size(125, 22);
             this.consultaToolStripMenuItem1.Text = "Consulta";
             this.consultaToolStripMenuItem1.Click += new System.EventHandler(this.consultaToolStripMenuItem1_Click_1);
             // 
             // localidadToolStripMenuItem
             // 
             this.localidadToolStripMenuItem.Name = "localidadToolStripMenuItem";
-            this.localidadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.localidadToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.localidadToolStripMenuItem.Text = "Localidad";
             this.localidadToolStripMenuItem.Click += new System.EventHandler(this.localidadToolStripMenuItem_Click);
             // 
@@ -302,7 +305,7 @@
             // consultaToolStripMenuItem9
             // 
             this.consultaToolStripMenuItem9.Name = "consultaToolStripMenuItem9";
-            this.consultaToolStripMenuItem9.Size = new System.Drawing.Size(121, 22);
+            this.consultaToolStripMenuItem9.Size = new System.Drawing.Size(180, 22);
             this.consultaToolStripMenuItem9.Text = "Consulta";
             this.consultaToolStripMenuItem9.Click += new System.EventHandler(this.consultaToolStripMenuItem9_Click);
             // 
@@ -321,6 +324,13 @@
             this.consultaToolStripMenuItem10.Size = new System.Drawing.Size(191, 22);
             this.consultaToolStripMenuItem10.Text = "Consulta";
             this.consultaToolStripMenuItem10.Click += new System.EventHandler(this.consultaToolStripMenuItem10_Click);
+            // 
+            // comprobanteCompraToolStripMenuItem
+            // 
+            this.comprobanteCompraToolStripMenuItem.Name = "comprobanteCompraToolStripMenuItem";
+            this.comprobanteCompraToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.comprobanteCompraToolStripMenuItem.Text = "ComprobanteCompra";
+            this.comprobanteCompraToolStripMenuItem.Click += new System.EventHandler(this.comprobanteCompraToolStripMenuItem_Click);
             // 
             // btnVentaSalon
             // 
@@ -411,12 +421,20 @@
             this.lblEstadoCaja.TabIndex = 9;
             this.lblEstadoCaja.Text = "estado";
             // 
-            // comprobanteCompraToolStripMenuItem
+            // bancoToolStripMenuItem
             // 
-            this.comprobanteCompraToolStripMenuItem.Name = "comprobanteCompraToolStripMenuItem";
-            this.comprobanteCompraToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.comprobanteCompraToolStripMenuItem.Text = "ComprobanteCompra";
-            this.comprobanteCompraToolStripMenuItem.Click += new System.EventHandler(this.comprobanteCompraToolStripMenuItem_Click);
+            this.bancoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.consultaToolStripMenuItem11});
+            this.bancoToolStripMenuItem.Name = "bancoToolStripMenuItem";
+            this.bancoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.bancoToolStripMenuItem.Text = "Banco";
+            // 
+            // consultaToolStripMenuItem11
+            // 
+            this.consultaToolStripMenuItem11.Name = "consultaToolStripMenuItem11";
+            this.consultaToolStripMenuItem11.Size = new System.Drawing.Size(180, 22);
+            this.consultaToolStripMenuItem11.Text = "Consulta";
+            this.consultaToolStripMenuItem11.Click += new System.EventHandler(this.consultaToolStripMenuItem11_Click);
             // 
             // VentanaPrincipal
             // 
@@ -486,6 +504,8 @@
         private System.Windows.Forms.ToolStripMenuItem proveedoresToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem consultaToolStripMenuItem10;
         private System.Windows.Forms.ToolStripMenuItem comprobanteCompraToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bancoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem consultaToolStripMenuItem11;
     }
 }
 

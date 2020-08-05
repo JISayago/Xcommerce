@@ -6,6 +6,7 @@ namespace VentanaPrincipal
     using Presentacion.Core.Articulo.BajaArticulo;
     using Presentacion.Core.Articulo.Marca;
     using Presentacion.Core.Articulo.Rubro;
+    using Presentacion.Core.Banco;
     using Presentacion.Core.Caja;
     using Presentacion.Core.Cliente;
     using Presentacion.Core.CondicionIva;
@@ -193,6 +194,12 @@ namespace VentanaPrincipal
         {
             var fCompra = new FormularioIngresoArticulos();
             fCompra.Show();
+        }
+
+        private void consultaToolStripMenuItem11_Click(object sender, EventArgs e)
+        {
+            var f = new FormularioBancoConsulta();
+            f.Show();
         }
     }
 }
