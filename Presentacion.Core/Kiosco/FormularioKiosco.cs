@@ -1,5 +1,6 @@
 ﻿using Presentacion.Core.Articulo;
 using Presentacion.Core.Cliente;
+using Presentacion.Core.Comprobante;
 using Presentacion.Core.Empleado;
 using Presentacion.FormulariosBase;
 using Presentacion.Helpers;
@@ -234,10 +235,15 @@ namespace Presentacion.Core.Kiosco
 
         private void SetCantidad(string codigo, decimal cantidad)
         {
+            if(cantidad == 0)
+            {
+                detalles.Remove(codigo);
+                return;
+            }
             if (detalles.TryGetValue(codigo, out DetalleComprobanteDTO det))
             {
-                Console.WriteLine(cantidad);
                 if (cantidad == 0) throw new Exception("No tendría que permitir producto con cantidad 0¿?");
+                
                 det.CantidadProducto = cantidad;
             } else
             {
@@ -290,12 +296,12 @@ namespace Presentacion.Core.Kiosco
         }
 
         private long consumidorFinalId = 2; // temporal, para no perder la referencia
-        private void Facturar()
+        private long? Facturar()
         {
             if (!VerificarDatosObligatorios())
             {
                 MessageBox.Show("error complete los datos");
-                return;
+                return null;
             }
 
             if (rbCtaCte.Checked)
@@ -303,7 +309,7 @@ namespace Presentacion.Core.Kiosco
                bool puede_continuar = _clienteServicio.DescontarDeCuenta(idCliente, nudTotal.Value);
                if (!puede_continuar) {      
                     MessageBox.Show("La cuenta del cliente no tiene suficiente saldo");
-                    return;
+                    return null;
                 }
             }
 
@@ -437,7 +443,9 @@ namespace Presentacion.Core.Kiosco
             }
 
             MessageBox.Show("Factura3", "Kiosco");
-            Close();
+
+            return (long?)comprobante_id;
+            //Close();
         }
 
         private void BtnFacturar_Click(object sender, EventArgs e)
@@ -451,7 +459,24 @@ namespace Presentacion.Core.Kiosco
             {
                 if (detalles.Count > 0)
                 {
-                    Facturar();
+                    long? comprobante_id = Facturar();
+                    if (comprobante_id != null)
+                    {
+                        const string message = "Desea imprimir/ver comprobante?";
+                        const string caption = "Comprobante";
+                        var result = MessageBox.Show(message, caption,
+                                                     MessageBoxButtons.YesNo,
+                                                     MessageBoxIcon.Question);
+
+                        if (result == DialogResult.Yes)
+                        {
+                            if (comprobante_id != null)
+                            {
+                                var f = new FormularioComprobante((long)comprobante_id);
+                                f.Show();
+                            }
+                        }
+                    }
                 }
                 else
                 {
@@ -472,10 +497,7 @@ namespace Presentacion.Core.Kiosco
 
         private void DgvGrilla_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            int counter;
-            
-            //TODO que no acepte cero de cantidad(ninguno de los chequeos anda)
-            for (counter = 1; counter < (dgvGrilla.Rows.Count - 1); counter++)
+            for (int counter = 0; counter <= (dgvGrilla.Rows.Count - 1); counter++)
             {
                 string codigo = dgvGrilla.Rows[counter].Cells["CodigoProducto"].Value.ToString();
                 if (codigo != null)
