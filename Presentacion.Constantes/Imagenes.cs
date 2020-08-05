@@ -19,13 +19,13 @@ namespace Presentacion.Constantes
         public static Image ImagenBotonBuscar = Properties.Resource.Buscar;
         public static Image ImagenBotonLimpiar = Properties.Resource.limpiar2;
         public static Image ImagenUsuario = Properties.Resource.usuari;
+        public static Image ImagenOjo = Properties.Resource.eye;
 
 
 
         public static Image ImagenLogin = Properties.Resource.login;
         public static Image ImagenLogout = Properties.Resource.logout;
-        //agregar imagen del ojo del passwoed
-
+       
 
     }
 }

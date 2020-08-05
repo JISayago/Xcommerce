@@ -34,7 +34,7 @@
             this.txtContraseña = new System.Windows.Forms.TextBox();
             this.lblContaseña = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.V = new System.Windows.Forms.Button();
+            this.btnVerPass = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnIngresar
@@ -103,15 +103,16 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // V
+            // btnVerPass
             // 
-            this.V.Location = new System.Drawing.Point(283, 78);
-            this.V.Name = "V";
-            this.V.Size = new System.Drawing.Size(28, 27);
-            this.V.TabIndex = 6;
-            this.V.Text = "btnVerPass";
-            this.V.UseVisualStyleBackColor = true;
-            this.V.Click += new System.EventHandler(this.button1_Click);
+            this.btnVerPass.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnVerPass.ForeColor = System.Drawing.Color.Transparent;
+            this.btnVerPass.Location = new System.Drawing.Point(283, 78);
+            this.btnVerPass.Name = "btnVerPass";
+            this.btnVerPass.Size = new System.Drawing.Size(28, 27);
+            this.btnVerPass.TabIndex = 6;
+            this.btnVerPass.UseVisualStyleBackColor = true;
+            this.btnVerPass.Click += new System.EventHandler(this.button1_Click);
             // 
             // Login
             // 
@@ -121,7 +122,7 @@
             this.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(320, 182);
-            this.Controls.Add(this.V);
+            this.Controls.Add(this.btnVerPass);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.txtContraseña);
             this.Controls.Add(this.lblContaseña);
@@ -147,6 +148,6 @@
         private System.Windows.Forms.TextBox txtContraseña;
         private System.Windows.Forms.Label lblContaseña;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Button V;
+        private System.Windows.Forms.Button btnVerPass;
     }
 }

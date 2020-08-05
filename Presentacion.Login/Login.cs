@@ -39,6 +39,8 @@ namespace Presentacion.Login
 
             txtUsuario.Text = "jsayago";
             txtContraseña.Text = "Pa$$word";
+            btnVerPass.BackgroundImage = Presentacion.Constantes.Imagenes.ImagenOjo;
+
         }
         public Login(IAccesoSistema accesoSistema, IUsuarioServicio usuarioServicio, ICajaServicio cajaServicio)
         {
