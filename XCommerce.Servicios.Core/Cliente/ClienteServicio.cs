@@ -355,16 +355,14 @@ namespace XCommerce.Servicios.Core.Cliente
             }
         }
 
-        public void InsertarConsumidorFinal()
+        public long? InsertarConsumidorFinal()
         {
             using (var baseDatos = new ModeloXCommerceContainer())
             {
-
                 var ConsumidorFinal = ObtenerClientePorDni("99999999");
 
                 if (ConsumidorFinal == null)
                 {
-
                     var nuevoCliente = new AccesoDatos.Cliente
                     {
                         MontoMaximoCtaCte = 0m,
@@ -396,6 +394,11 @@ namespace XCommerce.Servicios.Core.Cliente
                     baseDatos.SaveChanges();
                     MessageBox.Show("se le agrego Consumidor Final correctamente");
 
+                    return nuevoCliente.Id;
+
+                } else
+                {
+                    return ConsumidorFinal.Id;
                 }
 
             }

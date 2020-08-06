@@ -47,6 +47,7 @@ namespace Presentacion.Core.Comprobante
             lblNumero.Text = comprobante.Numero.ToString();
             lblFacturaTipo.Text = Tipo_Astring();
 
+
             lblCliente.Text = $"{comprobante.NombreCliente} {comprobante.ApellidoCliente}";
             lblEmpleado.Text = $"{comprobante.NombreEmpleado} {comprobante.ApellidoEmpleado}";
             lblForma.Text = $"{comprobante.FormaPagoStr}";

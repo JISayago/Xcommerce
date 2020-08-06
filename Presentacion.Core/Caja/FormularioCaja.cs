@@ -16,6 +16,7 @@
             InitializeComponent();
             _cajaServicio = new CajaServicio();
             ActualizarMontoSistemalbl();
+            panel1.BackgroundImage = Presentacion.Constantes.Imagenes.ImagenCaja;
         }
 
         private void ActualizarMontoSistemalbl()

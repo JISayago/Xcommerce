@@ -28,8 +28,7 @@ namespace Presentacion.Core.Caja
 
 
         }
-
-        private void BtnCerrar_Click(object sender, EventArgs e)
+        private void btnCerrar_Click_1(object sender, EventArgs e)
         {
             if (DatosSistema.UsuarioId == 0) throw new Exception("La caja no se puede cerrar como admin!");
             if (_mesaServicio.HayMesasAbiertas())
@@ -46,6 +45,7 @@ namespace Presentacion.Core.Caja
 
             DatosSistema.EstaCajaAbierta = false;
             this.Close();
+
         }
     }
 }
