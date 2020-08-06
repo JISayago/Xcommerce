@@ -104,14 +104,16 @@
             }
 
             //chequeo existencia consumidor final
-            long? cons_final = _clienteServicio.ObtenerCliente("Consumidor Final").First().Id;
-            if(cons_final == null)
-            {
-                MessageBox.Show("Error, consumidor final inexistente");
-                Close();
-            }
+            var cons_final = _clienteServicio.ObtenerClientePorDni("99999999");
 
-            consumidorFinalId = (long)cons_final;
+            if (cons_final == null)
+            {
+                consumidorFinalId = (long)_clienteServicio.InsertarConsumidorFinal();
+             
+            } else
+            {
+                consumidorFinalId = cons_final.Id;
+            }
         }
 
         private void cargarCbTarjetaPlan()

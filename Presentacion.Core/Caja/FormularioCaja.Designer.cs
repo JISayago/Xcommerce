@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioCaja));
             this.btnAbrir = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -67,11 +66,10 @@
             // 
             // panel1
             // 
-            this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Location = new System.Drawing.Point(84, 71);
+            this.panel1.Location = new System.Drawing.Point(204, 69);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(375, 140);
+            this.panel1.Size = new System.Drawing.Size(184, 140);
             this.panel1.TabIndex = 2;
             // 
             // lblCaja
