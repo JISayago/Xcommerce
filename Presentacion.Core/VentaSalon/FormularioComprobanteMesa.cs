@@ -2,6 +2,7 @@
 {
     using Presentacion.Core.Articulo;
     using Presentacion.Core.Cliente;
+    using Presentacion.Core.Comprobante;
     using Presentacion.FormulariosBase;
     using Presentacion.Helpers;
     using System;
@@ -431,7 +432,19 @@
 
 
 
-           this.Close();
+            const string message = "Desea imprimir/ver comprobante?";
+            const string caption = "Comprobante";
+            var result = MessageBox.Show(message, caption,
+                                         MessageBoxButtons.YesNo,
+                                         MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                var f = new FormularioComprobante(comprobanteMesaDto.ComprobanteId);
+                f.ShowDialog();
+            }
+            
+            this.Close();
            
         }
 
