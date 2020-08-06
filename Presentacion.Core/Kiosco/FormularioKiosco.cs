@@ -100,7 +100,7 @@
             //chequeo existencia lista precio
             if (!_listaPrecioServicio.Existe(listaPrecio))
             {
-                MessageBox.Show(string.Format("Lista precio {0} no existe, imposible operar. Creala o kcyo", listaPrecio));
+                MessageBox.Show(string.Format("Lista precio {0} no existe, imposible operar. Se debe crear una lista precio con el Delivery", listaPrecio));
             }
 
             //chequeo existencia consumidor final
@@ -201,13 +201,13 @@
         {
             if (string.IsNullOrEmpty(txtCodigoBarras.Text))
             {
-                MessageBox.Show("Por favor ingrese un codigo");
+                MessageBox.Show("Por favor ingrese un codigo", "Error");
                 return;
             }
 
             if (detalles.Values.Count == 0 && !DatosSistema.EstaCajaAbierta)
             {
-                MessageBox.Show("Advertencia: No se podrá facturar sin la caja abierta.");
+                MessageBox.Show("Advertencia: No se podrá facturar sin la caja abierta.", "Advertencia");
             }
 
             if (detalles.TryGetValue(txtCodigoBarras.Text, out DetalleComprobanteDTO det))
@@ -238,7 +238,7 @@
                 }
                 else
                 {
-                    MessageBox.Show(string.Format("Articulo no existe o no esta en lista precio {0}", listaPrecio)) ;
+                    MessageBox.Show(string.Format("Articulo no existe o no esta en lista precio {0}", listaPrecio), "Error") ;
                 }
             }
 
@@ -311,7 +311,7 @@
         {
             if (!VerificarDatosObligatorios())
             {
-                MessageBox.Show("error complete los datos");
+                MessageBox.Show("Error, complete los datos", "Error");
                 return null;
             }
 
@@ -319,7 +319,7 @@
             {
                bool puede_continuar = _clienteServicio.DescontarDeCuenta(idCliente, nudTotal.Value);
                if (!puede_continuar) {      
-                    MessageBox.Show("La cuenta del cliente no tiene suficiente saldo");
+                    MessageBox.Show("La cuenta del cliente no tiene suficiente saldo", "Adverencia");
                     return null;
                 }
             }
@@ -453,10 +453,17 @@
                 _articuloServicio.DescontarStock(d.Value.ProductoId, d.Value.CantidadProducto);
             }
 
-            MessageBox.Show("Factura3", "Kiosco");
+            MessageBox.Show("Factura exitosa.", delivery ? "Delivery" : "Kiosco");
 
             return (long?)comprobante_id;
             //Close();
+        }
+
+        private void Restart()
+        {
+            var f = new FormularioKiosco(delivery);
+            f.Show();
+            this.Close();
         }
 
         private void BtnFacturar_Click(object sender, EventArgs e)
@@ -484,9 +491,11 @@
                             if (comprobante_id != null)
                             {
                                 var f = new FormularioComprobante((long)comprobante_id);
-                                f.Show();
+                                f.ShowDialog();
                             }
                         }
+
+                        Restart();
                     }
                 }
                 else
