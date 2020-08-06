@@ -25,6 +25,7 @@
     using System;
     using System.Drawing;
     using System.Windows.Forms;
+    using XCommerce.Servicios.Core;
 
     public partial class VentanaPrincipal : Form
     {

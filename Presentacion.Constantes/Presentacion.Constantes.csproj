@@ -74,6 +74,8 @@
     <Content Include="Imagenes\Limpiar.png" />
     <Content Include="Imagenes\limpiar2.png" />
     <Content Include="Imagenes\login.png" />
+    <Content Include="Imagenes\logo.ico" />
+    <Content Include="Imagenes\logo.png" />
     <Content Include="Imagenes\logout.png" />
     <Content Include="Imagenes\Modificar.png" />
     <Content Include="Imagenes\Nuevo.png" />

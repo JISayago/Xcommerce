@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VentanaPrincipal));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.administraciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.provinciaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -456,6 +457,7 @@
             this.Controls.Add(this.btnKiosco);
             this.Controls.Add(this.btnVentaSalon);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "VentanaPrincipal";
             this.Text = "XCommerce";
