@@ -146,13 +146,28 @@
             grilla.Columns["SubtotalLinea"].DefaultCellStyle.Format = "N2";
 
         }
+
+
         public FormularioComprobanteMesa(long mesaId, int _numeroMesa, bool cerrarMesa) : this()
         {
             ObtenerComprobanteMesa(mesaId);
             if (cerrarMesa)
             {
                 this.Show();
-                cerrarLaMesa(mesaId, _numeroMesa);
+                //cerrarLaMesa(mesaId, _numeroMesa);
+
+                const string message = "La mesa se cerrara con FORMA DE PAGO EFECTIVO";
+                const string caption = "ADVERTENCIA";
+                var result = MessageBox.Show(message, caption,
+                                             MessageBoxButtons.YesNo,
+                                             MessageBoxIcon.Question);
+                
+                if (result == DialogResult.Yes)
+                {
+                    cerrarLaMesa(mesaId, _numeroMesa);
+                }
+                
+
             }
         }
 
@@ -414,8 +429,10 @@
             mesaParaCerrar.estadoMesa = EstadoMesa.Cerrada;
             _mesaServicio.Modificar(mesaParaCerrar);
 
-            this.Close();
 
+
+           this.Close();
+           
         }
 
         private void nudCantidadArticulo_KeyPress(object sender, KeyPressEventArgs e)
