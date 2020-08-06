@@ -204,7 +204,6 @@ namespace Presentacion.Core.Proveedor
                 foreach (var item in detalles)
                 {
                     int i = 0;
-                    MessageBox.Show($"{item}");
                     if (decimal.TryParse(dgvGrilla.Rows[i].Cells["CantidadProducto"].Value.ToString(), out decimal cantidad))
                     {
                         _articuloServicio.AgregarStock(item.Key, cantidad);
@@ -214,7 +213,11 @@ namespace Presentacion.Core.Proveedor
                 }
                 RegistrarListadoArticulos();
             }
-            MessageBox.Show("No se puede Registrar una lista de articulos vacáa.");
+            else
+            {
+                MessageBox.Show("No se puede Registrar una lista de articulos vacáa.");
+
+            }
         }
 
         private bool RegistrarListadoArticulos()
