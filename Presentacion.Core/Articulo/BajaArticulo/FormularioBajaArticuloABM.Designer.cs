@@ -36,6 +36,10 @@
             this.richBajaArticulo = new System.Windows.Forms.RichTextBox();
             this.cmbMotivo = new System.Windows.Forms.ComboBox();
             this.lblArticulo = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).BeginInit();
             this.SuspendLayout();
             // 
@@ -81,7 +85,7 @@
             // nudCantidad
             // 
             this.nudCantidad.Location = new System.Drawing.Point(373, 96);
-            this.nudCantidad.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudCantidad.Margin = new System.Windows.Forms.Padding(2);
             this.nudCantidad.Name = "nudCantidad";
             this.nudCantidad.Size = new System.Drawing.Size(40, 20);
             this.nudCantidad.TabIndex = 2;
@@ -89,7 +93,7 @@
             // richBajaArticulo
             // 
             this.richBajaArticulo.Location = new System.Drawing.Point(82, 125);
-            this.richBajaArticulo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richBajaArticulo.Margin = new System.Windows.Forms.Padding(2);
             this.richBajaArticulo.Name = "richBajaArticulo";
             this.richBajaArticulo.Size = new System.Drawing.Size(331, 59);
             this.richBajaArticulo.TabIndex = 3;
@@ -100,7 +104,7 @@
             this.cmbMotivo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMotivo.FormattingEnabled = true;
             this.cmbMotivo.Location = new System.Drawing.Point(82, 95);
-            this.cmbMotivo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbMotivo.Margin = new System.Windows.Forms.Padding(2);
             this.cmbMotivo.Name = "cmbMotivo";
             this.cmbMotivo.Size = new System.Drawing.Size(178, 21);
             this.cmbMotivo.TabIndex = 0;
@@ -115,11 +119,59 @@
             this.lblArticulo.TabIndex = 168;
             this.lblArticulo.Text = "No Articulo";
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.Color.Red;
+            this.label16.Location = new System.Drawing.Point(418, 125);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(15, 20);
+            this.label16.TabIndex = 169;
+            this.label16.Text = "*";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.Location = new System.Drawing.Point(300, 96);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(15, 20);
+            this.label3.TabIndex = 170;
+            this.label3.Text = "*";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Red;
+            this.label4.Location = new System.Drawing.Point(418, 94);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(15, 20);
+            this.label4.TabIndex = 171;
+            this.label4.Text = "*";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.label25.ForeColor = System.Drawing.Color.Red;
+            this.label25.Location = new System.Drawing.Point(317, 188);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(116, 13);
+            this.label25.TabIndex = 185;
+            this.label25.Text = "Campos Obligatorios (*)";
+            // 
             // FormularioBajaArticuloABM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(473, 199);
+            this.ClientSize = new System.Drawing.Size(439, 206);
+            this.Controls.Add(this.label25);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label16);
             this.Controls.Add(this.lblArticulo);
             this.Controls.Add(this.cmbMotivo);
             this.Controls.Add(this.richBajaArticulo);
@@ -128,8 +180,9 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnNuevoMotivoBaja);
             this.Controls.Add(this.label9);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.MaximumSize = new System.Drawing.Size(604, 495);
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximumSize = new System.Drawing.Size(455, 245);
+            this.MinimumSize = new System.Drawing.Size(455, 245);
             this.Name = "FormularioBajaArticuloABM";
             this.Text = "FormularioBajaArticuloABM";
             this.Activated += new System.EventHandler(this.FormularioBajaArticuloABM_Activated);
@@ -141,6 +194,10 @@
             this.Controls.SetChildIndex(this.richBajaArticulo, 0);
             this.Controls.SetChildIndex(this.cmbMotivo, 0);
             this.Controls.SetChildIndex(this.lblArticulo, 0);
+            this.Controls.SetChildIndex(this.label16, 0);
+            this.Controls.SetChildIndex(this.label3, 0);
+            this.Controls.SetChildIndex(this.label4, 0);
+            this.Controls.SetChildIndex(this.label25, 0);
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -157,5 +214,9 @@
         private System.Windows.Forms.RichTextBox richBajaArticulo;
         private System.Windows.Forms.ComboBox cmbMotivo;
         private System.Windows.Forms.Label lblArticulo;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label25;
     }
 }

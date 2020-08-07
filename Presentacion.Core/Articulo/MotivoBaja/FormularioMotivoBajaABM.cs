@@ -43,6 +43,8 @@ namespace Presentacion.Core.Articulo.MotivoBaja
                 DesactivarControles(this);
             }
 
+            AgregarControlesObligatorios(txtMotivoBaja, "MotivoBaja");
+
         }
 
         public override void Inicializador(long? entidadId)
@@ -81,6 +83,13 @@ namespace Presentacion.Core.Articulo.MotivoBaja
 
         public override bool EjecutarComandoNuevo()
         {
+            if (!VerificarDatosObligatorios())
+            {
+                MessageBox.Show(@"Por favor ingrese los campos Obligatorios.", @"Atención", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
+
             var motivoBajaNuevo = new MotivoBajaDTO
             {
                 Descripcion = txtMotivoBaja.Text,
