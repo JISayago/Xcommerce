@@ -34,7 +34,7 @@ namespace Presentacion.Core.Articulo.Rubro
 
             grilla.Columns["Descripcion"].Visible = true;
             grilla.Columns["Descripcion"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            grilla.Columns["Descripcion"].HeaderText = "Marca";
+            grilla.Columns["Descripcion"].HeaderText = "Rubro";
 
         }
 

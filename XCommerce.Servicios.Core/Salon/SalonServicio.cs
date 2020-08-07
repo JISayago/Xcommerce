@@ -84,13 +84,15 @@ namespace XCommerce.Servicios.Core.Salon
             {
                 return baseDatos.Salones
                     .AsNoTracking()
+                    .Include("ListaPrecio")
                     .Where(x => !x.EstaEliminado && x.Descripcion.Contains(cadenaBuscar))
                     .Select(x => new SalonDTO
                     {
                         Id = x.Id,
                         listaPrecioId = x.ListaPrecioId,
                         Descripcion = x.Descripcion,
-                        EstaEliminado = x.EstaEliminado
+                        EstaEliminado = x.EstaEliminado,
+                        listaPrecioDescripcion =x.ListaPrecio.Descripcion
 
                     }).ToList();
             }
@@ -102,13 +104,15 @@ namespace XCommerce.Servicios.Core.Salon
             {
                 return baseDatos.Salones
                     .AsNoTracking()
+                    .Include("ListaPrecio")
                     .Where(x => x.EstaEliminado && x.Descripcion.Contains(cadenaBuscar))
                     .Select(x => new SalonDTO
                     {
                         Id = x.Id,
                         Descripcion = x.Descripcion,
                         listaPrecioId = x.ListaPrecioId,
-                        EstaEliminado = x.EstaEliminado
+                        EstaEliminado = x.EstaEliminado,
+                        listaPrecioDescripcion = x.ListaPrecio.Descripcion
 
                     }).ToList();
             }

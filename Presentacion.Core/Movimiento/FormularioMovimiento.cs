@@ -23,7 +23,32 @@ namespace Presentacion.Core.Movimiento
             _movimientoServicio = new MovimientoServicio();
             _empleadoServicio = new EmpleadoServicio();
             Filtrar();
-            //ResetearGrilla();
+            ResetearGrilla(dgvGrilla);
+        }
+
+        public  void ResetearGrilla(DataGridView grilla)
+        {
+            for (int i = 0; i < grilla.ColumnCount; i++)
+            {
+                grilla.Columns[i].Visible = false;
+            }
+
+            grilla.Columns["Tipo"].Visible = true;
+            grilla.Columns["Tipo"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            grilla.Columns["Tipo"].HeaderText = "Tipo de Movimiento";
+
+            grilla.Columns["Monto"].Visible = true;
+            grilla.Columns["Monto"].Width = 100;
+            grilla.Columns["Monto"].HeaderText = "Monto";
+
+            grilla.Columns["Fecha"].Visible = true;
+            grilla.Columns["Fecha"].Width = 130;
+            grilla.Columns["Fecha"].HeaderText = "Fecha";
+
+            grilla.Columns["Descripcion"].Visible = true;
+            grilla.Columns["Descripcion"].Width = 130;
+            grilla.Columns["Descripcion"].HeaderText = "Descripcion";
+
         }
 
         private void Filtrar()

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using XCommerce.Servicios.Core.ListaPrecio;
 using XCommerce.Servicios.Core.Salon;
 
 namespace Presentacion.Core.Salon
@@ -16,15 +17,17 @@ namespace Presentacion.Core.Salon
     public partial class FormularioSalonConsulta : FormularioBaseConsulta
     {
         private readonly ISalonServicio _salonServicio;
+        private readonly IListaPrecioServicio _listaPrecioServicio;
 
-        public FormularioSalonConsulta() : this(new SalonServicio())
+        public FormularioSalonConsulta() : this(new SalonServicio(),new ListaPrecioServicio())
         {
             InitializeComponent();
         }
 
-        public FormularioSalonConsulta(ISalonServicio salonServicio)
+        public FormularioSalonConsulta(ISalonServicio salonServicio,IListaPrecioServicio listaPrecioServicio)
         {
             _salonServicio = salonServicio;
+            _listaPrecioServicio = listaPrecioServicio;
         }
 
         public override void ResetearGrilla(DataGridView grilla)
@@ -36,6 +39,9 @@ namespace Presentacion.Core.Salon
             grilla.Columns["Descripcion"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             grilla.Columns["Descripcion"].HeaderText = "Salon";
 
+            grilla.Columns["listaPrecioDescripcion"].Visible = true;
+            grilla.Columns["listaPrecioDescripcion"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            grilla.Columns["listaPrecioDescripcion"].HeaderText = "Lista Precio";
         }
 
         public override void ActualizarDatos(DataGridView grilla, string cadenaBuscar, CheckBox check, ToolStrip toolStrip)

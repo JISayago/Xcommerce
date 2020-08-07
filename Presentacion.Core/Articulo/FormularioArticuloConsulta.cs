@@ -59,14 +59,6 @@ namespace Presentacion.Core.Articulo
             grilla.Columns["CodigoBarra"].HeaderText = @"Codigo de Barra";
             grilla.Columns["CodigoBarra"].Width = 100;
 
-            /*grilla.Columns["Precio"].Visible = true;
-            grilla.Columns["Precio"].HeaderText = @"Precio Unitario";
-            grilla.Columns["Precio"].Width = 75;
-
-            grilla.Columns["PrecioCosto"].Visible = true;
-            grilla.Columns["PrecioCosto"].HeaderText = @"Precio Costo";
-            grilla.Columns["PrecioCosto"].Width = 75;*/
-
             grilla.Columns["Stock"].Visible = true;
             grilla.Columns["Stock"].Width = 75;
 
