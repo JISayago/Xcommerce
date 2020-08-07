@@ -1,4 +1,5 @@
 ﻿using Presentacion.Core.Articulo.BajaArticulo;
+using Presentacion.Core.Proveedor;
 using Presentacion.FormulariosBase;
 using Presentacion.FormulariosBase.Helpers;
 using System;
@@ -125,22 +126,9 @@ namespace Presentacion.Core.Articulo
 
         private void btnStock_Click(object sender, EventArgs e)
         {
-            AgregarStock(entidadId);     
+            var comprobanteCompra = new FormularioIngresoArticulos();
+            comprobanteCompra.ShowDialog();
         }
 
-        private void AgregarStock(long? entidadId)
-        {
-            long stockId = (long)entidadId;
-
-            var articulo = _articuloServicio.ObtenerPorId(stockId);
-
-            var altaStockArticulo = new FormularioAgregarStock(stockId, articulo.Stock);
-
-            //agregar mensajito de que todo esta bien
-
-            altaStockArticulo.ShowDialog();
-
-            ActualizarDatos(dgvGrilla, string.Empty, cbxEstaEliminado, BarraLateralBotones);
-        }
     }
 }
