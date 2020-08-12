@@ -12,8 +12,8 @@ namespace Presentacion.Core.Movimiento
     {
         private IMovimientoServicio _movimientoServicio;
         private IEmpleadoServicio _empleadoServicio;
-        private enum _TipoMov { Ingreso = 1, Egreso = -1, Ambos = 0}
-        private long? idEmpleado = null; 
+        private enum _TipoMov { Ingreso = 1, Egreso = -1, Ambos = 0 }
+        private long? idEmpleado = null;
         public FormularioMovimiento()
         {
             InitializeComponent();
@@ -26,7 +26,7 @@ namespace Presentacion.Core.Movimiento
             ResetearGrilla(dgvGrilla);
         }
 
-        public  void ResetearGrilla(DataGridView grilla)
+        public void ResetearGrilla(DataGridView grilla)
         {
             for (int i = 0; i < grilla.ColumnCount; i++)
             {
@@ -59,8 +59,8 @@ namespace Presentacion.Core.Movimiento
             if (cmbTipo.SelectedItem != null && (_TipoMov)cmbTipo.SelectedItem != _TipoMov.Ambos) tipo = (TipoMovimiento)cmbTipo.SelectedItem;
             if (idEmpleado != null) _idEmpleado = idEmpleado;
 
-            var movimientos = _movimientoServicio.Obtener(dtDesde.Value, dtHasta.Value, tipo, _idEmpleado, null);
-            
+            var movimientos = _movimientoServicio.Obtener(dtDesde.Value.AddDays(-1), dtHasta.Value.AddDays(1), tipo, _idEmpleado, null);
+
             if (movimientos != null)
             {
                 dgvGrilla.DataSource = movimientos;
@@ -73,16 +73,11 @@ namespace Presentacion.Core.Movimiento
 
         private void button1_Click(object sender, EventArgs e)
         {
-            idEmpleado = ((Func<long?>)(() => 
-            {
-                var f_ = new FormularioEmpleadoConsulta(true);
-                f_.ShowDialog();
-                return f_.empleadoSeleccionado;
-            }))();
+            var f_ = new FormularioEmpleadoConsulta(true);
+            f_.ShowDialog();
+            idEmpleado = f_.empleadoSeleccionado;
 
-            Console.WriteLine(idEmpleado);
-            if(idEmpleado != null) txtNombreUsuario.Text = _empleadoServicio.ObtenerEmpleadoPorId((long)idEmpleado).ApyNom;
-            
+            if (idEmpleado != null) txtNombreUsuario.Text = _empleadoServicio.ObtenerEmpleadoPorId((long)idEmpleado).ApyNom;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -94,7 +89,7 @@ namespace Presentacion.Core.Movimiento
         long? comprobanteSeleccionadoId = null;
         private void btnComprobante_Click(object sender, EventArgs e)
         {
-           
+
             if (comprobanteSeleccionadoId != null)
             {
                 var f_ = new FormularioComprobante((long)comprobanteSeleccionadoId);
@@ -116,5 +111,7 @@ namespace Presentacion.Core.Movimiento
         {
             dtDesde.MaxDate = dtHasta.Value;
         }
+
     }
+
 }

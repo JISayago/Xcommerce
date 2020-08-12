@@ -612,7 +612,7 @@
                 }
                 else
                 {
-                    var salonDescripcion = _mesaServicio.ObtenerPorId(_mesaId).SalonDescripcion;
+                    //var salonDescripcion = _mesaServicio.ObtenerPorId(_mesaId).SalonDescripcion;
                     var producto = _productoServicio.ObtenerPorCodigoListaPrecio(_listaPrecio, articulo.Codigo);
                     if (producto != null)
                     {

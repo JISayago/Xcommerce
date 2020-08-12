@@ -50,7 +50,6 @@
             this.lblDescuento = new System.Windows.Forms.Label();
             this.nudSubTotal = new System.Windows.Forms.NumericUpDown();
             this.lblSubTotal = new System.Windows.Forms.Label();
-            this.cbxDescuentaCaja = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnAgragarAlInventario = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrilla)).BeginInit();
@@ -279,17 +278,6 @@
             this.lblSubTotal.TabIndex = 221;
             this.lblSubTotal.Text = "Sub-Total";
             // 
-            // cbxDescuentaCaja
-            // 
-            this.cbxDescuentaCaja.AutoSize = true;
-            this.cbxDescuentaCaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbxDescuentaCaja.Location = new System.Drawing.Point(12, 449);
-            this.cbxDescuentaCaja.Name = "cbxDescuentaCaja";
-            this.cbxDescuentaCaja.Size = new System.Drawing.Size(164, 24);
-            this.cbxDescuentaCaja.TabIndex = 228;
-            this.cbxDescuentaCaja.Text = "Descuenta de Caja";
-            this.cbxDescuentaCaja.UseVisualStyleBackColor = true;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -317,7 +305,6 @@
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.btnAgragarAlInventario);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.cbxDescuentaCaja);
             this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.nudTotal);
             this.Controls.Add(this.lblTotal);
@@ -375,7 +362,6 @@
         private System.Windows.Forms.Label lblDescuento;
         private System.Windows.Forms.NumericUpDown nudSubTotal;
         private System.Windows.Forms.Label lblSubTotal;
-        private System.Windows.Forms.CheckBox cbxDescuentaCaja;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnAgragarAlInventario;
     }
