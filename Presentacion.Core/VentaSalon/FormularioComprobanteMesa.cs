@@ -324,7 +324,7 @@
 
         private void cerrarLaMesa(long mesaId, int numeroMesa)
         {
-
+            bool desea_imprimir = true;
             if (rdbCheque.Checked)
             {
                 _tfPAgo = TipoFormaPago.Cheque;
@@ -423,7 +423,7 @@
             else
             {
                 _comprobanteSalonServicio.Eliminar(comprobanteMesaDto.ComprobanteId);
-
+                desea_imprimir = false;
             }
 
             var mesaParaCerrar = _mesaServicio.ObtenerPorId(mesaId);
@@ -432,18 +432,20 @@
 
 
 
-            const string message = "Desea imprimir/ver comprobante?";
-            const string caption = "Comprobante";
-            var result = MessageBox.Show(message, caption,
-                                         MessageBoxButtons.YesNo,
-                                         MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
+            if (desea_imprimir)
             {
-                var f = new FormularioComprobante(comprobanteMesaDto.ComprobanteId);
-                f.ShowDialog();
+                const string message = "Desea imprimir/ver comprobante?";
+                const string caption = "Comprobante";
+                var result = MessageBox.Show(message, caption,
+                                             MessageBoxButtons.YesNo,
+                                             MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    var f = new FormularioComprobante(comprobanteMesaDto.ComprobanteId);
+                    f.ShowDialog();
+                }
             }
-            
             this.Close();
            
         }
@@ -611,7 +613,7 @@
                 else
                 {
                     var salonDescripcion = _mesaServicio.ObtenerPorId(_mesaId).SalonDescripcion;
-                    var producto = _productoServicio.ObtenerPorCodigoSalon(salonDescripcion, articulo.Codigo);
+                    var producto = _productoServicio.ObtenerPorCodigoListaPrecio(_listaPrecio, articulo.Codigo);
                     if (producto != null)
                     {
                         txtCodigoBarras.Text = producto.CodigoBarra;

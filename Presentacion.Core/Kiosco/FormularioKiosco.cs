@@ -225,7 +225,7 @@
 
                 if (producto != null)
                 {
-                    if (!ChequearDisponibilidadArticulo(txtCodigoBarras.Text, 1)) return;
+                    if (!ChequearDisponibilidadArticulo(txtCodigoBarras.Text, nudCantidadArticulo.Value)) return;
                     detalles[txtCodigoBarras.Text] =
                         new DetalleComprobanteDTO
                         {
@@ -259,7 +259,9 @@
                 det.CantidadProducto = cantidad;
             } else
             {
-                throw new Exception("Error al obtener el detalle desde el diccionario");
+                Console.WriteLine(codigo);
+                Console.WriteLine(cantidad);
+                //throw new Exception("Error al obtener el detalle desde el diccionario");
             }
 
             //ActualizarNudsGrid();
