@@ -319,9 +319,12 @@
             // 
             this.dtpFechaNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFechaNacimiento.Location = new System.Drawing.Point(108, 185);
+            this.dtpFechaNacimiento.MaxDate = new System.DateTime(2020, 8, 13, 0, 0, 0, 0);
+            this.dtpFechaNacimiento.MinDate = new System.DateTime(1850, 1, 1, 0, 0, 0, 0);
             this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
             this.dtpFechaNacimiento.Size = new System.Drawing.Size(128, 20);
             this.dtpFechaNacimiento.TabIndex = 9;
+            this.dtpFechaNacimiento.Value = new System.DateTime(2020, 8, 13, 0, 0, 0, 0);
             // 
             // btnLocalidad
             // 
@@ -363,9 +366,11 @@
             // 
             this.dtpFechaIngreso.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFechaIngreso.Location = new System.Drawing.Point(342, 57);
+            this.dtpFechaIngreso.MaxDate = new System.DateTime(2020, 8, 13, 0, 0, 0, 0);
             this.dtpFechaIngreso.Name = "dtpFechaIngreso";
             this.dtpFechaIngreso.Size = new System.Drawing.Size(128, 20);
             this.dtpFechaIngreso.TabIndex = 2;
+            this.dtpFechaIngreso.Value = new System.DateTime(2020, 8, 13, 0, 0, 0, 0);
             // 
             // label11
             // 
