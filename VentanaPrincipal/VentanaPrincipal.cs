@@ -52,6 +52,9 @@
                 btnKiosco.Enabled = false;
                 
             }
+            //
+            //Populate p = new Populate();
+            //p.All();
         }
 
         private void SetImagenesBotonesPrincipales(Image imagen, Button btn)
