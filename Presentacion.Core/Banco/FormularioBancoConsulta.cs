@@ -49,13 +49,7 @@
 
         public override void EjecutarBtnEliminar()
         {
-            base.EjecutarBtnEliminar();
-            if (puedeEjecutarComando)
-            {
-                var FormularioABMBanco = new FormularioBancoABM(TipoOperacion.Eliminar, entidadId);
-                FormularioABMBanco.ShowDialog();
-                ActualizarSegunOperacion(FormularioABMBanco.RealizoAlgunaOperacion);
-            }
+            MessageBox.Show("Eliminar Banco no disponible.", "Advertencia");
         }
 
         private void ActualizarSegunOperacion(bool realizoOperacion)

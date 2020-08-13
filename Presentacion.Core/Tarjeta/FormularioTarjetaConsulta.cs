@@ -55,19 +55,7 @@
 
         public override void EjecutarBtnEliminar()
         {
-            //todo no tiene estaeliminado en modelo
-            /*
-            if (!entidadId.HasValue) { MessageBox.Show("¡La grilla esta vacia!", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); return; }
-
-            base.EjecutarBtnEliminar();
-
-                
-            var fTarjetaAbm = new FormularioTarjetaABM(TipoOperacion.Eliminar, entidadId);
-
-            fTarjetaAbm.ShowDialog();
-            dgvGrilla.DataSource = _tarjetaServicio.Obtener("");
-            */
-
+            MessageBox.Show("Eliminar Tarjeta no disponible.");
         }
 
         

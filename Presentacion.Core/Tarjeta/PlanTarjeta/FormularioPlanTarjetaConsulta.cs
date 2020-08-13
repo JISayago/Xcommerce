@@ -24,6 +24,8 @@ namespace Presentacion.Core.Tarjeta.PlanTarjeta
             dgvGrilla.DataSource = _planTarjetaServicio.Obtener("");
 
             ResetearGrilla(dgvGrilla);
+
+            
         }
 
         public FormularioPlanTarjetaConsulta(IPlanTarjetaServicio PlanTarjetaServicio)
@@ -53,12 +55,19 @@ namespace Presentacion.Core.Tarjeta.PlanTarjeta
 
         }
 
+        public void ActualizarGrilla()
+        {
+            dgvGrilla.DataSource = _planTarjetaServicio.Obtener("");
 
+            ResetearGrilla(dgvGrilla);
+        }
 
         public override void EjecutarBtnNuevo()
         {
             var fPlanTarjetaAbm = new FormularioPlanTarjetaABM(TipoOperacion.Nuevo);
             fPlanTarjetaAbm.ShowDialog();
+
+            ActualizarGrilla();
         }
 
         public override void EjecutarBtnModificar()
@@ -69,15 +78,16 @@ namespace Presentacion.Core.Tarjeta.PlanTarjeta
             var fPlanTarjetaAbm = new FormularioPlanTarjetaABM(TipoOperacion.Modificar, entidadId);
             fPlanTarjetaAbm.ShowDialog();
 
+            ActualizarGrilla();
+
         }
 
         public override void EjecutarBtnEliminar()
         {
-         
-            var fPlanTarjetaAbm = new FormularioPlanTarjetaABM(TipoOperacion.Eliminar, entidadId);
+            //var fPlanTarjetaAbm = new FormularioPlanTarjetaABM(TipoOperacion.Eliminar, entidadId);
+            //fPlanTarjetaAbm.ShowDialog();
 
-            fPlanTarjetaAbm.ShowDialog();
-
+            MessageBox.Show("Eliminar Plan Tarjeta no disponible.");
             
         }
     }
