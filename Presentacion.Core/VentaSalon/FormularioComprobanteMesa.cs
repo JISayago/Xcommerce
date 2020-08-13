@@ -167,7 +167,11 @@
                 {
                     cerrarLaMesa(mesaId, _numeroMesa);
                 }
-                
+                if (result == DialogResult.No)
+                {
+                    this.Close();
+                }
+
 
             }
         }
