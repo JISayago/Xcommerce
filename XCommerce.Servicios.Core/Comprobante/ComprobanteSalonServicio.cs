@@ -88,9 +88,7 @@ namespace XCommerce.Servicios.Core.Comprobante
                     articuloServicio.DescontarStock(productoId,item.CantidadProducto);                    
                 }
 
-
                 baseDatos.SaveChanges();
-
 
             }
         }
@@ -128,10 +126,10 @@ namespace XCommerce.Servicios.Core.Comprobante
                     Total = 0m,
                     TipoComprobante = TipoComprobante.X,
                     UsuarioId = usuarioId,
-                    DetalleComprobantes = new List<DetalleComprobante>()
-
-
+                    DetalleComprobantes = new List<DetalleComprobante>(),
                 };
+
+                nuevoComprobante.Numero = 100_000_000 + (int)nuevoComprobante.Id;
 
                 baseDatos.Comprobantes.Add(nuevoComprobante);
                 baseDatos.SaveChanges();
