@@ -59,6 +59,6 @@
 
         #endregion
 
-        private System.Windows.Forms.ErrorProvider error;
+        protected System.Windows.Forms.ErrorProvider error;
     }
 }
