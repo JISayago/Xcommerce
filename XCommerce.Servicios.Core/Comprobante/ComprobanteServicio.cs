@@ -70,6 +70,8 @@ namespace XCommerce.Servicios.Core.Comprobante
                     DetalleComprobantes = new List<DetalleComprobante>()
                 };
 
+                nuevoComprobante.Numero = 100_000_000 + (int)nuevoComprobante.Id;
+
                 context.Comprobantes.Add(nuevoComprobante);
 
                 var list = new List<DetalleComprobante>();

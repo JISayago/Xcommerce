@@ -1,4 +1,5 @@
 ﻿using Presentacion.Core.Articulo.BajaArticulo;
+using Presentacion.Core.Proveedor;
 using Presentacion.FormulariosBase;
 using Presentacion.FormulariosBase.Helpers;
 using System;
@@ -58,14 +59,6 @@ namespace Presentacion.Core.Articulo
             grilla.Columns["CodigoBarra"].Visible = true;
             grilla.Columns["CodigoBarra"].HeaderText = @"Codigo de Barra";
             grilla.Columns["CodigoBarra"].Width = 100;
-
-            /*grilla.Columns["Precio"].Visible = true;
-            grilla.Columns["Precio"].HeaderText = @"Precio Unitario";
-            grilla.Columns["Precio"].Width = 75;
-
-            grilla.Columns["PrecioCosto"].Visible = true;
-            grilla.Columns["PrecioCosto"].HeaderText = @"Precio Costo";
-            grilla.Columns["PrecioCosto"].Width = 75;*/
 
             grilla.Columns["Stock"].Visible = true;
             grilla.Columns["Stock"].Width = 75;
@@ -133,22 +126,9 @@ namespace Presentacion.Core.Articulo
 
         private void btnStock_Click(object sender, EventArgs e)
         {
-            AgregarStock(entidadId);     
+            var comprobanteCompra = new FormularioIngresoArticulos();
+            comprobanteCompra.ShowDialog();
         }
 
-        private void AgregarStock(long? entidadId)
-        {
-            long stockId = (long)entidadId;
-
-            var articulo = _articuloServicio.ObtenerPorId(stockId);
-
-            var altaStockArticulo = new FormularioAgregarStock(stockId, articulo.Stock);
-
-            //agregar mensajito de que todo esta bien
-
-            altaStockArticulo.ShowDialog();
-
-            ActualizarDatos(dgvGrilla, string.Empty, cbxEstaEliminado, BarraLateralBotones);
-        }
     }
 }

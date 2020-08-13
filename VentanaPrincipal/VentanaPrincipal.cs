@@ -25,6 +25,7 @@
     using System;
     using System.Drawing;
     using System.Windows.Forms;
+    using XCommerce.Servicios.Core;
 
     public partial class VentanaPrincipal : Form
     {
@@ -51,6 +52,9 @@
                 btnKiosco.Enabled = false;
                 
             }
+            //
+            //Populate p = new Populate();
+            //p.All();
         }
 
         private void SetImagenesBotonesPrincipales(Image imagen, Button btn)

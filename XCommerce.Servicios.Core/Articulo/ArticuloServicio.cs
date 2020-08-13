@@ -57,7 +57,6 @@ namespace XCommerce.Servicios.Core.Articulo
             {
                 var nuevoArticulo = new AccesoDatos.Articulo()
                 {
-                    Id = (int)dto.Id,
                     Codigo = dto.Codigo,
                     CodigoBarra = dto.CodigoBarra,
                     Abreviatura = dto.Abreviatura,

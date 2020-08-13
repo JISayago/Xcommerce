@@ -242,6 +242,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgvGrilla);
             this.Controls.Add(this.BarraLateralBotones);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "FormularioBaseConsulta";
             this.Text = "FormularioBaseConsulta";

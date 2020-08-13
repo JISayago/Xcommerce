@@ -198,23 +198,31 @@ namespace Presentacion.Core.Proveedor
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-
-            if (detalles != null)
+            if (DatosSistema.EstaCajaAbierta)
             {
-                foreach (var item in detalles)
+                if (detalles != null)
                 {
-                    int i = 0;
-                    MessageBox.Show($"{item}");
-                    if (decimal.TryParse(dgvGrilla.Rows[i].Cells["CantidadProducto"].Value.ToString(), out decimal cantidad))
+                    foreach (var item in detalles)
                     {
-                        _articuloServicio.AgregarStock(item.Key, cantidad);
-                        i++;
+                        int i = 0;
+                        if (decimal.TryParse(dgvGrilla.Rows[i].Cells["CantidadProducto"].Value.ToString(), out decimal cantidad))
+                        {
+                            _articuloServicio.AgregarStock(item.Key, cantidad);
+                            i++;
+                        }
+
                     }
+                    RegistrarListadoArticulos();
+                }
+                else
+                {
+                    MessageBox.Show("No se puede Registrar una lista de articulos vacía.", "Advertencia");
 
                 }
-                RegistrarListadoArticulos();
+            } else
+            {
+                MessageBox.Show("La caja debe estar abierta.", "Advertencia");
             }
-            MessageBox.Show("No se puede Registrar una lista de articulos vacáa.");
         }
 
         private bool RegistrarListadoArticulos()
@@ -248,101 +256,13 @@ namespace Presentacion.Core.Proveedor
          
             comprobante_id = _comprobanteServicio.GenerarComprobanteCompra(comprobante);
 
-            ////////////////
-            //Detalle Caja//
-            ////////////////
-            ////tipo pago
-            //var formaDePago = TipoPago.Efectivo;
-            //if (rbCtaCte.Checked)
-            //{
-            //    formaDePago = TipoPago.CtaCte;
-            //}
-            //if (rbTarjeta.Checked)
-            //{
-            //    formaDePago = TipoPago.Tarjeta;
-            ////}
-            ///
-
-            if (cbxDescuentaCaja.Checked)
+            DetalleCajaDTO detalleCaja = new DetalleCajaDTO
             {
-                DetalleCajaDTO detalleCaja = new DetalleCajaDTO
-                {
-                    CajaId = DatosSistema.CajaId,
-                    Monto = comprobante.Total,
-                    TipoPago = TipoPago.Efectivo
-                };
-                _detalleCajaServicio.Generar(detalleCaja);
-            }
-
-
-            //////////////////
-            /////FORMA PAGO///
-            //////////////////
-
-            //if (rbEfectivo.Checked)
-            //{
-            //    FormaPagoEfectivoDTO fp = new FormaPagoEfectivoDTO
-            //    {
-            //        TipoFormaPago = TipoFormaPago.Efectivo,
-            //        Monto = nudTotal.Value,
-            //        ComprobanteId = comprobante_id,
-            //    };
-            //    _formaPagoServicio.Generar(fp);
-            //}
-
-            //if (rbCtaCte.Checked)
-            //{
-            //    if (_clienteServicio.DescontarDeCuenta(idCliente, comprobante.Total))
-            //    {
-            //        //nada?
-            //    }
-            //    else
-            //    {
-            //        throw new Exception("Si tiene menos de 0 deberia un cartel que no deje que siga el tema ya vemos yadayadayada");
-            //    }
-
-            //    FormaPagoCtaCteDTO fp = new FormaPagoCtaCteDTO
-            //    {
-            //        TipoFormaPago = TipoFormaPago.CuentaCorriente,
-            //        Monto = nudTotal.Value,
-            //        ComprobanteId = comprobante_id,
-            //        ClienteId = idCliente,
-            //    };
-            //    _formaPagoServicio.Generar(fp);
-            //}
-
-            //if (rbCheque.Checked)
-            //{
-            //    FormaPagoChequeDTO fp = new FormaPagoChequeDTO
-            //    {
-            //        TipoFormaPago = TipoFormaPago.Cheque,
-            //        Monto = nudTotal.Value,
-            //        ComprobanteId = comprobante_id,
-            //        BancoId = ((BancoDTO)cbBanco.SelectedItem).Id,
-            //        Dias = (int)nudDiasCheque.Value,
-            //        EnteEmisor = txtEnteCheque.Text,
-            //        FechaEmision = dtFechaCheque.Value,
-            //        Numero = txtNumeroCheque.Text,
-            //    };
-
-            //    _formaPagoServicio.Generar(fp);
-            //}
-
-            //if (rbTarjeta.Checked)
-            //{
-            //    FormaPagoTarjetaDTO fp = new FormaPagoTarjetaDTO
-            //    {
-            //        TipoFormaPago = TipoFormaPago.Tarjeta,
-            //        Monto = nudTotal.Value,
-            //        ComprobanteId = comprobante_id,
-            //        Numero = txtNumeroTarjeta.Text,
-            //        Cupon = "", //TODO ????
-            //        PlanTarjetaId = ((PlanTarjetaDTO)cbPlan.SelectedItem).Id,
-            //        NumeroTarjeta = txtClaveTarjeta.Text
-            //    };
-
-            //    _formaPagoServicio.Generar(fp);
-            //}
+                CajaId = DatosSistema.CajaId,
+                Monto = comprobante.Total,
+                TipoPago = TipoPago.Efectivo
+            };
+            _detalleCajaServicio.Generar(detalleCaja);
 
             //////////////
             //Movimiento//
@@ -358,8 +278,6 @@ namespace Presentacion.Core.Proveedor
              };
 
             _movimientoServicio.GenerarMovimiento(movimiento);
-
-
           
             
             Close();

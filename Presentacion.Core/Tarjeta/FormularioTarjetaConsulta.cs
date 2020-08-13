@@ -29,11 +29,7 @@
         {
             base.ResetearGrilla(grilla);
 
-            grilla.Columns["Id"].Visible = true;
-            grilla.Columns["Id"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            grilla.Columns["Id"].HeaderText = @"ID";
-            grilla.Columns["Id"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
+         
             grilla.Columns["Descripcion"].Visible = true;
             grilla.Columns["Descripcion"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             grilla.Columns["Descripcion"].HeaderText = @"Tarjeta";
@@ -59,19 +55,7 @@
 
         public override void EjecutarBtnEliminar()
         {
-            //todo no tiene estaeliminado en modelo
-            /*
-            if (!entidadId.HasValue) { MessageBox.Show("¡La grilla esta vacia!", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); return; }
-
-            base.EjecutarBtnEliminar();
-
-                
-            var fTarjetaAbm = new FormularioTarjetaABM(TipoOperacion.Eliminar, entidadId);
-
-            fTarjetaAbm.ShowDialog();
-            dgvGrilla.DataSource = _tarjetaServicio.Obtener("");
-            */
-
+            MessageBox.Show("Eliminar Tarjeta no disponible.");
         }
 
         

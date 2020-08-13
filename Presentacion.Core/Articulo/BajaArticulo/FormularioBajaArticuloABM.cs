@@ -58,12 +58,22 @@ namespace Presentacion.Core.Articulo.BajaArticulo
             {
                 CargarNuevo(entidadId);
             }
+
+            AgregarControlesObligatorios(cmbMotivo, "Motivo");
+            AgregarControlesObligatorios(nudCantidad, "Cantidad");
+            AgregarControlesObligatorios(richBajaArticulo, "Descripcion");
         }
 
 
 
         public override bool EjecutarComandoNuevo()
         {
+            if (!VerificarDatosObligatorios())
+            {
+                MessageBox.Show(@"Por favor ingrese los campos Obligatorios.", @"Atención", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
             var bajaArticuloNuevo = new BajaArticuloDTO
             {
                 Cantidad = nudCantidad.Value,
@@ -82,6 +92,13 @@ namespace Presentacion.Core.Articulo.BajaArticulo
 
         public override bool EjecutarComandoModificar()
         {
+            if (!VerificarDatosObligatorios())
+            {
+                MessageBox.Show(@"Por favor ingrese los campos Obligatorios.", @"Atención", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
+
             var bajaArticuloDTO = _bajaArticuloServicio.ObtenerBajaMotivoPorId(EntidadId.Value);
 
             var bajaArticuloMod = new BajaArticuloDTO

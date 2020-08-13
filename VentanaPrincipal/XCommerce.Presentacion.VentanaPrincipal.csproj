@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{DD527928-6830-472C-A5E8-0628CC40E752}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>VentanaPrincipal</RootNamespace>
     <AssemblyName>VentanaPrincipal</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -47,8 +47,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup>
-    <NoWin32Manifest>true</NoWin32Manifest>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -125,6 +126,10 @@
     <ProjectReference Include="..\Presentacion.Login\XCommerce.Presentacion.Login.csproj">
       <Project>{31afa4c1-0716-4cb7-8e55-916b04b92889}</Project>
       <Name>XCommerce.Presentacion.Login</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XCommerce.Servicios.Core\XCommerce.Servicios.Core.csproj">
+      <Project>{EE470802-2D6E-456E-A92B-FB197C8B8C50}</Project>
+      <Name>XCommerce.Servicios.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\XCommerce2019.BaseDatos\XCommerce.AccesoDatos.csproj">
       <Project>{5812fba7-dcff-4d08-99a7-4b52e4a8bc68}</Project>

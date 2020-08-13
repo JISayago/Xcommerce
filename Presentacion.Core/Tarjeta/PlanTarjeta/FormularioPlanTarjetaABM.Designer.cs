@@ -61,9 +61,24 @@
             // nudAlicuota
             // 
             this.nudAlicuota.Location = new System.Drawing.Point(143, 138);
+            this.nudAlicuota.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nudAlicuota.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.nudAlicuota.Name = "nudAlicuota";
             this.nudAlicuota.Size = new System.Drawing.Size(213, 20);
             this.nudAlicuota.TabIndex = 8;
+            this.nudAlicuota.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // cmbTarjeta
             // 

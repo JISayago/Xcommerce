@@ -16,7 +16,7 @@ namespace XCommerce.Servicios.Core.Caja.DTO
         public DateTime FechaCierre { get; set; }
         public decimal MontoCierre { get; set; }
         public decimal MontoSistema { get; set; }
-        public decimal Diferencia => MontoSistema - MontoCierre;
+        public decimal Diferencia => MontoCierre -MontoSistema;
         public long UsuarioCierreId { get; set; }
 
     }

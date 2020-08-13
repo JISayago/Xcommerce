@@ -15,5 +15,8 @@ namespace XCommerce.Servicios.Core.Salon.DTO
         public bool EstaEliminado { get; set; }
 
         public long listaPrecioId { get; set; }
+
+        public string listaPrecioDescripcion { get; set; }
+       
     }
 }

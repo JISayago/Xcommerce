@@ -74,9 +74,10 @@
             this.label18 = new System.Windows.Forms.Label();
             this.cbxPermiteStockNegativo = new System.Windows.Forms.CheckBox();
             this.gbStock = new System.Windows.Forms.GroupBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.cbxActivarLimiteVenta = new System.Windows.Forms.CheckBox();
             this.nudLimiteVenta = new System.Windows.Forms.NumericUpDown();
+            this.cbxActivarLimiteVenta = new System.Windows.Forms.CheckBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
             this.pnlFoto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgFotoArticulo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStockMax)).BeginInit();
@@ -549,14 +550,18 @@
             this.gbStock.TabStop = false;
             this.gbStock.Text = "Descuenta stock";
             // 
-            // label20
+            // nudLimiteVenta
             // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(402, 49);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(36, 13);
-            this.label20.TabIndex = 22;
-            this.label20.Text = "Límite";
+            this.nudLimiteVenta.Enabled = false;
+            this.nudLimiteVenta.Location = new System.Drawing.Point(444, 47);
+            this.nudLimiteVenta.Maximum = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            0});
+            this.nudLimiteVenta.Name = "nudLimiteVenta";
+            this.nudLimiteVenta.Size = new System.Drawing.Size(40, 20);
+            this.nudLimiteVenta.TabIndex = 7;
             // 
             // cbxActivarLimiteVenta
             // 
@@ -571,24 +576,32 @@
             this.cbxActivarLimiteVenta.ThreeState = true;
             this.cbxActivarLimiteVenta.UseVisualStyleBackColor = true;
             // 
-            // nudLimiteVenta
+            // label20
             // 
-            this.nudLimiteVenta.Enabled = false;
-            this.nudLimiteVenta.Location = new System.Drawing.Point(444, 47);
-            this.nudLimiteVenta.Maximum = new decimal(new int[] {
-            999999,
-            0,
-            0,
-            0});
-            this.nudLimiteVenta.Name = "nudLimiteVenta";
-            this.nudLimiteVenta.Size = new System.Drawing.Size(40, 20);
-            this.nudLimiteVenta.TabIndex = 7;
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(402, 49);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(36, 13);
+            this.label20.TabIndex = 22;
+            this.label20.Text = "Límite";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.label25.ForeColor = System.Drawing.Color.Red;
+            this.label25.Location = new System.Drawing.Point(656, 415);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(116, 13);
+            this.label25.TabIndex = 184;
+            this.label25.Text = "Campos Obligatorios (*)";
             // 
             // FormularioArticuloABM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 437);
+            this.Controls.Add(this.label25);
             this.Controls.Add(this.gbStock);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.label16);
@@ -661,6 +674,7 @@
             this.Controls.SetChildIndex(this.label16, 0);
             this.Controls.SetChildIndex(this.label18, 0);
             this.Controls.SetChildIndex(this.gbStock, 0);
+            this.Controls.SetChildIndex(this.label25, 0);
             this.pnlFoto.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgFotoArticulo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStockMax)).EndInit();
@@ -727,5 +741,6 @@
         private System.Windows.Forms.NumericUpDown nudLimiteVenta;
         protected System.Windows.Forms.CheckBox cbxActivarLimiteVenta;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label25;
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VentanaPrincipal));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.administraciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.provinciaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -321,15 +322,15 @@
             // consultaToolStripMenuItem10
             // 
             this.consultaToolStripMenuItem10.Name = "consultaToolStripMenuItem10";
-            this.consultaToolStripMenuItem10.Size = new System.Drawing.Size(191, 22);
+            this.consultaToolStripMenuItem10.Size = new System.Drawing.Size(194, 22);
             this.consultaToolStripMenuItem10.Text = "Consulta";
             this.consultaToolStripMenuItem10.Click += new System.EventHandler(this.consultaToolStripMenuItem10_Click);
             // 
             // comprobanteCompraToolStripMenuItem
             // 
             this.comprobanteCompraToolStripMenuItem.Name = "comprobanteCompraToolStripMenuItem";
-            this.comprobanteCompraToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.comprobanteCompraToolStripMenuItem.Text = "ComprobanteCompra";
+            this.comprobanteCompraToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.comprobanteCompraToolStripMenuItem.Text = "Comprobante Compra";
             this.comprobanteCompraToolStripMenuItem.Click += new System.EventHandler(this.comprobanteCompraToolStripMenuItem_Click);
             // 
             // bancoToolStripMenuItem
@@ -456,7 +457,9 @@
             this.Controls.Add(this.btnKiosco);
             this.Controls.Add(this.btnVentaSalon);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "VentanaPrincipal";
             this.Text = "XCommerce";
             this.Activated += new System.EventHandler(this.VentanaPrincipal_Activated);

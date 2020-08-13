@@ -625,7 +625,7 @@
             this.txtDescripcion.Enabled = false;
             this.txtDescripcion.Location = new System.Drawing.Point(156, 35);
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(346, 20);
+            this.txtDescripcion.Size = new System.Drawing.Size(355, 20);
             this.txtDescripcion.TabIndex = 51;
             // 
             // label1

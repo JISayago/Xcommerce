@@ -42,6 +42,9 @@
             _provinciaServicio = new ProvinciaServicio();
             _localidadServicio = new LocalidadServicio();
 
+            dtpFechaIngreso.MaxDate = DateTime.Now.AddDays(1);
+            dtpFechaNacimiento.MaxDate = DateTime.Now.AddDays(1);
+
             if (tipoOperacion == TipoOperacion.Eliminar || tipoOperacion == TipoOperacion.Modificar)
             {
                 CargarDatos(entidadId);
@@ -103,6 +106,7 @@
             txtCelular.KeyPress += Validacion.NoSimbolos;
             txtCelular.KeyPress += Validacion.NoLetras;
 
+            Validacion.ValidarEmail(txtEmail.Text, error, txtEmail);
             imgFotoEmpleado.Image = Constantes.Imagenes.ImagenUsuario;
 
             txtApellido.Focus();
@@ -222,6 +226,7 @@
                     MessageBoxIcon.Error);
                 return false;
             }
+
             var nuevoEmpleado = new EmpleadoDTO
             {
                 Apellido = txtApellido.Text,

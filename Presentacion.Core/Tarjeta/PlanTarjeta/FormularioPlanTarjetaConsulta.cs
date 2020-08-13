@@ -24,6 +24,8 @@ namespace Presentacion.Core.Tarjeta.PlanTarjeta
             dgvGrilla.DataSource = _planTarjetaServicio.Obtener("");
 
             ResetearGrilla(dgvGrilla);
+
+            
         }
 
         public FormularioPlanTarjetaConsulta(IPlanTarjetaServicio PlanTarjetaServicio)
@@ -34,11 +36,6 @@ namespace Presentacion.Core.Tarjeta.PlanTarjeta
         public override void ResetearGrilla(DataGridView grilla)
         {
             base.ResetearGrilla(grilla);
-
-            grilla.Columns["Id"].Visible = true;
-            grilla.Columns["Id"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            grilla.Columns["Id"].HeaderText = @"ID";
-            grilla.Columns["Id"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             grilla.Columns["Descripcion"].Visible = true;
             grilla.Columns["Descripcion"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -58,12 +55,19 @@ namespace Presentacion.Core.Tarjeta.PlanTarjeta
 
         }
 
+        public void ActualizarGrilla()
+        {
+            dgvGrilla.DataSource = _planTarjetaServicio.Obtener("");
 
+            ResetearGrilla(dgvGrilla);
+        }
 
         public override void EjecutarBtnNuevo()
         {
             var fPlanTarjetaAbm = new FormularioPlanTarjetaABM(TipoOperacion.Nuevo);
             fPlanTarjetaAbm.ShowDialog();
+
+            ActualizarGrilla();
         }
 
         public override void EjecutarBtnModificar()
@@ -74,15 +78,16 @@ namespace Presentacion.Core.Tarjeta.PlanTarjeta
             var fPlanTarjetaAbm = new FormularioPlanTarjetaABM(TipoOperacion.Modificar, entidadId);
             fPlanTarjetaAbm.ShowDialog();
 
+            ActualizarGrilla();
+
         }
 
         public override void EjecutarBtnEliminar()
         {
-         
-            var fPlanTarjetaAbm = new FormularioPlanTarjetaABM(TipoOperacion.Eliminar, entidadId);
+            //var fPlanTarjetaAbm = new FormularioPlanTarjetaABM(TipoOperacion.Eliminar, entidadId);
+            //fPlanTarjetaAbm.ShowDialog();
 
-            fPlanTarjetaAbm.ShowDialog();
-
+            MessageBox.Show("Eliminar Plan Tarjeta no disponible.");
             
         }
     }

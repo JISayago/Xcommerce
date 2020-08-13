@@ -74,10 +74,17 @@ namespace Presentacion.Core.Precio
 
         }
 
+        private void ActualizarGrilla()
+        {
+            dgvGrilla.DataSource = _precioServicio.ObtenerUltimaActualizacion("");
+            ResetearGrilla();
+        }
+
         private void BtnActualizar_Click(object sender, EventArgs e)
         {
             var fActualizarPrecio = new FormularioActualizarPrecio(TipoOperacion.Modificar, entidadId);
             fActualizarPrecio.ShowDialog();
+            ActualizarGrilla();
         }
 
         private void DgvGrilla_RowEnter(object sender, DataGridViewCellEventArgs e)

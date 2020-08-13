@@ -2,6 +2,7 @@
 {
     using Presentacion.Core.Articulo;
     using Presentacion.Core.Cliente;
+    using Presentacion.Core.Comprobante;
     using Presentacion.FormulariosBase;
     using Presentacion.Helpers;
     using System;
@@ -86,6 +87,20 @@
 
             if (_tfPAgo == 0) { int a = 1; a++; }
 
+            txtClaveTarjeta.KeyPress += Validacion.NoSimbolos;
+            txtClaveTarjeta.KeyPress += Validacion.NoLetras;
+
+            txtNumeroTarjeta.KeyPress += Validacion.NoSimbolos;
+            txtNumeroTarjeta.KeyPress += Validacion.NoLetras;
+
+            txtNumeroCheque.KeyPress += Validacion.NoSimbolos;
+            txtNumeroCheque.KeyPress += Validacion.NoLetras;
+
+            txtCodigoBarras.KeyPress += Validacion.NoSimbolos;
+            txtCodigoBarras.KeyPress += Validacion.NoLetras;
+
+            txtClienteDni.KeyPress += Validacion.NoSimbolos;
+            txtClienteDni.KeyPress += Validacion.NoLetras;
 
         }
 
@@ -146,13 +161,32 @@
             grilla.Columns["SubtotalLinea"].DefaultCellStyle.Format = "N2";
 
         }
+
+
         public FormularioComprobanteMesa(long mesaId, int _numeroMesa, bool cerrarMesa) : this()
         {
             ObtenerComprobanteMesa(mesaId);
             if (cerrarMesa)
             {
                 this.Show();
-                cerrarLaMesa(mesaId, _numeroMesa);
+                //cerrarLaMesa(mesaId, _numeroMesa);
+
+                const string message = "La mesa se cerrara con FORMA DE PAGO EFECTIVO";
+                const string caption = "ADVERTENCIA";
+                var result = MessageBox.Show(message, caption,
+                                             MessageBoxButtons.YesNo,
+                                             MessageBoxIcon.Question);
+                
+                if (result == DialogResult.Yes)
+                {
+                    cerrarLaMesa(mesaId, _numeroMesa);
+                }
+                if (result == DialogResult.No)
+                {
+                    this.Close();
+                }
+
+
             }
         }
 
@@ -308,7 +342,7 @@
 
         private void cerrarLaMesa(long mesaId, int numeroMesa)
         {
-
+            bool desea_imprimir = true;
             if (rdbCheque.Checked)
             {
                 _tfPAgo = TipoFormaPago.Cheque;
@@ -407,15 +441,31 @@
             else
             {
                 _comprobanteSalonServicio.Eliminar(comprobanteMesaDto.ComprobanteId);
-
+                desea_imprimir = false;
             }
 
             var mesaParaCerrar = _mesaServicio.ObtenerPorId(mesaId);
             mesaParaCerrar.estadoMesa = EstadoMesa.Cerrada;
             _mesaServicio.Modificar(mesaParaCerrar);
 
-            this.Close();
 
+
+            if (desea_imprimir)
+            {
+                const string message = "Desea imprimir/ver comprobante?";
+                const string caption = "Comprobante";
+                var result = MessageBox.Show(message, caption,
+                                             MessageBoxButtons.YesNo,
+                                             MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    var f = new FormularioComprobante(comprobanteMesaDto.ComprobanteId);
+                    f.ShowDialog();
+                }
+            }
+            this.Close();
+           
         }
 
         private void nudCantidadArticulo_KeyPress(object sender, KeyPressEventArgs e)
@@ -580,8 +630,8 @@
                 }
                 else
                 {
-                    var salonDescripcion = _mesaServicio.ObtenerPorId(_mesaId).SalonDescripcion;
-                    var producto = _productoServicio.ObtenerPorCodigoSalon(salonDescripcion, articulo.Codigo);
+                    //var salonDescripcion = _mesaServicio.ObtenerPorId(_mesaId).SalonDescripcion;
+                    var producto = _productoServicio.ObtenerPorCodigoListaPrecio(_listaPrecio, articulo.Codigo);
                     if (producto != null)
                     {
                         txtCodigoBarras.Text = producto.CodigoBarra;
