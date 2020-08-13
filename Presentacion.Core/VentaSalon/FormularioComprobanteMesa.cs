@@ -87,6 +87,20 @@
 
             if (_tfPAgo == 0) { int a = 1; a++; }
 
+            txtClaveTarjeta.KeyPress += Validacion.NoSimbolos;
+            txtClaveTarjeta.KeyPress += Validacion.NoLetras;
+
+            txtNumeroTarjeta.KeyPress += Validacion.NoSimbolos;
+            txtNumeroTarjeta.KeyPress += Validacion.NoLetras;
+
+            txtNumeroCheque.KeyPress += Validacion.NoSimbolos;
+            txtNumeroCheque.KeyPress += Validacion.NoLetras;
+
+            txtCodigoBarras.KeyPress += Validacion.NoSimbolos;
+            txtCodigoBarras.KeyPress += Validacion.NoLetras;
+
+            txtClienteDni.KeyPress += Validacion.NoSimbolos;
+            txtClienteDni.KeyPress += Validacion.NoLetras;
 
         }
 

@@ -77,6 +77,20 @@
             SetConsumidorFinal();
             cargarCbTarjetaPlan();
 
+            txtClaveTarjeta.KeyPress += Validacion.NoSimbolos;
+            txtClaveTarjeta.KeyPress += Validacion.NoLetras;
+
+            txtNumeroTarjeta.KeyPress += Validacion.NoSimbolos;
+            txtNumeroTarjeta.KeyPress += Validacion.NoLetras;
+
+            txtNumeroCheque.KeyPress += Validacion.NoSimbolos;
+            txtNumeroCheque.KeyPress += Validacion.NoLetras;
+
+            txtCodigoBarras.KeyPress += Validacion.NoSimbolos;
+            txtCodigoBarras.KeyPress += Validacion.NoLetras;
+            
+            txtDniCliente.KeyPress += Validacion.NoSimbolos;
+            txtDniCliente.KeyPress += Validacion.NoLetras;
         }
         public FormularioKiosco(long idCliente) : this()
         {
@@ -274,6 +288,8 @@
 
             nudSubTotal.Value = detalles.Values.Sum(x => x.SubtotalLinea);
             nudTotal.Value = nudSubTotal.Value;
+
+            
         }
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
