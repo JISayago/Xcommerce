@@ -195,10 +195,11 @@
 
         private bool ChequearDisponibilidadArticulo(string codigo, decimal cantidad)
         {
+            Func<bool, string, bool> check_showm = (c, m) => { if (c) MessageBox.Show(m); return false; };
+
             var articulo = _articuloServicio.Obtener(codigo).First();
 
-            Func<bool,string,bool> check_showm = (c,m) => { if(c) MessageBox.Show(m); return false; };
-
+         
             if (articulo.EstaDiscontinuado) { MessageBox.Show("Articulo descontinuado"); return false; }
             if (articulo.EstaEliminado)     { MessageBox.Show("Articulo eliminado"); return false; }
 

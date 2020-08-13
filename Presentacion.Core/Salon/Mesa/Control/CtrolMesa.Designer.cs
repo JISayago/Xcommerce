@@ -33,8 +33,8 @@
             this.MenuControlMesa = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuAbrirMesa = new System.Windows.Forms.ToolStripMenuItem();
             this.menuCerrarMesa = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblPrecio = new System.Windows.Forms.Label();
             this.reservasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblPrecio = new System.Windows.Forms.Label();
             this.MenuControlMesa.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -42,7 +42,7 @@
             // 
             this.lblNumeroMesa.ContextMenuStrip = this.MenuControlMesa;
             this.lblNumeroMesa.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblNumeroMesa.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNumeroMesa.Font = new System.Drawing.Font("Microsoft Sans Serif", 23F, System.Drawing.FontStyle.Bold);
             this.lblNumeroMesa.Location = new System.Drawing.Point(0, 0);
             this.lblNumeroMesa.Name = "lblNumeroMesa";
             this.lblNumeroMesa.Size = new System.Drawing.Size(100, 67);
@@ -57,21 +57,28 @@
             this.menuCerrarMesa,
             this.reservasToolStripMenuItem});
             this.MenuControlMesa.Name = "MenuControlMesa";
-            this.MenuControlMesa.Size = new System.Drawing.Size(181, 92);
+            this.MenuControlMesa.Size = new System.Drawing.Size(138, 70);
             // 
             // menuAbrirMesa
             // 
             this.menuAbrirMesa.Name = "menuAbrirMesa";
-            this.menuAbrirMesa.Size = new System.Drawing.Size(163, 22);
+            this.menuAbrirMesa.Size = new System.Drawing.Size(137, 22);
             this.menuAbrirMesa.Text = "Abrir Mesa";
             this.menuAbrirMesa.Click += new System.EventHandler(this.menuAbrirMesa_Click);
             // 
             // menuCerrarMesa
             // 
             this.menuCerrarMesa.Name = "menuCerrarMesa";
-            this.menuCerrarMesa.Size = new System.Drawing.Size(163, 22);
+            this.menuCerrarMesa.Size = new System.Drawing.Size(137, 22);
             this.menuCerrarMesa.Text = "Cerrar Mesa";
             this.menuCerrarMesa.Click += new System.EventHandler(this.menuCerrarMesa_Click);
+            // 
+            // reservasToolStripMenuItem
+            // 
+            this.reservasToolStripMenuItem.Name = "reservasToolStripMenuItem";
+            this.reservasToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.reservasToolStripMenuItem.Text = "Reservas";
+            this.reservasToolStripMenuItem.Click += new System.EventHandler(this.reservasToolStripMenuItem_Click_1);
             // 
             // lblPrecio
             // 
@@ -83,13 +90,6 @@
             this.lblPrecio.Size = new System.Drawing.Size(100, 33);
             this.lblPrecio.TabIndex = 1;
             this.lblPrecio.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // reservasToolStripMenuItem
-            // 
-            this.reservasToolStripMenuItem.Name = "reservasToolStripMenuItem";
-            this.reservasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.reservasToolStripMenuItem.Text = "Reservas";
-            this.reservasToolStripMenuItem.Click += new System.EventHandler(this.reservasToolStripMenuItem_Click_1);
             // 
             // CtrolMesa
             // 

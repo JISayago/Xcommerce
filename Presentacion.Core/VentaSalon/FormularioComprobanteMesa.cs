@@ -239,6 +239,25 @@
             }
         }
 
+        private bool ChequearDisponibilidadArticulo(string codigo, decimal cantidad)
+        {
+            Func<bool, string, bool> check_showm = (c, m) => { if (c) MessageBox.Show(m); return false; };
+
+            var articulo = _articuloServicio.Obtener(codigo).First();
+
+            if (articulo.EstaDiscontinuado) { MessageBox.Show("Articulo descontinuado"); return false; }
+            if (articulo.EstaEliminado) { MessageBox.Show("Articulo eliminado"); return false; }
+
+            if (articulo.DescuentaStock)
+            {
+                if (!articulo.PermiteStockNegativo
+                    && articulo.Stock - cantidad < 0) { MessageBox.Show("Stock insuficiente"); return false; }
+
+                if (articulo.Stock - cantidad < articulo.StockMinimo) { MessageBox.Show("Stock minimo superado"); return false; }
+            }
+
+            return true;
+        }
         private void busquedaArticulo()
         {
             if (string.IsNullOrEmpty(txtCodigoBarras.Text))
@@ -252,7 +271,11 @@
             {
                 txtDescripcion.Text = producto.Descripcion;
                 txtPrecioUnitario.Text = Convert.ToString(producto.Precio);
-                _comprobanteSalonServicio.AgregarItems(_mesaId, nudCantidadArticulo.Value, producto);
+               
+                if (ChequearDisponibilidadArticulo(producto.Codigo, nudCantidadArticulo.Value))
+                {
+                    _comprobanteSalonServicio.AgregarItems(_mesaId, nudCantidadArticulo.Value, producto);
+                }
 
                 ObtenerComprobanteMesa(_mesaId);
             }
