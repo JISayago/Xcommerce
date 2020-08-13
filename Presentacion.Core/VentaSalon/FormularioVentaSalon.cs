@@ -68,10 +68,10 @@ namespace Presentacion.Core.VentaSalon
 
                            var controlMesa = new CtrolMesa
                            {
-                            mesaId = mesa.Id,
-                            Estado = mesa.estadoMesa,
-                            NumeroMesa = mesa.Numero,
-                            PrecioCosumido = mesaDto.SubTotal
+                                mesaId = mesa.Id,
+                                Estado = mesa.estadoMesa,
+                                NumeroMesa = mesa.Numero,
+                                PrecioCosumido = mesaDto.SubTotal
                            };
 
                              flowPanel.Controls.Add(controlMesa);

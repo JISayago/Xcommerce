@@ -110,16 +110,34 @@ namespace Presentacion.Core.Reserva
 
         private void btnBuscarDni_Click_1(object sender, EventArgs e)
         {
-            var cliente = _clienteServicio.ObtenerClientePorDni(txtClienteDni.Text);
+            if (string.IsNullOrEmpty(txtClienteDni.Text))
+            {
+                bool vieneDeSelecFPago = true;
+                FormularioClienteConsulta f = new FormularioClienteConsulta(vieneDeSelecFPago);
 
-            if (cliente == null) throw new Exception("error al obtener el cliente");
+                f.ShowDialog();
 
-            _clienteId = cliente.Id;
+                _clienteId = f.clienteSeleccionado;
 
-            txtApynomb.Text = cliente.ApyNom;
-            txtCelular.Text = cliente.Celular;
-            txtDNI.Text = cliente.Dni;
+                var cliente = _clienteServicio.ObtenerClientePorId(_clienteId);
+                if (cliente != null)
+                {
+                    txtDNI.Text = cliente.Dni;
+                    txtApynomb.Text = cliente.ApyNom;
+                    txtCelular.Text = cliente.Celular;
+                }
+            }
+            else
+            {
+                var cliente = _clienteServicio.ObtenerClientePorDni(txtClienteDni.Text);
 
+                _clienteId = cliente.Id;
+
+                txtApynomb.Text = cliente.ApyNom;
+                txtCelular.Text = cliente.Celular;
+                txtDNI.Text = cliente.Dni;
+
+            }
         }
 
         private void btnNuevoCliente_Click_1(object sender, EventArgs e)

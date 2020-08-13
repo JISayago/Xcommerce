@@ -319,5 +319,39 @@ namespace Presentacion.Core.Cliente
                 CargarComboBox(cmbLocalidad, _localidadServicio.ObtenerLocalidadPorProvincia(((ProvinciaDTO)cmbProvincia.SelectedItem).Id, string.Empty), "Descripcion", "Id");
             }
         }
+
+        private void cmbProvincia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargarComboBox(cmbLocalidad, _localidadServicio.ObtenerLocalidadPorProvincia(((ProvinciaDTO)cmbProvincia.SelectedItem).Id, string.Empty), "Descripcion", "Id");
+
+
+        }
+
+        private void btnNuevaProvincia_Click_1(object sender, EventArgs e)
+        {
+            var FormularioABMProvincia = new FormularioProvinciaABM(TipoOperacion.Nuevo);
+            FormularioABMProvincia.ShowDialog();
+
+            if (FormularioABMProvincia.RealizoAlgunaOperacion)
+            {
+                CargarComboBox(cmbProvincia, _provinciaServicio.ObtenerProvincia(string.Empty), "Descripcion", "Id");
+
+                if (cmbProvincia.Items.Count > 0)
+                {
+                    CargarComboBox(cmbLocalidad, _localidadServicio.ObtenerLocalidadPorProvincia(((ProvinciaDTO)cmbProvincia.Items[0]).Id, string.Empty), "Descripcion", "Id");
+                }
+            }
+        }
+
+        private void btnLocalidad_Click_1(object sender, EventArgs e)
+        {
+            var FormularioABMLocalidad = new FormularioLocalidadABM(TipoOperacion.Nuevo);
+            FormularioABMLocalidad.ShowDialog();
+
+            if (FormularioABMLocalidad.RealizoAlgunaOperacion)
+            {
+                CargarComboBox(cmbLocalidad, _localidadServicio.ObtenerLocalidadPorProvincia(((ProvinciaDTO)cmbProvincia.SelectedItem).Id, string.Empty), "Descripcion", "Id");
+            }
+        }
     }
 }

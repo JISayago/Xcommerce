@@ -49,6 +49,11 @@
             int digito = 1;
             var usuarioNuevo = $"{nombre.Trim().Substring(0, contadorLetras)}{apellido.Trim()}";
 
+            if(usuarioNuevo.ToLower() == "admin")
+            {
+                usuarioNuevo = "admin1";
+            }
+
             using (var baseDatos = new ModeloXCommerceContainer())
             {
                 while (baseDatos.Usuarios.Any(x => x.Nombre == usuarioNuevo))

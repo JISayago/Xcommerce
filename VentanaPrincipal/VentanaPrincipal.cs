@@ -165,8 +165,17 @@
 
         private void btnVentaSalon_Click(object sender, EventArgs e)
         {
-            var fVentaSalon = new FormularioVentaSalon();
-            fVentaSalon.Show();
+
+            if (DatosSistema.EstaCajaAbierta)
+            {
+                var fVentaSalon = new FormularioVentaSalon();
+                fVentaSalon.Show();
+            }
+            else
+            {
+                MessageBox.Show("No se puede abrir Venta Salon si no está la caja abierta", "Advertencia");
+            }
+
         }
 
         private void VentanaPrincipal_Activated(object sender, EventArgs e)

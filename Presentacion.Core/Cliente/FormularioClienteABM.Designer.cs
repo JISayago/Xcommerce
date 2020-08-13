@@ -85,6 +85,7 @@
             this.label27 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.error)).BeginInit();
             this.pnlFoto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgFotoCliente)).BeginInit();
             this.SuspendLayout();
@@ -316,6 +317,7 @@
             this.btnLocalidad.TabIndex = 26;
             this.btnLocalidad.Text = "...";
             this.btnLocalidad.UseVisualStyleBackColor = true;
+            this.btnLocalidad.Click += new System.EventHandler(this.btnLocalidad_Click_1);
             // 
             // btnNuevaProvincia
             // 
@@ -325,6 +327,7 @@
             this.btnNuevaProvincia.TabIndex = 24;
             this.btnNuevaProvincia.Text = "...";
             this.btnNuevaProvincia.UseVisualStyleBackColor = true;
+            this.btnNuevaProvincia.Click += new System.EventHandler(this.btnNuevaProvincia_Click_1);
             // 
             // label11
             // 
@@ -378,6 +381,7 @@
             this.cmbProvincia.Name = "cmbProvincia";
             this.cmbProvincia.Size = new System.Drawing.Size(315, 21);
             this.cmbProvincia.TabIndex = 23;
+            this.cmbProvincia.SelectedIndexChanged += new System.EventHandler(this.cmbProvincia_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -730,6 +734,7 @@
             this.Controls.SetChildIndex(this.label27, 0);
             this.Controls.SetChildIndex(this.label28, 0);
             this.Controls.SetChildIndex(this.label29, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.error)).EndInit();
             this.pnlFoto.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgFotoCliente)).EndInit();
             this.ResumeLayout(false);
