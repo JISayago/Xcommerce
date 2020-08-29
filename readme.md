@@ -11,12 +11,12 @@ Aplicación de escritorio hecha en Windows Forms con C# y el ORM Entity Framewor
 Permite manejar inventario y llevar registro de stock de productos, posee modulos de bar/restaurante, kiosco y delivery. Permite registar empleados y a estos logearse. Caja registradora, historial de ventas y movimientos. Puede imprimir y mostrar facturas.
 
 # Screenshots
-<img src="readme_imgs/fcaja.png" width="480" height="480">
-<img src="readme_imgs/fconsulta.png" width="480" height="480">
-<img src="readme_imgs/fkiosco.png" width="480" height="480">
-<img src="readme_imgs/mesas.png" width="480" height="480">
-<img src="readme_imgs/fprinc.png" width="480" height="480">
-<img src="readme_imgs/fventasal.png" width="480" height="480">
+<img src="readme_imgs/fcaja.png" width="580" height="480">
+<img src="readme_imgs/fconsulta.png" width="580" height="480">
+<img src="readme_imgs/fkiosco.png" width="580" height="480">
+<img src="readme_imgs/mesas.png" width="580" height="480">
+<img src="readme_imgs/fprinc.png" width="580" height="480">
+<img src="readme_imgs/fventasal.png" width="580" height="480">
 
 # Authors
 [@JISayago]( https://github.com/JISayago )<br>
